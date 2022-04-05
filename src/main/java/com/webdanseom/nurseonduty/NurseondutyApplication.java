@@ -1,13 +1,13 @@
-package com.webdanseom.webdanseom;
+package com.webdanseom.nurseonduty;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class WebdanseomApplication {
+public class NurseondutyApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(WebdanseomApplication.class, args);
+		SpringApplication.run(NurseondutyApplication.class, args);
 	}
 
 }

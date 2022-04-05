@@ -1,10 +1,10 @@
-package com.webdanseom.webdanseom;
+package com.webdanseom.nurseonduty;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class WebdanseomApplicationTests {
+class NurseOnDutyApplicationTests {
 
 	@Test
 	void contextLoads() {
