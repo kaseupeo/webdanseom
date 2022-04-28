@@ -18,7 +18,6 @@ import java.util.Date;
 @Setter
 public class Member {
 
-
     @Id
     @GeneratedValue
     private int seq;
@@ -50,6 +49,10 @@ public class Member {
     @Temporal(TemporalType.TIMESTAMP)
     @UpdateTimestamp
     private Date updateAt;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "salt_id")
+    private Salt salt;
 
     public Member() {}
 
