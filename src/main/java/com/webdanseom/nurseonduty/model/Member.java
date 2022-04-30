@@ -36,7 +36,7 @@ public class Member {
     private String password;
 
     @NotBlank(message = "전화번호를 입력하세요.")
-    private String phone_number;
+    private String phoneNumber;
 
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
@@ -56,11 +56,11 @@ public class Member {
 
     public Member() {}
 
-    public Member(@NotBlank String email, @NotBlank String name, @NotBlank String password, @NotBlank String phone_number) {
+    public Member(@NotBlank String email, @NotBlank String name, @NotBlank String password, @NotBlank String phoneNumber) {
         this.email = email;
         this.name = name;
         this.password = password;
-        this.phone_number = phone_number;
+        this.phoneNumber = phoneNumber;
     }
 
     @Override
@@ -70,7 +70,7 @@ public class Member {
                 ", email='" + email + '\'' +
                 ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
-                ", phone_number='" + phone_number + '\'' +
+                ", phone_number='" + phoneNumber + '\'' +
                 ", role=" + role +
                 ", createAt=" + createAt +
                 ", updateAt=" + updateAt +

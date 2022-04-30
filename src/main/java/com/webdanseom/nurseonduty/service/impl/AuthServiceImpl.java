@@ -18,7 +18,7 @@ public class AuthServiceImpl implements AuthService {
     private SaltUtil saltUtil;
 
     @Override
-    public void signUpMember(Member member) {
+    public void signUpUser(Member member) {
         String password = member.getPassword();
         String salt = SaltUtil.genSalt();
 
@@ -28,7 +28,7 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public Member loginMember(String email, String password) throws Exception {
+    public Member loginUser(String email, String password) throws Exception {
         Member member = memberRepository.findByEmail(email);
 
         if (member==null) throw new Exception("조회되지 않습니다.");
