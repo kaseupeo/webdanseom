@@ -1,0 +1,26 @@
+.AuthTemplate{
+
+    width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 6rem;
+    overflow:hidden;
+
+    .login-title{
+        background: #42c981;
+        color: white;
+        height: 4rem;
+        font-size: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+    }
+    .content{
+        background: white;
+        display:flex;
+
+        justify-content: center;
+      }
+    }
+

@@ -1,0 +1,84 @@
+.LoginElement{
+
+
+          input{
+                font-size: 1rem;
+                padding-left: 1rem;
+                display: flex;
+                margin-top:1rem;
+                width: 24rem;
+                height: 2.8rem;
+                border-radius: 3px;
+                border: 1px solid;
+                &::placeholder{
+
+                    font-size:1rem;
+                }
+
+            }
+            .loginBtn{
+               display: flex;
+               align-items:center;
+               justify-content:center;
+               margin-top: 1rem;
+               margin-bottom: 1rem;
+               background: #42c981;
+               color: white;
+               border: 0;
+               height: 3rem;
+               width:25.3rem;
+               font-size: 1.2rem;
+               text-decoration-line: none;
+               &:hover{
+                 background: #3ab574;
+               }
+               }
+
+
+              .otherElement{
+              display: flex;
+                             align-items:center;
+                             justify-content:center;
+              .signBtn{
+               margin-left:0.5rem;
+                display: flex;
+               align-items:center;
+               justify-content:center;
+              display: flex;
+                margin-top: 1rem;
+               margin-bottom: 1rem;
+               background: #42c981;
+               color: white;
+               border: 0;
+               height: 3rem;
+               width:14.5rem;
+               font-size: 1.2rem;
+                 text-decoration-line: none;
+               &:hover{
+                               background: #3ab574;
+                       }
+              }
+              .findPasswordBtn{
+
+                display: flex;
+               align-items:center;
+               justify-content:center;
+              display: flex;
+                margin-top: 1rem;
+               margin-bottom: 1rem;
+               background: #42c981;
+               color: white;
+               border: 0;
+               height: 3rem;
+               width:10.3rem;
+               font-size: 1.2rem;
+                 text-decoration-line: none;
+               &:hover{
+                               background: #3ab574;
+                       }
+              }
+              }
+    }
+
+
+

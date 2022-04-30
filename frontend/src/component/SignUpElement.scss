@@ -1,0 +1,43 @@
+.SignUpElement{
+        margin-top:1rem;
+        b{
+            font-size:1.2rem;
+
+        }
+
+        input{
+                font-size: 1rem;
+                padding-left: 1rem;
+                display: flex;
+                margin-top:0.8rem;
+                margin-bottom:0.8rem;
+                width: 24rem;
+                height: 2.8rem;
+                border-radius: 3px;
+                border: 1px solid;
+                &::placeholder{
+
+                    font-size:1rem;
+                }
+
+            }
+            .signBtn{
+               display: flex;
+               align-items:center;
+               justify-content:center;
+               margin-top: 2rem;
+               margin-bottom: 1rem;
+               background: #42c981;
+               color: white;
+               border: 0;
+               height: 3rem;
+               width:25.3rem;
+               font-size: 1.2rem;
+               text-decoration-line: none;
+               &:hover{
+                 background: #3ab574;
+               }
+               }
+
+
+}
