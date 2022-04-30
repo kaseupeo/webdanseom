@@ -8,6 +8,7 @@ class NurseOnDutyApplicationTests {
 
 	@Test
 	void contextLoads() {
+		system.out.println("3123");
 	}
 
 }
