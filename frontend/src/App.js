@@ -1,37 +1,30 @@
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
 import './App.css';
-import React, {useState, useEffect} from 'react';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  NavLink,
+} from 'react-router-dom';
 
+import Main from './component/Main';
+import SignUpTemplate from './component/SignUpTemplate';
+import LoginTemplate from './component/LoginTemplate';
+import FindPassword from './component/FindPassword';
+import MainNavigation from './component/Navigation/MainNavigation';
 function App() {
-  const [message, setMessage]=useState([]);
-  useEffect(()=>{
-    fetch("/home")
-        .then((res)=>{
-          return res.json();
-        })
-        .then((data)=>{
-            setMessage(data);
-        });
-  },[]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <ul>
-          {message.map((v,idx)=><li key={`${idx}-${v}`}>{v}</li>)}
-        </ul>
-      </header>
+    <div>
+      <Router>
+        <Routes>
+          <Route path="/" element={<MainNavigation />}>
+            <Route path="/" element={<Main />} />
+            <Route path="/auth/login" element={<LoginTemplate />} />
+            <Route path="/auth/signup" element={<SignUpTemplate />} />
+            <Route path="/auth/findPW" element={<FindPassword />} />
+          </Route>
+        </Routes>
+      </Router>
     </div>
   );
 }
