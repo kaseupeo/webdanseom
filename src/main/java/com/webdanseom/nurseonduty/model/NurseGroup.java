@@ -9,7 +9,10 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-//그룹 모델
+
+/**
+ * 그룹(group) 테이블
+ */
 @Entity
 @Table(name = "Group")
 @Getter

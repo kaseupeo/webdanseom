@@ -3,6 +3,9 @@ package com.webdanseom.nurseonduty.model;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * 오류메시지 처리
+ */
 @Getter
 @Setter
 public class Response {

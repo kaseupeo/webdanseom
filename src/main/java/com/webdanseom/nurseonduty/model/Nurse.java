@@ -6,7 +6,10 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-//간호사 모델
+
+/**
+ * 간호사(Nurse) 테이블
+ */
 @Entity
 @Table(name = "Nurse")
 @Getter

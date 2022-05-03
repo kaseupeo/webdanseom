@@ -17,6 +17,10 @@ public class AuthServiceImpl implements AuthService {
     @Autowired
     private SaltUtil saltUtil;
 
+    /**
+     * 회원가입
+     * @param member
+     */
     @Override
     public void signUpUser(Member member) {
         String password = member.getPassword();
@@ -27,6 +31,13 @@ public class AuthServiceImpl implements AuthService {
         memberRepository.save(member);
     }
 
+    /**
+     * 로그인
+     * @param email
+     * @param password
+     * @return
+     * @throws Exception
+     */
     @Override
     public Member loginUser(String email, String password) throws Exception {
         Member member = memberRepository.findByEmail(email);
