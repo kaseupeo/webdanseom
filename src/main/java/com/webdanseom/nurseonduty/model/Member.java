@@ -41,6 +41,10 @@ public class Member {
     @NotBlank
     private String phoneNumber;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "social_id")
+    private SocialData socialData;
+
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
     private UserRole role = UserRole.ROLE_NOT_PERMITTED;

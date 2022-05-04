@@ -3,16 +3,16 @@ package com.webdanseom.nurseonduty.controller;
 import com.webdanseom.nurseonduty.jwt.JwtUtil;
 import com.webdanseom.nurseonduty.model.Member;
 import com.webdanseom.nurseonduty.model.Response;
+import com.webdanseom.nurseonduty.model.requset.RequestChangePassword;
 import com.webdanseom.nurseonduty.model.requset.RequestLoginUser;
+import com.webdanseom.nurseonduty.model.requset.RequestVerifyEmail;
 import com.webdanseom.nurseonduty.service.AuthService;
 import com.webdanseom.nurseonduty.service.CookieUtil;
 import com.webdanseom.nurseonduty.service.RedisUtil;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -49,8 +49,8 @@ public class MemberController {
 
     @PostMapping("/login")
     public Response login(@RequestBody RequestLoginUser user,
-                          HttpServletRequest request,
-                          HttpServletResponse response) {
+                          HttpServletRequest httpServletRequest,
+                          HttpServletResponse httpServletResponse) {
         try {
             final Member member = authService.loginUser(user.getEmail(), user.getPassword());
             final String token = jwtUtil.generateToken(member);
@@ -58,11 +58,69 @@ public class MemberController {
             Cookie accessToken = cookieUtil.createCookie(JwtUtil.ACCESS_TOKEN_NAME, refreshJwt);
             Cookie refreshToken = cookieUtil.createCookie(JwtUtil.REFRESH_TOKEN_NAME, refreshJwt);
             redisUtil.setDataExpire(refreshJwt, member.getEmail(), JwtUtil.REFRESH_TOKEN_VALIDATION_SECOND);
-            response.addCookie(accessToken);
-            response.addCookie(refreshToken);
+            httpServletResponse.addCookie(accessToken);
+            httpServletResponse.addCookie(refreshToken);
             return new Response("success", "로그인 성공", token);
         } catch (Exception e) {
             return new Response("error", "로그인 실패", e.getMessage());
         }
     }
+
+    @PostMapping("/verify")
+    public Response verify(@RequestBody RequestVerifyEmail requestVerifyEmail, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
+        Response response;
+        try {
+            Member member = authService.findByEmail(requestVerifyEmail.getEmail());
+            authService.sendVerificationMail(member);
+            response = new Response("success", "성공적으로 인증메일을 보냈습니다.", null);
+        } catch (Exception e) {
+            response = new Response("error", "인증메일을 보내는데 문제가 발생했습니다.", e);
+        }
+        return response;
+    }
+
+    @GetMapping("/verify/{key}")
+    public Response getVerify(@PathVariable String key) {
+        Response response;
+        try {
+            authService.verifyEmail(key);
+            response = new Response("success", "성공적으로 인증메일을 확인했습니다.", null);
+        } catch (Exception e) {
+            response = new Response("error", "인증메일을 확인하는데 실패했습니다.", null);
+        }
+        return response;
+    }
+
+    @GetMapping("/password/{key}")
+    public Response isPasswordUUIdValidate(@PathVariable String key) {
+        Response response;
+        try {
+            if (authService.isPasswordUuidValidate(key))
+                response = new Response("success", "정상적인 접근입니다.", null);
+            else
+                response = new Response("error", "유효하지 않은 Key 값입니다.", null);
+        } catch (Exception e) {
+            response = new Response("error", "유효하지 않은 key 값입니다.", null);
+        }
+        return response;
+    }
+
+    @PutMapping("/password")
+    public Response changePassword(@RequestBody RequestChangePassword requestChangePassword) {
+        Response response;
+        try{
+            Member member = authService.findByEmail(requestChangePassword.getEmail());
+            authService.changePassword(member,requestChangePassword.getPassword());
+            response = new Response("success","성공적으로 사용자의 비밀번호를 변경했습니다.",null);
+        }catch(Exception e){
+            response = new Response("error","사용자의 비밀번호를 변경할 수 없었습니다.",null);
+        }
+        return response;
+    }
+
+    @GetMapping("/test")
+    public String test() {
+        return "Hello World!";
+    }
+
 }

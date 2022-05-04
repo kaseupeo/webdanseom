@@ -1,4 +1,4 @@
-package com.webdanseom.nurseonduty;
+package com.webdanseom.nurseonduty.service.impl;
 
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;

@@ -1,6 +1,6 @@
 package com.webdanseom.nurseonduty.jwt;
 
-import com.webdanseom.nurseonduty.CustomUserDetails;
+import com.webdanseom.nurseonduty.service.impl.CustomUserDetails;
 import com.webdanseom.nurseonduty.model.Member;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
