@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * 그룹(group) 테이블
  */
 @Entity
-@Table(name = "Group")
+@Table(name = "Nurse_Group")
 @Getter
 @Setter
 public class NurseGroup {
