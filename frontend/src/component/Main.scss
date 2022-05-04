@@ -1,0 +1,43 @@
+$mobile-contents-width: 640px;
+.Main{
+    position: flex;
+    .firstDiv{
+        position: flex;
+        background: linear-gradient(to right, #50B8B4, #156d6a);
+        color: white;
+        padding-top: 3rem;
+        padding-left: 8rem;
+        padding-bottom: 3rem;
+        
+        h1{ 
+            margin:0%;
+         
+            
+            font-size: 3rem;
+            @media (max-width: $mobile-contents-width) {
+                
+                
+                font-size: 120vw / ($mobile-contents-width / 30px);
+                
+              }
+                
+              
+        }
+
+        ul{
+            margin:0%;
+         
+            list-style:none;
+            font-size: 1rem;
+            @media (max-width: $mobile-contents-width) {
+                // 화면 전체 가로크기(100vw)에서 640을 나눠줍니다.
+                font-size: 80vw / ($mobile-contents-width / 15px);
+                // 이러면 화면 전체 가로크기가 640px일 때 font-size는 1px이 되고,
+                // 화면 전체 가로크기가 320px일 때는 font-size가 0.5px이 됩니다.
+              }
+
+        }
+
+    }
+
+}

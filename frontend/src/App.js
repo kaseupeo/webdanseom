@@ -8,9 +8,9 @@ import {
 } from 'react-router-dom';
 
 import Main from './component/Main';
-import SignUpTemplate from './component/SignUpTemplate';
-import LoginTemplate from './component/LoginTemplate';
-import FindPassword from './component/FindPassword';
+import SignUpTemplate from './component/Auth/SignUpTemplate';
+import LoginTemplate from './component/Auth/LoginTemplate';
+import FindPassword from './component/Auth/FindPassword';
 import MainNavigation from './component/Navigation/MainNavigation';
 function App() {
   return (
