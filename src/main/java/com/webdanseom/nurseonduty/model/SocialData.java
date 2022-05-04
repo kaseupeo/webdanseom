@@ -20,7 +20,7 @@ public class SocialData {
     private String email;
     private String type;
 
-    @OneToOne(mappedBy = "social")
+    @OneToOne(mappedBy = "socialData")
     private Member member;
 
     public SocialData(String email, String type) {
