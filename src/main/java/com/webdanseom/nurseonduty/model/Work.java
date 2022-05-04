@@ -1,11 +1,10 @@
 package com.webdanseom.nurseonduty.model;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -15,6 +14,7 @@ import java.util.Date;
 @Table(name = "Work")
 @Getter
 @Setter
+@NoArgsConstructor
 public class Work {
 
     @Id
@@ -22,5 +22,21 @@ public class Work {
 
     private  String duty;
 
+    @Temporal(TemporalType.DATE)
     private Date date;
+
+    public Work(int workNum, String duty, Date date) {
+        this.workNum = workNum;
+        this.duty = duty;
+        this.date = date;
+    }
+
+    @Override
+    public String toString() {
+        return "Work{" +
+                "workNum=" + workNum +
+                ", duty='" + duty + '\'' +
+                ", date=" + date +
+                '}';
+    }
 }

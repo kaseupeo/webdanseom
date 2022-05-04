@@ -1,6 +1,7 @@
 package com.webdanseom.nurseonduty.model;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Entity;
@@ -17,6 +18,7 @@ import javax.validation.constraints.NotNull;
 @Table(name = "Nurse_Group")
 @Getter
 @Setter
+@NoArgsConstructor
 public class NurseGroup {
 
     @Id
@@ -37,8 +39,6 @@ public class NurseGroup {
 
     @NotNull
     private int numberOfNights;
-
-    public NurseGroup() {}
 
     public NurseGroup(int groupNum, String groupName, int headNurseNum, int numberOfDays, int numberOfEvenings, int numberOfNights) {
         this.groupNum = groupNum;

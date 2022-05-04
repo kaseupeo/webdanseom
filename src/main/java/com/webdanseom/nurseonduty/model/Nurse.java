@@ -1,6 +1,7 @@
 package com.webdanseom.nurseonduty.model;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -14,6 +15,7 @@ import javax.validation.constraints.NotNull;
 @Table(name = "Nurse")
 @Getter
 @Setter
+@NoArgsConstructor
 public class Nurse {
 
     @Id
@@ -34,8 +36,6 @@ public class Nurse {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "member_id")
     private Member seq;
-
-    public Nurse() {}
 
     public Nurse(int nurseNum, String name, String charge, String position, double annualLeave) {
         this.nurseNum = nurseNum;
