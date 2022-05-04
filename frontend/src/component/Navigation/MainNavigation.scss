@@ -1,26 +1,83 @@
+$mobile-contents-width: 640px;
+.TotalMain{
+  position: absolute;
+  left:0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: #e5e9ee;
 .MainNavigation{
-    background-color: white;
-
+  position: flex;
+    background: linear-gradient(to right, #547B97, #40586a);
+    padding-top: 1.5rem;
+    padding-bottom: 0rem;
+    height: 100px;
+    color:white;
  .btn{
 
       display: flex;
-      margin-bottom: 0rem;
+      padding-bottom: 0rem;
       height: 0;
       padding-top: 1.2rem;
-      padding-right: 3rem;
+      padding-right: 5rem;
       justify-content:end;
       align-items:flex-start;
 
+      @media (max-width: $mobile-contents-width) {
+        display: none;
+      }
+
+
+      .loginBtn{
+        background-color: #40586a;
+        width: 90px;
+        height: 43px;
+        text-align: center;
+        border: solid 1px white;
+        color:white;
+        line-height: 40px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: 1000;
+        &:hover{
+          background-color: white;
+          color:#40586a;
+        }
+      }
+      .signBtn{
+        background-color: #596671;
+        width: 90px;
+        height: 43px;
+        text-align: center;
+        border: solid 1px white;
+        color:white;
+        line-height: 40px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: 1000;
+        &:hover{
+          background-color: white;
+          color:#40586a;
+        }
+      }
+
     }
     .title{
-            font-size:2.5rem;
-            padding-bottom: 1.5rem;
-             display: flex;
-            justify-content: center;
-            align-items: flex-start;
+            font-size:1.8rem;
+            padding-left: 5rem;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            @media (max-width: $mobile-contents-width) {
+              font-size: 3rem;
+            }
+      
 
     }
 
 
 
+}
+
+ 
 }
