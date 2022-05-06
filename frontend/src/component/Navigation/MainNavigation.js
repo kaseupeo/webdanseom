@@ -7,6 +7,9 @@ const MyComponent = () => {
   return (
     <div className="TotalMain">
       <header className="MainNavigation">
+        <Link to="/" className="title">
+          Nurse on Duty
+        </Link>
         <div className="btn">
           <Link to="/auth/login" className="loginBtn">
             로그인
@@ -16,9 +19,6 @@ const MyComponent = () => {
             회원가입
           </Link>
         </div>
-        <Link to="/" className="title">
-          Nurse on Duty
-        </Link>
       </header>
 
       <main>

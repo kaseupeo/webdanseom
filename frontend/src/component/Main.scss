@@ -18,7 +18,7 @@ $mobile-contents-width: 640px;
                 
                 
                 font-size: 120vw / ($mobile-contents-width / 30px);
-                
+                white-space: nowrap;
               }
                 
               
@@ -30,10 +30,9 @@ $mobile-contents-width: 640px;
             list-style:none;
             font-size: 1rem;
             @media (max-width: $mobile-contents-width) {
-                // 화면 전체 가로크기(100vw)에서 640을 나눠줍니다.
+               
                 font-size: 80vw / ($mobile-contents-width / 15px);
-                // 이러면 화면 전체 가로크기가 640px일 때 font-size는 1px이 되고,
-                // 화면 전체 가로크기가 320px일 때는 font-size가 0.5px이 됩니다.
+                white-space: nowrap;
               }
 
         }

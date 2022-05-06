@@ -1,11 +1,12 @@
 /*
 회원가입요소
 */
-
+$mobile-contents-width: 640px;
 .SignUpElement{
         margin-top:1rem;
         b{
-            font-size:1.2rem;
+            font-size:1rem;
+           
 
         }
 
@@ -15,10 +16,11 @@
                 display: flex;
                 margin-top:0.8rem;
                 margin-bottom:0.8rem;
-                width: 24rem;
-                height: 2.8rem;
+                width: 21.3rem;
+                height: 2.6rem;
                 border-radius: 3px;
                 border: 1px solid;
+                
                 &::placeholder{
 
                     font-size:1rem;
@@ -34,8 +36,8 @@
                background: #50B8B4;
                color: white;
                border: 0;
-               height: 3rem;
-               width:25.3rem;
+               height: 2.5rem;
+               width:23rem;
                font-size: 1.2rem;
                text-decoration-line: none;
                &:hover{
