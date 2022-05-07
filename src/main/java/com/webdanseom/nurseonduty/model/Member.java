@@ -1,5 +1,12 @@
 package com.webdanseom.nurseonduty.model;
-
+/**
+ * 파일명: Member.java
+ * 설명: 회원(Member) 테이블
+ * 작성일자:2022.05.04
+ * 작성자:신동현
+ * 수정일자: 2022.05.08
+ * 수정자:표영운
+ */
 import com.webdanseom.nurseonduty.config.UserRole;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,9 +19,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.util.Date;
 
-/**
- * 회원(Member) 테이블
- */
+
 @Entity
 @Table(name = "Member")
 @Getter

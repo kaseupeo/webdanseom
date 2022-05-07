@@ -1,11 +1,18 @@
 package com.webdanseom.nurseonduty.model;
-
+/**
+ * 파일명: Response.java
+ * 설명: 오류메시지 처리
+ * 작성일자:2022.05.04
+ * 작성자:신동현
+ * 수정일자: 2022.05.08
+ * 수정자:표영운
+ */
 import lombok.Getter;
 import lombok.Setter;
 
-/**
- * 오류메시지 처리
- */
+
+
+
 @Getter
 @Setter
 public class Response {

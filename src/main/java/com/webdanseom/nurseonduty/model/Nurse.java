@@ -1,5 +1,12 @@
 package com.webdanseom.nurseonduty.model;
-
+/**
+ * 파일명: Nurse.java
+ * 설명: 간호사(Nurse) 테이블
+ * 작성일자:2022.05.04
+ * 작성자:신동현
+ * 수정일자: 2022.05.08
+ * 수정자:표영운
+ */
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -8,9 +15,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-/**
- * 간호사(Nurse) 테이블
- */
+
 @Entity
 @Table(name = "Nurse")
 @Getter
