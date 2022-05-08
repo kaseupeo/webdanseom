@@ -28,6 +28,7 @@ public class Preceptor {
 
     //주임(담당) 간호사  --- 외래키 (간호사번호)
     @NotNull
+    @ManyToMany
     @JoinColumn(name = "nurse_seq")
     private String headNurseName;
 
