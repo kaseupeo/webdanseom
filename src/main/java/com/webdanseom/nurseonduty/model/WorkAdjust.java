@@ -19,7 +19,7 @@ import java.util.Date;
 @Getter
 @Setter
 @NoArgsConstructor
-@IdClass(NurseGroup.class)
+@IdClass(WorkAdjustId.class)
 public class WorkAdjust {
 
     //근무조정번호 (기본키)
