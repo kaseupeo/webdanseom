@@ -31,7 +31,7 @@ public class Nurse {
     //그룹번호 (기본키) --- 외래키
     @Id
     @ManyToOne
-    @JoinColumn(name = "group_seq")
+    @JoinColumn(name = "groupSeq")
     private NurseGroup groupSeq;
 
     //간호사 이름
@@ -52,7 +52,7 @@ public class Nurse {
 
     //회원정보 --- 외래키
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "member_seq")
+    @JoinColumn(name = "memberSeq")
     private Member memberSeq;
 
 

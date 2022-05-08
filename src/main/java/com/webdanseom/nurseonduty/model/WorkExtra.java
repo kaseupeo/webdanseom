@@ -18,7 +18,7 @@ import java.util.Date;
  *
  */
 @Entity
-@Table(name = "WorkExtra")
+@Table(name = "Work_Extra")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -31,7 +31,7 @@ public class WorkExtra {
     //그룹번호 (기본키) --- 외래키
     @Id
     @ManyToOne(optional = false)
-    @JoinColumn(name = "group_seq", nullable = false)
+    @JoinColumn(name = "groupSeq", nullable = false)
     private NurseGroup groupSeq;
 
     //임시듀티

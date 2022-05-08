@@ -31,7 +31,7 @@ public class Preceptor {
 
     //주임(담당) 간호사  --- 외래키 (간호사번호)
     @NotNull
-    @JoinColumn(name = "preceptor_seq")
+    @JoinColumn(name = "nurseSeq")
     private String headNurseName;
 
     //신입 간호사

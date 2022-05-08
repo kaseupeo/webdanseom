@@ -15,7 +15,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "WorkAdjust")
+@Table(name = "Work_Adjust")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -29,7 +29,7 @@ public class WorkAdjust {
     //그룹번호 (기본키) --- 외래키
     @Id
     @ManyToOne
-    @JoinColumn(name = "group-seq", nullable = false)
+    @JoinColumn(name = "groupSeq", nullable = false)
     private NurseGroup groupSeq;
 
     //조정 듀티
