@@ -5,10 +5,11 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import java.io.Serializable;
 
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
-public class NurseId {
+public class NurseId implements Serializable {
 
     @EqualsAndHashCode.Include
     @Id
