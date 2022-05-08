@@ -28,26 +28,24 @@ public class Preceptor {
 
     //주임(담당) 간호사  --- 외래키 (간호사번호)
     @NotNull
-    @ManyToMany
-    @JoinColumn(name = "nurse_seq")
-    private String headNurseName;
+    private int headNurseNum;
 
     //신입 간호사
     @NotNull
-    private String newNurseName;
+    private int newNurseNum;
 
-    public Preceptor(int preceptorSeq, String headNurseName, String newNurseName) {
+    public Preceptor(int preceptorSeq, int headNurseNum, int newNurseNum) {
         this.preceptorSeq = preceptorSeq;
-        this.headNurseName = headNurseName;
-        this.newNurseName = newNurseName;
+        this.headNurseNum = headNurseNum;
+        this.newNurseNum = newNurseNum;
     }
 
     @Override
     public String toString() {
         return "Preceptor{" +
                 "preceptorNum=" + preceptorSeq +
-                ", headNurseName='" + headNurseName + '\'' +
-                ", newNurseName='" + newNurseName + '\'' +
+                ", headNurseName='" + headNurseNum + '\'' +
+                ", newNurseName='" + newNurseNum + '\'' +
                 '}';
     }
 }

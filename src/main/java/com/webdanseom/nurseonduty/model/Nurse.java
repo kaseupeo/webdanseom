@@ -55,6 +55,11 @@ public class Nurse {
     @JoinColumn(name = "memberSeq")
     private Member memberSeq;
 
+    //프리셉터 --- 외래키
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "preceptorSeq")
+    private Preceptor preceptorSeq;
+
 
 
     public Nurse(int nurseNum, String name, String charge, String position, double annualLeave) {
