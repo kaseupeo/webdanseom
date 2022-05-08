@@ -31,7 +31,7 @@ public class WorkExtra {
     //그룹번호 (기본키) --- 외래키
     @Id
     @ManyToOne(optional = false)
-    @JoinColumn(name = "groupSeq", nullable = false)
+    @JoinColumn(name = "group_seq", nullable = false)
     private NurseGroup groupSeq;
 
     //임시듀티

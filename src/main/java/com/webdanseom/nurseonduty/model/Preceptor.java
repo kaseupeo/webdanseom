@@ -27,19 +27,19 @@ public class Preceptor {
     //프리셉터 번호
     @Id
     @GeneratedValue
-    private int seq;
+    private int preceptorSeq;
 
     //주임(담당) 간호사  --- 외래키 (간호사번호)
     @NotNull
-    @JoinColumn(name = "seq")
+    @JoinColumn(name = "preceptor_seq")
     private String headNurseName;
 
     //신입 간호사
     @NotNull
     private String newNurseName;
 
-    public Preceptor(int preceptorNum, String headNurseName, String newNurseName) {
-        this.seq = preceptorNum;
+    public Preceptor(int preceptorSeq, String headNurseName, String newNurseName) {
+        this.preceptorSeq = preceptorSeq;
         this.headNurseName = headNurseName;
         this.newNurseName = newNurseName;
     }
@@ -47,7 +47,7 @@ public class Preceptor {
     @Override
     public String toString() {
         return "Preceptor{" +
-                "preceptorNum=" + seq +
+                "preceptorNum=" + preceptorSeq +
                 ", headNurseName='" + headNurseName + '\'' +
                 ", newNurseName='" + newNurseName + '\'' +
                 '}';

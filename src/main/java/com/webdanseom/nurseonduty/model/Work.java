@@ -29,7 +29,7 @@ public class Work {
     //그룹번호 (기본키) --- 외래키
     @Id
     @ManyToOne
-    @JoinColumn(name = "groupSeq", nullable = false)
+    @JoinColumn(name = "group-seq", nullable = false)
     private  NurseGroup groupSeq;
     
     //듀티

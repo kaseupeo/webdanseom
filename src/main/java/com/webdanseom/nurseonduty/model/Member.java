@@ -77,13 +77,13 @@ public class Member {
 
     //그룹번호 --- 외래키 (참여)
     @ManyToOne
-    @JoinColumn(name = "groupNum")
-    private NurseGroup groupNum;
+    @JoinColumn(name = "group_seq")
+    private NurseGroup grgroupSeq;
 
     //간호사번호 --- 외래키  (연동)
     @OneToOne (cascade = CascadeType.ALL)
-    @JoinColumn(name = "nurseNum")
-    private Nurse nurseNum;
+    @JoinColumn(name = "nurse_seq")
+    private Nurse nurseSeq;
 
     public Member(@NotBlank String email, @NotBlank String name, @NotBlank String password, @NotBlank String phoneNumber) {
         this.email = email;

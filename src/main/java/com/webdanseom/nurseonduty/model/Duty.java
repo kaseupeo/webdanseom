@@ -29,7 +29,7 @@ public class Duty {
     //그룹번호(기본키) ---  외래키
     @Id
     @ManyToOne
-    @JoinColumn(name = "groupSeq")
+    @JoinColumn(name = "group_seq")
     private NurseGroup groupSeq;
 
     //듀티 풀네임
@@ -44,17 +44,17 @@ public class Duty {
     @Temporal(TemporalType.TIME)
     private Date startTime;
     //사용여부
-    private Boolean isUseable;
+    private Boolean isUsable;
 
 
-    public Duty(String dutyCode, String dutyCodeName, int workingHours, String workType, String hexColor, Date startTime, Boolean isUseable) {
+    public Duty(String dutyCode, String dutyCodeName, int workingHours, String workType, String hexColor, Date startTime, Boolean isUsable) {
         this.dutyCode = dutyCode;
         this.dutyCodeName = dutyCodeName;
         this.workingHours = workingHours;
         this.workType = workType;
         this.hexColor = hexColor;
         this.startTime = startTime;
-        this.isUseable = isUseable;
+        this.isUsable = isUsable;
     }
 
     @Override
@@ -66,7 +66,7 @@ public class Duty {
                 ", workType='" + workType + '\'' +
                 ", hexColor='" + hexColor + '\'' +
                 ", time=" + startTime +
-                ", dutyUse=" + isUseable +
+                ", dutyUse=" + isUsable +
                 '}';
     }
 }
