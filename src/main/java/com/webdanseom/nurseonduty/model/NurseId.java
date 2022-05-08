@@ -4,6 +4,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
@@ -15,6 +16,7 @@ public class NurseId {
 
     @EqualsAndHashCode.Include
     @Id
+    @ManyToOne
     private NurseGroup groupSeq;
 
 }

@@ -28,7 +28,7 @@ public class NurseGroup {
     //그룹번호
     @Id
     @GeneratedValue
-    @Column(name = "group_seq")
+    @Column(name = "groupSeq")
     private int groupSeq;
 
     //그룹이름
