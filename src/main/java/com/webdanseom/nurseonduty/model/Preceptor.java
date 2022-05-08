@@ -23,12 +23,15 @@ import javax.persistence.Id;
 @NoArgsConstructor
 public class Preceptor {
 
+    //프리셉터 번호
     @Id
     @GeneratedValue
     private int preceptorNum;
 
+    //주임(담당) 간호사
     private String headNurseName;
 
+    //신입 간호사
     private String newNurseName;
 
     public Preceptor(int preceptorNum, String headNurseName, String newNurseName) {

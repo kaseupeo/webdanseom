@@ -16,8 +16,13 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Response {
+    //경고 넘버
     private String response;
+    
+    //경고 메시지
     private String message;
+    
+    //경고일
     private Object data;
 
     public Response(String response, String message, Object data) {

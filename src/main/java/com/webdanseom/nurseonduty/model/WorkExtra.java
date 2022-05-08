@@ -24,11 +24,14 @@ import java.util.Date;
 @NoArgsConstructor
 public class WorkExtra {
 
+    //임시근무번호
     @Id
     private  int workExtraNum;
 
+    //임시듀티
     private  String duty;
 
+    //임시근무일
     @Temporal(TemporalType.DATE)
     private Date date;
 

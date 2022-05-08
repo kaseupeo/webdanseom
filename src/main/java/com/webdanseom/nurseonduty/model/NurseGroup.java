@@ -27,22 +27,28 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 public class NurseGroup {
 
+    //그룹번호
     @Id
     @GeneratedValue
     private int groupNum;
 
+    //그룹이름
     @NotNull
     private String groupName;
 
+    //수간호사번호
     @NotBlank
     private int headNurseNum;
 
+    //최소 Day 근무
     @NotNull
     private int numberOfDays;
 
+    //최소 Evening 근무
     @NotNull
     private int numberOfEvenings;
 
+    //최소 Night 근무
     @NotNull
     private int numberOfNights;
 

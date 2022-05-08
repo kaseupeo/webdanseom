@@ -21,16 +21,21 @@ import java.util.Date;
 @NoArgsConstructor
 public class WorkAdjust {
 
+    //근무조정번호
     @Id
     @GeneratedValue
     private int workAdjustNum;
 
+    //조정 듀티
     private String duty;
 
+    //요청자
     private String requester;
 
+    //사유
     private String requestReason;
 
+    //조정요청일
     @Temporal(TemporalType.DATE)
     private Date date;
 

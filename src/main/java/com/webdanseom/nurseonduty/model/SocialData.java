@@ -22,13 +22,18 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class SocialData {
 
+    //소셜 id
     @Id
     @GeneratedValue
     private int id;
 
+    //소셜 이메일
     private String email;
+
+    //소셜 id
     private String type;
 
+    //회원과 외래키
     @OneToOne(mappedBy = "socialData")
     private Member member;
 

@@ -23,21 +23,27 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 public class Nurse {
 
+    //간호사번호
     @Id
     private int nurseNum;
 
+    //간호사 이름
     @NotBlank
     private String name;
-
+    
+    //전담
     @NotNull
     private String charge;
 
+    //직책
     @NotNull
     private String position;
-
+    
+    //연차
     @NotNull
     private double annualLeave;
 
+    //회원정보 -외래키
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "member_id")
     private Member seq;

@@ -22,11 +22,14 @@ import java.util.Date;
 @NoArgsConstructor
 public class Work {
 
+    //근무번호
     @Id
     private  int workNum;
 
+    //듀티
     private  String duty;
 
+    //근무날짜 (년월일)
     @Temporal(TemporalType.DATE)
     private Date date;
 

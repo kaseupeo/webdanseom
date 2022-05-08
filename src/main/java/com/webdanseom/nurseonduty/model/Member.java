@@ -26,42 +26,52 @@ import java.util.Date;
 @Setter
 public class Member {
 
+    //회원번호
     @Id
     @GeneratedValue
     private int seq;
 
+    //이메일
     @Column(unique = true)
     @NotBlank(message = "이메일을 입력하세요.")
     @Pattern(regexp = "^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$",
             message = "이메일 형식이 맞지 않습니다.")
     private String email;
 
+    //이름
     @NotBlank
     private String name;
 
+    //비밀번호
     @NotNull
     @Pattern(regexp = "^.*(?=^.{8,15}$)(?=.*\\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$", message = "비밀번호는 영문, 숫자, 특수기호가 최소 1개 이상 포함되어야합니다.")
     private String password;
 
+    //핸드폰번호
     @NotBlank
     private String phoneNumber;
 
+    //소셜(카카오톡, 네이버 등)아이디
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "social_id")
     private SocialData socialData;
 
+    //로그인을 위한 정보
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
     private UserRole role = UserRole.ROLE_NOT_PERMITTED;
 
+    //가입날짜
     @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
     private Date createAt;
 
+    //회원정보 수정날짜
     @Temporal(TemporalType.TIMESTAMP)
     @UpdateTimestamp
     private Date updateAt;
 
+    //아이디 암호화
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "salt_id")
     private Salt salt;
