@@ -22,7 +22,7 @@ import java.util.Date;
 @Getter
 @Setter
 @NoArgsConstructor
-@IdClass(NurseGroup.class)
+@IdClass(WorkExtraId.class)
 public class WorkExtra {
 
     //임시근무번호 (기본키)

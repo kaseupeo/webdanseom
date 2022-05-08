@@ -20,7 +20,7 @@ import java.util.Date;
 @Getter
 @Setter
 @NoArgsConstructor
-@IdClass(NurseGroup.class)
+@IdClass(WorkId.class)
 public class Work {
 
     //근무번호 (기본키)
