@@ -20,7 +20,7 @@ import java.util.Date;
 @Getter
 @Setter
 @NoArgsConstructor
-@IdClass(NurseGroup.class)
+@IdClass(NurseGroupId.class)
 public class Duty {
 
     //듀티코드(기본키) 
