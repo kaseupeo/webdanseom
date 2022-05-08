@@ -52,9 +52,8 @@ public class Nurse {
 
     //회원정보 --- 외래키
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "memberSeq")
+    @JoinColumn(name = "member_seq")
     private Member memberSeq;
-
 
 
 

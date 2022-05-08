@@ -11,10 +11,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 
@@ -31,7 +28,7 @@ public class Preceptor {
 
     //주임(담당) 간호사  --- 외래키 (간호사번호)
     @NotNull
-    @JoinColumn(name = "nurseSeq")
+    @JoinColumn(name = "nurse_seq")
     private String headNurseName;
 
     //신입 간호사
