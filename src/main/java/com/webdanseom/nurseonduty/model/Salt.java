@@ -1,7 +1,7 @@
 package com.webdanseom.nurseonduty.model;
 /**
  * 파일명: Salt.java
- * 설명: SecurityMember를 통해 jwt 토큰으로 변경된 비밀전호를 다시 암호화
+ * 설명: jwt를 좀 더 암호화해서 보완
  * 작성일자:2022.05.04
  * 작성자:신동현
  * 수정일자: 2022.05.08

@@ -28,7 +28,7 @@ public class Member {
 
     //회원번호
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int seq;
 
     //이메일
