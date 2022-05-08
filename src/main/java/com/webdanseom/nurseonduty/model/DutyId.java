@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
-public class NurseGroupId implements Serializable {
+public class DutyId implements Serializable {
 
     @EqualsAndHashCode.Include
     @Id

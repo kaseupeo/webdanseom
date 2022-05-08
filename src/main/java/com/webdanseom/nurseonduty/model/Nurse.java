@@ -21,7 +21,7 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 @NoArgsConstructor
-@IdClass(NurseGroup.class)
+@IdClass(NurseId.class)
 public class Nurse {
 
     //간호사번호 (기본키)
