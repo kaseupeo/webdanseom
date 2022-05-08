@@ -1,6 +1,9 @@
 # 웹딴섬
 간호사 당직 근무 웹사이트   
-</br></br></br></br></br>
+</br></br>
+_ERD_
+![ERD](https://user-images.githubusercontent.com/77259234/167297568-2da9564f-b2f6-446c-957e-3cefd2ce052e.png)
+</br></br></br>
 _세부기능_
 <table>
   <tr>
