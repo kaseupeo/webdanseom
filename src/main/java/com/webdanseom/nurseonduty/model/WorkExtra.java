@@ -26,7 +26,7 @@ public class WorkExtra {
 
     //임시근무번호
     @Id
-    private  int workExtraNum;
+    private  int workExtraSeq;
 
     //임시듀티
     private  String duty;
@@ -36,7 +36,7 @@ public class WorkExtra {
     private Date date;
 
     public WorkExtra(int workNum, String duty, Date date) {
-        this.workExtraNum = workNum;
+        this.workExtraSeq = workNum;
         this.duty = duty;
         this.date = date;
     }
@@ -44,7 +44,7 @@ public class WorkExtra {
     @Override
     public String toString() {
         return "Work{" +
-                "workNum=" + workExtraNum +
+                "workNum=" + workExtraSeq +
                 ", duty='" + duty + '\'' +
                 ", date=" + date +
                 '}';

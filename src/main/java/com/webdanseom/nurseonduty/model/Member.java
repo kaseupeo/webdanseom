@@ -8,8 +8,7 @@ package com.webdanseom.nurseonduty.model;
  * 수정자:표영운
  */
 import com.webdanseom.nurseonduty.config.UserRole;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -19,7 +18,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.util.Date;
 
-
+@NoArgsConstructor
 @Entity
 @Table(name = "Member")
 @Getter
@@ -29,7 +28,7 @@ public class Member {
     //회원번호
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int seq;
+    private int memberSeq;
 
     //이메일
     @Column(unique = true)
@@ -76,7 +75,15 @@ public class Member {
     @JoinColumn(name = "salt_id")
     private Salt salt;
 
-    public Member() {}
+    //그룹번호 --- 외래키 (참여)
+    @ManyToOne
+    @JoinColumn(name = "groupNum")
+    private NurseGroup groupNum;
+
+    //간호사번호 --- 외래키  (연동)
+    @OneToOne (cascade = CascadeType.ALL)
+    @JoinColumn(name = "nurseNum")
+    private Nurse nurseNum;
 
     public Member(@NotBlank String email, @NotBlank String name, @NotBlank String password, @NotBlank String phoneNumber) {
         this.email = email;
@@ -88,7 +95,7 @@ public class Member {
     @Override
     public String toString() {
         return "Member{" +
-                "seq=" + seq +
+                "seq=" + memberSeq +
                 ", email='" + email + '\'' +
                 ", name='" + name + '\'' +
                 ", password='" + password + '\'' +

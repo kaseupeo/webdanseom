@@ -10,14 +10,13 @@ package com.webdanseom.nurseonduty.model;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.CreationTimestamp;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-
+import java.util.Date;
 
 
 @Entity
@@ -26,11 +25,10 @@ import javax.validation.constraints.NotNull;
 @Setter
 @NoArgsConstructor
 public class NurseGroup {
-
     //그룹번호
     @Id
     @GeneratedValue
-    private int groupNum;
+    private int groupSeq;
 
     //그룹이름
     @NotNull
@@ -52,19 +50,31 @@ public class NurseGroup {
     @NotNull
     private int numberOfNights;
 
-    public NurseGroup(int groupNum, String groupName, int headNurseNum, int numberOfDays, int numberOfEvenings, int numberOfNights) {
-        this.groupNum = groupNum;
+    //초대링크
+    @NotNull
+    private String inviteLink;
+
+    //초대링크 만료일
+    @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
+    private Date inviteDate;
+
+    public NurseGroup(int groupSeq, String groupName, int headNurseNum, int numberOfDays,
+                      int numberOfEvenings, int numberOfNights, String inviteLink, Date inviteDate) {
+        this.groupSeq = groupSeq;
         this.groupName = groupName;
         this.headNurseNum = headNurseNum;
         this.numberOfDays = numberOfDays;
         this.numberOfEvenings = numberOfEvenings;
         this.numberOfNights = numberOfNights;
+        this.inviteLink = inviteLink;
+        this.inviteDate = inviteDate;
     }
 
     @Override
     public String toString() {
         return "NurseGroup{" +
-                "groupNum=" + groupNum +
+                "groupNum=" + groupSeq +
                 ", groupName='" + groupName + '\'' +
                 ", headNurseNum=" + headNurseNum +
                 ", numberOfDays=" + numberOfDays +

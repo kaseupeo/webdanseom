@@ -20,10 +20,15 @@ import java.util.Date;
 @Getter
 @Setter
 @NoArgsConstructor
+@IdClass(NurseGroup.class)
 public class Duty {
 
     @Id
     private String dutyCode;
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "groupSeq")
+    private NurseGroup groupSeq;
 
     private String dutyCodeName;
 

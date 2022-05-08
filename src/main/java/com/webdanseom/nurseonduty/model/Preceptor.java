@@ -14,7 +14,8 @@ import lombok.Setter;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
+import javax.persistence.JoinColumn;
+import javax.validation.constraints.NotNull;
 
 
 @Entity
@@ -26,16 +27,19 @@ public class Preceptor {
     //프리셉터 번호
     @Id
     @GeneratedValue
-    private int preceptorNum;
+    private int seq;
 
-    //주임(담당) 간호사
+    //주임(담당) 간호사  --- 외래키 (간호사번호)
+    @NotNull
+    @JoinColumn(name = "seq")
     private String headNurseName;
 
     //신입 간호사
+    @NotNull
     private String newNurseName;
 
     public Preceptor(int preceptorNum, String headNurseName, String newNurseName) {
-        this.preceptorNum = preceptorNum;
+        this.seq = preceptorNum;
         this.headNurseName = headNurseName;
         this.newNurseName = newNurseName;
     }
@@ -43,7 +47,7 @@ public class Preceptor {
     @Override
     public String toString() {
         return "Preceptor{" +
-                "preceptorNum=" + preceptorNum +
+                "preceptorNum=" + seq +
                 ", headNurseName='" + headNurseName + '\'' +
                 ", newNurseName='" + newNurseName + '\'' +
                 '}';

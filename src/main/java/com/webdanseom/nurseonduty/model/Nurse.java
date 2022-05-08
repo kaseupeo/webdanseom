@@ -25,7 +25,7 @@ public class Nurse {
 
     //간호사번호
     @Id
-    private int nurseNum;
+    private int nurseSeq;
 
     //간호사 이름
     @NotBlank
@@ -43,13 +43,19 @@ public class Nurse {
     @NotNull
     private double annualLeave;
 
-    //회원정보 -외래키
+    //회원정보 --- 외래키
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "member_id")
-    private Member seq;
+    @JoinColumn(name = "memberSeq")
+    private Member memberSeq;
+
+    //그룹번호 --- 외래키
+    @ManyToOne
+    @JoinColumn(name = "groupSeq")
+    private NurseGroup groupSeq;
+
 
     public Nurse(int nurseNum, String name, String charge, String position, double annualLeave) {
-        this.nurseNum = nurseNum;
+        this.nurseSeq = nurseNum;
         this.name = name;
         this.charge = charge;
         this.position = position;
@@ -59,7 +65,7 @@ public class Nurse {
     @Override
     public String toString() {
         return "Nurse{" +
-                "nurseNum=" + nurseNum +
+                "nurseNum=" + nurseSeq +
                 ", name='" + name + '\'' +
                 ", charge='" + charge + '\'' +
                 ", position='" + position + '\'' +

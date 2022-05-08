@@ -24,7 +24,7 @@ public class WorkAdjust {
     //근무조정번호
     @Id
     @GeneratedValue
-    private int workAdjustNum;
+    private int workAdjustSeq;
 
     //조정 듀티
     private String duty;
@@ -40,7 +40,7 @@ public class WorkAdjust {
     private Date date;
 
     public WorkAdjust(int workAdjustNum, String duty, String requester, String requestReason, Date date) {
-        this.workAdjustNum = workAdjustNum;
+        this.workAdjustSeq = workAdjustNum;
         this.duty = duty;
         this.requester = requester;
         this.requestReason = requestReason;
@@ -50,7 +50,7 @@ public class WorkAdjust {
     @Override
     public String toString() {
         return "WorkAdjust{" +
-                "workAdjustNum=" + workAdjustNum +
+                "workAdjustNum=" + workAdjustSeq +
                 ", duty='" + duty + '\'' +
                 ", requester='" + requester + '\'' +
                 ", requestReason='" + requestReason + '\'' +
