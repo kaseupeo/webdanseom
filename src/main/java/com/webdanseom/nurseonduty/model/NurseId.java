@@ -18,6 +18,6 @@ public class NurseId implements Serializable {
     @EqualsAndHashCode.Include
     @Id
     @ManyToOne
-    private NurseGroup groupSeq;
+    private NurseGroup nurseGroup;
 
 }

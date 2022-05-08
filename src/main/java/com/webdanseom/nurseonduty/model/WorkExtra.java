@@ -27,12 +27,12 @@ public class WorkExtra {
 
     //임시근무번호 (기본키)
     @Id
-    private  int workExtraSeq;
+    private int workExtraSeq;
     //그룹번호 (기본키) --- 외래키
     @Id
     @ManyToOne(optional = false)
-    @JoinColumn(name = "groupSeq", nullable = false)
-    private NurseGroup groupSeq;
+    @JoinColumn(name = "nurseGroup", nullable = false)
+    private NurseGroup nurseGroup;
 
     //임시듀티
     private  String duty;

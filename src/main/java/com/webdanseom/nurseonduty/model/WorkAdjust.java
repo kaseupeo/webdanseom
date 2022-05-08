@@ -29,8 +29,8 @@ public class WorkAdjust {
     //그룹번호 (기본키) --- 외래키
     @Id
     @ManyToOne
-    @JoinColumn(name = "groupSeq", nullable = false)
-    private NurseGroup groupSeq;
+    @JoinColumn(name = "nurseGroup", nullable = false)
+    private NurseGroup nurseGroup;
 
     //조정 듀티
     private String duty;

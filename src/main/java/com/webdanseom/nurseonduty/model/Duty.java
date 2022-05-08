@@ -29,8 +29,8 @@ public class Duty {
     //그룹번호(기본키) ---  외래키
     @Id
     @ManyToOne
-    @JoinColumn(name = "groupSeq")
-    private NurseGroup groupSeq;
+    @JoinColumn(name = "nurseGroup")
+    private NurseGroup nurseGroup;
 
     //듀티 풀네임
     private String dutyCodeName;

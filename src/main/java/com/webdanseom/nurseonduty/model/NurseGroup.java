@@ -10,7 +10,6 @@ package com.webdanseom.nurseonduty.model;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -28,8 +27,7 @@ public class NurseGroup {
     //그룹번호
     @Id
     @GeneratedValue
-    @Column(name = "groupSeq")
-    private int groupSeq;
+    private int seq;
 
     //그룹이름
     @NotNull
@@ -62,7 +60,7 @@ public class NurseGroup {
 
     public NurseGroup(int groupSeq, String groupName, int headNurseNum, int numberOfDays,
                       int numberOfEvenings, int numberOfNights, String inviteLink, Date inviteDate) {
-        this.groupSeq = groupSeq;
+        this.seq = groupSeq;
         this.groupName = groupName;
         this.headNurseNum = headNurseNum;
         this.numberOfDays = numberOfDays;
@@ -75,7 +73,7 @@ public class NurseGroup {
     @Override
     public String toString() {
         return "NurseGroup{" +
-                "groupNum=" + groupSeq +
+                "groupNum=" + seq +
                 ", groupName='" + groupName + '\'' +
                 ", headNurseNum=" + headNurseNum +
                 ", numberOfDays=" + numberOfDays +

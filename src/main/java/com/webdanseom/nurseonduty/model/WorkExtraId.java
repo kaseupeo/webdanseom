@@ -17,5 +17,5 @@ public class WorkExtraId implements Serializable {
     @EqualsAndHashCode.Include
     @Id
     @ManyToOne
-    private  NurseGroup groupSeq;
+    private  NurseGroup nurseGroup;
 }

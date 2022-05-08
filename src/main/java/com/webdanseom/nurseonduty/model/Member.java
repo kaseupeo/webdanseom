@@ -78,7 +78,7 @@ public class Member {
     //그룹번호 --- 외래키 (참여)
     @ManyToOne
     @JoinColumn(name = "group_seq")
-    private NurseGroup grgroupSeq;
+    private NurseGroup groupSeq;
 
     public Member(@NotBlank String email, @NotBlank String name, @NotBlank String password, @NotBlank String phoneNumber) {
         this.email = email;
