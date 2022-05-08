@@ -23,34 +23,38 @@ import java.util.Date;
 @IdClass(NurseGroup.class)
 public class Duty {
 
+    //듀티코드(기본키) 
     @Id
     private String dutyCode;
+    //그룹번호(기본키) ---  외래키
     @Id
     @ManyToOne
     @JoinColumn(name = "groupSeq")
     private NurseGroup groupSeq;
 
+    //듀티 풀네임
     private String dutyCodeName;
-
-    private String workingHours;
-
+    //근로시간
+    private int workingHours;
+    //근로유형
     private String workType;
-
+    //색상
     private String hexColor;
-
+    //근무시작시간
     @Temporal(TemporalType.TIME)
-    private Date time;
+    private Date startTime;
+    //사용여부
+    private Boolean isUseable;
 
-    private Boolean dutyUse;
 
-    public Duty(String dutyCode, String dutyCodeName, String workingHours, String workType, String hexColor, Date time, Boolean dutyUse) {
+    public Duty(String dutyCode, String dutyCodeName, int workingHours, String workType, String hexColor, Date startTime, Boolean isUseable) {
         this.dutyCode = dutyCode;
         this.dutyCodeName = dutyCodeName;
         this.workingHours = workingHours;
         this.workType = workType;
         this.hexColor = hexColor;
-        this.time = time;
-        this.dutyUse = dutyUse;
+        this.startTime = startTime;
+        this.isUseable = isUseable;
     }
 
     @Override
@@ -61,8 +65,8 @@ public class Duty {
                 ", workingHours='" + workingHours + '\'' +
                 ", workType='" + workType + '\'' +
                 ", hexColor='" + hexColor + '\'' +
-                ", time=" + time +
-                ", dutyUse=" + dutyUse +
+                ", time=" + startTime +
+                ", dutyUse=" + isUseable +
                 '}';
     }
 }

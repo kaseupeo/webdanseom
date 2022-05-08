@@ -19,12 +19,18 @@ import java.util.Date;
 @Getter
 @Setter
 @NoArgsConstructor
+@IdClass(NurseGroup.class)
 public class WorkAdjust {
 
-    //근무조정번호
+    //근무조정번호 (기본키)
     @Id
     @GeneratedValue
     private int workAdjustSeq;
+    //그룹번호 (기본키) --- 외래키
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "groupSeq", nullable = false)
+    private NurseGroup groupSeq;
 
     //조정 듀티
     private String duty;
@@ -39,8 +45,9 @@ public class WorkAdjust {
     @Temporal(TemporalType.DATE)
     private Date date;
 
-    public WorkAdjust(int workAdjustNum, String duty, String requester, String requestReason, Date date) {
-        this.workAdjustSeq = workAdjustNum;
+    //생성자
+    public WorkAdjust(int workAdjustSeq, String duty, String requester, String requestReason, Date date) {
+        this.workAdjustSeq = workAdjustSeq;
         this.duty = duty;
         this.requester = requester;
         this.requestReason = requestReason;

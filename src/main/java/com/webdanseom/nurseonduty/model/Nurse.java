@@ -21,11 +21,18 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 @NoArgsConstructor
+@IdClass(NurseGroup.class)
 public class Nurse {
 
-    //간호사번호
+    //간호사번호 (기본키)
     @Id
     private int nurseSeq;
+
+    //그룹번호 (기본키) --- 외래키
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "groupSeq")
+    private NurseGroup groupSeq;
 
     //간호사 이름
     @NotBlank
@@ -48,10 +55,7 @@ public class Nurse {
     @JoinColumn(name = "memberSeq")
     private Member memberSeq;
 
-    //그룹번호 --- 외래키
-    @ManyToOne
-    @JoinColumn(name = "groupSeq")
-    private NurseGroup groupSeq;
+
 
 
     public Nurse(int nurseNum, String name, String charge, String position, double annualLeave) {

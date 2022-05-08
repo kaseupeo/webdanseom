@@ -22,11 +22,17 @@ import java.util.Date;
 @Getter
 @Setter
 @NoArgsConstructor
+@IdClass(NurseGroup.class)
 public class WorkExtra {
 
-    //임시근무번호
+    //임시근무번호 (기본키)
     @Id
     private  int workExtraSeq;
+    //그룹번호 (기본키) --- 외래키
+    @Id
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "groupSeq", nullable = false)
+    private NurseGroup groupSeq;
 
     //임시듀티
     private  String duty;
@@ -35,8 +41,8 @@ public class WorkExtra {
     @Temporal(TemporalType.DATE)
     private Date date;
 
-    public WorkExtra(int workNum, String duty, Date date) {
-        this.workExtraSeq = workNum;
+    public WorkExtra(int workExtraSeq, String duty, Date date) {
+        this.workExtraSeq = workExtraSeq;
         this.duty = duty;
         this.date = date;
     }

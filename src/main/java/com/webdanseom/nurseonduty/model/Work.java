@@ -20,12 +20,18 @@ import java.util.Date;
 @Getter
 @Setter
 @NoArgsConstructor
+@IdClass(NurseGroup.class)
 public class Work {
 
-    //근무번호
+    //근무번호 (기본키)
     @Id
     private  int workSeq;
-
+    //그룹번호 (기본키) --- 외래키
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "groupSeq", nullable = false)
+    private  NurseGroup groupSeq;
+    
     //듀티
     private  String duty;
 
@@ -33,8 +39,9 @@ public class Work {
     @Temporal(TemporalType.DATE)
     private Date date;
 
-    public Work(int workNum, String duty, Date date) {
-        this.workSeq = workNum;
+    //생성자
+    public Work(int workSeq, String duty, Date date) {
+        this.workSeq = workSeq;
         this.duty = duty;
         this.date = date;
     }
