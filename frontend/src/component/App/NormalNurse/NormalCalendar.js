@@ -1,3 +1,9 @@
+/**
+ * file: NormalCalendar.js
+ * 일반 간호사 달력 컴포넌트
+ * 작성자: 정진욱
+ */
+
 import './NormalCalendar.scss';
 import React, { useState } from 'react';
 import moment, { Moment as MomentTypes } from 'moment';

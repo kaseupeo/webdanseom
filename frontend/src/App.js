@@ -1,3 +1,9 @@
+/**
+ * file: App.js
+ *
+ * 작성자: 정진욱
+ */
+
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import {

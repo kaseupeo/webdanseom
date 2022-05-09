@@ -1,3 +1,9 @@
+/**
+ * file: Main.js
+ * 메인메뉴
+ * 작성자: 정진욱
+ */
+
 import React from 'react';
 import './Main.scss';
 const MyComponent = () => {
