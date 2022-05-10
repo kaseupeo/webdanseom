@@ -1,5 +1,13 @@
 package com.webdanseom.nurseonduty.controller;
-
+/**
+ * 파일명: MemberControllerIntegreTest.java
+ * 설명: 회원메뉴 처리를 실제로 실행하는 컨트롤러 파일
+ *      회원가입, 로그인, 비밀번호 변경, 이메일확인, 이메일로 문자발송 기능
+ * 작성일자:2022.04.30
+ * 작성자:신동현
+ * 수정일자: 2022.05.10
+ * 수정자:표영운
+ */
 import com.webdanseom.nurseonduty.jwt.JwtUtil;
 import com.webdanseom.nurseonduty.model.Member;
 import com.webdanseom.nurseonduty.model.Response;
@@ -37,6 +45,7 @@ public class MemberController {
     @Autowired
     private RedisUtil redisUtil;
 
+    //회원가입
     @PostMapping("/signup")
     public Response signUpMember(@RequestBody Member member) {
         try {
@@ -47,6 +56,7 @@ public class MemberController {
         }
     }
 
+    //로그인
     @PostMapping("/login")
     public Response login(@RequestBody RequestLoginUser user,
                           HttpServletRequest httpServletRequest,
@@ -65,7 +75,7 @@ public class MemberController {
             return new Response("error", "로그인 실패", e.getMessage());
         }
     }
-
+    //인증번호 보냄
     @PostMapping("/verify")
     public Response verify(@RequestBody RequestVerifyEmail requestVerifyEmail, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
         Response response;
@@ -79,6 +89,7 @@ public class MemberController {
         return response;
     }
 
+    //인증메일 확인
     @GetMapping("/verify/{key}")
     public Response getVerify(@PathVariable String key) {
         Response response;
@@ -91,6 +102,7 @@ public class MemberController {
         return response;
     }
 
+    //인증번호 확인
     @GetMapping("/password/{key}")
     public Response isPasswordUUIdValidate(@PathVariable String key) {
         Response response;
@@ -105,6 +117,7 @@ public class MemberController {
         return response;
     }
 
+    //비밀번호 병경
     @PutMapping("/password")
     public Response changePassword(@RequestBody RequestChangePassword requestChangePassword) {
         Response response;

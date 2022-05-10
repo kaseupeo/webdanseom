@@ -1,5 +1,13 @@
 package com.webdanseom.nurseonduty.service.impl;
-
+/**
+ * 파일명: AuthService.java
+ * 설명: 회원이 이용할 수 있는 모든 서비스기능의 실제 구현 java 클레스
+ *      회원가입(일반, 소셜), 로그인(일반,소셜), 이메일인증 , 이메일확인, 이메일인증번호 발송,인증번호확인, 비밀번호 변경
+ * 작성일자:2022.04.30
+ * 작성자:신동현
+ * 수정일자: 2022.05.10
+ * 수정자:표영운
+ */
 import com.webdanseom.nurseonduty.config.UserRole;
 import com.webdanseom.nurseonduty.model.Member;
 import com.webdanseom.nurseonduty.model.Salt;
@@ -130,7 +138,7 @@ public class AuthServiceImpl implements AuthService {
      */
     @Override
     public void sendVerificationMail(Member member) throws NotFoundException {
-        String VERIFICATION_LINK = "http://localhost:8080/user/verify/";
+        String VERIFICATION_LINK = "http://localhost:8080/member/verify/";
         if (member == null) throw new NotFoundException("멤버가 조회되지 않습니다.");
         UUID uuid = UUID.randomUUID();
         redisUtil.setDataExpire(uuid.toString(), member.getEmail(), 1800L);
@@ -166,7 +174,7 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public void requestChangePassword(Member member) throws NotFoundException {
-        String CHANGE_PASSWORD_LINK = "http://localhost:8080/user/password/";
+        String CHANGE_PASSWORD_LINK = "http://localhost:8080/member/password/";
         if (member == null) throw new NotFoundException("멤버가 조회되지 않습니다.");
         String key = REDIS_CHANGE_PASSWORD_PREFIX + UUID.randomUUID();
         redisUtil.setDataExpire(key, member.getEmail(), 1800L);

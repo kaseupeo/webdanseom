@@ -1,4 +1,12 @@
 package com.webdanseom.nurseonduty.jwt;
+/**
+ * 파일명: Duty.java
+ * 설명: JwtRequestFilter.java에서 email과 password 받아서 토큰으로 잘라서 jwt 이메일은 아이디,@ ,주소 나눠서 저장
+ * 작성일자:2022.05.04
+ * 작성자:신동현
+ * 수정일자:
+ * 수정자:
+ */
 
 import com.webdanseom.nurseonduty.service.impl.CustomUserDetails;
 import com.webdanseom.nurseonduty.model.Member;
@@ -19,6 +27,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+
 
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
