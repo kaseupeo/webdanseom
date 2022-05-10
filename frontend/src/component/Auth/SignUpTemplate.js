@@ -31,9 +31,14 @@ const JoinElement = () => {
             이메일
             <input type="text" placeholder="이메일" />
           </b>
+
+          <br></br>
           <b>비밀번호</b>
           <input type="password" placeholder="비밀번호" />
           <input type="password" placeholder="비밀번호 재확인" />
+
+          <br></br>
+
           <b>이름</b>
           <input type="text" placeholder="이름" />
           <b>전화번호</b>

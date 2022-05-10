@@ -1,24 +1,28 @@
 $mobile-contents-width: 640px;
 .TotalMain{
   position:absolute;
+  height: 100vw;
+  max-height: 65rem;
   left:0;
   right: 0;
   top: 0;
   bottom: 0;
   background: #e5e9ee;
-
-
+  
+ 
 
 .MainNavigation{
-    
+   box-shadow: 0px 4px 10px 2px  rgb(157, 157, 157)  ;
     position:flex;
     flex-direction: row;
     justify-items: center;
     background: linear-gradient(to right, #547B97, #40586a);
-    padding-top: 3rem;
+    padding-top: 1.5rem;
     padding-bottom: 0rem;
-    height: 100px;
+    height: 70px;
     color:white;
+   
+
     @media (max-width: $mobile-contents-width) {
       position: flex;
       justify-items: center;

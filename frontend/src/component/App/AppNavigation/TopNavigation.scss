@@ -1,0 +1,109 @@
+$mobile-contents-width: 640px;
+$min-contents-width: 920px;
+
+.TopNavigation{
+    box-shadow: 0px 3px 10px 1px  rgb(157, 157, 157)  ;
+    background: linear-gradient(to right, #547B97, #40586a);
+    height: 4rem;
+    @media (max-width: $min-contents-width) {
+        height: 8rem;
+    }
+    .title{
+        padding-top: 5px;
+        position: absolute;
+        font-size:2.2rem;
+        margin-left: 5%;
+        
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        @media (max-width: $min-contents-width) {
+            position: absolute;
+           top: 10px;
+             left: 50%;
+            margin:0 0 0 -110px;
+        
+            font-size: 2rem;
+            white-space: nowrap;
+        }
+    }
+    .btn{
+        margin-top: 10px;
+        float: right;
+        margin-right: 15rem;
+        margin-left: 5%;
+        
+        color: white;
+        text-decoration: none;
+       
+        @media (max-width: $min-contents-width) {
+           
+            position: absolute;
+            top: 80px;
+            margin-right: 0;
+            margin-left: 0;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            
+            white-space: nowrap;
+        }
+    .navWork{
+        margin-right: 2rem;
+    
+        width: 120px;
+        height: 100px;
+        text-align: center;
+    
+        color:white;
+       
+   
+        text-decoration: none;
+       
+        &:hover{
+            color:#6be1ff;
+        }
+
+    }
+    .navWorkApp{
+        margin-right: 2rem;
+       
+        width: 120px;
+        height: 100px;
+        text-align: center;
+        
+        color:white;
+       
+    
+        text-decoration: none;
+        font-weight: 1000;
+        &:hover{
+            color:#6be1ff;
+          }
+
+    }
+    .navMyPage{
+        margin-right: 5rem;
+        &:hover{
+            
+            color:#6be1ff;
+          }
+    }
+    .logout{
+        background-color: #40586a;
+        width: 200px;
+        height: 100px;
+        text-align: center;
+        border: solid 1px white;
+        color:white;
+        line-height: 40px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: 1000;
+        &:hover{
+          background-color: white;
+          color:#40586a;
+        }
+    }
+
+}
+}

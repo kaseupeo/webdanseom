@@ -25,6 +25,7 @@ const Calendar = () => {
         <tr className="tr" key={week}>
           {Array(7)
             .fill(0)
+            // eslint-disable-next-line no-loop-func
             .map((data, index) => {
               let days = today
                 .clone()
@@ -71,14 +72,14 @@ const Calendar = () => {
     const days = ['일', '월', '화', '수', '목', '금', '토'];
 
     return (
-      <tr>
-        <th>일</th>
-        <th>월</th>
-        <th>화</th>
-        <th>수</th>
-        <th>목</th>
-        <th>금</th>
-        <th>토</th>
+      <tr className="trDay">
+        <th style={{ color: 'red' }}>일요일</th>
+        <th>월요일</th>
+        <th>화요일</th>
+        <th>수요일</th>
+        <th>목요일</th>
+        <th>금요일</th>
+        <th style={{ color: 'blue' }}>토요일</th>
       </tr>
     );
   };
@@ -90,15 +91,15 @@ const Calendar = () => {
             setMoment(getMoment.clone().subtract(1, 'month'));
           }}
         >
-          이전달
+          &lt;
         </button>
-        <span>{today.format('YYYY 년 MM 월')}</span>
+        <span>{today.format('YYYY.MM')}</span>
         <button
           onClick={() => {
             setMoment(getMoment.clone().add(1, 'month'));
           }}
         >
-          다음달
+          &gt;
         </button>
       </div>
       <table>
