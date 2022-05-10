@@ -43,7 +43,6 @@ public class Member {
 
     //비밀번호
     @NotNull
-    @Pattern(regexp = "^.*(?=^.{8,15}$)(?=.*\\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$", message = "비밀번호는 영문, 숫자, 특수기호가 최소 1개 이상 포함되어야합니다.")
     private String password;
 
     //핸드폰번호

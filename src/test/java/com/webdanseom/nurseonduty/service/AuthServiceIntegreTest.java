@@ -27,9 +27,9 @@ public class AuthServiceIntegreTest {
     @BeforeEach()
     public void initMember() {
         this.member = new Member();
-        this.member.setEmail("test.com");
+        this.member.setEmail("donghyun3794@naver.com");
         this.member.setName("표영운");
-        this.member.setPassword("testtest");
+        this.member.setPassword("Test!1234@");
         this.member.setPhoneNumber("01000000000");
     }
 
@@ -53,7 +53,7 @@ public class AuthServiceIntegreTest {
 
     @Test
     public void sendFirsEmail() {
-        emailService.sendEmail(("n6i07@naver.com", "테스트메일이빈다.", "ooo");
+        emailService.sendEmail("donghyun3794@naver.com", "테스트메일이빈다.", "ooo");
     }
 
 }
