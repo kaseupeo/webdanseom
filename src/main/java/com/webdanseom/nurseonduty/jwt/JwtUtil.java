@@ -1,4 +1,12 @@
 package com.webdanseom.nurseonduty.jwt;
+/**
+ * 파일명: Duty.java
+ * 설명: JwtRequestFilter.java에서 토큰화한 정보를 JwtUtil에서 받아와서 암호화
+ * 작성일자:2022.05.04
+ * 작성자:신동현
+ * 수정일자:
+ * 수정자:
+ */
 
 import com.webdanseom.nurseonduty.service.impl.CustomUserDetails;
 import com.webdanseom.nurseonduty.model.Member;
