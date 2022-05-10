@@ -1,5 +1,13 @@
 package com.webdanseom.nurseonduty.service;
-
+/**
+ * 파일명: AuthService.java
+ * 설명: 회원이 이용할 수 있는 모든 서비스기능
+ *      회원가입(일반, 소셜), 로그인(일반,소셜), 이메일인증 , 이메일확인, 이메일인증번호 발송,인증번호확인, 비밀번호 변경
+ * 작성일자:2022.04.30
+ * 작성자:신동현
+ * 수정일자: 2022.05.10
+ * 수정자:표영운
+ */
 import com.webdanseom.nurseonduty.config.UserRole;
 import com.webdanseom.nurseonduty.model.Member;
 import com.webdanseom.nurseonduty.model.requset.RequestSocialData;
@@ -23,10 +31,10 @@ public interface AuthService {
     //이메일 인증
     Member findByEmail(String email) throws NotFoundException;
 
-    //인증본호 이메일 받기
+    //이메일인증 확인
     void verifyEmail(String key) throws NotFoundException;
 
-    //인증번호 이메일 보내기
+    //이메일인증 보내기
     void sendVerificationMail(Member member) throws NotFoundException;
 
     //로그인을 위한 유저정보 수정
