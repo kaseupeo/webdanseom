@@ -1,5 +1,12 @@
 package com.webdanseom.nurseonduty.service.impl;
-
+/**
+ * 파일명: EmailServiceImpl.java
+ * 설명: 이메일를 보내주는 서비스
+ * 작성일자:2022.05.04
+ * 작성자:신동현
+ * 수정일자:
+ * 수정자:
+ */
 import com.webdanseom.nurseonduty.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
