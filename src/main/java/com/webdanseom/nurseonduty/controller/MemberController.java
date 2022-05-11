@@ -116,7 +116,7 @@ public class MemberController {
         return response;
     }
 
-    //비밀번호 병경
+    //비밀번호 변경
     @PutMapping("/password")
     public Response changePassword(@RequestBody RequestChangePassword requestChangePassword) {
         Response response;
@@ -129,6 +129,18 @@ public class MemberController {
         }
         return response;
     }
+
+    //회원정보 수정
+
+    //회원탈퇴
+    
+    //비밀번호 찾기
+    
+    //그룹생성
+    
+    //그룹참여
+    
+
 
     @GetMapping("/test")
     public String test() {
