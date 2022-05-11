@@ -10,6 +10,7 @@ package com.webdanseom.nurseonduty.service.impl;
  */
 import com.webdanseom.nurseonduty.config.UserRole;
 import com.webdanseom.nurseonduty.model.Member;
+import com.webdanseom.nurseonduty.model.NurseGroup;
 import com.webdanseom.nurseonduty.model.Salt;
 import com.webdanseom.nurseonduty.model.SocialData;
 import com.webdanseom.nurseonduty.model.requset.RequestSocialData;
@@ -179,5 +180,10 @@ public class AuthServiceImpl implements AuthService {
         String key = REDIS_CHANGE_PASSWORD_PREFIX + UUID.randomUUID();
         redisUtil.setDataExpire(key, member.getEmail(), 1800L);
         emailService.sendEmail(member.getEmail(), "[Nurse On Duty] 사용자 비밀번호 안내 메일", CHANGE_PASSWORD_LINK + key);
+    }
+
+    @Override
+    public void createGroup(NurseGroup nurseGroup) {
+
     }
 }
