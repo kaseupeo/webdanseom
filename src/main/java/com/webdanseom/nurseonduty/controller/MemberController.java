@@ -11,9 +11,10 @@ package com.webdanseom.nurseonduty.controller;
 import com.webdanseom.nurseonduty.jwt.JwtUtil;
 import com.webdanseom.nurseonduty.model.Member;
 import com.webdanseom.nurseonduty.model.Response;
-import com.webdanseom.nurseonduty.model.requset.RequestChangePassword;
-import com.webdanseom.nurseonduty.model.requset.RequestLoginUser;
-import com.webdanseom.nurseonduty.model.requset.RequestVerifyEmail;
+import com.webdanseom.nurseonduty.model.request.RequestChangePassword;
+import com.webdanseom.nurseonduty.model.request.RequestFindPassword;
+import com.webdanseom.nurseonduty.model.request.RequestLoginUser;
+import com.webdanseom.nurseonduty.model.request.RequestVerifyEmail;
 import com.webdanseom.nurseonduty.service.AuthService;
 import com.webdanseom.nurseonduty.service.CookieUtil;
 import com.webdanseom.nurseonduty.service.RedisUtil;
@@ -130,12 +131,27 @@ public class MemberController {
         return response;
     }
 
+    //비밀번호 찾기
+    @PostMapping("/password")
+    public Response findPassword(@RequestBody RequestFindPassword requestFindPassword) {
+        Response response;
+        try {
+            Member member = authService.findByEmail(requestFindPassword.getEmail());
+            if (!member.getEmail().equals(requestFindPassword.getEmail())) throw new NoSuchFieldException("");
+            authService.findPassword(member);
+            response = new Response("success", "성공적으로 사용자의 비밀번호 변경요청을 수행했습니다.", null);
+        } catch (NoSuchFieldException e) {
+            response = new Response("error", "사용자 이메일을 조회할 수 없습니다.", null);
+        } catch (Exception e) {
+            response = new Response("error", "비밀번호 변경 요청을 할 수 없습니다.", null);
+        }
+        return response;
+    }
+
     //회원정보 수정
 
     //회원탈퇴
-    
-    //비밀번호 찾기
-    
+
     //그룹생성
     
     //그룹참여
