@@ -13,7 +13,7 @@ import com.webdanseom.nurseonduty.model.Member;
 import com.webdanseom.nurseonduty.model.NurseGroup;
 import com.webdanseom.nurseonduty.model.Salt;
 import com.webdanseom.nurseonduty.model.SocialData;
-import com.webdanseom.nurseonduty.model.requset.RequestSocialData;
+import com.webdanseom.nurseonduty.model.request.RequestSocialData;
 import com.webdanseom.nurseonduty.repo.MemberRepository;
 import com.webdanseom.nurseonduty.repo.SocialDataRepository;
 import com.webdanseom.nurseonduty.service.AuthService;
@@ -173,8 +173,13 @@ public class AuthServiceImpl implements AuthService {
         memberRepository.save(member);
     }
 
+    /**
+     * 비밀번호 찾기
+     * @param member
+     * @throws NotFoundException
+     */
     @Override
-    public void requestChangePassword(Member member) throws NotFoundException {
+    public void findPassword(Member member) throws NotFoundException {
         String CHANGE_PASSWORD_LINK = "http://localhost:8080/member/password/";
         if (member == null) throw new NotFoundException("멤버가 조회되지 않습니다.");
         String key = REDIS_CHANGE_PASSWORD_PREFIX + UUID.randomUUID();

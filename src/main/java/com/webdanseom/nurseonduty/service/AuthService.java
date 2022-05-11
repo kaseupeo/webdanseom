@@ -11,7 +11,7 @@ package com.webdanseom.nurseonduty.service;
 import com.webdanseom.nurseonduty.config.UserRole;
 import com.webdanseom.nurseonduty.model.Member;
 import com.webdanseom.nurseonduty.model.NurseGroup;
-import com.webdanseom.nurseonduty.model.requset.RequestSocialData;
+import com.webdanseom.nurseonduty.model.request.RequestSocialData;
 import javassist.NotFoundException;
 
 public interface AuthService {
@@ -47,14 +47,12 @@ public interface AuthService {
     //비밀번호 변경
     void changePassword(Member member, String password) throws NotFoundException;
 
-    //비밀번호 변경요청
-    void requestChangePassword(Member member) throws NotFoundException;
+    //비밀번호 찾기
+    void findPassword(Member member) throws NotFoundException;
 
     //회원정보 수정
 
     //회원탈퇴
-
-    //비밀번호 찾기
 
     //그룹생성
     void createGroup(NurseGroup nurseGroup);

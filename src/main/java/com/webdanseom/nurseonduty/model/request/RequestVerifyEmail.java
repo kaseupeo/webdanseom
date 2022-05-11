@@ -1,4 +1,4 @@
-package com.webdanseom.nurseonduty.model.requset;
+package com.webdanseom.nurseonduty.model.request;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
