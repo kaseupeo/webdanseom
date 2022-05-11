@@ -2,7 +2,7 @@ package com.webdanseom.nurseonduty.service;
 
 /**
  * 파일명: AuthServiceIntegreTest.java
- * 설명: 회원 가입, 로그인,이메일 보내기
+ * 설명: 회원 가입, 로그인,이메일 전체 보내기 테스트
  * 작성일자:2022.05.10
  * 작성자:표영운
  * 수정일자: 2022.05.10

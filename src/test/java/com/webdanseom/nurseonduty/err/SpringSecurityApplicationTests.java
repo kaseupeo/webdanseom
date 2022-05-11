@@ -1,5 +1,14 @@
 package com.webdanseom.nurseonduty.err;
 
+/**
+ * 파일명: AuthServiceIntegreTest.java
+ * 설명: 유저 로그인 권한별 오류 메세지 출력 테스트
+ * 작성일자:2022.05.10
+ * 작성자:표영운
+ * 수정일자: 2022.05.10
+ * 수정자:표영운
+ */
+
 import com.webdanseom.nurseonduty.jwt.JwtUtil;
 import com.webdanseom.nurseonduty.model.Member;
 import com.webdanseom.nurseonduty.repo.MemberRepository;
