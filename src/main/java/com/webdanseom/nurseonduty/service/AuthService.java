@@ -5,11 +5,12 @@ package com.webdanseom.nurseonduty.service;
  *      회원가입(일반, 소셜), 로그인(일반,소셜), 이메일인증 , 이메일확인, 이메일인증번호 발송,인증번호확인, 비밀번호 변경
  * 작성일자:2022.04.30
  * 작성자:신동현
- * 수정일자: 2022.05.10
+ * 수정일자: 2022.05.12
  * 수정자:표영운
  */
 import com.webdanseom.nurseonduty.config.UserRole;
 import com.webdanseom.nurseonduty.model.Member;
+import com.webdanseom.nurseonduty.model.NurseGroup;
 import com.webdanseom.nurseonduty.model.requset.RequestSocialData;
 import javassist.NotFoundException;
 
@@ -48,4 +49,17 @@ public interface AuthService {
 
     //비밀번호 변경요청
     void requestChangePassword(Member member) throws NotFoundException;
+
+    //회원정보 수정
+
+    //회원탈퇴
+
+    //비밀번호 찾기
+
+    //그룹생성
+    void createGroup(NurseGroup nurseGroup);
+
+    //그룹참여
+
+
 }
