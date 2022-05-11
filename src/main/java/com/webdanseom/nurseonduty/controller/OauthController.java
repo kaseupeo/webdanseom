@@ -1,5 +1,12 @@
 package com.webdanseom.nurseonduty.controller;
-
+/**
+ * 파일명: OauthController.java
+ * 설명: 소셜로 회원가입, 로그인
+ * 작성일자:2022.04.30
+ * 작성자:신동현
+ * 수정일자: 2022.05.10
+ * 수정자:표영운
+ */
 import com.webdanseom.nurseonduty.jwt.JwtUtil;
 import com.webdanseom.nurseonduty.model.Member;
 import com.webdanseom.nurseonduty.model.Response;

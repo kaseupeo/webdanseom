@@ -1,6 +1,6 @@
 package com.webdanseom.nurseonduty.controller;
 /**
- * 파일명: MemberControllerIntegreTest.java
+ * 파일명: MemberController.java
  * 설명: 회원메뉴 처리를 실제로 실행하는 컨트롤러 파일
  *      회원가입, 로그인, 비밀번호 변경, 이메일확인, 이메일로 문자발송 기능
  * 작성일자:2022.04.30
@@ -17,7 +17,6 @@ import com.webdanseom.nurseonduty.model.requset.RequestVerifyEmail;
 import com.webdanseom.nurseonduty.service.AuthService;
 import com.webdanseom.nurseonduty.service.CookieUtil;
 import com.webdanseom.nurseonduty.service.RedisUtil;
-import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.bind.annotation.*;
