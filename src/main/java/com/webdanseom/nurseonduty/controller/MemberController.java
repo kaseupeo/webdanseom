@@ -159,6 +159,18 @@ public class MemberController {
         return response;
     }
     //회원탈퇴
+    @DeleteMapping("/withdrawal")
+    public Response withdrawal(@RequestBody RequestWithdrawal requestWithdrawal) {
+        Response response;
+        try {
+            Member member = authService.findByEmail(requestWithdrawal.getEmail());
+            authService.withdrawal(member, requestWithdrawal.getPassword());
+            response = new Response("success", "회원탈퇴를 성공했습니다.",null);
+        } catch (Exception e) {
+            response = new Response("error", "회원탈퇴를 할 수 없습니다.", null);
+        }
+        return response;
+    }
 
     //그룹생성
     

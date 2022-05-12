@@ -54,6 +54,7 @@ public interface AuthService {
     void editProfile(Member member, String phoneNumber) throws NotFoundException;
 
     //회원탈퇴
+    void withdrawal(Member member, String password) throws Exception;
 
     //그룹생성
     void createGroup(NurseGroup nurseGroup);

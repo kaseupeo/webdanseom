@@ -107,14 +107,14 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public Member loginSocialUser(String id, String type) throws NotFoundException {
         SocialData socialData = socialDataRepository.findByIdAndType(id, type);
-        if (socialData == null) throw new NotFoundException("멤버가 조회되지 않습니다.");
+        if (socialData == null) throw new NotFoundException("회원이 조회되지 않습니다.");
         return socialData.getMember();
     }
 
     @Override
     public Member findByEmail(String email) throws NotFoundException {
         Member member = memberRepository.findByEmail(email);
-        if (member == null) throw new NotFoundException("멤버가 조회되지 않습니다.");
+        if (member == null) throw new NotFoundException("회원이 조회되지 않습니다.");
         return member;
     }
 
@@ -127,7 +127,7 @@ public class AuthServiceImpl implements AuthService {
     public void verifyEmail(String key) throws NotFoundException {
         String memberEmail = redisUtil.getData(key);
         Member member = memberRepository.findByEmail(memberEmail);
-        if (member == null) throw new NotFoundException("멤버가 조회되지않습니다.");
+        if (member == null) throw new NotFoundException("회원이 조회되지않습니다.");
         modifyUserRole(member, UserRole.ROLE_USER);
         redisUtil.deleteData(key);
     }
@@ -181,7 +181,7 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public void findPassword(Member member) throws NotFoundException {
         String CHANGE_PASSWORD_LINK = "http://localhost:8080/member/password/";
-        if (member == null) throw new NotFoundException("멤버가 조회되지 않습니다.");
+        if (member == null) throw new NotFoundException("회원이 조회되지 않습니다.");
         String key = REDIS_CHANGE_PASSWORD_PREFIX + UUID.randomUUID();
         redisUtil.setDataExpire(key, member.getEmail(), 1800L);
         emailService.sendEmail(member.getEmail(), "[Nurse On Duty] 사용자 비밀번호 안내 메일", CHANGE_PASSWORD_LINK + key);
@@ -195,9 +195,23 @@ public class AuthServiceImpl implements AuthService {
      */
     @Override
     public void editProfile(Member member, String phoneNumber) throws NotFoundException {
-        if (member == null) throw new NotFoundException("changeProfile(), 회원이 조회되지 않습니다.");
+        if (member == null) throw new NotFoundException("editProfile(), 회원이 조회되지 않습니다.");
         member.setPhoneNumber(phoneNumber);
         memberRepository.save(member);
+    }
+
+    /**
+     * 회원탈퇴
+     * @param password
+     * @throws NotFoundException
+     */
+    @Override
+    public void withdrawal(Member member, String password) throws Exception {
+        if (member == null) throw new NotFoundException("withdrawal(), 회원이 조회되지 않습니다.");
+        String salt = member.getSalt().getSalt();
+        password = saltUtil.encodePassword(salt, password);
+        if (!member.getPassword().equals(password)) throw new Exception("비밀번호가 틀립니다.");
+        memberRepository.delete(member);
     }
 
     @Override
