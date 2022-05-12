@@ -5,8 +5,8 @@ package com.webdanseom.nurseonduty.service.impl;
  *      회원가입(일반, 소셜), 로그인(일반,소셜), 이메일인증 , 이메일확인, 이메일인증번호 발송,인증번호확인, 비밀번호 변경
  * 작성일자:2022.04.30
  * 작성자:신동현
- * 수정일자: 2022.05.10
- * 수정자:표영운
+ * 수정일자: 2022.05.12
+ * 수정자:신동현
  */
 import com.webdanseom.nurseonduty.config.UserRole;
 import com.webdanseom.nurseonduty.model.Member;
@@ -166,7 +166,7 @@ public class AuthServiceImpl implements AuthService {
      */
     @Override
     public void changePassword(Member member, String password) throws NotFoundException {
-        if (member == null) throw new NotFoundException("changePassword(), 멤버가 조회되지 않습니다.");
+        if (member == null) throw new NotFoundException("changePassword(), 회원이 조회되지 않습니다.");
         String salt = saltUtil.genSalt();
         member.setSalt(new Salt(salt));
         member.setPassword(saltUtil.encodePassword(salt, password));
@@ -185,6 +185,19 @@ public class AuthServiceImpl implements AuthService {
         String key = REDIS_CHANGE_PASSWORD_PREFIX + UUID.randomUUID();
         redisUtil.setDataExpire(key, member.getEmail(), 1800L);
         emailService.sendEmail(member.getEmail(), "[Nurse On Duty] 사용자 비밀번호 안내 메일", CHANGE_PASSWORD_LINK + key);
+    }
+
+    /**
+     * 회원정보 수정
+     * @param member
+     * @param phoneNumber
+     * @throws NotFoundException
+     */
+    @Override
+    public void editProfile(Member member, String phoneNumber) throws NotFoundException {
+        if (member == null) throw new NotFoundException("changeProfile(), 회원이 조회되지 않습니다.");
+        member.setPhoneNumber(phoneNumber);
+        memberRepository.save(member);
     }
 
     @Override

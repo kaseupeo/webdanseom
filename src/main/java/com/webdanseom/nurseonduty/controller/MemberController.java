@@ -5,16 +5,13 @@ package com.webdanseom.nurseonduty.controller;
  *      회원가입, 로그인, 비밀번호 변경, 이메일확인, 이메일로 문자발송 기능
  * 작성일자:2022.04.30
  * 작성자:신동현
- * 수정일자: 2022.05.10
- * 수정자:표영운
+ * 수정일자: 2022.05.12
+ * 수정자:신동현
  */
 import com.webdanseom.nurseonduty.jwt.JwtUtil;
 import com.webdanseom.nurseonduty.model.Member;
 import com.webdanseom.nurseonduty.model.Response;
-import com.webdanseom.nurseonduty.model.request.RequestChangePassword;
-import com.webdanseom.nurseonduty.model.request.RequestFindPassword;
-import com.webdanseom.nurseonduty.model.request.RequestLoginUser;
-import com.webdanseom.nurseonduty.model.request.RequestVerifyEmail;
+import com.webdanseom.nurseonduty.model.request.*;
 import com.webdanseom.nurseonduty.service.AuthService;
 import com.webdanseom.nurseonduty.service.CookieUtil;
 import com.webdanseom.nurseonduty.service.RedisUtil;
@@ -149,7 +146,18 @@ public class MemberController {
     }
 
     //회원정보 수정
-
+    @PutMapping("/profile")
+    public Response editProfile(@RequestBody RequestEditProfile requestEditProfile) {
+        Response response;
+        try {
+            Member member = authService.findByEmail(requestEditProfile.getEmail());
+            authService.editProfile(member, requestEditProfile.getPhoneNumber());
+            response = new Response("success", "성공적으로 사용자의 정보를 변경했습니다.", null);
+        } catch (Exception e) {
+            response = new Response("error","사용자의 정보를 변경할 수 없습니다.", null);
+        }
+        return response;
+    }
     //회원탈퇴
 
     //그룹생성
