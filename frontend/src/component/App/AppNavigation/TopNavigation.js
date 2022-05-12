@@ -18,6 +18,9 @@ const TopNavigation = () => {
         </Link>
 
         <div className="btn">
+          <Link to="/app/management" className="navWork">
+            <b>근무표관리</b>
+          </Link>
           <Link to="/app/selectWork" className="navWork">
             <b>근무표조회</b>
           </Link>

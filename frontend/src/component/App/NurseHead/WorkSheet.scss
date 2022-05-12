@@ -1,0 +1,30 @@
+.WorkSheet{
+    background: #dbdbdb;
+    width: 100rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 4rem;
+    overflow:hidden;
+
+    .title{
+      background: linear-gradient(to right, #547B97, #465d6e);
+        color: white;
+        height: 4rem;
+        font-size: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+    }
+    .perContent{
+        display:flex;
+        flex-direction: row;
+    }
+    .content{
+        background: white;
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+    
+}
