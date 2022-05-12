@@ -15,6 +15,7 @@ import com.webdanseom.nurseonduty.model.Salt;
 import com.webdanseom.nurseonduty.model.SocialData;
 import com.webdanseom.nurseonduty.model.request.RequestSocialData;
 import com.webdanseom.nurseonduty.repo.MemberRepository;
+import com.webdanseom.nurseonduty.repo.NurseRepository;
 import com.webdanseom.nurseonduty.repo.SocialDataRepository;
 import com.webdanseom.nurseonduty.service.AuthService;
 import com.webdanseom.nurseonduty.service.EmailService;
@@ -44,6 +45,9 @@ public class AuthServiceImpl implements AuthService {
 
     @Autowired
     private RedisUtil redisUtil;
+
+    @Autowired
+    private NurseRepository nurseRepository;
 
     /**
      * 회원가입
@@ -214,8 +218,23 @@ public class AuthServiceImpl implements AuthService {
         memberRepository.delete(member);
     }
 
+    /**
+     * 그룹 생성, 참여
+     * */
     @Override
-    public void createGroup(NurseGroup nurseGroup) {
+    @Transactional
+    public void createGroup(NurseGroup nurseGroup, Member member) {
+        nurseGroup.setHeadNurseNum(member.getMemberSeq());
+        nurseGroup.setNumberOfDays(2);
+        nurseGroup.setNumberOfEvenings(2);
+        nurseGroup.setNumberOfNights(2);
+
+
+        nurseRepository.save(nurseGroup);
+    }
+
+    @Override
+    public void joinGroup(Member member, NurseGroup nurseGroup) throws NotFoundException {
 
     }
 }

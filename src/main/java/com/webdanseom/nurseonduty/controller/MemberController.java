@@ -10,6 +10,7 @@ package com.webdanseom.nurseonduty.controller;
  */
 import com.webdanseom.nurseonduty.jwt.JwtUtil;
 import com.webdanseom.nurseonduty.model.Member;
+import com.webdanseom.nurseonduty.model.NurseGroup;
 import com.webdanseom.nurseonduty.model.Response;
 import com.webdanseom.nurseonduty.model.request.*;
 import com.webdanseom.nurseonduty.service.AuthService;
@@ -33,6 +34,7 @@ public class MemberController {
     @Autowired
     private JwtUtil jwtUtil;
 
+    //회원메뉴 인터페이스 호출
     @Autowired
     private AuthService authService;
 
@@ -173,10 +175,27 @@ public class MemberController {
     }
 
     //그룹생성
-    
-    //그룹참여
-    
+    @PostMapping("/createGroup")
+    public Response createGroup(@RequestBody NurseGroup nurseGroup, Member member) {
+        try{
+            authService.createGroup(nurseGroup, member);
+            return new Response("success", "그룹생성 성공", null);
+        }catch (Exception e) {
+            return new Response("error", "그룹생성 실패", null);
+        }
+    }
 
+    //그룹참여
+    @GetMapping("/join/{key}")
+    public Response joinGroup(@RequestBody RequestJoinGroup requestJoinGroup) {
+        Response response;
+        try {
+
+        }catch (Exception e) {
+
+        }
+        return  response;
+    }
 
     @GetMapping("/test")
     public String test() {
