@@ -3,11 +3,16 @@
 */
 $mobile-contents-width: 640px;
 .SignUpElement{
+        position: flex;
         margin-top:1rem;
-        b{
-            font-size:1rem;
+       
+        .check{
            
-
+            font-size: 5px;
+            color: red;
+            float: right;
+            margin: auto; 
+            
         }
 
         input{

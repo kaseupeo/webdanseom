@@ -3,13 +3,15 @@
  * 비밀번호 찾기 레이아웃
  * 작성자: 정진욱
  */
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './FindPassword.scss';
 import './AuthTemplate.scss';
 const FindPassword = () => {
-  const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [authNumber, setAuthNumber] = useState('');
 
+  const navigate = useNavigate();
   const goBack = () => {
     navigate('/auth/login');
   };
