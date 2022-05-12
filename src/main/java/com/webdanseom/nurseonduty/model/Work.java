@@ -8,6 +8,7 @@ package com.webdanseom.nurseonduty.model;
  * 수정자:표영운
  */
 
+import com.webdanseom.nurseonduty.model.id.WorkId;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
