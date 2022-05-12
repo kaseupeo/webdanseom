@@ -3,35 +3,54 @@
  * 비밀번호 찾기 레이아웃
  * 작성자: 정진욱
  */
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import './FindPassword.scss';
 import './AuthTemplate.scss';
 const FindPassword = () => {
   const [email, setEmail] = useState('');
-  const [authNumber, setAuthNumber] = useState('');
+  const [check, setCheck] = useState(false);
+
+  const onEmailHandler = (e) => {
+    setEmail(e.currentTarget.value);
+  };
+
+  useEffect(() => {
+    if (
+      /^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/.test(
+        email,
+      )
+    ) {
+      setCheck(true);
+    } else {
+      setCheck(false);
+    }
+  }, [email]);
 
   const navigate = useNavigate();
   const goBack = () => {
     navigate('/auth/login');
   };
-  const onClick = () => {
-    alert('인증번호 발송');
+  const onClickSuccess = () => {
+    alert('이메일로 링크를 발송했습니다');
+  };
+  const onClickFail = () => {
+    alert('발송 실패');
   };
 
   return (
     <div className="AuthTemplate">
-      <div className="login-title">비밀번호 찾기</div>
+      <div className="title">비밀번호 찾기</div>
       <div className="content">
         <div className="FindPassword">
-          <b> 계정을 찾기위해 이메일 또는 전화번호를 입력하세요.</b>
+          <b> 비밀번호 링크를 보내기위한 이메일을 입력하세요. </b>
           <input
             type="text"
-            name="emailOrPhone"
-            placeholder="이메일 또는 전화번호"
+            name="email"
+            placeholder="nurseofduty@xxx.com"
+            onChange={onEmailHandler}
           />
-          <b> 인증 번호</b>
-          <input type="text" name="number" placeholder="인증 번호" />
+
           <hr />
           <div className="btn">
             <button
@@ -42,9 +61,27 @@ const FindPassword = () => {
             >
               취소
             </button>
-            <button type="submit" className="find" onClick={onClick}>
-              발송
-            </button>
+            {check ? (
+              <Link
+                to="/auth/findPWPost"
+                type="submit"
+                className="find"
+                onClick={onClickSuccess}
+                state={{ email: email }}
+              >
+                발송
+              </Link>
+            ) : (
+              <Link
+                to="/auth/findPW"
+                type="submit"
+                className="find"
+                onClick={onClickFail}
+                state={{ email: email }}
+              >
+                발송
+              </Link>
+            )}
           </div>
         </div>
       </div>

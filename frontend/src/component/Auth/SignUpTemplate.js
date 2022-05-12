@@ -48,7 +48,7 @@ const JoinElement = () => {
       ) ||
       email === ''
     ) {
-      if (email === '') setCheck({ emailCheck: false });
+      if (email === '') setCheck({ ...check, emailCheck: false });
       else setCheck({ ...check, emailCheck: true });
     } else {
       setCheck({ ...check, emailCheck: false });
@@ -110,7 +110,7 @@ const JoinElement = () => {
 
   return (
     <div className="AuthTemplate">
-      <div className="login-title">회원가입</div>
+      <div className="title">회원가입</div>
 
       <div className="content">
         <div className="SignUpElement">
@@ -125,7 +125,7 @@ const JoinElement = () => {
           <input
             name="email"
             type="text"
-            placeholder="이메일"
+            placeholder="nurseofduty@xxx.com"
             onChange={(e) => {
               onEmailHandler(e);
               onChangeEmail();

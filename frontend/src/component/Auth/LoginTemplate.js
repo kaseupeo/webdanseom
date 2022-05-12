@@ -28,16 +28,11 @@ const LoginTemplate = () => {
 
   return (
     <div className="AuthTemplate">
-      <div className="login-title">로그인</div>
+      <div className="title">로그인</div>
       <div className="content">
         <div className="LoginElement">
-          <input type="text" autoCompelte="id" name="id" placeholder="아이디" />
-          <input
-            type="password"
-            autoComplet="new-password"
-            name="password"
-            placeholder="비밀번호"
-          />
+          <input type="text" name="email" placeholder="이메일" />
+          <input type="password" name="password" placeholder="비밀번호" />
           <button className="loginBtn" type="submit" onClick={onClick}>
             로그인
           </button>
