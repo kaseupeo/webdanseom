@@ -59,7 +59,10 @@ public interface AuthService {
     //그룹생성
     void createGroup(NurseGroup nurseGroup, Member member);
 
+    //그룹초대
+    void inviteGroup(NurseGroup nurseGroup, Member member);
+
     //그룹참여
-    void joinGroup(Member member, NurseGroup nurseGroup) throws NotFoundException;
+    void joinGroup(int seq, String inviteLink, Member member) throws NotFoundException;
 
 }

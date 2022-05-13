@@ -13,5 +13,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class RequestJoinGroup {
+    private int seq;
     private String inviteLink;
 }

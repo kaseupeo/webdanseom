@@ -9,10 +9,7 @@ package com.webdanseom.nurseonduty.service.impl;
  * 수정자:신동현
  */
 import com.webdanseom.nurseonduty.config.UserRole;
-import com.webdanseom.nurseonduty.model.Member;
-import com.webdanseom.nurseonduty.model.NurseGroup;
-import com.webdanseom.nurseonduty.model.Salt;
-import com.webdanseom.nurseonduty.model.SocialData;
+import com.webdanseom.nurseonduty.model.*;
 import com.webdanseom.nurseonduty.model.request.RequestSocialData;
 import com.webdanseom.nurseonduty.repo.MemberRepository;
 import com.webdanseom.nurseonduty.repo.NurseGroupRepository;
@@ -219,23 +216,29 @@ public class AuthServiceImpl implements AuthService {
     }
 
     /**
-     * 그룹 생성, 참여
+     * 그룹 생성, 가입, 초대
      * */
+    //그룹 생성
     @Override
     @Transactional
     public void createGroup(NurseGroup nurseGroup, Member member) {
+        UUID uuid = UUID.randomUUID();
+
         //그룹초기정보 insert
         nurseGroup.setHeadNurseNum(member.getMemberSeq());
         nurseGroup.setNumberOfDays(2);
         nurseGroup.setNumberOfEvenings(2);
         nurseGroup.setNumberOfNights(2);
+        nurseGroup.setInviteLink(uuid.toString());
 
-        //회원 간호사에 참가등록  --update 인데 이건 별도 처리?
-        member.setGroupSeq(nurseGroup);
+        //회원 간호사에 그룹번호 업데이트
+        try {
+            joinGroup(nurseGroup, member);
+        } catch (NotFoundException e) {
+            throw new RuntimeException(e);
+        }
 
         String INVITE_LINK = "http://localhost:8080/member/createGroup/";
-        String key = INVITE_LINK + UUID.randomUUID();
-        UUID uuid = UUID.randomUUID();
 
         redisUtil.setDataExpire(uuid.toString(), nurseGroup.getGroupName(), 1800L);
         emailService.sendEmail(member.getEmail(), "[Nurse On Duty] 새그룹을 생성하셨습니다.  그룹명: " + nurseGroup.getGroupName(), INVITE_LINK + uuid.toString());
@@ -243,8 +246,26 @@ public class AuthServiceImpl implements AuthService {
         nurseGroupRepository.save(nurseGroup);
     }
 
-    @Override
-    public void joinGroup(Member member, NurseGroup nurseGroup) throws NotFoundException {
+    //그룹 초대
+    public void inviteGroup(NurseGroup nurseGroup, Member member) {
+        String INVITE_LINK = "http://localhost:8080/member/inviteGroup/";
+
+        redisUtil.setDataExpire(uuid.toString(), nurseGroup.getGroupName(), 1800L);
+
+        nurseGroupRepository.save(nurseGroup);
 
     }
+
+    //그룹 가입
+    @Override
+    public void joinGroup(int seq, String inviteLink, Member member) throws NotFoundException {
+        if (member == null) throw new NotFoundException("inviteGroup(), 로그인을 먼저 하십시오.");
+        if (inviteLink.equals())
+        NurseGroup nurseGroup = new NurseGroup();
+        nurseGroup.setSeq(seq);
+        member.setGroupSeq(nurseGroup);
+
+        memberRepository.save(member);
+    }
+
 }

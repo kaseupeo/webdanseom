@@ -16,6 +16,7 @@ import com.webdanseom.nurseonduty.model.request.*;
 import com.webdanseom.nurseonduty.service.AuthService;
 import com.webdanseom.nurseonduty.service.CookieUtil;
 import com.webdanseom.nurseonduty.service.RedisUtil;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/member")
@@ -185,16 +187,27 @@ public class MemberController {
         }
     }
 
-    //그룹참여
-    @GetMapping("/join/{key}")
-    public Response joinGroup(@RequestBody RequestJoinGroup requestJoinGroup) {
-        Response response;
+    //그룹 초대
+    @GetMapping("/inviteGroup")
+    public Response inviteGroup(@RequestBody NurseGroup nurseGroup, Member member) {
         try {
-
+            authService.inviteGroup(nurseGroup, member);
+            return new Response("success", "그룹초대 성공", null);
         }catch (Exception e) {
-
+            return new Response("error", "그룹초대 실패", null);
         }
-        return  null;
+
+    }
+
+    //그룹가입
+    @PostMapping("/join")
+    public Response joinGroup(@RequestBody RequestJoinGroup requestJoinGroup, Member member) {
+        try {
+            authService.joinGroup(requestJoinGroup.getSeq() ,requestJoinGroup.getInviteLink(), member);
+            return new Response("success", "그룹가입 성공", null);
+        }catch (Exception e) {
+            return new Response("error", "그룹가입 실패", null);
+        }
     }
 
     @GetMapping("/test")
