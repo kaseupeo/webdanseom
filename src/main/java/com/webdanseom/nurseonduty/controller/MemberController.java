@@ -194,7 +194,7 @@ public class MemberController {
         }catch (Exception e) {
 
         }
-        return  response;
+        return  null;
     }
 
     @GetMapping("/test")

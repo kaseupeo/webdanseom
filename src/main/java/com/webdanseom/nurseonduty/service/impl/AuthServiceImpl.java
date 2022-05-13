@@ -15,7 +15,7 @@ import com.webdanseom.nurseonduty.model.Salt;
 import com.webdanseom.nurseonduty.model.SocialData;
 import com.webdanseom.nurseonduty.model.request.RequestSocialData;
 import com.webdanseom.nurseonduty.repo.MemberRepository;
-import com.webdanseom.nurseonduty.repo.NurseRepository;
+import com.webdanseom.nurseonduty.repo.NurseGroupRepository;
 import com.webdanseom.nurseonduty.repo.SocialDataRepository;
 import com.webdanseom.nurseonduty.service.AuthService;
 import com.webdanseom.nurseonduty.service.EmailService;
@@ -47,7 +47,7 @@ public class AuthServiceImpl implements AuthService {
     private RedisUtil redisUtil;
 
     @Autowired
-    private NurseRepository nurseRepository;
+    private NurseGroupRepository nurseGroupRepository;
 
     /**
      * 회원가입
@@ -224,13 +224,23 @@ public class AuthServiceImpl implements AuthService {
     @Override
     @Transactional
     public void createGroup(NurseGroup nurseGroup, Member member) {
+        //그룹초기정보 insert
         nurseGroup.setHeadNurseNum(member.getMemberSeq());
         nurseGroup.setNumberOfDays(2);
         nurseGroup.setNumberOfEvenings(2);
         nurseGroup.setNumberOfNights(2);
 
+        //회원 간호사에 참가등록  --update 인데 이건 별도 처리?
+        member.setGroupSeq(nurseGroup);
 
-        nurseRepository.save(nurseGroup);
+        String INVITE_LINK = "http://localhost:8080/member/createGroup/";
+        String key = INVITE_LINK + UUID.randomUUID();
+        UUID uuid = UUID.randomUUID();
+
+        redisUtil.setDataExpire(uuid.toString(), nurseGroup.getGroupName(), 1800L);
+        emailService.sendEmail(member.getEmail(), "[Nurse On Duty] 새그룹을 생성하셨습니다.  그룹명: " + nurseGroup.getGroupName(), INVITE_LINK + uuid.toString());
+
+        nurseGroupRepository.save(nurseGroup);
     }
 
     @Override

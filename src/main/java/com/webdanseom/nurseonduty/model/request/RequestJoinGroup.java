@@ -1,4 +1,4 @@
-package com.webdanseom.nurseonduty.model.requset;
+package com.webdanseom.nurseonduty.model.request;
 /**
  * 파일명: RequestJoinGroup.java
  * 설명: 그룹참여요청
