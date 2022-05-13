@@ -20,8 +20,10 @@ import FindPassword from './component/Auth/FindPassword';
 import FindPasswordPost from './component/Auth/FindPasswordPost';
 import MainNavigation from './component/Navigation/MainNavigation';
 import NormalSelectWork from './component/App/NurseNormal/NormalSelectWork';
+import HeadManagementWork from './component/App/NurseHead/HeadManagement';
 
 import TopNavigation from './component/App/AppNavigation/TopNavigation';
+
 function App() {
   return (
     <div>
@@ -37,6 +39,7 @@ function App() {
 
           <Route path="/app" element={<TopNavigation />}>
             <Route path="/app/selectWork" element={<NormalSelectWork />} />
+            <Route path="/app/management" element={<HeadManagementWork />} />
           </Route>
         </Routes>
       </Router>
