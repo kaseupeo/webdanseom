@@ -54,12 +54,10 @@ public class NurseGroup {
     private String inviteLink;
 
     //초대링크 만료일
-    @Temporal(TemporalType.TIMESTAMP)
-    @CreationTimestamp
-    private Date inviteDate;
+
 
     public NurseGroup(int groupSeq, String groupName, int headNurseNum, int numberOfDays,
-                      int numberOfEvenings, int numberOfNights, String inviteLink, Date inviteDate) {
+                      int numberOfEvenings, int numberOfNights, String inviteLink) {
         this.seq = groupSeq;
         this.groupName = groupName;
         this.headNurseNum = headNurseNum;
@@ -67,7 +65,6 @@ public class NurseGroup {
         this.numberOfEvenings = numberOfEvenings;
         this.numberOfNights = numberOfNights;
         this.inviteLink = inviteLink;
-        this.inviteDate = inviteDate;
     }
 
     @Override
@@ -79,6 +76,7 @@ public class NurseGroup {
                 ", numberOfDays=" + numberOfDays +
                 ", numberOfEvenings=" + numberOfEvenings +
                 ", numberOfNights=" + numberOfNights +
+                ", inviteLink=" + inviteLink +
                 '}';
     }
 }
