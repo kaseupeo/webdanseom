@@ -1,0 +1,52 @@
+.LeftNavigation{
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 100%;
+    
+    .nav{
+        display: flex;
+        color: #e9e9e9;
+        height: 100%;
+        background: #40586a;
+        padding-bottom:100px;
+        
+        ul{
+            padding:0;
+            
+        LINK{
+            text-decoration: none;
+        }
+         li{
+            color:white;
+            list-style:none;
+            padding:1rem  1rem 1rem;
+            b{
+                padding-right: 3.5rem;
+            }
+             font-size: 1rem;
+             text-decoration: none;
+             
+            &:hover{
+            background-color: #547B97;
+         color: white;
+        
+         }
+         b{
+            margin-left: 1rem;
+        }
+        }
+        }
+    
+     
+   
+    }
+    .content{
+        z-index: -5;
+        display: flex;
+        padding:2.1rem;
+        
+    }
+    
+}

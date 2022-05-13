@@ -1,109 +1,150 @@
 $mobile-contents-width: 640px;
-$min-contents-width: 920px;
+$min-contents-width: 1050px;
 
 .TopNavigation{
+  
     box-shadow: 0px 3px 10px 1px  rgb(157, 157, 157)  ;
-    background: linear-gradient(to right, #547B97, #40586a);
+    background: white;
     height: 4rem;
-    @media (max-width: $min-contents-width) {
-        height: 8rem;
-    }
-    .title{
-        padding-top: 5px;
-        position: absolute;
-        font-size:2.2rem;
-        margin-left: 5%;
+  
+    
+ 
+    .topNav{
+    
+        display: flex;
+    
+        flex-direction: row;
+        padding-top: 20px;
+        padding-left:20px;
         
-        color: white;
-        text-decoration: none;
-        font-weight: 600;
-        @media (max-width: $min-contents-width) {
-            position: absolute;
-           top: 10px;
-             left: 50%;
-            margin:0 0 0 -110px;
-        
-            font-size: 2rem;
-            white-space: nowrap;
-        }
-    }
-    .btn{
-        margin-top: 10px;
-        float: right;
-        margin-right: 15rem;
-        margin-left: 5%;
-        
-        color: white;
-        text-decoration: none;
        
-        @media (max-width: $min-contents-width) {
-           
+        text-decoration: none;
+    
+        .menu{
             position: absolute;
-            top: 80px;
-            margin-right: 0;
-            margin-left: 0;
-            left: 50%;
-            transform: translate(-50%,-50%);
             
-            white-space: nowrap;
+        .menuIcon{
+            
+            width: 1.8rem;
+            height: 1.8rem;
+            
         }
-    .navWork{
-        margin-right: 2rem;
-    
-        width: 120px;
-        height: 100px;
-        text-align: center;
-    
-        color:white;
-       
-   
-        text-decoration: none;
-       
-        &:hover{
-            color:#6be1ff;
-        }
-
-    }
-    .navWorkApp{
-        margin-right: 2rem;
-       
-        width: 120px;
-        height: 100px;
-        text-align: center;
         
-        color:white;
-       
-    
-        text-decoration: none;
-        font-weight: 1000;
-        &:hover{
-            color:#6be1ff;
-          }
-
     }
-    .navMyPage{
+    .endElement{
+        display: flex;
+        flex-direction: row;
+        margin-left: auto;
         margin-right: 5rem;
-        &:hover{
+        
+        .refreshIcon{
+            display: flex;
             
-            color:#6be1ff;
-          }
+            margin-top: 5px;
+            margin-right:20px;
+            
+            width: 1.6rem;
+            height: 1.6rem;
+
+        }
+    .help{
+        
+        display: flex;
+        
+        flex-direction: row;
+        
+        
+        padding:5px;
+       
+    .helpIcon{
+       
+        width: 1.6rem;
+        height: 1.6rem;
     }
-    .logout{
-        background-color: #40586a;
-        width: 200px;
-        height: 100px;
-        text-align: center;
-        border: solid 1px white;
-        color:white;
-        line-height: 40px;
-        border-radius: 5px;
-        text-decoration: none;
-        font-weight: 1000;
+    .bottomArrowIcon{
+        color: black;
+        width: 1.3rem;
+        height: 1.3rem;
+    }
+    .helpMenu{position: absolute;
+        margin-top: 30px;
+        
+        background-color: white;
+       
+        border: solid 1px grey;
+        box-shadow: 0px 3px 5px 1px  rgb(157, 157, 157)  ;
+        ul{
+            padding:0;
+        li{
+            font-size:15px;
+            padding:10px 15px 10px 15px;
+            list-style:none;
+            text-decoration: none;
         &:hover{
-          background-color: white;
-          color:#40586a;
+            background-color: #d3d3d3;
+            
+        }
+    }
+    }
+    }
+    }
+        .myPage{
+            
+            display: flex;
+            
+            flex-direction: row;
+            
+            
+            padding:5px;
+        .settingIcon{
+           
+            width: 1.6rem;
+            height: 1.6rem;
+        }
+        .bottomArrowIcon{
+            color: black;
+            width: 1.3rem;
+            height: 1.3rem;
+        }
+        .myPageMenu{position: absolute;
+            margin-top: 30px;
+            
+            background-color: white;
+           
+            border: solid 1px grey;
+            box-shadow: 0px 3px 5px 1px  rgb(157, 157, 157)  ;
+            ul{
+                padding:0;
+            li{
+                font-size:15px;
+                padding:10px 15px 10px 15px;
+                list-style:none;
+                text-decoration: none;
+            &:hover{
+                background-color: #d3d3d3;
+                
+            }
+        }
+        }
         }
     }
 
-}
+      
+
+    }
+
+        .groupName{
+            position:absolute;
+            font-style: bold;
+            font-size: 20px;
+            
+            
+           
+            margin-left:50px;
+            color: black;
+            
+        }
+
+
+    }
 }

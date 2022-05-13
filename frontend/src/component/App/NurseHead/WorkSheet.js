@@ -31,6 +31,7 @@ const WorkSheet = () => {
 
   return (
     <div className="WorkSheet">
+      <h2>근무표 관리</h2>
       <div className="title"></div>
       <div>
         <span>이름 직책 숙련도 {days}</span>

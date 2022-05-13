@@ -7,7 +7,7 @@ $calendar-min-width:1000px;
     width:5rem;
     display: flex;      
     flex-direction: column;   
-    
+   
   
     html, body {
          height: 100%;
@@ -15,7 +15,7 @@ $calendar-min-width:1000px;
 
   
   .control{
-    width: 100vw;
+    width: 80vw;
     display: flex;      
     flex-direction: row;
     justify-content: center;
@@ -55,7 +55,7 @@ $calendar-min-width:1000px;
   
     justify-content: center;
     left:50%;
-    width:98vw;
+    width:80vw;
     height:100rem;
     background-color: white;
     @media (max-width: $calendar-min-width)  {
