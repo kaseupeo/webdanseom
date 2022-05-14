@@ -5,7 +5,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import './App.css';
+
 import {
   BrowserRouter as Router,
   Routes,
@@ -13,16 +13,16 @@ import {
   NavLink,
 } from 'react-router-dom';
 
-import Main from './component/Main';
-import SignUpTemplate from './component/Auth/SignUpTemplate';
-import LoginTemplate from './component/Auth/LoginTemplate';
-import FindPassword from './component/Auth/FindPassword';
-import FindPasswordPost from './component/Auth/FindPasswordPost';
-import MainNavigation from './component/Navigation/MainNavigation';
-import NormalSelectWork from './component/App/NurseNormal/NormalSelectWork';
-import HeadManagementWork from './component/App/NurseHead/HeadManagement';
+import Main from './components/Main';
+import SignUpPage from './pages/auth/SignUpPage';
+import LoginPage from './pages/auth/LoginPage';
+import FindPasswordPage from './pages/auth/FindPasswordPage';
+import FindPasswordPost from './components/auth/FindPasswordPost';
+import MainNavigation from './components/Navigation/MainNavigation';
+import NormalSelectWork from './components/App/NurseNormal/NormalSelectWork';
+import HeadManagementWork from './components/App/NurseHead/HeadManagement';
 
-import TopNavigation from './component/App/AppNavigation/TopNavigation';
+import TopNavigation from './components/App/AppNavigation/TopNavigation';
 
 function App() {
   return (
@@ -31,9 +31,9 @@ function App() {
         <Routes>
           <Route path="/" element={<MainNavigation />}>
             <Route path="/" element={<Main />} />
-            <Route path="/auth/login" element={<LoginTemplate />} />
-            <Route path="/auth/signup" element={<SignUpTemplate />} />
-            <Route path="/auth/findPW" element={<FindPassword />} />
+            <Route path="/auth/login" element={<LoginPage />} />
+            <Route path="/auth/signup" element={<SignUpPage />} />
+            <Route path="/auth/findPW" element={<FindPasswordPage />} />
             <Route path="/auth/findPWPost" element={<FindPasswordPost />} />
           </Route>
 
