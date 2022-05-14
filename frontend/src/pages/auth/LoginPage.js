@@ -1,10 +1,10 @@
-import AuthTemplate from '../../comonents/AuthTemplate';
-import LoginElement from '../../comonents/LoginElement';
+import AuthTemplate from '../../components/auth/AuthTemplate';
+import Loginform from '../../containers/auth/LoginForm';
 
 const LoginPage = () => {
   return (
     <AuthTemplate title="로그인">
-      <LoginElement />
+      <Loginform />
     </AuthTemplate>
   );
 };

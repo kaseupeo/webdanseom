@@ -1,19 +1,19 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { chagneField, initializeForm } from '../../modules/auth';
-import AuthTemplate from '../../component/Auth/AuthTemplate';
+import { changeField, initializeForm } from '../../modules/auth';
+import LoginElement from '../../components/auth/LoginElement';
 
 const LoginForm = () => {
   const dispatch = useDispatch();
   const { form } = useSelector(({ auth }) => ({ form: auth.login }));
 
-  // 이메일 변경 이벤트 핸들러
+  // 인풋 변경 이벤트 핸들러
   const onChange = (e) => {
-    const { value, email } = e.target;
+    const { value, name } = e.target;
     dispatch(
-      chagneField({
+      changeField({
         form: 'login',
-        key: email,
+        key: name,
         value,
       }),
     );
@@ -26,14 +26,7 @@ const LoginForm = () => {
     dispatch(initializeForm('login'));
   }, [dispatch]);
 
-  return (
-    <AuthTemplate
-      type="login"
-      form={form}
-      onchagne={onChange}
-      onSubmit={onSubmit}
-    />
-  );
+  return <LoginElement form={form} onChange={onChange} onSubmit={onSubmit} />;
 };
 
 export default LoginForm;

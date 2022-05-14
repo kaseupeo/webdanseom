@@ -1,5 +1,5 @@
-import AuthTemplate from '../../comonents/AuthTemplate';
-import FindPassword from '../../comonents/FindPassword';
+import AuthTemplate from '../../components/auth/AuthTemplate';
+import FindPassword from '../../components/auth/FindPassword';
 
 const FindPasswordPage = () => {
   return (

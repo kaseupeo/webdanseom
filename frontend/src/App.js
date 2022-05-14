@@ -13,16 +13,16 @@ import {
   NavLink,
 } from 'react-router-dom';
 
-import Main from './component/Main';
-import SignUpPage from './component/Auth/SignUpPage';
-import LoginPage from './component/Auth/LoginPage';
-import FindPasswordPage from './component/Auth/FindPasswordPage';
-import FindPasswordPost from './component/Auth/FindPasswordPost';
-import MainNavigation from './component/Navigation/MainNavigation';
-import NormalSelectWork from './component/App/NurseNormal/NormalSelectWork';
-import HeadManagementWork from './component/App/NurseHead/HeadManagement';
+import Main from './components/Main';
+import SignUpPage from './pages/auth/SignUpPage';
+import LoginPage from './pages/auth/LoginPage';
+import FindPasswordPage from './pages/auth/FindPasswordPage';
+import FindPasswordPost from './components/auth/FindPasswordPost';
+import MainNavigation from './components/Navigation/MainNavigation';
+import NormalSelectWork from './components/App/NurseNormal/NormalSelectWork';
+import HeadManagementWork from './components/App/NurseHead/HeadManagement';
 
-import TopNavigation from './component/App/AppNavigation/TopNavigation';
+import TopNavigation from './components/App/AppNavigation/TopNavigation';
 
 function App() {
   return (

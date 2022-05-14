@@ -1,7 +1,7 @@
-import AuthTemplate from '../../comonents/AuthTemplate';
-import SignUpElement from '../../comonents/SignUpElement';
+import AuthTemplate from '../../components/auth/AuthTemplate';
+import SignUpElement from '../../components/auth/SignUpElement';
 
-const SignUpPage = ({ children, title }) => {
+const SignUpPage = () => {
   return (
     <AuthTemplate title="회원가입">
       <SignUpElement />

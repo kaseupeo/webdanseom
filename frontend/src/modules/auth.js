@@ -1,5 +1,6 @@
 import { createAction, handleActions } from 'redux-actions';
 import produce from 'immer';
+
 const CHANGE_FIELD = 'auth/CHANGE_FIELD';
 const INITIALIZE_FORM = 'auth/INITIALIZE_FORM';
 
@@ -18,7 +19,7 @@ const initialState = {
     email: '',
     password: '',
     passwordConfirm: '',
-    name: '',
+    userName: '',
     phone: '',
   },
   login: {
