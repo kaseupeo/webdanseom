@@ -233,34 +233,33 @@ public class AuthServiceImpl implements AuthService {
 
         //회원 간호사에 그룹번호 업데이트
         try {
-            joinGroup(nurseGroup, member);
+            joinGroup(nurseGroup.getSeq(), nurseGroup.getInviteLink(), member);
         } catch (NotFoundException e) {
             throw new RuntimeException(e);
         }
 
-        String INVITE_LINK = "http://localhost:8080/member/createGroup/";
+        String CREATE_GROUP = "http://localhost:8080/member/createGroup/";
 
         redisUtil.setDataExpire(uuid.toString(), nurseGroup.getGroupName(), 1800L);
-        emailService.sendEmail(member.getEmail(), "[Nurse On Duty] 새그룹을 생성하셨습니다.  그룹명: " + nurseGroup.getGroupName(), INVITE_LINK + uuid.toString());
+        emailService.sendEmail(member.getEmail(), "[Nurse On Duty] 새그룹을 생성하셨습니다.  그룹명: " + nurseGroup.getGroupName(), CREATE_GROUP + uuid.toString());
 
         nurseGroupRepository.save(nurseGroup);
     }
 
     //그룹 초대
-    public void inviteGroup(NurseGroup nurseGroup, Member member) {
-        String INVITE_LINK = "http://localhost:8080/member/inviteGroup/";
+    public String inviteGroup(int seq, String inviteLink) {
+        UUID uuid = UUID.randomUUID();
+        String INVITE_LINK = "http://localhost:8080/member/inviteGroup/" + inviteLink;
 
-        redisUtil.setDataExpire(uuid.toString(), nurseGroup.getGroupName(), 1800L);
-
-        nurseGroupRepository.save(nurseGroup);
-
+        return INVITE_LINK;
     }
 
     //그룹 가입
     @Override
     public void joinGroup(int seq, String inviteLink, Member member) throws NotFoundException {
-        if (member == null) throw new NotFoundException("inviteGroup(), 로그인을 먼저 하십시오.");
-        if (inviteLink.equals())
+        if (member == null) throw new NotFoundException("joinGroup(), 로그인을 먼저 하십시오.");
+        if(nurseGroupRepository.findByInvitelink(inviteLink) == null) throw new NotFoundException("joinGroup(), 해당초대장는 만료되었거나 존재하지 않는 초대장입니다.");
+
         NurseGroup nurseGroup = new NurseGroup();
         nurseGroup.setSeq(seq);
         member.setGroupSeq(nurseGroup);
