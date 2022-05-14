@@ -1,10 +1,10 @@
 import AuthTemplate from '../../components/auth/AuthTemplate';
-import SignUpElement from '../../components/auth/SignUpElement';
+import SignUpForm from '../../containers/auth/SignUpForm';
 
 const SignUpPage = () => {
   return (
     <AuthTemplate title="회원가입">
-      <SignUpElement />
+      <SignUpForm />
     </AuthTemplate>
   );
 };
