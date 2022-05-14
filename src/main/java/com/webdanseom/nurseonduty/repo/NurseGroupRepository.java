@@ -5,4 +5,5 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface NurseGroupRepository extends CrudRepository<NurseGroup, Long> {
     NurseGroup findByName(String groupName);
+    NurseGroup findByInvitelink(String inviteLink);
 }
