@@ -1,5 +1,5 @@
-import AuthTemplate from './AuthTemplate';
-import LoginElement from './LoginElement';
+import AuthTemplate from '../../comonents/AuthTemplate';
+import LoginElement from '../../comonents/LoginElement';
 
 const LoginPage = () => {
   return (

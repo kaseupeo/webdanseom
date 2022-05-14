@@ -1,14 +1,42 @@
 import { createAction, handleActions } from 'redux-actions';
+import produce from 'immer';
+const CHANGE_FIELD = 'auth/CHANGE_FIELD';
+const INITIALIZE_FORM = 'auth/INITIALIZE_FORM';
 
-const SAMPLE_ACTION = 'acuth/SAMPLE_ACTION';
+export const changeField = createAction(
+  CHANGE_FIELD,
+  ({ form, key, value }) => ({
+    form, // signUp, login
+    key, // email,password, passwordConfirm, name, phone
+    value, // 실제 바꾸려는 값
+  }),
+);
+export const initializeForm = createAction(INITIALIZE_FORM, (form) => form);
 
-export const sample_action = createAction(SAMPLE_ACTION);
-
-const initialState = {};
+const initialState = {
+  signUp: {
+    email: '',
+    password: '',
+    passwordConfirm: '',
+    name: '',
+    phone: '',
+  },
+  login: {
+    email: '',
+    password: '',
+  },
+};
 
 const auth = handleActions(
   {
-    [SAMPLE_ACTION]: (state, action) => state,
+    [CHANGE_FIELD]: (state, { payload: { form, key, value } }) =>
+      produce(state, (draft) => {
+        draft[form][key] = value;
+      }),
+    [INITIALIZE_FORM]: (state, { payload: form }) => ({
+      ...state,
+      [form]: initialState[form],
+    }),
   },
   initialState,
 );

@@ -1,5 +1,5 @@
-import AuthTemplate from './AuthTemplate';
-import SignUpElement from './SignUpElement';
+import AuthTemplate from '../../comonents/AuthTemplate';
+import SignUpElement from '../../comonents/SignUpElement';
 
 const SignUpPage = ({ children, title }) => {
   return (
