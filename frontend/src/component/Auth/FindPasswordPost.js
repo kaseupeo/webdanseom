@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import './AuthTemplate.scss';
+import AuthTemplate from './AuthTemplate';
 const FindPasswordPost = () => {
   const contentStyle = {
     paddingTop: 60,
@@ -9,8 +9,7 @@ const FindPasswordPost = () => {
   };
   const location = useLocation();
   return (
-    <div className="AuthTemplate">
-      <div className="title"> 발송 완료</div>
+    <AuthTemplate title="발송완료">
       <div className="content">
         <b style={contentStyle}>
           비밀번호 변경 링크를
@@ -18,7 +17,7 @@ const FindPasswordPost = () => {
           <br />로 발송되었어요
         </b>
       </div>
-    </div>
+    </AuthTemplate>
   );
 };
 

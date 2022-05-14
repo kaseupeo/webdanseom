@@ -5,7 +5,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import './App.css';
+
 import {
   BrowserRouter as Router,
   Routes,
@@ -14,9 +14,9 @@ import {
 } from 'react-router-dom';
 
 import Main from './component/Main';
-import SignUpTemplate from './component/Auth/SignUpTemplate';
-import LoginTemplate from './component/Auth/LoginTemplate';
-import FindPassword from './component/Auth/FindPassword';
+import SignUpPage from './component/Auth/SignUpPage';
+import LoginPage from './component/Auth/LoginPage';
+import FindPasswordPage from './component/Auth/FindPasswordPage';
 import FindPasswordPost from './component/Auth/FindPasswordPost';
 import MainNavigation from './component/Navigation/MainNavigation';
 import NormalSelectWork from './component/App/NurseNormal/NormalSelectWork';
@@ -31,9 +31,9 @@ function App() {
         <Routes>
           <Route path="/" element={<MainNavigation />}>
             <Route path="/" element={<Main />} />
-            <Route path="/auth/login" element={<LoginTemplate />} />
-            <Route path="/auth/signup" element={<SignUpTemplate />} />
-            <Route path="/auth/findPW" element={<FindPassword />} />
+            <Route path="/auth/login" element={<LoginPage />} />
+            <Route path="/auth/signup" element={<SignUpPage />} />
+            <Route path="/auth/findPW" element={<FindPasswordPage />} />
             <Route path="/auth/findPWPost" element={<FindPasswordPost />} />
           </Route>
 

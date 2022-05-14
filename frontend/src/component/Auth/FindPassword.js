@@ -39,51 +39,46 @@ const FindPassword = () => {
   };
 
   return (
-    <div className="AuthTemplate">
-      <div className="title">비밀번호 찾기</div>
-      <div className="content">
-        <div className="FindPassword">
-          <b> 비밀번호 링크를 보내기위한 이메일을 입력하세요. </b>
-          <input
-            type="text"
-            name="email"
-            placeholder="nurseofduty@xxx.com"
-            onChange={onEmailHandler}
-          />
+    <div className="FindPassword">
+      <b> 비밀번호 링크를 보내기위한 이메일을 입력하세요. </b>
+      <input
+        type="text"
+        name="email"
+        placeholder="nurseofduty@xxx.com"
+        onChange={onEmailHandler}
+      />
 
-          <hr />
-          <div className="btn">
-            <button
-              onClick={() => {
-                goBack();
-              }}
-              className="cancel"
-            >
-              취소
-            </button>
-            {check ? (
-              <Link
-                to="/auth/findPWPost"
-                type="submit"
-                className="find"
-                onClick={onClickSuccess}
-                state={{ email: email }}
-              >
-                발송
-              </Link>
-            ) : (
-              <Link
-                to="/auth/findPW"
-                type="submit"
-                className="find"
-                onClick={onClickFail}
-                state={{ email: email }}
-              >
-                발송
-              </Link>
-            )}
-          </div>
-        </div>
+      <hr />
+      <div className="btn">
+        <button
+          onClick={() => {
+            goBack();
+          }}
+          className="cancel"
+        >
+          취소
+        </button>
+        {check ? (
+          <Link
+            to="/auth/findPWPost"
+            type="submit"
+            className="find"
+            onClick={onClickSuccess}
+            state={{ email: email }}
+          >
+            발송
+          </Link>
+        ) : (
+          <Link
+            to="/auth/findPW"
+            type="submit"
+            className="find"
+            onClick={onClickFail}
+            state={{ email: email }}
+          >
+            발송
+          </Link>
+        )}
       </div>
     </div>
   );

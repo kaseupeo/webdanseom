@@ -7,7 +7,7 @@ import React, { useEffect, useState } from 'react';
 import './SignUpElement.scss';
 import './AuthTemplate.scss';
 import { Link } from 'react-router-dom';
-const JoinElement = () => {
+const SignUpElement = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPw, setConfirmPw] = useState('');
@@ -109,9 +109,7 @@ const JoinElement = () => {
   };
 
   return (
-    <div className="AuthTemplate">
-      <div className="title">회원가입</div>
-
+    <div>
       <div className="content">
         <div className="SignUpElement">
           <b>이메일</b>
@@ -202,4 +200,4 @@ const JoinElement = () => {
   );
 };
 
-export default JoinElement;
+export default SignUpElement;
