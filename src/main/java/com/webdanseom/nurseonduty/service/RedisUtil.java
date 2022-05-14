@@ -1,5 +1,12 @@
 package com.webdanseom.nurseonduty.service;
-
+/**
+ * 파일명: MemberController.java
+ * 설명: db에 저장안하고 간단하게 사용 할수있는 캐시
+ * 작성일자:2022.05.01
+ * 작성자:신동현
+ * 수정일자:
+ * 수정자:
+ */
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
