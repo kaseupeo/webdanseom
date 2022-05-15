@@ -3,7 +3,7 @@ import FindPassword from '../../components/auth/FindPassword';
 
 const FindPasswordPage = () => {
   return (
-    <AuthTemplate title="비밀번호 변경">
+    <AuthTemplate title="비밀번호 찾기">
       <FindPassword />
     </AuthTemplate>
   );

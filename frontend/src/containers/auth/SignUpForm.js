@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { changeField, initializeForm, signUp } from '../../modules/auth';
 import SignUpElement from '../../components/auth/SignUpElement';
 import { useNavigate } from 'react-router-dom';
-const SignUpForm = ({ history }) => {
+const SignUpForm = () => {
   // const navigate = useNavigate();
   const dispatch = useDispatch();
   const { form, auth, authError } = useSelector(({ auth }) => ({
