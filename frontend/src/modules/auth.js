@@ -5,7 +5,7 @@ import createRequestSaga, {
   createRequestActionTypes,
 } from '../libs/createRequestSaga';
 import * as authAPI from '../libs/api/auth';
-import { takeLatest } from '@redux-saga/core/effects';
+import { takeLatest } from 'redux-saga/effects';
 
 //input 요소 변화시 필드 상태 값 적용
 const CHANGE_FIELD = 'auth/CHANGE_FIELD';
