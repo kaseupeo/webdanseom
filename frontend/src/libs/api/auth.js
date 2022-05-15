@@ -6,13 +6,13 @@
 import client from './client';
 
 export const login = ({ email, password }) =>
-  client.post('/login', {
+  client.post('/member/login', {
     email,
     password,
   });
 
 export const signup = ({ email, password, userName, phone }) =>
-  client.post('/signup', {
+  client.post('/member/signup', {
     email,
     password,
     userName,
@@ -21,7 +21,7 @@ export const signup = ({ email, password, userName, phone }) =>
 
 export const verify = ({ userId }) => client.getUser('/verify', { userId });
 export const getUser = (userId) =>
-  client.get(`/auth-service/${userId}/getUser`, {
+  client.get(`/member/${userId}/getUser`, {
     headers: {
       Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token')),
     },
