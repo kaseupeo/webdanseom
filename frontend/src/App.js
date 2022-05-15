@@ -17,9 +17,9 @@ import LoginPage from './pages/auth/LoginPage';
 import FindPasswordPage from './pages/auth/FindPasswordPage';
 import FindPasswordPost from './components/auth/FindPasswordPost';
 import MainNavigation from './components/navigation/MainNavigation';
-import NormalSelectWork from './components/app/NurseNormal/NormalSelectWork';
-import HeadManagementWork from './components/app/NurseHead/HeadManagement';
-import TopNavigation from './components/app/AppNavigation/TopNavigation';
+import NormalSelectWork from './components/app/nurseNormal/NormalSelectWork';
+import HeadManagementWork from './components/app/nurseHead/HeadManagement';
+import TopNavigation from './components/app/appNavigation/TopNavigation';
 
 function App() {
   return (
