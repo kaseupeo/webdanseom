@@ -31,7 +31,7 @@ import javax.servlet.http.HttpServletResponse;
 public class MemberController {
 
     @Autowired
-    private AuthenticationManager authenticationManager;
+    AuthenticationManager authenticationManager;
 
     @Autowired
     private JwtUtil jwtUtil;

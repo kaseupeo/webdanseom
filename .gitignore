@@ -35,3 +35,7 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### frontendd ###
+package-lock.json
+yarn.lock
