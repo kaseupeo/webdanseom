@@ -125,7 +125,7 @@ public class AuthServiceImpl implements AuthService {
      * @throws NotFoundException
      */
     @Override
-    public void verifyEmail(String key) throws NotFoundException {
+    public void verifyhttp://localhost:8080/member/password/Email(String key) throws NotFoundException {
         String memberEmail = redisUtil.getData(key);
         Member member = memberRepository.findByEmail(memberEmail);
         if (member == null) throw new NotFoundException("회원이 조회되지않습니다.");
@@ -258,7 +258,7 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public void joinGroup(int seq, String inviteLink, Member member) throws NotFoundException {
         if (member == null) throw new NotFoundException("joinGroup(), 로그인을 먼저 하십시오.");
-        if(nurseGroupRepository.findByInvitelink(inviteLink) == null) throw new NotFoundException("joinGroup(), 해당초대장는 만료되었거나 존재하지 않는 초대장입니다.");
+        if(nurseGroupRepository.findByInviteLink(inviteLink) == null) throw new NotFoundException("joinGroup(), 해당초대장는 만료되었거나 존재하지 않는 초대장입니다.");
 
         NurseGroup nurseGroup = new NurseGroup();
         nurseGroup.setSeq(seq);
