@@ -1,11 +1,20 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeField, initializeForm } from '../../modules/auth';
 import LoginElement from '../../components/auth/LoginElement';
 
 const LoginForm = () => {
+  const [error, setError] = useState(null);
   const dispatch = useDispatch();
-  const { form } = useSelector(({ auth }) => ({ form: auth.login }));
+  const { form, auth, authError, user, header } = useSelector(
+    ({ auth, user }) => ({
+      form: auth.login,
+      auth: auth.auth,
+      authError: auth.authError,
+      headers: auth.headers,
+      user: user.user,
+    }),
+  );
 
   // 인풋 변경 이벤트 핸들러
   const onChange = (e) => {

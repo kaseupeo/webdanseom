@@ -62,6 +62,7 @@ const initialState = {
     password: '',
   },
   auth: null,
+  headers: null,
   authError: null,
 };
 
@@ -79,6 +80,7 @@ const auth = handleActions(
       ...state,
       authError: null,
       auth,
+      headers: null,
     }),
     [LOGIN_FAILURE]: (state, { payload: error }) => ({
       ...state,

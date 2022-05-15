@@ -18,7 +18,7 @@ import SignUpPage from './pages/auth/SignUpPage';
 import LoginPage from './pages/auth/LoginPage';
 import FindPasswordPage from './pages/auth/FindPasswordPage';
 import FindPasswordPost from './components/auth/FindPasswordPost';
-import MainNavigation from './components/Navigation/MainNavigation';
+import MainNavigation from './components/navigation/MainNavigation';
 import NormalSelectWork from './components/App/NurseNormal/NormalSelectWork';
 import HeadManagementWork from './components/App/NurseHead/HeadManagement';
 
