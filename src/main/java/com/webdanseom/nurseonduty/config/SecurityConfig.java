@@ -1,5 +1,12 @@
 package com.webdanseom.nurseonduty.config;
-
+/**
+ * 파일명: SecurityConfig.java
+ * 설명: 보안처리하는 클레스
+ * 작성일자:2022.04.30
+ * 작성자:신동현
+ * 수정일자:
+ * 수정자:
+ */
 import com.webdanseom.nurseonduty.jwt.JwtRequestFilter;
 import com.webdanseom.nurseonduty.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;

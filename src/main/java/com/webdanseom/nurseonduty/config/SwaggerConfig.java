@@ -1,5 +1,12 @@
 package com.webdanseom.nurseonduty.config;
-
+/**
+ * 파일명: SecurityConfig.java
+ * 설명: api 관리하는 클레스
+ * 작성일자:2022.05.04
+ * 작성자:신동현
+ * 수정일자: 
+ * 수정자:
+ */
 import com.google.common.base.Predicates;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
