@@ -1,5 +1,12 @@
 package com.webdanseom.nurseonduty.config;
-
+/**
+ * 파일명: CustomAuthenticationEntryPoint.java
+ * 설명: 로그인 security관련된 클레스
+ * 작성일자:2022.04.30
+ * 작성자:신동현
+ * 수정일자:
+ * 수정자:
+ */
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.webdanseom.nurseonduty.model.Response;
 import org.springframework.security.core.AuthenticationException;
