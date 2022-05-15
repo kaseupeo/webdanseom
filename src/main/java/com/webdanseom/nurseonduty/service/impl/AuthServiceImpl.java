@@ -247,6 +247,7 @@ public class AuthServiceImpl implements AuthService {
     }
 
     //그룹 초대
+    @Override
     public String inviteGroup(int seq, String inviteLink) {
         UUID uuid = UUID.randomUUID();
         String INVITE_LINK = "http://localhost:8080/member/inviteGroup/" + inviteLink;
