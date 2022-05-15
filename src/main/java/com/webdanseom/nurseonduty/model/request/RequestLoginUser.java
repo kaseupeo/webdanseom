@@ -8,10 +8,12 @@ package com.webdanseom.nurseonduty.model.request;
  * 수정자:
  */
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class RequestLoginUser {
     private String email;
     private String password;
