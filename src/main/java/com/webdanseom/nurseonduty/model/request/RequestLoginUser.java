@@ -1,6 +1,6 @@
 package com.webdanseom.nurseonduty.model.request;
 /**
- * 파일명: RequestJoinGroup.java
+ * 파일명: RequestLoginUser.java
  * 설명: 로그인을 위해 회원의 이메일과, 비밀번호 request
  * 작성일자:2022.04.30
  * 작성자:신동현

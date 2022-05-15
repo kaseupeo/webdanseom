@@ -1,6 +1,6 @@
 package com.webdanseom.nurseonduty.model.request;
 /**
- * 파일명: RequestJoinGroup.java
+ * 파일명: RequestSocialData.java
  * 설명: 소셜 회원가입을 위해 소셜 데이터 정보 request
  * 작성일자:2022.05.04
  * 작성자:신동현
