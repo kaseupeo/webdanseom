@@ -1,14 +1,21 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
 import './index.css';
-import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
 import App from './App';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import reportWebVitals from './reportWebVitals';
-import rootReducer from './modules';
+import createSagaMiddleware from '@redux-saga/core';
+import rootReducer, { rootSaga } from './modules';
 
-const store = createStore(rootReducer, composeWithDevTools());
+const sagaMiddleware = createSagaMiddleware();
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(sagaMiddleware)),
+);
+sagaMiddleware.run(rootSaga);
+
 const rootNode = document.getElementById('root');
 ReactDOM.createRoot(rootNode).render(
   <React.StrictMode>
