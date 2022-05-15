@@ -39,3 +39,4 @@ out/
 ### frontendd ###
 package-lock.json
 yarn.lock
+application.properties

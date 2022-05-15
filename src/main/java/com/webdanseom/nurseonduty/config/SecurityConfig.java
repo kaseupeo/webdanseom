@@ -45,7 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().accessDeniedHandler(customAccessDeniedHandler)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/member/sighup").permitAll()
+                .antMatchers("/member/signup").permitAll()
                 .antMatchers("/member/login").permitAll()
                 .antMatchers("/member/verify/**").permitAll()
                 .antMatchers("/oauth/**").permitAll()
