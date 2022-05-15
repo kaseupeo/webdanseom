@@ -29,7 +29,7 @@ public interface AuthService {
     //일반 로그인
     Member loginUser(String email, String password) throws Exception;
 
-    //이메일 인증
+    //이메일 찾기
     Member findByEmail(String email) throws NotFoundException;
 
     //이메일인증 확인
