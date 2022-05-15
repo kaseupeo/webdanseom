@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { changeField, initializeForm, signUp } from '../../modules/auth';
 import SignUpElement from '../../components/auth/SignUpElement';
 import { useNavigate } from 'react-router-dom';
-const LoginForm = () => {
-  const navigate = useNavigate();
+const SignUpForm = ({ history }) => {
+  // const navigate = useNavigate();
   const dispatch = useDispatch();
   const { form, auth, authError } = useSelector(({ auth }) => ({
     form: auth.signUp,
@@ -44,7 +44,7 @@ const LoginForm = () => {
         phone,
       }),
     );
-    navigate('/');
+    // navigate('/');
   };
   useEffect(() => {
     dispatch(initializeForm('signUp'));
@@ -53,4 +53,4 @@ const LoginForm = () => {
   return <SignUpElement form={form} onChange={onChange} onSubmit={onSubmit} />;
 };
 
-export default LoginForm;
+export default SignUpForm;

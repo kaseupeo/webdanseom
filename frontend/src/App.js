@@ -4,8 +4,6 @@
  * 작성자: 정진욱
  */
 
-import React, { useState, useEffect } from 'react';
-
 import {
   BrowserRouter as Router,
   Routes,
