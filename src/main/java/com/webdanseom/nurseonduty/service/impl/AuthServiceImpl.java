@@ -249,8 +249,6 @@ public class AuthServiceImpl implements AuthService {
         }
 
         String CREATE_GROUP = "http://localhost:8080/member/createGroup/";
-
-        redisUtil.setDataExpire(uuid.toString(), nurseGroup.getGroupName(), 1800L);
         emailService.sendEmail(member.getEmail(), "[Nurse On Duty] 새그룹을 생성하셨습니다.  그룹명: " + nurseGroup.getGroupName(), CREATE_GROUP + uuid.toString());
 
         nurseGroupRepository.save(nurseGroup);
