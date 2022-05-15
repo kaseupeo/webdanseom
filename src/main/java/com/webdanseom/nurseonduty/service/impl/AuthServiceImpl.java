@@ -125,7 +125,7 @@ public class AuthServiceImpl implements AuthService {
      * @throws NotFoundException
      */
     @Override
-    public void verifyhttp://localhost:8080/member/password/Email(String key) throws NotFoundException {
+    public void verifyEmail(String key) throws NotFoundException {
         String memberEmail = redisUtil.getData(key);
         Member member = memberRepository.findByEmail(memberEmail);
         if (member == null) throw new NotFoundException("회원이 조회되지않습니다.");
