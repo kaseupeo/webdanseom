@@ -6,15 +6,9 @@ import LoginElement from '../../components/auth/LoginElement';
 const LoginForm = () => {
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
-  const { form, auth, authError, user, header } = useSelector(
-    ({ auth, user }) => ({
-      form: auth.login,
-      auth: auth.auth,
-      authError: auth.authError,
-      headers: auth.headers,
-      user: user.user,
-    }),
-  );
+  const { form } = useSelector(({ auth }) => ({
+    form: auth.login,
+  }));
 
   // 인풋 변경 이벤트 핸들러
   const onChange = (e) => {
