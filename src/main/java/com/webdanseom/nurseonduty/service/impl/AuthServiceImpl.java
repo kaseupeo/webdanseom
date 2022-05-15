@@ -189,11 +189,19 @@ public class AuthServiceImpl implements AuthService {
     }
 
     /**
-     * 회원정보 수정
+     * 회원정보 조회
+     *
+     * */
+
+
+
+    /**
+     * 회원정보 수정 
      * @param member
      * @param phoneNumber
      * @throws NotFoundException
      */
+    
     @Override
     public void editProfile(Member member, String phoneNumber) throws NotFoundException {
         if (member == null) throw new NotFoundException("editProfile(), 회원이 조회되지 않습니다.");
@@ -245,7 +253,12 @@ public class AuthServiceImpl implements AuthService {
 
         nurseGroupRepository.save(nurseGroup);
     }
-
+    /**
+     * 그룹 초대
+     * @param
+     * @param
+     * @
+     * */
     //그룹 초대
     @Override
     public String inviteGroup(int seq, String inviteLink) {
@@ -254,7 +267,9 @@ public class AuthServiceImpl implements AuthService {
 
         return INVITE_LINK;
     }
-
+    /**
+     * 그룹 가입
+     * */
     //그룹 가입
     @Override
     public void joinGroup(int seq, String inviteLink, Member member) throws NotFoundException {

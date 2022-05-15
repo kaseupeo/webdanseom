@@ -47,7 +47,7 @@ public interface AuthService {
     //비밀번호 변경
     void changePassword(Member member, String password) throws NotFoundException;
 
-    //비밀번호 찾기
+    //비밀번호 찾기  ---  해당 이메일로 인증링크 -> 비밀번호 변경 UI로
     void findPassword(Member member) throws NotFoundException;
 
     //회원정보 수정
