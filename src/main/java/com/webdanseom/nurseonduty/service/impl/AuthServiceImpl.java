@@ -224,7 +224,9 @@ public class AuthServiceImpl implements AuthService {
     }
 
     /**
-     * 그룹 생성, 가입, 초대
+     * 그룹 생성
+     * @param nurseGroup
+     * @param member
      * */
     //그룹 생성
     @Override
@@ -254,10 +256,9 @@ public class AuthServiceImpl implements AuthService {
         nurseGroupRepository.save(nurseGroup);
     }
     /**
-     * 그룹 초대
-     * @param
-     * @param
-     * @
+     * 그룹 초대  -- 나중에 뺀다
+     * @param seq
+     * @param inviteLink
      * */
     //그룹 초대
     @Override
@@ -269,6 +270,10 @@ public class AuthServiceImpl implements AuthService {
     }
     /**
      * 그룹 가입
+     * @param seq
+     * @param inviteLink
+     * @param member
+     * @throws NotFoundException
      * */
     //그룹 가입
     @Override
