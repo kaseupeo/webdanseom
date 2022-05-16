@@ -112,6 +112,12 @@ public class AuthServiceImpl implements AuthService {
         return socialData.getMember();
     }
 
+    /**
+     * 회원정보 조회
+     * @param email
+     * @return
+     * @throws NotFoundException
+     */
     @Override
     public Member findByEmail(String email) throws NotFoundException {
         Member member = memberRepository.findByEmail(email);
@@ -187,13 +193,6 @@ public class AuthServiceImpl implements AuthService {
         redisUtil.setDataExpire(key, member.getEmail(), 1800L);
         emailService.sendEmail(member.getEmail(), "[Nurse On Duty] 사용자 비밀번호 안내 메일", CHANGE_PASSWORD_LINK + key);
     }
-
-    /**
-     * 회원정보 조회
-     *
-     * */
-
-
 
     /**
      * 회원정보 수정 

@@ -156,7 +156,7 @@ public class MemberController {
         try {
             Member member = authService.findByEmail(requestEditProfile.getEmail());
             authService.editProfile(member, requestEditProfile.getPhoneNumber());
-            response = new Response("success", "성공적으로 사용자의 정보를 변경했습니다.", null);
+            response = new Response("success", "성공적으로 사용자의 정보를 변경했습니다.", member);
         } catch (Exception e) {
             response = new Response("error","사용자의 정보를 변경할 수 없습니다.", null);
         }
