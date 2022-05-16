@@ -25,8 +25,8 @@ import java.util.Set;
 public class SwaggerConfig {
 
     private ApiInfo swaggerInfo() {
-        return new ApiInfoBuilder().title("IoT API")
-                .description("IoT API Docs").build();
+        return new ApiInfoBuilder().title("Nurse On Duty API")
+                .description("Nurse On Duty API Docs").build();
     }
 
     @Bean
