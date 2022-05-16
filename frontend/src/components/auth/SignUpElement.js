@@ -102,7 +102,7 @@ const SignUpElement = ({ form, onChange, onSubmit }) => {
             <br></br>
             <b>이름</b> <b style={{ color: 'red' }}> *</b>
             <input
-              name="userName"
+              name="name"
               type="text"
               placeholder="이름"
               onChange={onChange}
@@ -111,20 +111,15 @@ const SignUpElement = ({ form, onChange, onSubmit }) => {
             <b>전화번호</b>
             <input
               type="text"
-              name="phone"
+              name="phoneNumber"
               placeholder="ex) 01000000000"
               onChange={onChange}
               value={form.phone}
             />
-            {check.emailCheck && check.pwCheck && check.confirmPwcheck ? (
-              <Link to="/auth/signup" className="signBtn" onClick={onsubmit}>
-                가입하기
-              </Link>
-            ) : (
-              <Link to="/auth/login" className="signBtn" onClick={onsubmit}>
-                가입하기
-              </Link>
-            )}
+            {/* // check.emailCheck && check.pwCheck && check.confirmPwcheck ? */}
+            <button className="signBtn" onClick={onsubmit}>
+              가입하기
+            </button>
           </div>
         </div>
       </form>

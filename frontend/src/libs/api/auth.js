@@ -7,29 +7,28 @@ import client from './client';
 
 export const login = ({ email, password }) =>
   client
-    .post('/member/login', {
+    .post('/api/member/login', {
       email,
       password,
     })
-    .then((response) => {
-      alert('ddd');
-    }, []);
+    .then((response) => {}, []);
 
-export const signup = ({ email, password, userName, phone }) =>
+export const signup = ({ email, password, name, phoneNumber }) =>
   client
-    .post('/member/signup', {
+    .post('/api/member/signup', {
       email,
       password,
-      userName,
-      phone,
+      name,
+      phoneNumber,
     })
     .then((response) => {
-      alert(response.data);
+      console.log(email, password, name, phoneNumber);
+      console.log(response.data);
     }, []);
 
 export const verify = ({ userId }) => client.getUser('/verify', { userId });
 export const getUser = (userId) =>
-  client.get(`/member/${userId}/getUser`, {
+  client.get(`/api/member/${userId}/getUser`, {
     headers: {
       Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token')),
     },

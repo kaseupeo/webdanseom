@@ -20,7 +20,7 @@ export const changeField = createAction(
   CHANGE_FIELD,
   ({ form, key, value }) => ({
     form, // signUp, login
-    key, // email,password, passwordConfirm, name, phone
+    key, // email,password, passwordConfirm, name, phoneNumber
     value, // 실제 바꾸려는 값
   }),
 );
@@ -33,11 +33,11 @@ export const login = createAction(LOGIN, ({ email, password }) => ({
 
 export const signUp = createAction(
   SignUp,
-  ({ email, password, userName, phone }) => ({
+  ({ email, password, name, phoneNumber }) => ({
     email,
     password,
-    userName,
-    phone,
+    name,
+    phoneNumber,
   }),
 );
 
@@ -54,8 +54,8 @@ const initialState = {
     email: '',
     password: '',
     passwordConfirm: '',
-    userName: '',
-    phone: '',
+    name: '',
+    phoneNumber: '',
   },
   login: {
     email: '',

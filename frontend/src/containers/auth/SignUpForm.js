@@ -4,7 +4,7 @@ import { changeField, initializeForm, signUp } from '../../modules/auth';
 import SignUpElement from '../../components/auth/SignUpElement';
 import { useNavigate } from 'react-router-dom';
 const SignUpForm = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { form, auth, authError } = useSelector(({ auth }) => ({
     form: auth.signUp,
@@ -26,25 +26,24 @@ const SignUpForm = () => {
   // 폼 등록 이벤트 핸들러
   const onSubmit = (e) => {
     e.preventDefault();
-    const { email, password, passwordConfirm, userName, phone } = form;
-    if (password !== passwordConfirm) {
-      // setError
+    const { email, password, passwordConfirm, name, phoneNumber } = form;
+    // if (password !== passwordConfirm) {
 
-      return;
-    }
-    if ([email, password, passwordConfirm, userName].includes('')) {
-      // setError
-      return;
-    }
+    //   return;
+    // }
+    // if ([email, password, passwordConfirm, name].includes('')) {
+
+    //   return;
+    // }
     dispatch(
       signUp({
         email,
         password,
-        userName,
-        phone,
+        name,
+        phoneNumber,
       }),
     );
-    // navigate('/');
+    navigate('/');
   };
   useEffect(() => {
     dispatch(initializeForm('signUp'));

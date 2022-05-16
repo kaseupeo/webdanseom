@@ -50,7 +50,7 @@ const TopNavigation = () => {
             <b>{groupName}</b>
           </div>
 
-          <div class="endElement">
+          <div className="endElement">
             <div>
               <GrRefresh className="refreshIcon" />
             </div>
