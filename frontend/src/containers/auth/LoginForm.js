@@ -1,3 +1,8 @@
+/*
+ * 로그인 컨테이너
+ *
+ */
+
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeField, initializeForm, login } from '../../modules/auth';
@@ -38,6 +43,7 @@ const LoginForm = () => {
         password,
       }),
     );
+
     navigate('/');
   };
 

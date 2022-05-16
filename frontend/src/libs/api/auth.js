@@ -25,6 +25,7 @@ export const signup = ({ email, password, name, phoneNumber }) =>
     })
     .then((response) => {
       console.log(response.data);
+      alert('회원가입이 완료되었습니다!');
     }, []);
 
 export const verify = ({ userId }) => client.getUser('/verify', { userId });
