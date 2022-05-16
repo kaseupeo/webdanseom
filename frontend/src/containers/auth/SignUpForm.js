@@ -46,7 +46,7 @@ const SignUpForm = () => {
 
     // 비밀번호 정규식 체크
     if (
-      !/^(?=.[A-Za-z])(?=.\d)(?=.[~!@#$%^&()+|=])[A-Za-z\d~!@#$%^&*()+|=]{8,}$/.test(
+      !/^(?=.*[A-Za-z])(?=.*\d)(?=.*[~!@#$%^&()+|=])[A-Za-z\d~!@#$%^&*()+|=]{8,}$/.test(
         password,
       )
     ) {
@@ -62,10 +62,9 @@ const SignUpForm = () => {
       return;
     }
     if (!/^\d{11}$/.test(phoneNumber)) {
-      setError('전화번호 형식이 아닙니다.');
+      setError('전화번호 형식이 아닙니다');
       return;
     }
-
     if (null) {
       setError('이미 가입된 이메일입니다.');
       return;

@@ -42,9 +42,10 @@ public class Member {
     private String name;
 
     //비밀번호
-    @NotNull(message = "비밀번호를 입력하세요.")
-    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%#?&])[A-Za-z\\d$@$!%*#?&]{8,}$",
-            message = "비밀번호 형식이 맞지 않습니다.")
+
+    @NotBlank(message = "비밀번호을 입력하세요.")
+    @Pattern(regexp = "/^(?=.*[A-Za-z])(?=.*\\d)(?=.*[~!@#$%^&()+|=])[A-Za-z\\d~!@#$%^&*()+|=]{8,}$/",
+            message = "비밀번호 형식이 맞지 않습니다")
     private String password;
 
     //핸드폰번호
