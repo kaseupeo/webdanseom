@@ -53,7 +53,7 @@ public class MemberController {
             authService.signUpUser(member);
             return new Response("success", "회원가입 성공", null);
         } catch (Exception e) {
-            return new Response("error", "회원가입 실패", null);
+            return new Response("error", "회원가입 실패", e.getMessage());
         }
     }
 
