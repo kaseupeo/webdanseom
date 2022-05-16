@@ -35,7 +35,7 @@ const SignUpForm = () => {
     }
     //이메일 정규식 체크
     if (
-      !/^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/.test(
+      !/^[0-9a-zA-Z]([-.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/.test(
         email,
       )
     ) {
@@ -46,7 +46,7 @@ const SignUpForm = () => {
 
     // 비밀번호 정규식 체크
     if (
-      !/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/.test(
+      !/^(?=.[A-Za-z])(?=.\d)(?=.[~!@#$%^&()+|=])[A-Za-z\d~!@#$%^&*()+|=]{8,}$/.test(
         password,
       )
     ) {
@@ -59,6 +59,10 @@ const SignUpForm = () => {
     if (passwordConfirm !== password) {
       setError('비밀번호가 일치하지 않습니다.');
 
+      return;
+    }
+    if (!/^\d{11}$/.test(phoneNumber)) {
+      setError('전화번호 형식이 아닙니다.');
       return;
     }
 
