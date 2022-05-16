@@ -25,7 +25,7 @@ const SignUpElement = ({ form, onChange, onSubmit }) => {
     } else {
       setCheck({ ...check, emailCheck: false });
     }
-  }, [check, form.email]);
+  }, [form.email]);
 
   // 비밀번호 정규식 체크 -> 고쳐야됨
   useEffect(() => {
@@ -38,24 +38,15 @@ const SignUpElement = ({ form, onChange, onSubmit }) => {
     } else {
       setCheck({ ...check, pwCheck: false });
     }
-  }, [check, form.password]);
+  }, [form.password]);
 
   // 비밀번호 확인 체크
   useEffect(() => {
     if (form.passwordConfirm === '' || form.passwordConfirm === form.password)
       setCheck({ ...check, confirmPwcheck: true });
     else setCheck({ ...check, confirmPwcheck: false });
-  }, [check, form.password, form.passwordConfirm]);
+  }, [form.password, form.passwordConfirm]);
 
-  /**
-   *
-   *  회원 가입 버튼 처리
-   *  이메일 중복 검사 => DB
-   *  비밀번호 처리(비밀번호 format, 비밀번호 재확인 일치)
-   *  전화번호 검사 => DB?
-   *  카카오 네이버 api 사용
-   *
-   */
   const onClickFail = () => {
     alert('회원정보를 확인해주세요!');
   };
@@ -126,15 +117,11 @@ const SignUpElement = ({ form, onChange, onSubmit }) => {
               value={form.phone}
             />
             {check.emailCheck && check.pwCheck && check.confirmPwcheck ? (
-              <Link to="/auth/signup" className="signBtn" onClick={onClickFail}>
+              <Link to="/auth/signup" className="signBtn" onClick={onsubmit}>
                 가입하기
               </Link>
             ) : (
-              <Link
-                to="/auth/login"
-                className="signBtn"
-                onClick={onClickRegister}
-              >
+              <Link to="/auth/login" className="signBtn" onClick={onsubmit}>
                 가입하기
               </Link>
             )}
