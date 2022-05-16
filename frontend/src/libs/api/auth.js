@@ -11,7 +11,9 @@ export const login = ({ email, password }) =>
       email,
       password,
     })
-    .then((response) => {}, []);
+    .then((response) => {
+      console.log(response.data);
+    }, []);
 
 export const signup = ({ email, password, name, phoneNumber }) =>
   client
@@ -22,7 +24,6 @@ export const signup = ({ email, password, name, phoneNumber }) =>
       phoneNumber,
     })
     .then((response) => {
-      console.log(email, password, name, phoneNumber);
       console.log(response.data);
     }, []);
 
