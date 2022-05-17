@@ -4,8 +4,8 @@ package com.webdanseom.nurseonduty.model;
  * 설명: 회원(Member) 테이블
  * 작성일자:2022.05.04
  * 작성자:신동현
- * 수정일자: 2022.05.08
- * 수정자:표영운
+ * 수정일자: 2022.05.17
+ * 수정자:신동현
  */
 import com.webdanseom.nurseonduty.config.UserRole;
 import lombok.*;
@@ -14,7 +14,6 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.util.Date;
 
@@ -49,6 +48,9 @@ public class Member {
     @NotBlank
     private String phoneNumber;
 
+    //간호사 번호
+    private int nurseSeq;
+
     //소셜(카카오톡, 네이버 등)아이디
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "social_id")
@@ -79,21 +81,23 @@ public class Member {
     @JoinColumn(name = "group_seq")
     private NurseGroup groupSeq;
 
-    public Member(@NotBlank String email, @NotBlank String name, @NotBlank String password, @NotBlank String phoneNumber) {
+    public Member(String email, String name, String password, String phoneNumber, int nurseSeq) {
         this.email = email;
         this.name = name;
         this.password = password;
         this.phoneNumber = phoneNumber;
+        this.nurseSeq = nurseSeq;
     }
 
     @Override
     public String toString() {
         return "Member{" +
-                "seq=" + memberSeq +
+                "memberSeq=" + memberSeq +
                 ", email='" + email + '\'' +
                 ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
-                ", phone_number='" + phoneNumber + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", nurseSeq=" + nurseSeq +
                 ", role=" + role +
                 ", createAt=" + createAt +
                 ", updateAt=" + updateAt +

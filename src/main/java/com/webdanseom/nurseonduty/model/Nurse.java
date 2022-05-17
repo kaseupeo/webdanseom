@@ -4,8 +4,8 @@ package com.webdanseom.nurseonduty.model;
  * 설명: 간호사(Nurse) 테이블
  * 작성일자:2022.05.04
  * 작성자:신동현
- * 수정일자: 2022.05.08
- * 수정자:표영운
+ * 수정일자: 2022.05.17
+ * 수정자:신동현
  */
 import com.webdanseom.nurseonduty.model.id.NurseId;
 import lombok.Getter;
@@ -51,17 +51,10 @@ public class Nurse {
     @NotNull
     private double annualLeave;
 
-    //회원정보 --- 외래키
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "memberSeq")
-    private Member memberSeq;
-
     //프리셉터 --- 외래키
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "preceptorSeq")
     private Preceptor preceptorSeq;
-
-
 
     public Nurse(int nurseNum, String name, String charge, String position, double annualLeave) {
         this.nurseSeq = nurseNum;
