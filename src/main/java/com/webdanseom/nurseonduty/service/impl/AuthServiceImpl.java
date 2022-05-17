@@ -100,6 +100,19 @@ public class AuthServiceImpl implements AuthService {
     }
 
     /**
+     * 전화번호 유효성 검사
+     * @param member
+     * @throws Exception
+     */
+    @Override
+    public void isValidPhoneNumber(Member member) throws Exception {
+        String phoneNumber = member.getPhoneNumber();
+        Pattern pattern = Pattern.compile("^\\d{11}$");
+        Matcher matcher = pattern.matcher(phoneNumber);
+        if (!matcher.find()) throw new Exception("전화번호 형식이 틀렸습니다.");
+    }
+
+    /**
      * 소셜 계정으로 회원가입
      * @param member
      */

@@ -32,6 +32,9 @@ public interface AuthService {
     //비밀번호 유효성 검사
     void isValidPassword(Member member) throws Exception;
 
+    //전화번호 유효성 검사
+    void isValidPhoneNumber(Member member) throws Exception;
+
     //소셜 로그인
     Member loginSocialUser(String id, String type) throws NotFoundException;
 

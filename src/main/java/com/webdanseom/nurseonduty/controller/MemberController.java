@@ -53,6 +53,7 @@ public class MemberController {
             authService.isDuplicateCheckEmail(member);
             authService.isValidEmail(member);
             authService.isValidPassword(member);
+            authService.isValidPhoneNumber(member);
             authService.signUpUser(member);
             return new Response("success", "회원가입 성공", null);
         } catch (Exception e) {
