@@ -68,13 +68,5 @@ public interface AuthService {
     //회원탈퇴
     void withdrawal(Member member, String password) throws Exception;
 
-    //그룹생성
-    void createGroup(NurseGroup nurseGroup, Member member);
-
-    //그룹초대
-    String inviteGroup(int seq, String inviteLink);
-
-    //그룹참여
-    void joinGroup(int seq, String inviteLink, Member member) throws NotFoundException;
 
 }

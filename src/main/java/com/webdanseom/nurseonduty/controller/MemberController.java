@@ -15,6 +15,7 @@ import com.webdanseom.nurseonduty.model.Response;
 import com.webdanseom.nurseonduty.model.request.*;
 import com.webdanseom.nurseonduty.service.AuthService;
 import com.webdanseom.nurseonduty.service.CookieUtil;
+import com.webdanseom.nurseonduty.service.GroupService;
 import com.webdanseom.nurseonduty.service.RedisUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,9 +37,14 @@ public class MemberController {
     @Autowired
     private JwtUtil jwtUtil;
 
+    //그룹관련 인터페이스 호출
+    @Autowired
+    private GroupService groupService;
+
     //회원메뉴 인터페이스 호출
     @Autowired
     private AuthService authService;
+
 
     @Autowired
     private CookieUtil cookieUtil;
@@ -184,7 +190,7 @@ public class MemberController {
     @PostMapping("/createGroup")
     public Response createGroup(@RequestBody NurseGroup nurseGroup, Member member) {
         try{
-            authService.createGroup(nurseGroup, member);
+            groupService.createGroup(nurseGroup, member);
             return new Response("success", "그룹생성 성공", null);
         }catch (Exception e) {
             return new Response("error", "그룹생성 실패", null);
@@ -196,7 +202,7 @@ public class MemberController {
     public Response inviteGroup(@RequestBody RequestInvite requestInvite) {
         try {
             String inviteLink;
-            inviteLink = authService.inviteGroup(requestInvite.getSeq(), requestInvite.getInviteLink());
+            inviteLink = groupService.inviteGroup(requestInvite.getSeq(), requestInvite.getInviteLink());
             return new Response("success", "그룹초대 링크: " + inviteLink, null);
         }catch (Exception e) {
             return new Response("error", "그룹초대 실패", null);
@@ -208,7 +214,7 @@ public class MemberController {
     @PostMapping("/join")
     public Response joinGroup(@RequestBody RequestInvite requestInvite, Member member) {
         try {
-             authService.joinGroup(requestInvite.getSeq() ,requestInvite.getInviteLink(), member);
+            groupService.joinGroup(requestInvite.getSeq() ,requestInvite.getInviteLink(), member);
             return new Response("success", "그룹가입 성공", null);
         }catch (Exception e) {
             return new Response("error", "그룹가입 실패", null);
