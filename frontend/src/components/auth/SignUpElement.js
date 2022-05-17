@@ -45,6 +45,7 @@ const SignUpElement = ({ form, onChange, onSubmit, error }) => {
             <b>이름</b> <b style={{ color: 'red' }}> *</b>
             <input
               name="name"
+              autoComplete="name"
               type="text"
               placeholder="이름"
               onChange={onChange}
@@ -54,6 +55,7 @@ const SignUpElement = ({ form, onChange, onSubmit, error }) => {
             <input
               type="text"
               name="phoneNumber"
+              autoComplete="phoneNumber"
               placeholder="ex) 01000000000"
               onChange={onChange}
               value={form.phone}

@@ -65,10 +65,6 @@ const SignUpForm = () => {
       setError('전화번호 형식이 아닙니다');
       return;
     }
-    if (null) {
-      setError('이미 가입된 이메일입니다.');
-      return;
-    }
 
     dispatch(
       signUp({
@@ -78,7 +74,8 @@ const SignUpForm = () => {
         phoneNumber,
       }),
     );
-    navigate('/');
+
+    setError('이메일이 중복입니다.');
   };
   useEffect(() => {
     dispatch(initializeForm('signUp'));

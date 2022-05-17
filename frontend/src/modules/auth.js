@@ -1,6 +1,5 @@
 import { createAction, handleActions } from 'redux-actions';
 import produce from 'immer';
-
 import createRequestSaga, {
   createRequestActionTypes,
 } from '../libs/createRequestSaga';
@@ -16,6 +15,7 @@ const [LOGIN, LOGIN_SUCCESS, LOGIN_FAILURE] =
   createRequestActionTypes('auth/LOGIN');
 const [SignUp, SignUp_SUCCESS, SignUp_FAILURE] =
   createRequestActionTypes('auth/SignUp');
+
 export const changeField = createAction(
   CHANGE_FIELD,
   ({ form, key, value }) => ({
