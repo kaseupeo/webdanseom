@@ -97,4 +97,29 @@ public class GroupServiceImpl implements GroupService{
 
         memberRepository.save(member);
     }
+
+    /**
+     * 그룹 조회
+     * @param member
+     * @throws NotFoundException
+     * 그룹 조회와 동시에 그룹가입여부 확인
+     * */
+    @Override
+    public void selectGroup(Member member) throws NotFoundException {
+
+        if(memberRepository.findByGroupSeq(Integer.parseInt(member.getGroupSeq().toString())) == null )
+            throw  new NotFoundException("selectGroup(), 그룹에 가입되어 있지 않습니다.");
+
+
+    }
+
+    /**
+     * 수간호사 확인
+     * @param
+     * */
+    @Override
+    public boolean isHeadNurseChack(NurseGroup nurseGroup) {
+        return false;
+    }
+
 }

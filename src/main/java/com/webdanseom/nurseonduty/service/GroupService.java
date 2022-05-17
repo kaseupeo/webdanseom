@@ -22,4 +22,12 @@ public interface GroupService {
     //그룹참여
     void joinGroup(int seq, String inviteLink, Member member) throws NotFoundException;
 
+    //그룹조회
+    void selectGroup(Member member) throws NotFoundException;
+
+    //그룹가입 여부 검사
+
+
+    //*수간호사 확인
+    boolean isHeadNurseChack(NurseGroup nurseGroup);
 }

@@ -221,6 +221,18 @@ public class MemberController {
         }
     }
 
+    //그룹조회
+    @GetMapping("/selectGroup")
+    public Response selectGroup(@RequestBody Member member) {
+        try{
+            groupService.selectGroup(member);
+            return new Response("success", "그룹가입 조회", null);
+        }catch (Exception e) {
+            return  new Response("error", "그룹가입 실패", null);
+        }
+    }
+    //수간호사 여부 확인
+
     @GetMapping("/test")
     public String test() {
         return "Hello World!";
