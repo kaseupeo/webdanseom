@@ -23,6 +23,12 @@ public interface AuthService {
     //소셜 회원가입
     void signUpSocialUser(RequestSocialData member);
 
+    //이메일 중복 검사
+    void isDuplicateCheckEmail(Member member) throws Exception;
+
+    //이메일 유효성 검사
+    void isValidEmail(Member member) throws Exception;
+
     //비밀번호 유효성 검사
     void isValidPassword(Member member) throws Exception;
 

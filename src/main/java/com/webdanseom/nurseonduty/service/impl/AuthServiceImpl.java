@@ -64,6 +64,29 @@ public class AuthServiceImpl implements AuthService {
     }
 
     /**
+     * 이메일 중복 검사
+     * @param member
+     * @throws Exception
+     */
+    @Override
+    public void isDuplicateCheckEmail(Member member) throws Exception {
+        if (memberRepository.findByEmail(member.getEmail()) != null) throw new Exception("존재하는 이메일입니다.");
+    }
+
+    /**
+     * 이메일 유효성 검사
+     * @param member
+     * @throws Exception
+     */
+    @Override
+    public void isValidEmail(Member member) throws Exception {
+        String email = member.getEmail();
+        Pattern pattern = Pattern.compile("^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$");
+        Matcher matcher = pattern.matcher(email);
+        if (!matcher.find()) throw new Exception("이메일 형식이 맞지 않습니다.");
+    }
+
+    /**
      * 비밀번호 유효성 검사
      * @param member
      * @return
