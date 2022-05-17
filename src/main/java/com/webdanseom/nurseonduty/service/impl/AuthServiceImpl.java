@@ -24,6 +24,8 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 public class AuthServiceImpl implements AuthService {
@@ -59,6 +61,19 @@ public class AuthServiceImpl implements AuthService {
         member.setSalt(new Salt(salt));
         member.setPassword(saltUtil.encodePassword(salt, password));
         memberRepository.save(member);
+    }
+
+    /**
+     * 비밀번호 유효성 검사
+     * @param member
+     * @return
+     */
+    @Override
+    public void isValidPassword(Member member) throws Exception {
+        String password = member.getPassword();
+        Pattern pattern = Pattern.compile("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[~!@#$%^&()+|=])[A-Za-z\\d~!@#$%^&*()+|=]{8,}$");
+        Matcher matcher = pattern.matcher(password);
+        if (!matcher.find()) throw new Exception("비밀번호는 영문과 특수문자 숫자를 포함하며 8자 이상이어야 합니다.");
     }
 
     /**

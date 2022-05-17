@@ -50,6 +50,7 @@ public class MemberController {
     @PostMapping("/signup")
     public Response signUpMember(@RequestBody Member member) {
         try {
+            authService.isValidPassword(member);
             authService.signUpUser(member);
             return new Response("success", "회원가입 성공", null);
         } catch (Exception e) {

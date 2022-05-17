@@ -23,13 +23,16 @@ public interface AuthService {
     //소셜 회원가입
     void signUpSocialUser(RequestSocialData member);
 
+    //비밀번호 유효성 검사
+    void isValidPassword(Member member) throws Exception;
+
     //소셜 로그인
     Member loginSocialUser(String id, String type) throws NotFoundException;
 
     //일반 로그인
     Member loginUser(String email, String password) throws Exception;
 
-    //이메일 찾기
+    //회원 조회
     Member findByEmail(String email) throws NotFoundException;
 
     //이메일인증 확인
