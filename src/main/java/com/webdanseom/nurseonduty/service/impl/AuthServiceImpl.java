@@ -127,7 +127,7 @@ public class AuthServiceImpl implements AuthService {
      * 로그인
      * @param email
      * @param password
-     * @return
+     * @return member
      * @throws Exception
      */
     @Override
