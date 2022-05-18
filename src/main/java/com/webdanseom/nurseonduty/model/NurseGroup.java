@@ -26,7 +26,7 @@ import java.util.Date;
 public class NurseGroup {
     //그룹번호
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private int seq;
 
     //그룹이름
@@ -34,7 +34,7 @@ public class NurseGroup {
     private String groupName;
 
     //수간호사번호
-    @NotBlank
+    @NotNull
     private int headNurseNum;
 
     //초대링크
