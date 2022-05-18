@@ -1,5 +1,12 @@
 package com.webdanseom.nurseonduty.service.impl;
-
+/**
+ * 파일명: GroupServiceImpl.java
+ * 설명: 그룹관련 ServiceImpl
+ * 작성일자:2022.05.17
+ * 작성자:표영운
+ * 수정일자:2022.05.18
+ * 수정자:
+ */
 import com.webdanseom.nurseonduty.model.Member;
 import com.webdanseom.nurseonduty.model.NurseGroup;
 import com.webdanseom.nurseonduty.repo.MemberRepository;
@@ -9,19 +16,17 @@ import com.webdanseom.nurseonduty.service.EmailService;
 import com.webdanseom.nurseonduty.service.GroupService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.UUID;
 
+@Service
 public class GroupServiceImpl implements GroupService{
 
     //이메일서비스 인터페이스 호출
     @Autowired
     private EmailService emailService;
-    
-    //그룹관련 인터페이스 호출
-    @Autowired
-    private GroupService groupService;
     
     //회원메뉴 인터페이스 호출
     @Autowired

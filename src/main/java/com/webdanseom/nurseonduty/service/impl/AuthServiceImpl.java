@@ -12,7 +12,6 @@ import com.webdanseom.nurseonduty.config.UserRole;
 import com.webdanseom.nurseonduty.model.*;
 import com.webdanseom.nurseonduty.model.request.RequestSocialData;
 import com.webdanseom.nurseonduty.repo.MemberRepository;
-import com.webdanseom.nurseonduty.repo.NurseGroupRepository;
 import com.webdanseom.nurseonduty.repo.SocialDataRepository;
 import com.webdanseom.nurseonduty.service.AuthService;
 import com.webdanseom.nurseonduty.service.EmailService;
@@ -21,7 +20,6 @@ import com.webdanseom.nurseonduty.service.SaltUtil;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import javax.transaction.Transactional;
 import java.util.UUID;
 import java.util.regex.Matcher;
@@ -44,8 +42,6 @@ public class AuthServiceImpl implements AuthService {
 
     @Autowired
     private RedisUtil redisUtil;
-
-
 
     /**
      * 회원가입
@@ -147,7 +143,6 @@ public class AuthServiceImpl implements AuthService {
         if (member.getSocialData() != null) throw new Exception("소셜 계정으로 로그인해주세요.");
         return member;
     }
-
 
     /**
      * 소셜 계정 로그인
@@ -271,7 +266,4 @@ public class AuthServiceImpl implements AuthService {
         if (!member.getPassword().equals(password)) throw new Exception("비밀번호가 틀립니다.");
         memberRepository.delete(member);
     }
-
-
-
 }

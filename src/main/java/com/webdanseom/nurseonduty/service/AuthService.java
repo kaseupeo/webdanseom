@@ -10,7 +10,6 @@ package com.webdanseom.nurseonduty.service;
  */
 import com.webdanseom.nurseonduty.config.UserRole;
 import com.webdanseom.nurseonduty.model.Member;
-import com.webdanseom.nurseonduty.model.NurseGroup;
 import com.webdanseom.nurseonduty.model.request.RequestSocialData;
 import javassist.NotFoundException;
 
