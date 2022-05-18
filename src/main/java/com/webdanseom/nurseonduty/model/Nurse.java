@@ -56,8 +56,9 @@ public class Nurse {
     @JoinColumn(name = "preceptorSeq")
     private Preceptor preceptorSeq;
 
-    public Nurse(int nurseNum, String name, String charge, String position, double annualLeave) {
-        this.nurseSeq = nurseNum;
+    public Nurse(int nurseSeq, NurseGroup nurseGroup, String name, String charge, String position, double annualLeave) {
+        this.nurseSeq = nurseSeq;
+        this.nurseGroup = nurseGroup;
         this.name = name;
         this.charge = charge;
         this.position = position;
@@ -67,7 +68,8 @@ public class Nurse {
     @Override
     public String toString() {
         return "Nurse{" +
-                "nurseNum=" + nurseSeq +
+                "nurseSeq=" + nurseSeq +
+                ", nurseGroup=" + nurseGroup +
                 ", name='" + name + '\'' +
                 ", charge='" + charge + '\'' +
                 ", position='" + position + '\'' +
