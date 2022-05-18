@@ -27,6 +27,7 @@ public class Nurse {
 
     //간호사번호 (기본키)
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int nurseSeq;
 
     //그룹번호 (기본키) --- 외래키

@@ -45,7 +45,6 @@ public class MemberController {
     @Autowired
     private AuthService authService;
 
-
     @Autowired
     private CookieUtil cookieUtil;
 
@@ -86,6 +85,7 @@ public class MemberController {
             return new Response("error", "로그인 실패", e.getMessage());
         }
     }
+
     //인증번호 보냄
     @PostMapping("/verify")
     public Response verify(@RequestBody RequestVerifyEmail requestVerifyEmail, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
@@ -193,7 +193,7 @@ public class MemberController {
             groupService.createGroup(nurseGroup, member);
             return new Response("success", "그룹생성 성공", null);
         }catch (Exception e) {
-            return new Response("error", "그룹생성 실패", null);
+            return new Response("error", "그룹생성 실패", e.getMessage());
         }
     }
 

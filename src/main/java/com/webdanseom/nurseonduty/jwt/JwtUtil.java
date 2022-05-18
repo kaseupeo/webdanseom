@@ -63,6 +63,7 @@ public class JwtUtil {
         return doGenerateToken(member.getEmail(), REFRESH_TOKEN_VALIDATION_SECOND);
     }
 
+    // JWT 생성
     private String doGenerateToken(String email, long tokenValidationSecond) {
 
         Claims claims = Jwts.claims();
@@ -78,6 +79,7 @@ public class JwtUtil {
         return jwt;
     }
 
+    // 토큰의 만료일자 검사
     public Boolean validateToken(String token, CustomUserDetails customUserDetails) {
         final String email = getEmail(token);
 
