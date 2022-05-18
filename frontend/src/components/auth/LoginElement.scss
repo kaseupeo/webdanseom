@@ -1,8 +1,17 @@
 $mobile-contents-width: 640px;
 
 .LoginElement{
-
-
+  
+          p{
+            position:absolute;
+            
+            
+            margin-left: 4.5%;
+            margin-top: 9%;
+            font-size: 13px;
+            color: red;
+            
+          }
           input{
                 font-size: 1rem;
                 padding-left: 1rem;

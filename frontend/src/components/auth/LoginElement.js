@@ -9,7 +9,7 @@ import './LoginElement.scss';
 
 import { Link } from 'react-router-dom';
 
-const LoginElement = ({ form, onChange, onSubmit }) => {
+const LoginElement = ({ form, onChange, onSubmit, error }) => {
   /**
    * 로그인 버튼 누르면
    * DB 검색 =>
@@ -19,9 +19,6 @@ const LoginElement = ({ form, onChange, onSubmit }) => {
    *  아이디 없으면
    *    alter('로그인 실패') + input 값 ''
    */
-  const onClick = () => {
-    alert('로그인');
-  };
 
   return (
     <div>
@@ -35,37 +32,23 @@ const LoginElement = ({ form, onChange, onSubmit }) => {
             onChange={onChange}
             value={form.email}
           />
-
+          <p>{error}</p>
           <input
             type="password"
             name="password"
             placeholder="비밀번호"
             onChange={onChange}
             value={form.password}
+            style={{ marginBottom: '30px' }}
           />
-          <button
-            name="loginBtn"
-            className="loginBtn"
-            type="submit"
-            onClick={onClick}
-          >
+
+          <button name="loginBtn" className="loginBtn" type="submit">
             로그인
           </button>
-
-          <button
-            name="googleBtn"
-            className="loginBtn"
-            type="submit"
-            onClick={onClick}
-          >
+          <button name="googleBtn" className="loginBtn" type="submit">
             구글 로그인
           </button>
-          <button
-            name="naverBtn"
-            className="loginBtn"
-            type="submit"
-            onClick={onClick}
-          >
+          <button name="naverBtn" className="loginBtn" type="submit">
             네이버 로그인
           </button>
         </form>
