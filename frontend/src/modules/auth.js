@@ -13,8 +13,8 @@ const INITIALIZE_FORM = 'auth/INITIALIZE_FORM';
 
 const [LOGIN, LOGIN_SUCCESS, LOGIN_FAILURE] =
   createRequestActionTypes('auth/LOGIN');
-const [SignUp, SignUp_SUCCESS, SignUp_FAILURE] =
-  createRequestActionTypes('auth/SignUp');
+const [SIGNUP, SIGNUP_SUCCESS, SIGNUP_FAILURE] =
+  createRequestActionTypes('auth/SIGNUP');
 
 export const changeField = createAction(
   CHANGE_FIELD,
@@ -32,7 +32,7 @@ export const login = createAction(LOGIN, ({ email, password }) => ({
 }));
 
 export const signUp = createAction(
-  SignUp,
+  SIGNUP,
   ({ email, password, name, phoneNumber }) => ({
     email,
     password,
@@ -42,11 +42,11 @@ export const signUp = createAction(
 );
 
 const loginSaga = createRequestSaga(LOGIN, authAPI.login);
-const signUpSaga = createRequestSaga(SignUp, authAPI.signup);
+const signUpSaga = createRequestSaga(SIGNUP, authAPI.signup);
 
 export function* authSaga() {
   yield takeLatest(LOGIN, loginSaga);
-  yield takeLatest(SignUp, signUpSaga);
+  yield takeLatest(SIGNUP, signUpSaga);
 }
 
 const initialState = {
@@ -61,7 +61,11 @@ const initialState = {
     email: '',
     password: '',
   },
-  auth: null,
+  auth: {
+    response: null,
+    message: null,
+    data: null,
+  },
   headers: null,
   authError: null,
 };
@@ -75,7 +79,14 @@ const auth = handleActions(
     [INITIALIZE_FORM]: (state, { payload: form }) => ({
       ...state,
       [form]: initialState[form],
+      authError: null,
+      auth: {
+        response: null,
+        message: null,
+        data: null,
+      },
     }),
+
     [LOGIN_SUCCESS]: (state, { payload: auth }) => ({
       ...state,
       authError: null,
@@ -86,12 +97,12 @@ const auth = handleActions(
       ...state,
       authError: error,
     }),
-    [SignUp_SUCCESS]: (state, { payload: auth }) => ({
+    [SIGNUP_SUCCESS]: (state, { payload: auth }) => ({
       ...state,
       authError: null,
       auth,
     }),
-    [SignUp_FAILURE]: (state, { payload: error }) => ({
+    [SIGNUP_FAILURE]: (state, { payload: error }) => ({
       ...state,
       authError: error,
     }),

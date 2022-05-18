@@ -8,7 +8,7 @@ import './SignUpElement.scss';
 import './AuthTemplate.scss';
 import { Link } from 'react-router-dom';
 
-const SignUpElement = ({ form, onChange, onSubmit, error }) => {
+const SignUpElement = ({ form, onChange, onSubmit, error, auth }) => {
   return (
     <div>
       <form onSubmit={onSubmit}>

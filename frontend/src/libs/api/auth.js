@@ -13,7 +13,8 @@ export const login = ({ email, password }) =>
     })
     .then((response) => {
       console.log(response.data);
-    }, []);
+      return response;
+    });
 
 export const signup = ({ email, password, name, phoneNumber }) =>
   client
@@ -25,7 +26,8 @@ export const signup = ({ email, password, name, phoneNumber }) =>
     })
     .then((response) => {
       console.log(response.data);
-    }, []);
+      return response;
+    });
 
 export const verify = ({ userId }) => client.getUser('/verify', { userId });
 export const getUser = (userId) =>

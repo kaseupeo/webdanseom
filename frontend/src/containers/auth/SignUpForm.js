@@ -7,6 +7,7 @@ const SignUpForm = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const { form, auth, authError } = useSelector(({ auth }) => ({
     form: auth.signUp,
     auth: auth.auth,
@@ -29,6 +30,7 @@ const SignUpForm = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     const { email, password, passwordConfirm, name, phoneNumber } = form;
+
     if ([email, password, passwordConfirm, name].includes('')) {
       setError('입력하지 않은 사항이 있습니다.');
       return;
@@ -62,7 +64,7 @@ const SignUpForm = () => {
       return;
     }
     if (!/^\d{11}$/.test(phoneNumber)) {
-      setError('전화번호 형식이 아닙니다');
+      setError('전화번호 형식이 아닙니다.(하이픈 - 없이 11자리)');
       return;
     }
 
@@ -74,19 +76,34 @@ const SignUpForm = () => {
         phoneNumber,
       }),
     );
-
-    setError('이메일이 중복입니다.');
   };
   useEffect(() => {
     dispatch(initializeForm('signUp'));
   }, [dispatch]);
-
+  useEffect(() => {
+    if (auth.response === null) {
+    } else if (auth.response === 'error') {
+      if (auth.data === '존재하는 이메일입니다.') {
+        setError('이미 사용중인 이메일 입니다.');
+        return;
+      } else {
+        setError('서버에 문제가 있습니다!');
+        return;
+      }
+    } else {
+      alert('회원가입 완료! 로그인페이지로 이동합니다.');
+      navigate('/auth/login');
+      dispatch(initializeForm('signUp'));
+      return;
+    }
+  }, [auth, form, dispatch]);
   return (
     <SignUpElement
       form={form}
       onChange={onChange}
       onSubmit={onSubmit}
       error={error}
+      auth={auth}
     />
   );
 };
