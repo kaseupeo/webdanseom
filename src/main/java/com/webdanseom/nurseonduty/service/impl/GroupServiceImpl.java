@@ -48,7 +48,7 @@ public class GroupServiceImpl implements GroupService{
     //그룹 생성
     @Override
     @Transactional
-    public void createGroup(NurseGroup nurseGroup, Member member) throws NotFoundException  {
+    public NurseGroup createGroup(NurseGroup nurseGroup, Member member) throws NotFoundException  {
         UUID uuid = UUID.randomUUID();
 
         //그룹초기정보 insert
@@ -59,12 +59,14 @@ public class GroupServiceImpl implements GroupService{
         nurseGroup.setInviteLink(uuid.toString());
 
         //회원 간호사에 그룹번호 업데이트
-//        joinGroup(nurseGroup.getSeq(), nurseGroup.getInviteLink(), member);
+//        member.setGroupSeq(nurseGroup);
 
         String CREATE_GROUP = "http://localhost:8080/member/createGroup/";
         emailService.sendEmail(member.getEmail(), "[Nurse On Duty] 새그룹을 생성하셨습니다.  그룹명: " + nurseGroup.getGroupName(), CREATE_GROUP + uuid.toString());
 
         nurseGroupRepository.save(nurseGroup);
+
+        return nurseGroup;
     }
     /**
      * 그룹 초대  -- 나중에 뺀다

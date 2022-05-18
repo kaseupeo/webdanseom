@@ -13,7 +13,7 @@ import javassist.NotFoundException;
 
 public interface GroupService {
     //그룹생성
-    void createGroup(NurseGroup nurseGroup, Member member) throws  NotFoundException;
+    NurseGroup createGroup(NurseGroup nurseGroup, Member member) throws  NotFoundException;
 
     //그룹초대
     String inviteGroup(int seq, String inviteLink);

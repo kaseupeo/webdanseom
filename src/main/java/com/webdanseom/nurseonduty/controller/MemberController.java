@@ -186,52 +186,7 @@ public class MemberController {
         return response;
     }
 
-    //그룹생성
-    @PostMapping("/createGroup")
-    public Response createGroup(@RequestBody NurseGroup nurseGroup, Member member) {
-        try{
-            groupService.createGroup(nurseGroup, member);
-            return new Response("success", "그룹생성 성공", null);
-        }catch (Exception e) {
-            return new Response("error", "그룹생성 실패", e.getMessage());
-        }
-    }
 
-    //그룹 초대
-    @GetMapping("/inviteGroup")
-    public Response inviteGroup(@RequestBody RequestInvite requestInvite) {
-        try {
-            String inviteLink;
-            inviteLink = groupService.inviteGroup(requestInvite.getSeq(), requestInvite.getInviteLink());
-            return new Response("success", "그룹초대 링크: " + inviteLink, null);
-        }catch (Exception e) {
-            return new Response("error", "그룹초대 실패", null);
-        }
-
-    }
-
-    //그룹가입
-    @PostMapping("/join")
-    public Response joinGroup(@RequestBody RequestInvite requestInvite, Member member) {
-        try {
-            groupService.joinGroup(requestInvite.getSeq() ,requestInvite.getInviteLink(), member);
-            return new Response("success", "그룹가입 성공", null);
-        }catch (Exception e) {
-            return new Response("error", "그룹가입 실패", null);
-        }
-    }
-
-    //그룹조회
-    @GetMapping("/selectGroup")
-    public Response selectGroup(@RequestBody Member member) {
-        try{
-            groupService.selectGroup(member);
-            return new Response("success", "그룹가입 조회", null);
-        }catch (Exception e) {
-            return  new Response("error", "그룹가입 실패", null);
-        }
-    }
-    //수간호사 여부 확인
 
     @GetMapping("/test")
     public String test() {

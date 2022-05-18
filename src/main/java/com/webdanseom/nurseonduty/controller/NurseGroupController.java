@@ -5,6 +5,7 @@ import com.webdanseom.nurseonduty.model.Member;
 import com.webdanseom.nurseonduty.model.NurseGroup;
 import com.webdanseom.nurseonduty.model.Response;
 import com.webdanseom.nurseonduty.model.request.RequestInvite;
+import com.webdanseom.nurseonduty.repo.NurseGroupRepository;
 import com.webdanseom.nurseonduty.service.AuthService;
 import com.webdanseom.nurseonduty.service.CookieUtil;
 import com.webdanseom.nurseonduty.service.GroupService;
@@ -56,10 +57,11 @@ public class NurseGroupController {
             email = jwtUtil.getEmail(jwt);
             Member member = authService.findByEmail(email);
 
-            groupService.createGroup(nurseGroup, member);
+            nurseGroup = groupService.createGroup(nurseGroup, member);
+            groupService.joinGroup(nurseGroup.getSeq(), nurseGroup.getInviteLink(), member);
             return new Response("success", "그룹생성 성공", null);
         }catch (NotFoundException e) {
-            return new Response("error", "그룹생성 실패", null);
+            return new Response("error", "그룹생성 실패", e);
         }
     }
 
