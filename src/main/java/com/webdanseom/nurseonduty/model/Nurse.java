@@ -22,15 +22,14 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 @NoArgsConstructor
-@IdClass(NurseId.class)
 public class Nurse {
 
     //간호사번호 (기본키)
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int nurseSeq;
 
     //그룹번호 (기본키) --- 외래키
-    @Id
     @ManyToOne
     @JoinColumn(name = "nurseGroup")
     private NurseGroup nurseGroup;
@@ -56,8 +55,9 @@ public class Nurse {
     @JoinColumn(name = "preceptorSeq")
     private Preceptor preceptorSeq;
 
-    public Nurse(int nurseNum, String name, String charge, String position, double annualLeave) {
-        this.nurseSeq = nurseNum;
+    public Nurse(int nurseSeq, NurseGroup nurseGroup, String name, String charge, String position, double annualLeave) {
+        this.nurseSeq = nurseSeq;
+        this.nurseGroup = nurseGroup;
         this.name = name;
         this.charge = charge;
         this.position = position;
@@ -67,7 +67,8 @@ public class Nurse {
     @Override
     public String toString() {
         return "Nurse{" +
-                "nurseNum=" + nurseSeq +
+                "nurseSeq=" + nurseSeq +
+                ", nurseGroup=" + nurseGroup +
                 ", name='" + name + '\'' +
                 ", charge='" + charge + '\'' +
                 ", position='" + position + '\'' +
