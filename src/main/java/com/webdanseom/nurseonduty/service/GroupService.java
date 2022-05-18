@@ -13,7 +13,7 @@ import javassist.NotFoundException;
 
 public interface GroupService {
     //그룹생성
-    void createGroup(NurseGroup nurseGroup, Member member);
+    void createGroup(NurseGroup nurseGroup, Member member) throws  NotFoundException;
 
     //그룹초대
     String inviteGroup(int seq, String inviteLink);
@@ -28,5 +28,5 @@ public interface GroupService {
 
 
     //*수간호사 확인
-    boolean isHeadNurseChack(NurseGroup nurseGroup);
+    boolean isHeadNurseCheck(NurseGroup nurseGroup);
 }

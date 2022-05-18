@@ -48,7 +48,7 @@ public class GroupServiceImpl implements GroupService{
     //그룹 생성
     @Override
     @Transactional
-    public void createGroup(NurseGroup nurseGroup, Member member) {
+    public void createGroup(NurseGroup nurseGroup, Member member) throws NotFoundException  {
         UUID uuid = UUID.randomUUID();
 
         //그룹초기정보 insert
@@ -59,11 +59,7 @@ public class GroupServiceImpl implements GroupService{
         nurseGroup.setInviteLink(uuid.toString());
 
         //회원 간호사에 그룹번호 업데이트
-        try {
-            joinGroup(nurseGroup.getSeq(), nurseGroup.getInviteLink(), member);
-        } catch (NotFoundException e) {
-            throw new RuntimeException(e);
-        }
+//        joinGroup(nurseGroup.getSeq(), nurseGroup.getInviteLink(), member);
 
         String CREATE_GROUP = "http://localhost:8080/member/createGroup/";
         emailService.sendEmail(member.getEmail(), "[Nurse On Duty] 새그룹을 생성하셨습니다.  그룹명: " + nurseGroup.getGroupName(), CREATE_GROUP + uuid.toString());
@@ -95,10 +91,9 @@ public class GroupServiceImpl implements GroupService{
     public void joinGroup(int seq, String inviteLink, Member member) throws NotFoundException {
         if (member == null) throw new NotFoundException("joinGroup(), 로그인을 먼저 하십시오.");
         if(nurseGroupRepository.findByInviteLink(inviteLink) == null) throw new NotFoundException("joinGroup(), 해당초대장는 만료되었거나 존재하지 않는 초대장입니다.");
-
-        NurseGroup nurseGroup = new NurseGroup();
-        nurseGroup.setSeq(seq);
-        member.setGroupSeq(nurseGroup);
+        if(nurseGroupRepository.findBySeq(seq) == null) throw new NotFoundException("joinGroup(), 해당 그룹은 없는 그룹(임시)");
+        
+        member.setGroupSeq(nurseGroupRepository.findBySeq(seq));
 
         memberRepository.save(member);
     }
@@ -123,7 +118,7 @@ public class GroupServiceImpl implements GroupService{
      * @param
      * */
     @Override
-    public boolean isHeadNurseChack(NurseGroup nurseGroup) {
+    public boolean isHeadNurseCheck(NurseGroup nurseGroup) {
         return false;
     }
 

@@ -26,7 +26,7 @@ import java.util.Date;
 public class NurseGroup {
     //그룹번호
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int seq;
 
     //그룹이름
@@ -36,6 +36,11 @@ public class NurseGroup {
     //수간호사번호
     @NotBlank
     private int headNurseNum;
+
+    //초대링크
+    @NotNull
+    private String inviteLink;
+
 
     //최소 Day 근무
     @NotNull
@@ -49,22 +54,19 @@ public class NurseGroup {
     @NotNull
     private int numberOfNights;
 
-    //초대링크
-    @NotNull
-    private String inviteLink;
 
     //초대링크 만료일
 
 
-    public NurseGroup(int groupSeq, String groupName, int headNurseNum, int numberOfDays,
-                      int numberOfEvenings, int numberOfNights, String inviteLink) {
-        this.seq = groupSeq;
+    public NurseGroup(int seq, String groupName, int headNurseNum, String inviteLink,
+                      int numberOfDays, int numberOfEvenings, int numberOfNights) {
+        this.seq = seq;
         this.groupName = groupName;
         this.headNurseNum = headNurseNum;
+        this.inviteLink = inviteLink;
         this.numberOfDays = numberOfDays;
         this.numberOfEvenings = numberOfEvenings;
         this.numberOfNights = numberOfNights;
-        this.inviteLink = inviteLink;
     }
 
     @Override
@@ -73,10 +75,10 @@ public class NurseGroup {
                 "groupNum=" + seq +
                 ", groupName='" + groupName + '\'' +
                 ", headNurseNum=" + headNurseNum +
+                ", inviteLink=" + inviteLink +
                 ", numberOfDays=" + numberOfDays +
                 ", numberOfEvenings=" + numberOfEvenings +
                 ", numberOfNights=" + numberOfNights +
-                ", inviteLink=" + inviteLink +
                 '}';
     }
 }

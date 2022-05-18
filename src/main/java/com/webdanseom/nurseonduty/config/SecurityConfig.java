@@ -51,7 +51,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/member/verify/**").permitAll()
                 .antMatchers("/oauth/**").permitAll()
                 .antMatchers("/v2/api-docs", "/swagger-resources/**", "/swagger-ui/**", "/webjars/**", "/swagger/**").permitAll()
-                .antMatchers("/nurse/**", "/member/createGroup").permitAll()
+                .antMatchers("/nurse/**", "/nurseGroup/createGroup").permitAll()
+                .antMatchers("/nurse/**", "/nurseGroup/join").permitAll()
+                .antMatchers("/nurse/**", "/nurseGroup/invite").permitAll()
                 .antMatchers("/test/user").hasRole("USER")
                 .antMatchers("/test/admin").hasRole("ADMIN")
                 .anyRequest().authenticated();
