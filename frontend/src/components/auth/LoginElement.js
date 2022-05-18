@@ -45,12 +45,16 @@ const LoginElement = ({ form, onChange, onSubmit, error }) => {
           <button name="loginBtn" className="loginBtn" type="submit">
             로그인
           </button>
-          <button name="googleBtn" className="loginBtn" type="submit">
-            구글 로그인
-          </button>
-          <button name="naverBtn" className="loginBtn" type="submit">
-            네이버 로그인
-          </button>
+          <div className="socialBtn">
+            <img
+              className="googleBtn"
+              src={`${process.env.PUBLIC_URL}/img/btn_google_square.png`}
+            />
+            <img
+              className="naverBtn"
+              src={`${process.env.PUBLIC_URL}/img/btnG_icon_square.png`}
+            />
+          </div>
         </form>
 
         <hr />

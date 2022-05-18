@@ -87,8 +87,11 @@ const SignUpForm = () => {
         setError('이미 사용중인 이메일 입니다.');
         return;
       } else {
-        setError('서버에 문제가 있습니다!');
-        return;
+        if (!(auth.message === '로그인 실패')) {
+          setError('서버에 문제가 있습니다!');
+
+          return;
+        }
       }
     } else {
       alert('회원가입 완료! 로그인페이지로 이동합니다.');
