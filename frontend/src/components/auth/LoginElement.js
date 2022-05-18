@@ -3,8 +3,7 @@
  * 로그인 레이아웃
  * 작성자: 정진욱
  */
-import React, { useState } from 'react';
-import axios from 'axios';
+
 import './LoginElement.scss';
 
 import { Link } from 'react-router-dom';
@@ -32,7 +31,7 @@ const LoginElement = ({ form, onChange, onSubmit, error }) => {
             onChange={onChange}
             value={form.email}
           />
-          <p>{error}</p>
+
           <input
             type="password"
             name="password"
@@ -41,7 +40,7 @@ const LoginElement = ({ form, onChange, onSubmit, error }) => {
             value={form.password}
             style={{ marginBottom: '30px' }}
           />
-
+          <p>{error}</p>
           <button name="loginBtn" className="loginBtn" type="submit">
             로그인
           </button>
@@ -59,7 +58,7 @@ const LoginElement = ({ form, onChange, onSubmit, error }) => {
 
         <hr />
         <div className="otherElement">
-          <Link to="/auth/findPW" className="findPasswordBtn">
+          <Link to="/auth/findPassword" className="findPasswordBtn">
             계정 찾기
           </Link>
           <Link to="/auth/signup" className="signBtn">

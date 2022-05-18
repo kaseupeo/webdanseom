@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { changeField, initializeForm, findPassword } from '../../modules/auth';
 import FindPassword from '../../components/auth/FindPassword';
 import { useNavigate } from 'react-router-dom';
-import React from 'react';
 
 const FindPasswordForm = () => {
   const [error, setError] = useState('');
@@ -45,14 +44,18 @@ const FindPasswordForm = () => {
       )
     ) {
       setError('이메일 형식이 맞지 않습니다.');
-
+      return;
+    } else {
+      navigate('/auth/findPasswordConfirm');
+      dispatch(initializeForm('findPassword'));
       return;
     }
   };
 
   useEffect(() => {
-    dispatch(initializeForm('findPassword'));
+    dispatch(initializeForm('login'));
   }, [dispatch]);
+
   return (
     <FindPassword
       form={form}

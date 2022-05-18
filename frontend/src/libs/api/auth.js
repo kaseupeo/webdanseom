@@ -40,16 +40,15 @@ export const signup = ({ email, password, name, phoneNumber }) =>
     });
 /**
  * 비밀번호 찾기
- * @param {} param0
+ * @param {*} param0
  * @returns
  */
 export const findPassword = ({ email }) =>
-  client.post(
-    '/api/member/verify',
-    {
+  client
+    .post('/api/member/verify', {
       email,
-    }.then((response) => {
+    })
+    .then((response) => {
       console.log(response.data);
       return response;
-    }),
-  );
+    });

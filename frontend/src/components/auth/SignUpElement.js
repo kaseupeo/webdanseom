@@ -3,10 +3,9 @@
  * 회원가입 레이아웃
  * 작성자: 정진욱
  */
-import React, { useEffect, useState } from 'react';
+
 import './SignUpElement.scss';
 import './AuthTemplate.scss';
-import { Link } from 'react-router-dom';
 
 const SignUpElement = ({ form, onChange, onSubmit, error, auth }) => {
   return (

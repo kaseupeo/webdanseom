@@ -21,7 +21,7 @@ const [FIND_PASSWORD, FIND_PASSWORD_SUCCESS, FIND_PASSWORD_FAILURE] =
 export const changeField = createAction(
   CHANGE_FIELD,
   ({ form, key, value }) => ({
-    form, // signUp, login
+    form, // signUp, login, findPassword
     key, // email,password, passwordConfirm, name, phoneNumber
     value, // 실제 바꾸려는 값
   }),

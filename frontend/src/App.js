@@ -15,7 +15,7 @@ import Main from './components/Main';
 import SignUpPage from './pages/auth/SignUpPage';
 import LoginPage from './pages/auth/LoginPage';
 import FindPasswordPage from './pages/auth/FindPasswordPage';
-import FindPasswordPost from './components/auth/FindPasswordPost';
+import FindPasswordPost from './pages/auth/FindPasswordPost';
 import MainNavigation from './components/navigation/MainNavigation';
 import NormalSelectWork from './components/app/nurseNormal/NormalSelectWork';
 import HeadManagementWork from './components/app/nurseHead/HeadManagement';
@@ -30,8 +30,11 @@ function App() {
             <Route path="/" element={<Main />} />
             <Route path="/auth/login" element={<LoginPage />} />
             <Route path="/auth/signup" element={<SignUpPage />} />
-            <Route path="/auth/findPW" element={<FindPasswordPage />} />
-            <Route path="/auth/findPWPost" element={<FindPasswordPost />} />
+            <Route path="/auth/findPassword" element={<FindPasswordPage />} />
+            <Route
+              path="/auth/findPasswordConfirm"
+              element={<FindPasswordPost />}
+            />
           </Route>
 
           <Route path="/app" element={<TopNavigation />}>

@@ -3,10 +3,10 @@
  * 비밀번호 찾기 레이아웃
  * 작성자: 정진욱
  */
-import React, { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+
+import { useNavigate } from 'react-router-dom';
 import './FindPassword.scss';
-import './AuthTemplate.scss';
+import { Link } from 'react-router-dom';
 const FindPassword = ({ form, onChange, onSubmit, error }) => {
   const navigate = useNavigate();
   const goBack = () => {
@@ -23,10 +23,10 @@ const FindPassword = ({ form, onChange, onSubmit, error }) => {
           name="email"
           placeholder="nurseofduty@xxx.com"
           onChange={onChange}
-          value={form.email}
+          form={form.email}
         />
-        <br />
-        {error}
+
+        <p>{error}</p>
 
         <hr />
 
@@ -36,11 +36,12 @@ const FindPassword = ({ form, onChange, onSubmit, error }) => {
               goBack();
             }}
             className="cancel"
+            type="reset"
           >
             취소
           </button>
 
-          <button type="submit" className="find" onSubmit={onSubmit}>
+          <button type="submit" className="find">
             발송
           </button>
         </div>

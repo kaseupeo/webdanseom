@@ -1,10 +1,10 @@
 import AuthTemplate from '../../components/auth/AuthTemplate';
-import FindPassword from '../../components/auth/FindPassword';
+import FindPasswordForm from '../../containers/auth/FindPasswordForm';
 
 const FindPasswordPage = () => {
   return (
     <AuthTemplate title="비밀번호 찾기">
-      <FindPassword />
+      <FindPasswordForm />
     </AuthTemplate>
   );
 };
