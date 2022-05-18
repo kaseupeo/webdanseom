@@ -1,0 +1,106 @@
+$min-width: 512px;
+$calendar-min-width:1000px;
+
+.Calendar{
+    margin-top: 10px;
+    height:5rem;
+    width:5rem;
+    display: flex;      
+    flex-direction: column;   
+   
+  
+    html, body {
+         height: 100%;
+    }
+
+  
+  .control{
+    width: 80vw;
+    display: flex;      
+    flex-direction: row;
+    justify-content: center;
+    left:50%;
+    top: 50%;
+    
+    span{
+        font-size: 1.5rem;
+        
+    }
+    button{
+    font-size: 1.5rem;
+    color: white;
+    background-color: #50B8B4;
+    border: #50B8B4;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 10%;
+    margin-right:20px;
+    margin-left:20px;
+    margin-bottom:20px;
+    
+    }
+  }
+
+  .th, .td{
+    border: 1px solid #c3c3c3;
+  }
+
+  table{
+    border: 1px solid #c3c3c3;
+    border: 1px solid;
+    font-size: 1rem;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+  
+    justify-content: center;
+    left:50%;
+    width:80vw;
+    height:100rem;
+    background-color: white;
+    @media (max-width: $calendar-min-width)  {
+      width:98vw;
+    }
+  thead{
+    
+    display:flex;
+    flex-direction: column;
+
+  }
+    tbody{
+        
+    display:flex;
+  
+    flex-direction: column;
+  }
+
+ 
+   tr{
+    
+ 
+      display:flex;
+      flex-direction: row;
+      td{
+      
+        
+       display:flex;
+       
+       width:20rem;
+       height:9rem;
+    }
+ th{
+    
+    display:flex;
+    justify-content: center;
+    border:1px solid #c3c3c3;
+    width:20rem;
+    height:1.3rem;
+ }
+  }
+.trDay{
+  background-color: #e3e3e3;
+  height: 25px;
+  
+}
+}
+}

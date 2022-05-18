@@ -18,7 +18,7 @@ import FindPasswordPage from './pages/auth/FindPasswordPage';
 import FindPasswordPost from './pages/auth/FindPasswordPost';
 import MainNavigation from './components/navigation/MainNavigation';
 import NormalSelectWork from './components/app/nurseNormal/NormalSelectWork';
-import HeadManagementWork from './components/app/nurseHead/HeadManagement';
+import HeadManagementWork from './pages/app/head/ManagementWork';
 import TopNavigation from './components/app/appNavigation/TopNavigation';
 
 function App() {
@@ -38,8 +38,11 @@ function App() {
           </Route>
 
           <Route path="/app" element={<TopNavigation />}>
+            <Route
+              path="/app/head/ManagementWork"
+              element={<HeadManagementWork />}
+            />
             <Route path="/app/selectWork" element={<NormalSelectWork />} />
-            <Route path="/app/management" element={<HeadManagementWork />} />
           </Route>
         </Routes>
       </Router>
