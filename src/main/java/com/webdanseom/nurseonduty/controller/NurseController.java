@@ -61,11 +61,9 @@ public class NurseController {
             token = cookieUtil.getCookie(httpServletRequest, JwtUtil.ACCESS_TOKEN_NAME);
             jwt = token.getValue();
             email = jwtUtil.getEmail(jwt);
-            log.info(email);
+
             Member member = authService.findByEmail(email);
-            log.info(String.valueOf(member));
             nurse.setNurseGroup(member.getGroupSeq());
-            log.info(String.valueOf(nurse));
             nurseService.addNurse(nurse);
             return new Response("success", "간호사 등록 성공", null);
         } catch (Exception e) {
@@ -79,7 +77,7 @@ public class NurseController {
                                 HttpServletRequest httpServletRequest,
                                 HttpServletResponse httpServletResponse) {
         try {
-            List<Nurse> nurse = nurseService.selectNurse(1);
+            List<Nurse> nurse = nurseService.selectNurse(requestNurseGroupSeq.getSeq());
             return new Response("success", "간호사 전체 조회 성공", nurse);
         } catch (Exception e) {
             return new Response("error", "간호사 전체 조회 실패", e.getMessage());

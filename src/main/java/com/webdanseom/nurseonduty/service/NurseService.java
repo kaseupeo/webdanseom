@@ -15,7 +15,7 @@ import java.util.List;
 public interface NurseService {
 
     //간호사 등록
-    void addNurse(Nurse nurse);
+    void addNurse(Nurse nurse) throws Exception;
 
     //간호사 조회
     List<Nurse> selectNurse(int nurseGroupSeq) throws NotFoundException;

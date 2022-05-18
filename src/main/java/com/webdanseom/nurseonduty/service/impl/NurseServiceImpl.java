@@ -8,6 +8,8 @@ package com.webdanseom.nurseonduty.service.impl;
  * 수정자:
  */
 import com.webdanseom.nurseonduty.model.Nurse;
+import com.webdanseom.nurseonduty.model.NurseGroup;
+import com.webdanseom.nurseonduty.repo.NurseGroupRepository;
 import com.webdanseom.nurseonduty.repo.NurseRepository;
 import com.webdanseom.nurseonduty.service.NurseService;
 import javassist.NotFoundException;
@@ -24,16 +26,19 @@ public class NurseServiceImpl implements NurseService {
     @Autowired
     private NurseRepository nurseRepository;
 
+    @Autowired
+    private NurseGroupRepository nurseGroupRepository;
+
     /**
      * 간호사 등록
      * @param nurse
+     * @throws Exception
      */
     @Override
     @Transactional
-    public void addNurse(Nurse nurse) {
-        log.info("저장전"+nurse);
+    public void addNurse(Nurse nurse) throws Exception {
+        if (nurse.getNurseGroup()==null) throw new Exception("그룹정보가 없습니다.");
         nurseRepository.save(nurse);
-        log.info("저장후");
     }
 
     /**
@@ -44,8 +49,9 @@ public class NurseServiceImpl implements NurseService {
      */
     @Override
     public List<Nurse> selectNurse(int nurseGroupSeq) throws NotFoundException {
-        List<Nurse> nurse = nurseRepository.findByNurseGroup(nurseGroupSeq);
-        if (nurse == null) throw new NotFoundException("간호사가 조회되지 않습니다.");
+        NurseGroup nurseGroup = nurseGroupRepository.findBySeq(nurseGroupSeq);
+        if (nurseGroup==null) throw new NotFoundException("간호사가 조회되지 않습니다.");
+        List<Nurse> nurse = nurseRepository.findByNurseGroupSeq(nurseGroupSeq);
         return nurse;
     }
 }

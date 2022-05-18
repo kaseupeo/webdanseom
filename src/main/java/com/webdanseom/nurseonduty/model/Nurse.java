@@ -22,7 +22,6 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 @NoArgsConstructor
-@IdClass(NurseId.class)
 public class Nurse {
 
     //간호사번호 (기본키)
@@ -31,7 +30,6 @@ public class Nurse {
     private int nurseSeq;
 
     //그룹번호 (기본키) --- 외래키
-    @Id
     @ManyToOne
     @JoinColumn(name = "nurseGroup")
     private NurseGroup nurseGroup;
