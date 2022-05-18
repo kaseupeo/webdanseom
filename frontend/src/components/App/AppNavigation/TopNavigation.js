@@ -90,7 +90,10 @@ const TopNavigation = () => {
       <span className="LeftNavigation">
         <div className="nav">
           <ul>
-            <Link to="/app/management" style={{ textDecorationLine: 'none' }}>
+            <Link
+              to="/app/head/ManagementWork"
+              style={{ textDecorationLine: 'none' }}
+            >
               <li>
                 <BsFillPencilFill />
                 {menuHiding && <b>근무표 관리</b>}
