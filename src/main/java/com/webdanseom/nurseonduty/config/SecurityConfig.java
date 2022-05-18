@@ -9,16 +9,17 @@ package com.webdanseom.nurseonduty.config;
  */
 import com.webdanseom.nurseonduty.jwt.JwtRequestFilter;
 import com.webdanseom.nurseonduty.service.CustomUserDetailsService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+@Slf4j
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -50,6 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/member/verify/**").permitAll()
                 .antMatchers("/oauth/**").permitAll()
                 .antMatchers("/v2/api-docs", "/swagger-resources/**", "/swagger-ui/**", "/webjars/**", "/swagger/**").permitAll()
+                .antMatchers("/nurse/**", "/member/createGroup").permitAll()
                 .antMatchers("/test/user").hasRole("USER")
                 .antMatchers("/test/admin").hasRole("ADMIN")
                 .anyRequest().authenticated();
