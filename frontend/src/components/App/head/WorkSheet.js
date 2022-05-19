@@ -5,15 +5,19 @@ import WorkSchedule from './WorkSchedule';
 const WorkSheet = ({ children, title }) => {
   const [nurses, setNurses] = useState([
     {
-      name: '김한숙',
-
+      num: 1,
       position: '수간호사',
-      proficiency: '전문가',
+      name: '김한숙',
     },
     {
-      name: '현숙',
+      num: 2,
       position: '일반',
-      proficiency: '초보자',
+      name: '이영희',
+    },
+    {
+      num: 3,
+      position: '일반',
+      name: '김진숙',
     },
   ]);
 
@@ -25,9 +29,12 @@ const WorkSheet = ({ children, title }) => {
   for (let i = 0; i < 31; i++) dayArray.push(i);
   const days = dayArray.map((day) => <th className="workDays">{day + 1}</th>);
   const scheduleRendering = nurses.map((nurse) => (
-    <div className="perContent">
-      {nurse.name} {nurse.position} {nurse.proficiency}: {children}
-    </div>
+    <tr>
+      <td>{nurse.num}</td>
+      <td> {nurse.position}</td>
+      <td>{nurse.name}</td>
+      {children}
+    </tr>
   ));
 
   return (
@@ -51,6 +58,7 @@ const WorkSheet = ({ children, title }) => {
             <th colSpan={'31'}>근무일</th>
             <th colSpan={'9'}>합계</th>
           </tr>
+
           <tr>
             <th>순번</th>
             <th>직책</th>
@@ -69,8 +77,8 @@ const WorkSheet = ({ children, title }) => {
             <th>누적OFF</th>
           </tr>
         </thead>
+        <tbody>{scheduleRendering}</tbody>
       </table>
-      <div className="content">{scheduleRendering}</div>
     </div>
   );
 };

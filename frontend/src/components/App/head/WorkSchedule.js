@@ -11,9 +11,13 @@ const WorkSchedule = () => {
   let workArray = [];
   for (let i = 0; i < 31; i++) workArray.push(i);
 
-  const workSheet = workArray.map(() => <select>{dutycodeList}</select>);
+  const workSheet = workArray.map(() => (
+    <td>
+      <select>{dutycodeList}</select>
+    </td>
+  ));
 
-  return <div className="WorkSchedule">{workSheet}</div>;
+  return <>{workSheet}</>;
 };
 
 export default WorkSchedule;
