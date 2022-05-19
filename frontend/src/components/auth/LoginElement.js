@@ -53,6 +53,10 @@ const LoginElement = ({ form, onChange, onSubmit, error }) => {
               className="naverBtn"
               src={`${process.env.PUBLIC_URL}/img/btnG_icon_square.png`}
             />
+            <img
+              className="kakaoBtn"
+              src={`${process.env.PUBLIC_URL}/img/btn_kakao_square.png`}
+            />
           </div>
         </form>
 

@@ -96,10 +96,9 @@ const SignUpForm = () => {
     } else {
       alert('회원가입 완료! 로그인페이지로 이동합니다.');
       navigate('/auth/login');
-      dispatch(initializeForm('signUp'));
       return;
     }
-  }, [auth, form, dispatch]);
+  }, [auth]);
   return (
     <SignUpElement
       form={form}

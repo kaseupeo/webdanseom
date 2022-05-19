@@ -64,6 +64,7 @@ const LoginForm = () => {
 
   useEffect(() => {
     if (auth.response === null) {
+      setError('');
     } else if (auth.response === 'error') {
       if (auth.data === '조회되지 않습니다.') {
         setCheckEmail(false);
@@ -78,11 +79,11 @@ const LoginForm = () => {
         setCheckLogin(true);
       }
     } else {
+      setError('');
       navigate('/app');
-      dispatch(initializeForm('login'));
       return;
     }
-  }, [auth, form, dispatch]);
+  }, [auth]);
 
   return (
     <LoginElement

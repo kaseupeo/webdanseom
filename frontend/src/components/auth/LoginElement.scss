@@ -51,11 +51,19 @@ $mobile-contents-width: 640px;
                 .googleBtn{
                   height: 58px;
                   width: 58px;
-                  margin: 1rem;
+                  margin: 0.5rem;
+                  margin-right: 0.4rem;
                 }
                 .naverBtn{
-                  height: 50px;
-                  width: 50px;
+                  height: 51px;
+                  width: 51px;
+                  margin: 0.5rem;
+                  margin-top: 0.6rem;
+                }
+                .kakaoBtn{
+                  height: 51px;
+                  width: 51px;
+                  margin: 0.5rem;
                 }
 
               }
