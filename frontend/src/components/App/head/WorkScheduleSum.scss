@@ -1,0 +1,59 @@
+.WorkScheduleSum{
+    display: flex;      
+    flex-direction: column;   
+    padding: 0;
+    margin: 0;
+ 
+    table{
+        
+        display: flex;      
+    flex-direction: row;   
+      background: white;
+         
+        
+  
+        overflow-x: auto;
+        overflow-y: hidden;
+
+       
+     
+        tbody
+        {display:flex;
+            border-collapse: collapse; 
+            padding:0;  
+        
+           
+          align-items: center;}
+        
+        th{
+            display:block;
+            border: solid thin #d6d6d6 ;
+            border-collapse: collapse;
+            padding:0;
+        align-items: center;
+        
+      
+        }
+        td{
+            display:block;
+            border: solid thin #d6d6d6 ;
+            
+            padding:0;
+            align-items: center;
+        
+      
+        }
+        tr{
+            display:block;
+            
+            
+            padding:0;
+            align-items: center; 
+        
+      
+        }
+    
+    }
+        
+        
+}

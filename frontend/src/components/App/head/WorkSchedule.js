@@ -9,6 +9,7 @@ const WorkSchedule = () => {
   const dutycodeList = dutyCodes.map((dutycode) => <option>{dutycode}</option>);
 
   let workArray = [];
+  let workSumArray = [];
   for (let i = 0; i < 31; i++) workArray.push(i);
 
   const workSheet = workArray.map(() => (
@@ -17,7 +18,14 @@ const WorkSchedule = () => {
     </td>
   ));
 
-  return <>{workSheet}</>;
+  for (let i = 0; i < 9; i++) workSumArray.push(i);
+  const workSumSheet = workSumArray.map(() => <td>{0}</td>);
+  return (
+    <>
+      {workSheet}
+      {workSumSheet}
+    </>
+  );
 };
 
 export default WorkSchedule;

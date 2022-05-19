@@ -33,7 +33,7 @@ const WorkSheet = ({ children, title }) => {
       <td>{nurse.num}</td>
       <td> {nurse.position}</td>
       <td>{nurse.name}</td>
-      {children}
+      {children[0]}
     </tr>
   ));
 
@@ -79,6 +79,7 @@ const WorkSheet = ({ children, title }) => {
         </thead>
         <tbody>{scheduleRendering}</tbody>
       </table>
+      {children[1]}
     </div>
   );
 };
