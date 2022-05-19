@@ -1,5 +1,5 @@
 import { useState } from 'react';
-
+import { useSelector } from 'react-redux';
 import {
   BsFillPencilFill,
   BsCalendar4,
@@ -11,8 +11,9 @@ import './LeftNavigation.scss';
 import React from 'react';
 
 const LeftNavigation = ({ menu }) => {
-  const [menuHiding, setMenuHiding] = useState(menu);
-
+  const { menuHiding } = useSelector(({ menu }) => ({
+    menuHiding: menu.hidingMenu,
+  }));
   return (
     <div>
       <div></div>

@@ -19,6 +19,7 @@ const WorkSheet = ({ children, title }) => {
 
   let date = new Date();
   //   Date(date.getFullYear(), date.getMonth() + 1, 0).getDate(),
+  const [month, setMonth] = useState('2022.05');
   const [lastDay, setLastDay] = useState(31);
   let dayArray = [];
   for (let i = 0; i < 31; i++) dayArray.push(i);
@@ -32,9 +33,16 @@ const WorkSheet = ({ children, title }) => {
   return (
     <div className="WorkSheet">
       <div>
-        <button>&lt;</button>
-        5월
-        <button>&gt;</button>
+        <button className="monthBtn">&lt;</button>
+        <b
+          style={{
+            fontSize: '1.2rem',
+            textAlign: 'center',
+          }}
+        >
+          {month}
+        </b>
+        <button className="monthBtn">&gt;</button>
       </div>
       <table className="tableColumn">
         <thead>
@@ -63,7 +71,6 @@ const WorkSheet = ({ children, title }) => {
         </thead>
       </table>
       <div className="content">{scheduleRendering}</div>
-      <button>간호사 추가+</button>
     </div>
   );
 };

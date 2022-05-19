@@ -33,6 +33,10 @@ const initialState = {
   responseError: null,
 };
 
+export const group = createAction(GROUP, ({ groupName }) => ({
+  groupName,
+}));
+
 const member = handleActions({
   [INITIALIZE_FORM]: (state, { payload: form }) => ({
     ...state,

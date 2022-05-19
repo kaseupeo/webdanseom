@@ -11,7 +11,7 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import './TopNavigation.scss';
 
-const TopNavigation = () => {
+const TopNavigation = ({ onClickMenu }) => {
   const navigate = useNavigate();
 
   const [helpHiding, setHelpHiding] = useState(false);
@@ -20,10 +20,6 @@ const TopNavigation = () => {
   const [memberName, setMemberName] = useState('김현숙');
   const [menuHiding, setMenuHiding] = useState(false);
 
-  const onClickMenu = () => {
-    if (menuHiding) setMenuHiding(false);
-    else setMenuHiding(true);
-  };
   const onClickRefresh = () => {
     navigate('/app');
   };

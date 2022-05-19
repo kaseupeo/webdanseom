@@ -19,7 +19,7 @@ import FindPasswordPost from './pages/auth/FindPasswordPost';
 import MainNavigation from './components/navigation/MainNavigation';
 import NormalSelectWork from './components/app/normal/NormalSelectWork';
 import HeadManagementWork from './pages/app/head/ManagementWork';
-import TopNavigation from './components/app/appNavigation/TopNavigation';
+import TopNavigationForm from './containers/app/common/TopNavigationForm';
 import LeftNavigation from './components/app/appNavigation/LeftNavigation';
 function App() {
   return (
@@ -37,7 +37,7 @@ function App() {
             />
           </Route>
 
-          <Route path="/app" element={<TopNavigation />}>
+          <Route path="/app" element={<TopNavigationForm />}>
             <Route path="/app" element={<LeftNavigation />}>
               <Route
                 path="/app/head/ManagementWork"
