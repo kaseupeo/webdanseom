@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { initializeForm, hidingMenu } from '../../../modules/menu';
 
-import TopNavigation from '../../../components/app/appNavigation/TopNavigation';
+import TopNavigation from '../../../components/app/nav/TopNavigation';
 
 const TopNavigationForm = () => {
   const [error, setError] = useState('');

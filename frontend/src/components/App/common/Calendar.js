@@ -4,7 +4,7 @@
  * 작성자: 정진욱
  */
 
-import './NormalCalendar.scss';
+import './Calendar.scss';
 import React, { useState } from 'react';
 import moment, { Moment as MomentTypes } from 'moment';
 

@@ -25,11 +25,17 @@ const TopNavigation = ({ onClickMenu }) => {
   };
   const onClickHelp = () => {
     if (helpHiding) setHelpHiding(false);
-    else setHelpHiding(true);
+    else {
+      setMyPageHiding(false);
+      setHelpHiding(true);
+    }
   };
   const onClickMyPage = () => {
     if (myPageHiding) setMyPageHiding(false);
-    else setMyPageHiding(true);
+    else {
+      setHelpHiding(false);
+      setMyPageHiding(true);
+    }
   };
 
   return (
@@ -66,13 +72,14 @@ const TopNavigation = ({ onClickMenu }) => {
               <RiArrowDropDownFill className="bottomArrowIcon" />
               {myPageHiding && (
                 <div className="myPageMenu">
-                  {memberName} 님
-                  <ul>
-                    <hr />
+                  <div className="myName">
+                    <b>{memberName} 님</b>
+                  </div>
+                  <ul style={{ margin: '0px' }}>
                     <li>내 정보 수정</li>
-                    <li>그룹 탈퇴</li>
+                    <li>그룹설정</li>
                     <hr />
-                    <li>로그 아웃</li>
+                    <li>로그아웃</li>
                   </ul>
                 </div>
               )}
