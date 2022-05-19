@@ -22,7 +22,7 @@ const WorkSheet = ({ children, title }) => {
   const [lastDay, setLastDay] = useState(31);
   let dayArray = [];
   for (let i = 0; i < 31; i++) dayArray.push(i);
-  const days = dayArray.map((day) => day);
+  const days = dayArray.map((day) => <th className="workDays">{day + 1}</th>);
   const scheduleRendering = nurses.map((nurse) => (
     <div className="perContent">
       {nurse.name} {nurse.position} {nurse.proficiency}: {children}
@@ -31,11 +31,37 @@ const WorkSheet = ({ children, title }) => {
 
   return (
     <div className="WorkSheet">
-      <h2>{title}</h2>
-      <div className="title"></div>
       <div>
-        <span>이름 직책 숙련도 {days}</span>
+        <button>&lt;</button>
+        5월
+        <button>&gt;</button>
       </div>
+      <table className="tableColumn">
+        <thead>
+          <tr>
+            <th colSpan={'3'}>간호사 정보</th>
+            <th colSpan={'31'}>근무일</th>
+            <th colSpan={'9'}>합계</th>
+          </tr>
+          <tr>
+            <th>순번</th>
+            <th>직책</th>
+            <th>이름</th>
+
+            {days}
+
+            <th>D</th>
+            <th>E</th>
+            <th>N</th>
+            <th>OFF</th>
+            <th>연차</th>
+            <th>반차</th>
+            <th>공가</th>
+            <th>당일OFF</th>
+            <th>누적OFF</th>
+          </tr>
+        </thead>
+      </table>
       <div className="content">{scheduleRendering}</div>
       <button>간호사 추가+</button>
     </div>

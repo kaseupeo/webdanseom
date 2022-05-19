@@ -2,7 +2,7 @@
     position: absolute;
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+ 
     height: 100%;
     
     .nav{
@@ -43,9 +43,12 @@
    
     }
     .content{
-        z-index: -5;
+       
+        width: 85vw;
+       
+      
         display: flex;
-        padding:2.1rem;
+        margin:2.1rem;
         
     }
     
