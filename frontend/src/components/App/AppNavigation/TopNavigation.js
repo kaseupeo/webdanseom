@@ -5,30 +5,28 @@
  */
 import { useEffect, useState } from 'react';
 import { BiHelpCircle } from 'react-icons/bi';
-import {
-  BsFillPencilFill,
-  BsCalendar4,
-  BsFillPieChartFill,
-  BsFillChatRightTextFill,
-} from 'react-icons/bs';
 import { GrRefresh, GrMenu, GrUserSettings } from 'react-icons/gr';
 import { RiArrowDropDownFill } from 'react-icons/ri';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import './TopNavigation.scss';
-import './LeftNavigation.scss';
+
 const TopNavigation = () => {
   const navigate = useNavigate();
-  const [menuHiding, setMenuHiding] = useState(true);
+
   const [helpHiding, setHelpHiding] = useState(false);
   const [myPageHiding, setMyPageHiding] = useState(false);
   const [groupName, setGroupName] = useState('정신병동 1');
   const [memberName, setMemberName] = useState('김현숙');
+  const [menuHiding, setMenuHiding] = useState(false);
+
   const onClickMenu = () => {
     if (menuHiding) setMenuHiding(false);
     else setMenuHiding(true);
   };
-
+  const onClickRefresh = () => {
+    navigate('/app');
+  };
   const onClickHelp = () => {
     if (helpHiding) setHelpHiding(false);
     else setHelpHiding(true);
@@ -52,7 +50,7 @@ const TopNavigation = () => {
 
           <div className="endElement">
             <div>
-              <GrRefresh className="refreshIcon" />
+              <GrRefresh className="refreshIcon" onClick={onClickRefresh} />
             </div>
 
             <div className="help">
@@ -87,45 +85,9 @@ const TopNavigation = () => {
         </div>
       </header>
 
-      <span className="LeftNavigation">
-        <div className="nav">
-          <ul>
-            <Link
-              to="/app/head/ManagementWork"
-              style={{ textDecorationLine: 'none' }}
-            >
-              <li>
-                <BsFillPencilFill />
-                {menuHiding && <b>근무표 관리</b>}
-              </li>
-            </Link>
-
-            <Link to="/app/selectWork" style={{ textDecorationLine: 'none' }}>
-              <li>
-                <BsCalendar4 />
-                {menuHiding && <b>근무표 조회</b>}
-              </li>
-            </Link>
-            <Link to="/app" style={{ textDecorationLine: 'none' }}>
-              <li>
-                <BsFillChatRightTextFill />
-                {menuHiding && <b>근무 요청</b>}
-              </li>
-            </Link>
-            <Link to="/app" style={{ textDecorationLine: 'none' }}>
-              <li>
-                <BsFillPieChartFill />
-                {menuHiding && <b>통계</b>}
-              </li>
-            </Link>
-            <li></li>
-          </ul>
-        </div>
-
-        <main className="content">
-          <Outlet />
-        </main>
-      </span>
+      <main className="content">
+        <Outlet />
+      </main>
     </div>
   );
 };
