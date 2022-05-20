@@ -60,22 +60,21 @@ public class AuthServiceImpl implements AuthService {
 
     /**
      * 이메일 중복 검사
-     * @param member
+     * @param email
      * @throws Exception
      */
     @Override
-    public void isDuplicateCheckEmail(Member member) throws Exception {
-        if (memberRepository.findByEmail(member.getEmail()) != null) throw new Exception("존재하는 이메일입니다.");
+    public void isDuplicateCheckEmail(String email) throws Exception {
+        if (memberRepository.findByEmail(email) != null) throw new Exception("존재하는 이메일입니다.");
     }
 
     /**
      * 이메일 유효성 검사
-     * @param member
+     * @param email
      * @throws Exception
      */
     @Override
-    public void isValidEmail(Member member) throws Exception {
-        String email = member.getEmail();
+    public void isValidEmail(String email) throws Exception {
         Pattern pattern = Pattern.compile("^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$");
         Matcher matcher = pattern.matcher(email);
         if (!matcher.find()) throw new Exception("이메일 형식이 맞지 않습니다.");
@@ -83,12 +82,11 @@ public class AuthServiceImpl implements AuthService {
 
     /**
      * 비밀번호 유효성 검사
-     * @param member
-     * @return
+     * @param password
+     * @throws Exception
      */
     @Override
-    public void isValidPassword(Member member) throws Exception {
-        String password = member.getPassword();
+    public void isValidPassword(String password) throws Exception {
         Pattern pattern = Pattern.compile("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[~!@#$%^&()+|=])[A-Za-z\\d~!@#$%^&*()+|=]{8,}$");
         Matcher matcher = pattern.matcher(password);
         if (!matcher.find()) throw new Exception("비밀번호는 영문과 특수문자 숫자를 포함하며 8자 이상이어야 합니다.");
@@ -96,12 +94,11 @@ public class AuthServiceImpl implements AuthService {
 
     /**
      * 전화번호 유효성 검사
-     * @param member
+     * @param phoneNumber
      * @throws Exception
      */
     @Override
-    public void isValidPhoneNumber(Member member) throws Exception {
-        String phoneNumber = member.getPhoneNumber();
+    public void isValidPhoneNumber(String phoneNumber) throws Exception {
         Pattern pattern = Pattern.compile("^\\d{11}$");
         Matcher matcher = pattern.matcher(phoneNumber);
         if (!matcher.find()) throw new Exception("전화번호 형식이 틀렸습니다.");

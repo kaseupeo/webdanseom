@@ -10,7 +10,6 @@ package com.webdanseom.nurseonduty.controller;
  */
 import com.webdanseom.nurseonduty.jwt.JwtUtil;
 import com.webdanseom.nurseonduty.model.Member;
-import com.webdanseom.nurseonduty.model.NurseGroup;
 import com.webdanseom.nurseonduty.model.Response;
 import com.webdanseom.nurseonduty.model.request.*;
 import com.webdanseom.nurseonduty.service.AuthService;
@@ -55,10 +54,10 @@ public class MemberController {
     @PostMapping("/signup")
     public Response signUpMember(@RequestBody Member member) {
         try {
-            authService.isDuplicateCheckEmail(member);
-            authService.isValidEmail(member);
-            authService.isValidPassword(member);
-            authService.isValidPhoneNumber(member);
+            authService.isDuplicateCheckEmail(member.getEmail());
+            authService.isValidEmail(member.getEmail());
+            authService.isValidPassword(member.getPassword());
+            authService.isValidPhoneNumber(member.getPhoneNumber());
             authService.signUpUser(member);
             return new Response("success", "회원가입 성공", null);
         } catch (Exception e) {
@@ -134,10 +133,11 @@ public class MemberController {
         Response response;
         try{
             Member member = authService.findByEmail(requestChangePassword.getEmail());
+            authService.isValidPassword(requestChangePassword.getPassword());
             authService.changePassword(member,requestChangePassword.getPassword());
             response = new Response("success","성공적으로 사용자의 비밀번호를 변경했습니다.",null);
         }catch(Exception e){
-            response = new Response("error","사용자의 비밀번호를 변경할 수 없었습니다.",null);
+            response = new Response("error","사용자의 비밀번호를 변경할 수 없었습니다.",e.getMessage());
         }
         return response;
     }

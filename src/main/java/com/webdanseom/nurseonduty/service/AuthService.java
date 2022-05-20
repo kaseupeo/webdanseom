@@ -23,16 +23,16 @@ public interface AuthService {
     void signUpSocialUser(RequestSocialData member);
 
     //이메일 중복 검사
-    void isDuplicateCheckEmail(Member member) throws Exception;
+    void isDuplicateCheckEmail(String email) throws Exception;
 
     //이메일 유효성 검사
-    void isValidEmail(Member member) throws Exception;
+    void isValidEmail(String email) throws Exception;
 
     //비밀번호 유효성 검사
-    void isValidPassword(Member member) throws Exception;
+    void isValidPassword(String password) throws Exception;
 
     //전화번호 유효성 검사
-    void isValidPhoneNumber(Member member) throws Exception;
+    void isValidPhoneNumber(String phoneNumber) throws Exception;
 
     //소셜 로그인
     Member loginSocialUser(String id, String type) throws NotFoundException;
