@@ -80,7 +80,7 @@ const LoginForm = () => {
       }
     } else {
       setError('');
-      navigate('/app');
+      navigate('/app/h/ManagementWork');
       return;
     }
   }, [auth]);

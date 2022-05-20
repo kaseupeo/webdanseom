@@ -17,7 +17,7 @@ import LoginPage from './pages/auth/LoginPage';
 import FindPasswordPage from './pages/auth/FindPasswordPage';
 
 import MainNavigation from './components/auth/nav/MainNavigation';
-import NormalSelectWork from './components/app/normal/NormalSelectWork';
+import HeadSelectWork from './pages/app/head/SelectWork';
 import HeadManagementWork from './pages/app/head/ManagementWork';
 import TopNavigationForm from './containers/app/common/TopNavigationForm';
 import LeftNavigation from './components/app/nav/LeftNavigation';
@@ -33,13 +33,14 @@ function App() {
             <Route path="/auth/findPassword" element={<FindPasswordPage />} />
           </Route>
 
-          <Route path="/app" element={<TopNavigationForm />}>
-            <Route path="/app" element={<LeftNavigation />}>
+          <Route element={<TopNavigationForm />}>
+            <Route element={<LeftNavigation />}>
               <Route
-                path="/app/head/ManagementWork"
+                path="/app/h/ManagementWork"
                 element={<HeadManagementWork />}
               />
-              <Route path="/app/selectWork" element={<NormalSelectWork />} />
+              <Route path="/app/h/selectWork" element={<HeadSelectWork />} />
+              <Route path="/app/h/statisticsWork" />
             </Route>
           </Route>
         </Routes>

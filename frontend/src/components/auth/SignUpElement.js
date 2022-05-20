@@ -58,6 +58,7 @@ const SignUpElement = ({ form, onChange, onSubmit, error, auth }) => {
               placeholder="ex) 01000000000"
               onChange={onChange}
               value={form.phoneNumber}
+              maxlength="11"
             />
             <br></br>
             <b className="check">{error}</b>
