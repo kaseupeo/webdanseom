@@ -154,7 +154,7 @@ public class MemberController {
         } catch (NoSuchFieldException e) {
             response = new Response("error", "사용자 이메일을 조회할 수 없습니다.", null);
         } catch (Exception e) {
-            response = new Response("error", "비밀번호 변경 요청을 할 수 없습니다.", null);
+            response = new Response("error", "비밀번호 변경 요청을 할 수 없습니다.", e.getMessage());
         }
         return response;
     }
@@ -186,11 +186,8 @@ public class MemberController {
         return response;
     }
 
-
-
     @GetMapping("/test")
     public String test() {
         return "Hello World!";
     }
-
 }
