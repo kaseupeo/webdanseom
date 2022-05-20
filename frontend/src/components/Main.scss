@@ -1,42 +1,62 @@
 $mobile-contents-width: 640px;
-.Main{
-    
-    .firstDiv{
-        position: flex;
-        background: linear-gradient(to right, #50B8B4, #156d6a);
-        color: white;
-        padding-top: 3rem;
-        padding-left: 8rem;
-        padding-bottom: 3rem;
-        
-        h1{ 
-            margin:0%;
-         
-            
-            font-size: 3rem;
-            @media (max-width: $mobile-contents-width) {
-                
-                
-                font-size: 120vw / ($mobile-contents-width / 30px);
-                white-space: nowrap;
-              }
-                
-              
-        }
+$min-contents-width: 1100px;
+.Main {
+  .firstDiv {
+    position: flex;
+    background-color: white;
+    background-image: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.1) 5%,
+        rgba(255, 255, 255, 0.5) 68%,
 
-        ul{
-            margin:0%;
-         
-            list-style:none;
-            font-size: 1rem;
-            @media (max-width: $mobile-contents-width) {
-               
-                font-size: 80vw / ($mobile-contents-width / 15px);
-                white-space: nowrap;
-              }
+        rgba(255, 255, 255, 1) 90%
+      ),
+      url('./mainImg.png');
+    background-position: 100%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 35rem;
+    color: #202529;
+    font-size: 1.5rem;
+    padding-top: 5rem;
+    padding-left: 20%;
+    padding-bottom: 1rem;
+    z-index: 10;
+    @media (max-width: $mobile-contents-width) {
+    }
+  }
+  .secondDiv {
+    display: flex;
+    flex-direction: column;
+    background-color: #309694;
+    color: white;
+    h1 {
+      margin: 0%;
 
-        }
-
+      font-size: 3rem;
+      @media (max-width: $mobile-contents-width) {
+        font-size: 120vw / ($mobile-contents-width / 30px);
+        white-space: nowrap;
+      }
     }
 
+    ul {
+      margin: 0%;
+      display: flex;
+      flex-direction: row;
+      list-style: none;
+      font-size: 1.2rem;
+      justify-content: center;
+
+      @media (max-width: $min-contents-width) {
+        font-size: 80vw / ($min-contents-width / 15px);
+        margin: 2rem;
+        white-space: nowrap;
+      }
+      li {
+        white-space: nowrap;
+        margin: 3rem;
+      }
+    }
+  }
 }
