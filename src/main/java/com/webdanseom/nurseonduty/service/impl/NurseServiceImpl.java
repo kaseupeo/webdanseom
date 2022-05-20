@@ -54,4 +54,15 @@ public class NurseServiceImpl implements NurseService {
         List<Nurse> nurse = nurseRepository.findByNurseGroupSeq(nurseGroupSeq);
         return nurse;
     }
+
+    /**
+     * editNurse
+     * @param nurse
+     * @throws NotFoundException
+     */
+    @Override
+    public void editNurse(Nurse nurse) throws NotFoundException {
+        if (nurseRepository.findByNurseSeq(nurse.getNurseSeq())==null) throw new NotFoundException("editNurse(), 회원이 조회되지 않습니다.");
+        nurseRepository.save(nurse);
+    }
 }

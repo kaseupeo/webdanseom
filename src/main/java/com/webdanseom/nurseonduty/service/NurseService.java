@@ -19,4 +19,7 @@ public interface NurseService {
 
     //간호사 조회
     List<Nurse> selectNurse(int nurseGroupSeq) throws NotFoundException;
+
+    //간호사 정보 수정
+    void editNurse(Nurse nurse) throws NotFoundException;
 }

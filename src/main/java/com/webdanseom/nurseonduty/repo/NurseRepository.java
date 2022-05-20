@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface NurseRepository extends CrudRepository<Nurse, Long> {
     List<Nurse> findByNurseGroupSeq(int nurseGroupSeq);
+    Nurse findByNurseSeq(int nurseSeq);
 }

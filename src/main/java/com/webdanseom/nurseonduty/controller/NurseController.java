@@ -84,9 +84,11 @@ public class NurseController {
         }
     }
 
+    //간호사 정보 수정
     @PutMapping("/edit")
     public Response editNurse(@RequestBody Nurse nurse) {
         try {
+            nurseService.editNurse(nurse);
             return new Response("success", "간호사 전체 조회 성공", nurse);
         } catch (Exception e) {
             return new Response("error", "간호사 전체 조회 실패", e.getMessage());
