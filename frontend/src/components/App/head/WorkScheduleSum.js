@@ -3,26 +3,19 @@ import './WorkScheduleSum.scss';
 const WorkScheduleSum = () => {
   let dayArray = [];
   let daySumArray = 9;
+  const dutyCode = ['D', 'E', 'N', 'OFF'];
   for (let i = 0; i < 31 + daySumArray; i++) dayArray.push(i);
-  const days = dayArray.map((day) => (
+  const days = dayArray.map((day) => <td>{0}</td>);
+  const sumRow = dutyCode.map((code) => (
     <tr>
-      <td>{0}</td>
-      <td>{0}</td>
-      <td>{0}</td>
-      <td>{0}</td>
+      <th>{code}</th>
+      {days}
     </tr>
   ));
   return (
     <div className="WorkScheduleSum">
       <table>
-        <tr>
-          <th>D</th>
-          <th>E</th>
-          <th>N</th>
-          <th>off</th>
-        </tr>
-
-        {days}
+        <tbody>{sumRow}</tbody>
       </table>
     </div>
   );

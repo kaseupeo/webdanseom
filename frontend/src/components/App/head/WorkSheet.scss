@@ -1,49 +1,43 @@
-.WorkSheet{
-  
- 
-  display: flex;      
-  flex-direction: column;   
-    background: white;
-  
-    
- 
-    .monthBtn{
-      background-color: white;
-      color: #40586a;
-      border: thin solid #40586a;
-      
-      margin: 10px;
-      width: 30px;
-      height: 30px;
-      &:hover{
-        background-color: #d4e4f0;
-      }
+.WorkSheet {
+  display: flex;
+  flex-direction: column;
+  background: white;
+
+  .monthBtn {
+    background-color: white;
+    color: #40586a;
+    border: thin solid #40586a;
+
+    margin: 10px;
+    width: 30px;
+    height: 30px;
+    &:hover {
+      background-color: #d4e4f0;
     }
-    
-    .tableColumn{
-      
-      height: 5px;
-      border: solid thin #d6d6d6 ;
+  }
+
+  .tableColumn {
+    align-items: center;
+    height: 5px;
+    border: solid thin #d6d6d6;
+    border-collapse: collapse;
+
+    th {
+      border: solid thin #d6d6d6;
+      padding: 0;
+      align-items: center;
+    }
+    tr {
+      padding: 0;
+
       border-collapse: collapse;
-      
-      th{border: solid thin #d6d6d6;
-        padding:0;
-        align-items: center;
-        
-      }
-      tr{padding:0;  
-         
-        border-collapse: collapse;   
-        align-items: center;}
-        td{
-          padding:0;  
-          border: solid thin #d6d6d6;
-        border-collapse: collapse;   
-        align-items: center;
-        }
-    
+      align-items: center;
     }
-    
-    
-    
+    td {
+      padding: 0;
+      border: solid thin #d6d6d6;
+      border-collapse: collapse;
+      align-items: center;
+    }
+  }
 }
