@@ -39,13 +39,16 @@ export const signup = ({ email, password, name, phoneNumber }) =>
       return response;
     });
 /**
- * 비밀번호 찾기
+ * 이메일을 통한 비밀번호 찾기 => 이메일로 링크 전송
+ *
  * @param {*} param0
- * @returns
+ * @returns {response: "성공여부" , message: "메시지", data: "메시지" or null }
  */
-export const findPassword = ({ email }) =>
+export const findPassword = (
+  { email }, //avast(메일실드) 같은 백신 프로그램 설정해줘야됨
+) =>
   client
-    .post('/api/member/verify', {
+    .post('/api/member/password', {
       email,
     })
     .then((response) => {

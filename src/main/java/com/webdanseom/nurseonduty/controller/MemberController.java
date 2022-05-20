@@ -150,11 +150,11 @@ public class MemberController {
             Member member = authService.findByEmail(requestFindPassword.getEmail());
             if (!member.getEmail().equals(requestFindPassword.getEmail())) throw new NoSuchFieldException("");
             authService.findPassword(member);
-            response = new Response("success", "성공적으로 사용자의 비밀번호 변경요청을 수행했습니다.", null);
+            response = new Response("success", "성공적으로 사용자의 비밀번호 변경요청을 수행했습니다.", null );
         } catch (NoSuchFieldException e) {
-            response = new Response("error", "사용자 이메일을 조회할 수 없습니다.", null);
+            response = new Response("error", "사용자 이메일을 조회할 수 없습니다.",  e.getMessage());
         } catch (Exception e) {
-            response = new Response("error", "비밀번호 변경 요청을 할 수 없습니다.", null);
+            response = new Response("error", "비밀번호 변경 요청을 할 수 없습니다.",  e.getMessage());
         }
         return response;
     }

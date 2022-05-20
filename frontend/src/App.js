@@ -15,7 +15,7 @@ import Main from './components/Main';
 import SignUpPage from './pages/auth/SignUpPage';
 import LoginPage from './pages/auth/LoginPage';
 import FindPasswordPage from './pages/auth/FindPasswordPage';
-import FindPasswordPost from './pages/auth/FindPasswordPost';
+
 import MainNavigation from './components/auth/nav/MainNavigation';
 import NormalSelectWork from './components/app/normal/NormalSelectWork';
 import HeadManagementWork from './pages/app/head/ManagementWork';
@@ -31,10 +31,6 @@ function App() {
             <Route path="/auth/login" element={<LoginPage />} />
             <Route path="/auth/signup" element={<SignUpPage />} />
             <Route path="/auth/findPassword" element={<FindPasswordPage />} />
-            <Route
-              path="/auth/findPasswordConfirm"
-              element={<FindPasswordPost />}
-            />
           </Route>
 
           <Route path="/app" element={<TopNavigationForm />}>

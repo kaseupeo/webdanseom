@@ -189,11 +189,12 @@ public class AuthServiceImpl implements AuthService {
      */
     @Override
     public void sendVerificationMail(Member member) throws NotFoundException {
-        String VERIFICATION_LINK = "http://localhost:8080/member/verify/";
+        String VERIFICATION_LINK = "http://localhost:3000/app/";
+        //링크 바꿔야됨
         if (member == null) throw new NotFoundException("멤버가 조회되지 않습니다.");
         UUID uuid = UUID.randomUUID();
         redisUtil.setDataExpire(uuid.toString(), member.getEmail(), 1800L);
-        emailService.sendEmail(member.getEmail(), "[Nurse On Duty]회원가입 인증메일입니다.", VERIFICATION_LINK+uuid.toString());
+        emailService.sendEmail(member.getEmail(), "[Nurse On Duty]회원가입 인증메일입니다.n", VERIFICATION_LINK+uuid.toString());
     }
 
     @Override

@@ -57,7 +57,7 @@ const SignUpElement = ({ form, onChange, onSubmit, error, auth }) => {
               autoComplete="phoneNumber"
               placeholder="ex) 01000000000"
               onChange={onChange}
-              value={form.phone}
+              value={form.phoneNumber}
             />
             <br></br>
             <b className="check">{error}</b>

@@ -3,9 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { changeField, initializeForm, findPassword } from '../../modules/auth';
 import FindPassword from '../../components/auth/FindPassword';
 import { useNavigate } from 'react-router-dom';
-
+import FindPasswordPost from '../../components/auth/FindPasswordPost';
 const FindPasswordForm = () => {
   const [error, setError] = useState('');
+  const [email, setEmail] = useState('');
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { form, auth, authError } = useSelector(({ auth }) => ({
@@ -29,40 +31,52 @@ const FindPasswordForm = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     const { email } = form;
-
-    dispatch(
-      findPassword({
-        email,
-      }),
-    );
+    setError('로딩중...');
     if ([email].includes('')) {
       setError('이메일을 입력해주세요.');
       return;
-    } else if (
+    }
+    if (
       !/^[0-9a-zA-Z]([-.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/.test(
         email,
       )
     ) {
       setError('이메일 형식이 맞지 않습니다.');
       return;
-    } else {
-      navigate('/auth/findPasswordConfirm');
-      dispatch(initializeForm('findPassword'));
-      return;
     }
+
+    dispatch(
+      findPassword({
+        email,
+      }),
+    );
   };
 
   useEffect(() => {
     dispatch(initializeForm('login'));
   }, [dispatch]);
 
-  return (
+  useEffect(() => {
+    if (auth.response === 'success') {
+      setError('');
+      setEmail(form.email);
+    }
+    if (auth.data === '회원이 조회되지 않습니다.') {
+      setError('가입되지 않은 이메일입니다.');
+
+      return;
+    }
+  }, [auth, form]);
+  return email === '' ? (
     <FindPassword
       form={form}
       onChange={onChange}
       onSubmit={onSubmit}
       error={error}
+      email={email}
     />
+  ) : (
+    <FindPasswordPost email={email} />
   );
 };
 
