@@ -53,20 +53,22 @@ const FindPasswordForm = () => {
   };
 
   useEffect(() => {
-    dispatch(initializeForm('login'));
+    dispatch(initializeForm('findPassword'));
   }, [dispatch]);
 
   useEffect(() => {
     if (auth.response === 'success') {
       setError('');
       setEmail(form.email);
+      dispatch(initializeForm('findPassword'));
+      return;
     }
     if (auth.data === '회원이 조회되지 않습니다.') {
       setError('가입되지 않은 이메일입니다.');
 
       return;
     }
-  }, [auth, form]);
+  }, [auth, dispatch, form]);
   return email === '' ? (
     <FindPassword
       form={form}
