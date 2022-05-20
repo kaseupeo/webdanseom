@@ -78,8 +78,8 @@ const WorkSheet = ({ children, title }) => {
           </tr>
         </thead>
         <tbody>{scheduleRendering}</tbody>
+        {children[1]}
       </table>
-      {children[1]}
     </div>
   );
 };

@@ -8,17 +8,11 @@ const WorkScheduleSum = () => {
   const days = dayArray.map((day) => <td>{0}</td>);
   const sumRow = dutyCode.map((code) => (
     <tr>
-      <th>{code}</th>
+      <th colSpan={3}>{code}</th>
       {days}
     </tr>
   ));
-  return (
-    <div className="WorkScheduleSum">
-      <table>
-        <tbody>{sumRow}</tbody>
-      </table>
-    </div>
-  );
+  return <tbody>{sumRow}</tbody>;
 };
 
 export default WorkScheduleSum;
