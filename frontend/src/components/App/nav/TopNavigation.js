@@ -39,7 +39,7 @@ const TopNavigation = ({ onClickMenu }) => {
   };
 
   return (
-    <div>
+    <div className="whole">
       <header className="TopNavigation">
         <div className="topNav">
           <div className="menu" onClick={onClickMenu}>

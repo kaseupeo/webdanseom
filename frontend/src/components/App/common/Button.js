@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 const StyleButton = styled.button`
   background-color: white;
-
+  white-space: nowrap;
   border: solid thin #40586a;
   border-radius: 2px;
   color: #40586a;
   font-size: 1rem;
   z-index: 100;
+  overflow: hiddlen;
   margin: 3px;
   padding: 5px 10px 5px 10px;
 
@@ -17,6 +18,8 @@ const StyleButton = styled.button`
 
 const StyleSetButton = styled.button`
   background-color: #40586a;
+  white-space: nowrap;
+  overflow: hiddlen;
   border-radius: 2px;
   border: solid thin #40586a;
   color: white;
