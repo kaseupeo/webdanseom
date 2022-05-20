@@ -95,6 +95,7 @@ const SignUpForm = () => {
       }
     } else {
       alert('회원가입 완료! 로그인페이지로 이동합니다.');
+      dispatch(initializeForm('signUp'));
       navigate('/auth/login');
       return;
     }
