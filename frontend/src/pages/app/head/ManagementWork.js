@@ -8,10 +8,10 @@ const ManagementWork = () => {
     <div>
       <span>
         <Title title="근무표 관리" />
-        <WorkManagementBtn />
       </span>
 
       <WorkSheet>
+        <WorkManagementBtn />
         <WorkSchedule />
         <WorkScheduleSum />
       </WorkSheet>

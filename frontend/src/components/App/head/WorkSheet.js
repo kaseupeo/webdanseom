@@ -33,13 +33,13 @@ const WorkSheet = ({ children, title }) => {
       <td>{nurse.num}</td>
       <td> {nurse.position}</td>
       <td>{nurse.name}</td>
-      {children[0]}
+      {children[1]}
     </tr>
   ));
 
   return (
     <div className="WorkSheet">
-      <div>
+      <div className="sheetTop">
         <button className="monthBtn">&lt;</button>
         <b
           style={{
@@ -50,7 +50,9 @@ const WorkSheet = ({ children, title }) => {
           {month}
         </b>
         <button className="monthBtn">&gt;</button>
+        {children[0]}
       </div>
+
       <table className="tableColumn">
         <thead>
           <tr>
@@ -78,7 +80,7 @@ const WorkSheet = ({ children, title }) => {
           </tr>
         </thead>
         <tbody>{scheduleRendering}</tbody>
-        {children[1]}
+        {children[2]}
       </table>
     </div>
   );

@@ -2,8 +2,16 @@
   display: flex;
   flex-direction: column;
   background: white;
-  overflow-x: auto;
-  overflow-y: hidden;
+  overflow-x: scroll;
+
+  white-space: nowrap;
+  .sheetTop {
+    display: flex;
+    flex-direction: row;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    align-items: center;
+  }
   .monthBtn {
     background-color: white;
     color: #40586a;
