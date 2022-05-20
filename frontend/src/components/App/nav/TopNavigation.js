@@ -20,9 +20,7 @@ const TopNavigation = ({ onClickMenu }) => {
   const [memberName, setMemberName] = useState('김현숙');
   const [menuHiding, setMenuHiding] = useState(false);
 
-  const onClickRefresh = () => {
-    navigate('/app');
-  };
+  const onClickRefresh = () => {};
   const onClickHelp = () => {
     if (helpHiding) setHelpHiding(false);
     else {
