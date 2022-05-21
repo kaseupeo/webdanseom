@@ -25,8 +25,8 @@ import javax.servlet.http.HttpServletResponse;
  *      그룹가입, 그룹생성, 그룹초대, 그룹조회, 수간호사 확인 
  * 작성일자:2022.05.18
  * 작성자:표영운
- * 수정일자:
- * 수정자:
+ * 수정일자: 2022.05.21
+ * 수정자: 표영운
  */
 @Slf4j
 @RestController
