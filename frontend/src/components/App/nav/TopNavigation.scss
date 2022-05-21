@@ -1,165 +1,146 @@
 $mobile-contents-width: 640px;
 $min-contents-width: 1050px;
+.whole {
+  position: flex;
+  height: 100%;
 
-.TopNavigation{
-    
-    width: 100%;
-    box-shadow: 0px 3px 10px 1px  rgb(157, 157, 157)  ;
+  .TopNavigation {
+    box-shadow: 0px 3px 10px 1px rgb(157, 157, 157);
     background: white;
     height: 4rem;
-  
-    
- 
-    .topNav{
-       
-        display: flex;
-    
-        flex-direction: row;
-        padding-top: 20px;
-        padding-left:20px;
-        
-       
-        text-decoration: none;
-    
-        .menu{
-            position: absolute;
-            
-        .menuIcon{
-            
-            width: 1.8rem;
-            height: 1.8rem;
-            
+
+    .topNav {
+      display: flex;
+
+      flex-direction: row;
+      padding-top: 20px;
+      padding-left: 13px;
+
+      text-decoration: none;
+
+      .menu {
+        position: absolute;
+
+        .menuIcon {
+          width: 1.8rem;
+          height: 1.8rem;
         }
-        
-    }
-    .endElement{
+      }
+      .endElement {
         display: flex;
         flex-direction: row;
         margin-left: auto;
         margin-right: 5rem;
-        
-        .refreshIcon{
-            display: flex;
-            
-            margin-top: 5px;
-            margin-right:20px;
-            
-            width: 1.6rem;
-            height: 1.6rem;
 
+        .refreshIcon {
+          display: flex;
+
+          margin-top: 5px;
+          margin-right: 20px;
+
+          width: 1.6rem;
+          height: 1.6rem;
         }
-    .help{
-        
-        display: flex;
-        
-        flex-direction: row;
-        
-        
-        padding:5px;
-       
-    .helpIcon{
-       
-        width: 1.6rem;
-        height: 1.6rem;
-    }
-    .bottomArrowIcon{
-        color: black;
-        width: 1.3rem;
-        height: 1.3rem;
-    }
-    .helpMenu{position: absolute;
-        z-index: 120;
-        margin-top: 30px;
-        margin-left: -160px;
-        background-color: white;
-        width: 200px;
-        border: solid 1px grey;
-        box-shadow: 0px 3px 5px 1px  rgb(157, 157, 157)  ;
-        ul{
-            padding:0;
-        li{
-            font-size:15px;
-            
-            padding:10px 15px 10px 15px;
-            list-style:none;
-            text-decoration: none;
-        &:hover{
-            background-color: #d3d3d3;
-            
-        }
-    }
-    }
-    }
-    }
-        .myPage{
-            
-            display: flex;
-            
-            flex-direction: row;
-            
-            
-            padding:5px;
-        .settingIcon{
-           
+        .help {
+          display: flex;
+
+          flex-direction: row;
+
+          padding: 5px;
+
+          .helpIcon {
             width: 1.6rem;
             height: 1.6rem;
-        }
-        .bottomArrowIcon{
+          }
+          .bottomArrowIcon {
             color: black;
             width: 1.3rem;
             height: 1.3rem;
-        }
-        .myPageMenu{position: absolute;
+          }
+          .helpMenu {
+            position: absolute;
             z-index: 120;
             margin-top: 30px;
             margin-left: -160px;
-            
             background-color: white;
             width: 200px;
             border: solid 1px grey;
-            box-shadow: 0px 3px 5px 1px  rgb(157, 157, 157)  ;
-            .myName{
-              
-                height: 30px;
-                text-align: center;
-                padding-top: 10px;
-                color: white;
-                background-color: #40586a;
-               
-            }
-            ul{
-                padding:0;
-               
-            li{
-                font-size:15px;
-                padding:10px 15px 10px 15px;
-                list-style:none;
+            box-shadow: 0px 3px 5px 1px rgb(157, 157, 157);
+            ul {
+              padding: 0;
+              li {
+                font-size: 15px;
+
+                padding: 10px 15px 10px 15px;
+                list-style: none;
                 text-decoration: none;
-            &:hover{
-                background-color: #d3d3d3;
-                
+                &:hover {
+                  background-color: #d3d3d3;
+                }
+              }
             }
+          }
         }
-        }
-        }
-    }
+        .myPage {
+          display: flex;
 
-      
+          flex-direction: row;
 
-    }
-
-        .groupName{
-            position:absolute;
-            font-style: bold;
-            font-size: 20px;
-            
-            
-           
-            margin-left:50px;
+          padding: 5px;
+          .settingIcon {
+            width: 1.6rem;
+            height: 1.6rem;
+          }
+          .bottomArrowIcon {
             color: black;
-            
+            width: 1.3rem;
+            height: 1.3rem;
+          }
+          .myPageMenu {
+            position: absolute;
+            z-index: 120;
+            margin-top: 30px;
+            margin-left: -160px;
+
+            background-color: white;
+            width: 200px;
+            border: solid 1px grey;
+            box-shadow: 0px 3px 5px 1px rgb(157, 157, 157);
+            .myName {
+              height: 30px;
+              text-align: center;
+              padding-top: 10px;
+              color: white;
+              background-color: #40586a;
+            }
+            ul {
+              padding: 0;
+
+              li {
+                font-size: 15px;
+                margin-top: 5px;
+                margin-bottom: 5px;
+                padding: 10px 15px 10px 15px;
+                list-style: none;
+                text-decoration: none;
+                &:hover {
+                  background-color: #d3d3d3;
+                }
+              }
+            }
+          }
         }
+      }
+      .content {
+      }
+      .groupName {
+        position: absolute;
+        font-style: bold;
+        font-size: 20px;
 
-
+        margin-left: 50px;
+        color: black;
+      }
     }
+  }
 }

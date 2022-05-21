@@ -10,7 +10,7 @@ const StatisticsWork = () => {
   return (
     <div>
       <span>
-        <Title title="근무표 통계" />
+        <Title title="통계 조회" />
       </span>
       <div>
         <br />

@@ -17,7 +17,7 @@ const LeftNavigation = ({ menu }) => {
   return (
     <div>
       <div></div>
-      <span className="LeftNavigation">
+      <div className="LeftNavigation">
         <div className="nav">
           <ul>
             {true ? (
@@ -88,7 +88,7 @@ const LeftNavigation = ({ menu }) => {
         <main className="content">
           <Outlet />
         </main>
-      </span>
+      </div>
     </div>
   );
 };

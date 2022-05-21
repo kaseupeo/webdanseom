@@ -16,11 +16,12 @@ import SignUpPage from './pages/auth/SignUpPage';
 import LoginPage from './pages/auth/LoginPage';
 import FindPasswordPage from './pages/auth/FindPasswordPage';
 
+import TopNavigationForm from './containers/app/common/TopNavigationForm';
+import LeftNavigation from './components/app/nav/LeftNavigation';
 import MainNavigation from './components/auth/nav/MainNavigation';
 import HeadSelectWork from './pages/app/head/SelectWork';
 import HeadManagementWork from './pages/app/head/ManagementWork';
-import TopNavigationForm from './containers/app/common/TopNavigationForm';
-import LeftNavigation from './components/app/nav/LeftNavigation';
+import HeadStasticsWork from './pages/app/head/StatisticsWork';
 function App() {
   return (
     <div>
@@ -40,7 +41,10 @@ function App() {
                 element={<HeadManagementWork />}
               />
               <Route path="/app/h/selectWork" element={<HeadSelectWork />} />
-              <Route path="/app/h/statisticsWork" />
+              <Route
+                path="/app/h/statisticsWork"
+                element={<HeadStasticsWork />}
+              />
             </Route>
           </Route>
         </Routes>
