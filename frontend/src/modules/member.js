@@ -20,9 +20,12 @@ const [GROUP, GROUP_SUCCESS, GROUP_FAILURE] =
 
 export const initializeForm = createAction(INITIALIZE_FORM, (form) => form);
 export const token = createAction(TOKEN, (token) => token);
-export const group = createAction(GROUP, ({ groupName }) => ({
-  groupName,
-}));
+export const group = createAction(
+  GROUP,
+  ({ groupName, isJoinGroup, isHeadNurseCheck }) => ({
+    groupName,
+  }),
+);
 const initialState = {
   group: {
     groupName: null,

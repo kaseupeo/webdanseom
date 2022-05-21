@@ -12,7 +12,7 @@ import client from './client';
  */
 export const selectGroup = ({ token }) =>
   client
-    .post('/api/nurseGroup/selectGroup', {
+    .post('/api//selectGroup', {
       token,
     })
     .then((response) => {
