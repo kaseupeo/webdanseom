@@ -72,13 +72,13 @@ const initialState = {
   findPassword: {
     email: '',
   },
-  auth: {
+  response: {
     response: null,
     message: null,
     data: null,
   },
 
-  authError: null,
+  responseError: null,
 };
 
 const auth = handleActions(
@@ -90,40 +90,40 @@ const auth = handleActions(
     [INITIALIZE_FORM]: (state, { payload: form }) => ({
       ...state,
       [form]: initialState[form],
-      auth: {
+      response: {
         response: null,
         message: null,
         data: null,
       },
-      authError: null,
+      responseError: null,
     }),
 
-    [LOGIN_SUCCESS]: (state, { payload: auth }) => ({
+    [LOGIN_SUCCESS]: (state, { payload: response }) => ({
       ...state,
-      authError: null,
-      auth,
+      responseError: null,
+      response,
     }),
     [LOGIN_FAILURE]: (state, { payload: error }) => ({
       ...state,
-      authError: error,
+      responseError: error,
     }),
-    [SIGNUP_SUCCESS]: (state, { payload: auth }) => ({
+    [SIGNUP_SUCCESS]: (state, { payload: response }) => ({
       ...state,
-      authError: null,
-      auth,
+      responseError: null,
+      response,
     }),
     [SIGNUP_FAILURE]: (state, { payload: error }) => ({
       ...state,
-      authError: error,
+      responseError: error,
     }),
-    [FIND_PASSWORD_SUCCESS]: (state, { payload: auth }) => ({
+    [FIND_PASSWORD_SUCCESS]: (state, { payload: response }) => ({
       ...state,
-      authError: null,
-      auth,
+      responseError: null,
+      response,
     }),
     [FIND_PASSWORD_FAILURE]: (state, { payload: error }) => ({
       ...state,
-      authError: error,
+      responseError: error,
     }),
   },
   initialState,

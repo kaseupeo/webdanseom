@@ -5,19 +5,29 @@
 
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeField, initializeForm, login } from '../../modules/auth';
+import {
+  changeField,
+  initializeForm as fInitializeForm,
+  login,
+} from '../../modules/auth';
+import { initializeForm as mInitializeForm, token } from '../../modules/member';
 import LoginElement from '../../components/auth/LoginElement';
 import { useNavigate } from 'react-router-dom';
 const LoginForm = () => {
   const [error, setError] = useState('');
-  const [checkEmail, setCheckEmail] = useState(true);
-  const [checkLogin, setCheckLogin] = useState(true);
+  const [checkLogin, setCheckLogin] = useState(false);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { form, auth, authError } = useSelector(({ auth }) => ({
+  const { member, mResponse, mResponseError } = useSelector(({ member }) => ({
+    token: member.token,
+    mResponse: member.response,
+    mResponseError: member.responseError,
+  }));
+  const { form, fResponse, fResponseError } = useSelector(({ auth }) => ({
     form: auth.login,
-    auth: auth.auth,
-    authError: auth.authError,
+    fResponse: auth.response,
+    fResponseError: auth.responseError,
   }));
 
   // 인풋 변경 이벤트 핸들러
@@ -35,7 +45,7 @@ const LoginForm = () => {
   const onSubmit = (e) => {
     e.preventDefault(); // => 로그인 처리
     const { email, password } = form;
-
+    setCheckLogin(true);
     dispatch(
       login({
         email,
@@ -44,46 +54,41 @@ const LoginForm = () => {
     );
     if ([email].includes('')) {
       setError('이메일을 입력해주세요.');
+      setCheckLogin(false);
       return;
     } else if ([password].includes('')) {
       setError('비밀번호를 입력해주세요.');
-      return;
-    }
-    if (!checkEmail) {
-      setError('가입되지 않은 이메일입니다.');
-      return;
-    } else if (!checkLogin) {
-      setError('잘못된 비밀번호 입니다.');
+      setCheckLogin(false);
       return;
     }
   };
 
   useEffect(() => {
-    dispatch(initializeForm('login'));
+    dispatch(fInitializeForm('login'));
   }, [dispatch]);
 
   useEffect(() => {
-    if (auth.response === null) {
-      setError('');
-    } else if (auth.response === 'error') {
-      if (auth.data === '조회되지 않습니다.') {
-        setCheckEmail(false);
-        setCheckLogin(true);
-        return;
-      } else if (auth.data === '비밀번호가 틀립니다.') {
-        setCheckEmail(true);
+    if (checkLogin) {
+      if (fResponse.response === null) {
+        setError('');
+      } else if (fResponse.response === 'error') {
+        if (fResponse.data === '조회되지 않습니다.') {
+          setError('가입되지 않은 이메일입니다.');
+          return;
+        }
+        if (fResponse.data === '비밀번호가 틀립니다.') {
+          setError('잘못된 비밀번호 입니다.');
+          return;
+        }
         setCheckLogin(false);
-        return;
       } else {
-        setCheckEmail(true);
-        setCheckLogin(true);
+        setError('');
+        dispatch(token(fResponse.data));
+        navigate('/app/h/ManagementWork');
+        return;
       }
-    } else {
-      setError('');
-      navigate('/app/h/ManagementWork');
-      return;
     }
-  }, [auth]);
+  }, [fResponse]);
 
   return (
     <LoginElement

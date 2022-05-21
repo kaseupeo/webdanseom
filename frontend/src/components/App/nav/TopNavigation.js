@@ -11,7 +11,7 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import './TopNavigation.scss';
 
-const TopNavigation = ({ onClickMenu }) => {
+const TopNavigation = ({ memeberName, onClickMenu }) => {
   const navigate = useNavigate();
 
   const [helpHiding, setHelpHiding] = useState(false);
@@ -45,7 +45,7 @@ const TopNavigation = ({ onClickMenu }) => {
           </div>
 
           <div className="groupName">
-            <b>{groupName}</b>
+            <b>{memeberName}</b>
           </div>
 
           <div className="endElement">
