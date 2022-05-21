@@ -10,11 +10,11 @@ const INITIALIZE_FORM = 'menu/INITIALIZE_FORM';
 const [HIDING_MENU] = createRequestActionTypes('menu/HIDING_MENU');
 
 export const initializeForm = createAction(INITIALIZE_FORM, (form) => form);
-
 export const hidingMenu = createAction(HIDING_MENU, (hiding) => hiding);
 
 const initialState = {
   hidingMenu: true,
+
   response: {
     response: null,
     message: null,
@@ -28,12 +28,6 @@ const menu = handleActions(
     [INITIALIZE_FORM]: (state, { payload: form }) => ({
       ...state,
       [form]: initialState[form],
-      response: {
-        response: null,
-        message: null,
-        data: null,
-      },
-      responseError: null,
     }),
 
     [HIDING_MENU]: (state, { payload: hiding }) => ({
