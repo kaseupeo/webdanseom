@@ -13,6 +13,5 @@ import lombok.Setter;
 @Getter
 @Setter
 public class RequestInvite {
-    private int seq;
     private String inviteLink;
 }
