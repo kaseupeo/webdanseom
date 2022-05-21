@@ -7,7 +7,6 @@ package com.webdanseom.nurseonduty.model;
  * 수정일자: 2022.05.17
  * 수정자:신동현
  */
-import com.webdanseom.nurseonduty.model.id.NurseId;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -35,11 +34,10 @@ public class Nurse {
     private NurseGroup nurseGroup;
 
     //간호사 이름
-    @NotBlank
+    @NotNull
     private String name;
     
     //전담
-    @NotNull
     private String charge;
 
     //직책
