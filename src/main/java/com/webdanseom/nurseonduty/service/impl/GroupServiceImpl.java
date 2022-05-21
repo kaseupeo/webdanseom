@@ -58,9 +58,6 @@ public class GroupServiceImpl implements GroupService{
         nurseGroup.setNumberOfNights(2);
         nurseGroup.setInviteLink(uuid.toString());
 
-        String CREATE_GROUP = "http://localhost:8080/member/createGroup/";
-        emailService.sendEmail(member.getEmail(), "[Nurse On Duty] 새그룹을 생성하셨습니다.  그룹명: " + nurseGroup.getGroupName(), CREATE_GROUP + uuid.toString());
-
         nurseGroupRepository.save(nurseGroup);
 
         return nurseGroup;
