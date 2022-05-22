@@ -8,7 +8,6 @@ package com.webdanseom.nurseonduty.model;
  * 수정자:표영운
  */
 
-import com.webdanseom.nurseonduty.model.id.DutyId;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -21,14 +20,12 @@ import java.util.Date;
 @Getter
 @Setter
 @NoArgsConstructor
-@IdClass(DutyId.class)
 public class Duty {
 
     //듀티코드(기본키) 
     @Id
     private String dutyCode;
-    //그룹번호(기본키) ---  외래키
-    @Id
+    //그룹번호 ---  외래키
     @ManyToOne
     @JoinColumn(name = "nurseGroup")
     private NurseGroup nurseGroup;
@@ -46,28 +43,35 @@ public class Duty {
     private Date startTime;
     //사용여부
     private Boolean isUsable;
+    //작성자
+    private String creator;
 
 
-    public Duty(String dutyCode, String dutyCodeName, int workingHours, String workType, String hexColor, Date startTime, Boolean isUsable) {
+    public Duty(String dutyCode, NurseGroup nurseGroup, String dutyCodeName, int workingHours, String workType,
+                String hexColor, Date startTime, Boolean isUsable, String creator) {
         this.dutyCode = dutyCode;
+        this.nurseGroup = nurseGroup;
         this.dutyCodeName = dutyCodeName;
         this.workingHours = workingHours;
         this.workType = workType;
         this.hexColor = hexColor;
         this.startTime = startTime;
         this.isUsable = isUsable;
+        this.creator = creator;
     }
 
     @Override
     public String toString() {
         return "Duty{" +
                 "dutyCode='" + dutyCode + '\'' +
+                "nurseGroup'" + nurseGroup + '\'' +
                 ", dutyCodeName='" + dutyCodeName + '\'' +
                 ", workingHours='" + workingHours + '\'' +
                 ", workType='" + workType + '\'' +
                 ", hexColor='" + hexColor + '\'' +
                 ", time=" + startTime +
                 ", dutyUse=" + isUsable +
+                ", creator=" + creator +
                 '}';
     }
 }

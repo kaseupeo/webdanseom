@@ -144,12 +144,14 @@ public class NurseGroupController {
             Member member = authService.findByEmail(email);
             boolean isHeadNurseCheck = false;
             boolean isJoinGroup = groupService.isJoinGroup(member);
-            NurseGroup nurseGroup = member.getGroupSeq();
+            NurseGroup nurseGroup;
 
             if(isJoinGroup == true) {
                 nurseGroup = groupService.selectGroup(member.getGroupSeq());
                 isHeadNurseCheck = groupService.isHeadNurseCheck(nurseGroup, member);
             }
+            else
+                nurseGroup =  groupService.selectGroup(null);
             ResponseSelectGroup responseSelectGroup = new ResponseSelectGroup(nurseGroup, isJoinGroup, isHeadNurseCheck);
 
             return new Response("success", "그룹조회 성공", responseSelectGroup);
