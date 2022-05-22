@@ -132,8 +132,7 @@ public class NurseGroupController {
 
     //그룹조회 
     @GetMapping("/selectGroup")
-    public Response selectGroup(
-                              HttpServletResponse httpServletResponse,
+    public Response selectGroup(HttpServletResponse httpServletResponse,
                               HttpServletRequest httpServletRequest) {
         Cookie token = null;
         String jwt = null;
@@ -147,7 +146,7 @@ public class NurseGroupController {
             boolean isJoinGroup = groupService.isJoinGroup(member);
             NurseGroup nurseGroup = member.getGroupSeq();
 
-            if(isJoinGroup != true) {
+            if(isJoinGroup == true) {
                 nurseGroup = groupService.selectGroup(member.getGroupSeq());
                 isHeadNurseCheck = groupService.isHeadNurseCheck(nurseGroup, member);
             }
