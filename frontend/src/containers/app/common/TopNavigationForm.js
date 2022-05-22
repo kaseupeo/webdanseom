@@ -6,13 +6,17 @@ import TopNavigation from '../../../components/app/nav/TopNavigation';
 
 const TopNavigationForm = () => {
   const [error, setError] = useState('');
+
   const [checkHiding, setCheckHiding] = useState(false);
   const dispatch = useDispatch();
-  const { form, response, responseError } = useSelector(({ menu }) => ({
-    form: menu.hidingMenu,
-    response: menu.response,
-    responseError: menu.responseError,
-  }));
+  const { hiding, memberName, response, responseError } = useSelector(
+    ({ menu }) => ({
+      hiding: menu.hidingMenu,
+      memberName: menu.memberName,
+      response: menu.response,
+      responseError: menu.responseError,
+    }),
+  );
 
   // 인풋 변경 이벤트 핸들러
   const onClickMenu = (e) => {
@@ -27,7 +31,7 @@ const TopNavigationForm = () => {
     dispatch(initializeForm('hidingMenu'));
   }, [dispatch]);
 
-  return <TopNavigation form={form} onClickMenu={onClickMenu} />;
+  return <TopNavigation memberName={memberName} onClickMenu={onClickMenu} />;
 };
 
 export default TopNavigationForm;

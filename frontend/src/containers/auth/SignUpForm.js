@@ -8,10 +8,10 @@ const SignUpForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { form, auth, authError } = useSelector(({ auth }) => ({
+  const { form, response, responseError } = useSelector(({ auth }) => ({
     form: auth.signUp,
-    auth: auth.auth,
-    authError: auth.authError,
+    response: auth.response,
+    responseError: auth.responseError,
   }));
 
   // 인풋 변경 이벤트 핸들러
@@ -81,13 +81,13 @@ const SignUpForm = () => {
     dispatch(initializeForm('signUp'));
   }, [dispatch]);
   useEffect(() => {
-    if (auth.response === null) {
-    } else if (auth.response === 'error') {
-      if (auth.data === '존재하는 이메일입니다.') {
+    if (response.response === null) {
+    } else if (response.response === 'error') {
+      if (response.data === '존재하는 이메일입니다.') {
         setError('이미 사용중인 이메일 입니다.');
         return;
       } else {
-        if (!(auth.message === '로그인 실패')) {
+        if (!(response.message === '로그인 실패')) {
           setError('서버에 문제가 있습니다!');
 
           return;
@@ -99,14 +99,13 @@ const SignUpForm = () => {
       navigate('/auth/login');
       return;
     }
-  }, [auth]);
+  }, [response]);
   return (
     <SignUpElement
       form={form}
       onChange={onChange}
       onSubmit={onSubmit}
       error={error}
-      auth={auth}
     />
   );
 };

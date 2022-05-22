@@ -7,7 +7,7 @@
 import './SignUpElement.scss';
 import './AuthTemplate.scss';
 
-const SignUpElement = ({ form, onChange, onSubmit, error, auth }) => {
+const SignUpElement = ({ form, onChange, onSubmit, error }) => {
   return (
     <div>
       <form onSubmit={onSubmit}>
