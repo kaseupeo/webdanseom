@@ -10,12 +10,14 @@ import client from './client';
  * @param {} param0
  * @returns
  */
-export const selectGroup = ({ token }) =>
+export const groupState = () =>
   client
-    .post('/api/nurseGroup/selectGroup', {
-      token,
-    })
+    .get('/api/nurseGroup/selectGroup')
     .then((response) => {
       console.log(response.data);
       return response;
-    });
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+    .finally();
