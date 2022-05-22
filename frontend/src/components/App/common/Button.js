@@ -31,7 +31,12 @@ const StyleSetButton = styled.button`
     background-color: #556775;
   }
 `;
+const ButtonSet = () => {
+  return;
+};
 
 export const Button = (props) => <StyleButton {...props} />;
 
 export const SetButton = (props) => <StyleSetButton {...props} />;
+
+export default ButtonSet;

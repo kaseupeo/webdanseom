@@ -10,7 +10,7 @@ import {
   initializeForm as fInitializeForm,
   login,
 } from '../../modules/auth';
-import { initializeForm as mInitializeForm, token } from '../../modules/member';
+import { initializeForm as mInitializeForm, token } from '../../modules/menu';
 import LoginElement from '../../components/auth/LoginElement';
 import { useNavigate } from 'react-router-dom';
 const LoginForm = () => {

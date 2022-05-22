@@ -2,7 +2,7 @@ import './WorkSheet.scss';
 import { useState } from 'react';
 import WorkSchedule from './WorkSchedule';
 
-const WorkSheet = ({ children, title }) => {
+const WorkSheet = ({ children }) => {
   const [nurses, setNurses] = useState([
     {
       num: 1,

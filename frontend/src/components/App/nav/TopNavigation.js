@@ -11,12 +11,17 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import './TopNavigation.scss';
 
-const TopNavigation = ({ memeberName, onClickMenu }) => {
+const TopNavigation = ({
+  groupName,
+  isJoinGroup,
+  headNurseCheck,
+  onClickMenu,
+  error,
+}) => {
   const navigate = useNavigate();
 
   const [helpHiding, setHelpHiding] = useState(false);
   const [myPageHiding, setMyPageHiding] = useState(false);
-  const [groupName, setGroupName] = useState('정신병동 1');
   const [memberName, setMemberName] = useState('김현숙');
   const [menuHiding, setMenuHiding] = useState(false);
 
@@ -45,7 +50,7 @@ const TopNavigation = ({ memeberName, onClickMenu }) => {
           </div>
 
           <div className="groupName">
-            <b>{memeberName}</b>
+            <b>{groupName}</b>
           </div>
 
           <div className="endElement">

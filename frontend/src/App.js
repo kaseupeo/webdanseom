@@ -17,7 +17,7 @@ import LoginPage from './pages/auth/LoginPage';
 import FindPasswordPage from './pages/auth/FindPasswordPage';
 
 import TopNavigationForm from './containers/app/common/TopNavigationForm';
-import LeftNavigation from './components/app/nav/LeftNavigation';
+import SideNavigationForm from './containers/app/common/SideNavigationForm';
 import MainNavigation from './components/auth/nav/MainNavigation';
 import HeadSelectWork from './pages/app/head/SelectWork';
 import HeadManagementWork from './pages/app/head/ManagementWork';
@@ -35,7 +35,7 @@ function App() {
           </Route>
 
           <Route element={<TopNavigationForm />}>
-            <Route element={<LeftNavigation />}>
+            <Route element={<SideNavigationForm />}>
               <Route
                 path="/app/h/ManagementWork"
                 element={<HeadManagementWork />}
