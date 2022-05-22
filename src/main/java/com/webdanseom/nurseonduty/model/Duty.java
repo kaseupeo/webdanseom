@@ -43,9 +43,12 @@ public class Duty {
     private Date startTime;
     //사용여부
     private Boolean isUsable;
+    //작성자
+    private String creator;
 
 
-    public Duty(String dutyCode, NurseGroup nurseGroup, String dutyCodeName, int workingHours, String workType, String hexColor, Date startTime, Boolean isUsable) {
+    public Duty(String dutyCode, NurseGroup nurseGroup, String dutyCodeName, int workingHours, String workType,
+                String hexColor, Date startTime, Boolean isUsable, String creator) {
         this.dutyCode = dutyCode;
         this.nurseGroup = nurseGroup;
         this.dutyCodeName = dutyCodeName;
@@ -54,6 +57,7 @@ public class Duty {
         this.hexColor = hexColor;
         this.startTime = startTime;
         this.isUsable = isUsable;
+        this.creator = creator;
     }
 
     @Override
@@ -67,6 +71,7 @@ public class Duty {
                 ", hexColor='" + hexColor + '\'' +
                 ", time=" + startTime +
                 ", dutyUse=" + isUsable +
+                ", creator=" + creator +
                 '}';
     }
 }
