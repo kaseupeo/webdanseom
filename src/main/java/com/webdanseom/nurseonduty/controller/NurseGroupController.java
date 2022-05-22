@@ -157,37 +157,4 @@ public class NurseGroupController {
             return  new Response("error", "그룹조회 실패", e.getMessage());
         }
     }
-    //그룹가입 여부 확인
-//    @GetMapping("/isJoinGroup")
-//    public Response isJoinGroup(@RequestBody HttpServletResponse httpServletResponse,
-//                                HttpServletRequest httpServletRequest) {
-//        try{
-//            token = cookieUtil.getCookie(httpServletRequest, jwtUtil.ACCESS_TOKEN_NAME);
-//            jwt = token.getValue();
-//            email = jwtUtil.getEmail(jwt);
-//            Member member = authService.findByEmail(email);
-//
-//            boolean isJoinGroup = groupService.isJoinGroup(member);
-//            return new Response("success", "그룹가입 여부 확인됨", isJoinGroup);
-//        }catch (Exception e) {
-//            return  new Response("error", "그룹가엽 여부 확인 실패", e);
-//        }
-//    }
-//    //수간호사 여부 확인
-//    @GetMapping("/isHeadNurse")
-//    public  Response isHeadNurse(@RequestBody HttpServletRequest httpServletRequest) {
-//        try {
-//            token = cookieUtil.getCookie(httpServletRequest, jwtUtil.ACCESS_TOKEN_NAME);
-//            jwt = token.getValue();
-//            email = jwtUtil.getEmail(jwt);
-//            Member member = authService.findByEmail(email);
-//            NurseGroup nurseGroup = nurseGroupRepository.findBySeq(Integer.parseInt(member.getGroupSeq().toString()));
-//
-//            boolean isHeadNurseCheck = groupService.isHeadNurseCheck(nurseGroup,member);
-//
-//            return new Response("success", "수간호사 여부 확인됨", isHeadNurseCheck);
-//        }catch (Exception e) {
-//            return  new Response("error", "수간호사 여부 확인 실패", e);
-//        }
-//    }
 }
