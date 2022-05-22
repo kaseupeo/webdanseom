@@ -144,7 +144,7 @@ public class NurseGroupController {
             Member member = authService.findByEmail(email);
             boolean isHeadNurseCheck = false;
             boolean isJoinGroup = groupService.isJoinGroup(member);
-            NurseGroup nurseGroup = member.getGroupSeq();
+            NurseGroup nurseGroup;
 
             if(isJoinGroup == true) {
                 nurseGroup = groupService.selectGroup(member.getGroupSeq());
