@@ -24,10 +24,6 @@ import java.util.UUID;
 @Service
 public class GroupServiceImpl implements GroupService{
 
-    //이메일서비스 인터페이스 호출
-    @Autowired
-    private EmailService emailService;
-
     //회원메뉴 인터페이스 호출
     @Autowired
     private AuthService authService;
