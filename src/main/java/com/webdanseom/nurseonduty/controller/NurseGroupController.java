@@ -131,7 +131,7 @@ public class NurseGroupController {
     }
 
     //그룹조회 
-    @GetMapping("/joinGroup")
+    @GetMapping("/selectGroup")
     public Response selectGroup(@RequestBody NurseGroup nurseGroup,
                               HttpServletResponse httpServletResponse,
                               HttpServletRequest httpServletRequest) {
