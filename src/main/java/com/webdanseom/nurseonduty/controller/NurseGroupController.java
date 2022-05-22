@@ -150,6 +150,8 @@ public class NurseGroupController {
                 nurseGroup = groupService.selectGroup(member.getGroupSeq());
                 isHeadNurseCheck = groupService.isHeadNurseCheck(nurseGroup, member);
             }
+            else
+                nurseGroup =  groupService.selectGroup(null);
             ResponseSelectGroup responseSelectGroup = new ResponseSelectGroup(nurseGroup, isJoinGroup, isHeadNurseCheck);
 
             return new Response("success", "그룹조회 성공", responseSelectGroup);
