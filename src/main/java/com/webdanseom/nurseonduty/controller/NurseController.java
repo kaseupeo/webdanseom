@@ -96,6 +96,7 @@ public class NurseController {
         }
     }
 
+    // 간호사 정보 삭제
     @DeleteMapping("/delete")
     public Response deleteNurse(@RequestBody RequestNurseSeq requestNurseSeq) {
         try {
