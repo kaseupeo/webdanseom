@@ -24,7 +24,7 @@ const WorkSheetForm = () => {
     const { year, month } = date;
     if (month < 13) {
       console.log(month + 1);
-      dispatch(setYAndM(year, month + 1));
+      dispatch(setYAndM({ year: year, month: month + 1 }));
     } else dispatch(setYAndM({ year: year + 1, month: 1 }));
   };
   useEffect(() => {

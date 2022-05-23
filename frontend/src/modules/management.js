@@ -19,7 +19,10 @@ const INITIALIZE_FORM = 'management/INITIALIZE_FORM';
 const SET_Y_AND_M = 'management/SET_Y_AND_M';
 
 export const initializeForm = createAction(INITIALIZE_FORM, (form) => form);
-export const setYAndM = createAction(SET_Y_AND_M, (date) => date);
+export const setYAndM = createAction(SET_Y_AND_M, (year, month) => ({
+  year: year,
+  month: month,
+}));
 
 const initialState = {
   date: {
@@ -43,9 +46,9 @@ const management = handleActions(
 
       [form]: initialState[form],
     }),
-    [SET_Y_AND_M]: (state, { padyload: year, month }) => ({
+    [SET_Y_AND_M]: (state, { padyload: date }) => ({
       ...state,
-      date: { year: year, month: month },
+      date: date,
     }),
   },
   initialState,
