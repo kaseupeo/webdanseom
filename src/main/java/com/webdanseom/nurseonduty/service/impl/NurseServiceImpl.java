@@ -56,7 +56,7 @@ public class NurseServiceImpl implements NurseService {
     }
 
     /**
-     * editNurse
+     * 간호사 정보 수정
      * @param nurse
      * @throws NotFoundException
      */
