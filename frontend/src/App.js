@@ -11,7 +11,7 @@ import {
   NavLink,
 } from 'react-router-dom';
 
-import Main from './components/Main';
+import MainForm from './pages/MainForm';
 import SignUpPage from './pages/auth/SignUpPage';
 import LoginPage from './pages/auth/LoginPage';
 import FindPasswordPage from './pages/auth/FindPasswordPage';
@@ -28,16 +28,16 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<MainNavigation />}>
-            <Route path="/" element={<Main />} />
+            <Route path="/" element={<MainForm />} />
             <Route path="/auth/login" element={<LoginPage />} />
             <Route path="/auth/signup" element={<SignUpPage />} />
             <Route path="/auth/findPassword" element={<FindPasswordPage />} />
           </Route>
 
           <Route element={<TopNavigationForm />}>
-            <Route element={<SideNavigationForm />}>
+            <Route path="/app" element={<SideNavigationForm />}>
               <Route
-                path="/app/h/ManagementWork"
+                path="/app/h/ManagementWork/"
                 element={<HeadManagementWork />}
               />
               <Route path="/app/h/selectWork" element={<HeadSelectWork />} />

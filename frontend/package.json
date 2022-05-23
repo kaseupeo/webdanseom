@@ -13,6 +13,7 @@
     "http-proxy-middleware": "^2.0.6",
     "immer": "^9.0.12",
     "moment": "^2.29.3",
+    "query-string": "^7.1.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-gsap": "^3.2.1",

@@ -1,44 +1,85 @@
+$mobile-contents-width: 640px;
+
 .WorkSheet {
   display: flex;
   flex-direction: column;
   background: white;
-  overflow-x: scroll;
-
-  white-space: nowrap;
+  flex-wrap: nowrap; 
+  overflow-x: auto;
+  margin-top: 2rem;
+  padding: 0px;
   .sheetTop {
+    
     display: flex;
     flex-direction: row;
-    margin-top: 2rem;
+    
     margin-bottom: 1rem;
     align-items: center;
-  }
+    
+    .month{
+     
+      flex-grow: 4;
+      
+      margin-top: 30px;
+      justify-content: flex-end;
+    
+  
   .monthBtn {
+    
     background-color: white;
     color: #40586a;
     border: thin solid #40586a;
 
     margin: 10px;
-    width: 30px;
-    height: 30px;
+    width: 2rem;
+    height: 2rem;
     &:hover {
       background-color: #d4e4f0;
     }
   }
-
+  
+}
+  .settingBtn{
+  display: flex;
+  
+    
+   
+  
+  
+    
+  }
+ }
   .tableColumn {
+   
+    flex: 0 0 auto;
     align-items: center;
     height: 5px;
     border: solid thin #d6d6d6;
     border-collapse: collapse;
+   
+    select{
+      -webkit-appearance:none; 
+    -moz-appearance:none;
+    appearance:none ;
+    text-align-last: center;
+    font-size: 1rem;
+    padding:2px 10px 2px 10px;
+    border: 0;
+    }
+    .metaInfo{
+      white-space: nowrap;
 
+    }
     th {
       border: solid thin #d6d6d6;
       padding: 0;
       align-items: center;
+      white-space: nowrap;
+      font-size: 0.8vw;
     }
     tr {
       padding: 0;
-
+      font-size: 0.8vw;
       border-collapse: collapse;
       align-items: center;
     }
@@ -48,6 +89,7 @@
       border-collapse: collapse;
       align-items: center;
       text-align: center;
+      font-size: 0.8vw;
     }
   }
 }

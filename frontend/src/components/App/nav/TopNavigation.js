@@ -3,13 +3,21 @@
  * 간호사 Top 네비게이션
  * 작성자: 정진욱
  */
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { BiHelpCircle } from 'react-icons/bi';
 import { GrRefresh, GrMenu, GrUserSettings } from 'react-icons/gr';
 import { RiArrowDropDownFill } from 'react-icons/ri';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import './TopNavigation.scss';
+
+const thisYearAndMonth = () => {
+  let now = new Date();
+  let year = now.getFullYear();
+  let month = now.getMonth() + 1;
+
+  return { year, month };
+};
 
 const TopNavigation = ({
   groupName,
@@ -19,7 +27,6 @@ const TopNavigation = ({
   error,
 }) => {
   const navigate = useNavigate();
-
   const [helpHiding, setHelpHiding] = useState(false);
   const [myPageHiding, setMyPageHiding] = useState(false);
   const [memberName, setMemberName] = useState('김현숙');
@@ -40,9 +47,13 @@ const TopNavigation = ({
       setMyPageHiding(true);
     }
   };
-
+  const onClickInit = () => {
+    setHelpHiding(false);
+    setMyPageHiding(false);
+  };
+  const outSection = useRef();
   return (
-    <div className="whole">
+    <div className="whole" onCanPlay={onClickInit}>
       <header className="TopNavigation">
         <div className="topNav">
           <div className="menu" onClick={onClickMenu}>

@@ -23,10 +23,11 @@ const StyleSetButton = styled.button`
   border-radius: 2px;
   border: solid thin #40586a;
   color: white;
-  font-size: 1rem;
+  font-size: 1.1rem;
   z-index: 100;
-  margin: 3px;
-  padding: 5px 15px 5px 15px;
+  margin: 5px;
+  padding: 6px 20px 6px 20px;
+
   &:hover {
     background-color: #556775;
   }

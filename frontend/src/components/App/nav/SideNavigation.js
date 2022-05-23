@@ -7,10 +7,16 @@ import {
   BsFillChatRightTextFill,
 } from 'react-icons/bs';
 import { Outlet, useNavigate, Link } from 'react-router-dom';
-import './LeftNavigation.scss';
+import './SideNavigation.scss';
 import React from 'react';
 
-const LeftNavigation = ({ joinGroup, headNurseCheck }) => {
+const SideNavigation = ({
+  joinGroup,
+  headNurseCheck,
+  onClickMenu0,
+  onClickMenu1,
+  onClickMenu2,
+}) => {
   const { menuHiding } = useSelector(({ menu }) => ({
     menuHiding: menu.hidingMenu,
   }));
@@ -23,34 +29,20 @@ const LeftNavigation = ({ joinGroup, headNurseCheck }) => {
             {joinGroup ? (
               headNurseCheck ? (
                 <div>
-                  <Link
-                    to="/app/h/ManagementWork"
-                    style={{ textDecorationLine: 'none' }}
-                  >
-                    <li>
-                      <BsFillPencilFill />
-                      {menuHiding && <b>근무표 관리</b>}
-                    </li>
-                  </Link>
+                  <li onClick={onClickMenu0}>
+                    <BsFillPencilFill />
+                    {menuHiding && <b>근무표 관리</b>}
+                  </li>
 
-                  <Link
-                    to="/app/h/selectWork"
-                    style={{ textDecorationLine: 'none' }}
-                  >
-                    <li>
-                      <BsCalendar4 />
-                      {menuHiding && <b>근무표 조회</b>}
-                    </li>
-                  </Link>
-                  <Link
-                    to="/app/h/statisticsWork"
-                    style={{ textDecorationLine: 'none' }}
-                  >
-                    <li>
-                      <BsFillPieChartFill />
-                      {menuHiding && <b>통계</b>}
-                    </li>
-                  </Link>
+                  <li onClick={onClickMenu1}>
+                    <BsCalendar4 />
+                    {menuHiding && <b>근무표 조회</b>}
+                  </li>
+
+                  <li onClick={onClickMenu2}>
+                    <BsFillPieChartFill />
+                    {menuHiding && <b>통계</b>}
+                  </li>
                 </div>
               ) : (
                 <div>
@@ -102,4 +94,4 @@ const LeftNavigation = ({ joinGroup, headNurseCheck }) => {
   );
 };
 
-export default LeftNavigation;
+export default SideNavigation;
