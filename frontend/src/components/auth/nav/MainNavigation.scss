@@ -25,9 +25,10 @@ $mobile-contents-width: 640px;
 
     @media (max-width: $mobile-contents-width) {
       position: flex;
+      
       justify-items: center;
       flex-direction:column;
-      height: 180px;
+      height: 5rem;
     }
 
     .title{
@@ -42,10 +43,10 @@ $mobile-contents-width: 640px;
       @media (max-width: $mobile-contents-width) {
         
         position: absolute;
-        left: 50%;
-        margin:0 0 0 -158px;
         
-        font-size: 3rem;
+        margin:10px 0 0 30px;
+        
+        font-size:1.5rem;
         white-space: nowrap;
       }
       }
@@ -62,9 +63,9 @@ $mobile-contents-width: 640px;
       @media (max-width: $mobile-contents-width) {
         
         position: absolute;
-        left: 50%;
-        top: 140px;
-        margin:0 0 0 -100px;
+        left: 60%;
+        margin-top: 5px;
+       
         white-space: nowrap;
 
 
