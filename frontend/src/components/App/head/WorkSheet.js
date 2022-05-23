@@ -1,8 +1,7 @@
 import './WorkSheet.scss';
 import { useState } from 'react';
-import WorkSchedule from './WorkSchedule';
 
-const WorkSheet = ({ children }) => {
+const WorkSheet = ({ children, onClickMonthPlus }) => {
   const [nurses, setNurses] = useState([
     {
       num: 1,
@@ -22,14 +21,14 @@ const WorkSheet = ({ children }) => {
   ]);
 
   let date = new Date();
-  //   Date(date.getFullYear(), date.getMonth() + 1, 0).getDate(),
+
   const [month, setMonth] = useState('2022.05');
   const [lastDay, setLastDay] = useState(31);
   let dayArray = [];
   for (let i = 0; i < 31; i++) dayArray.push(i);
   const days = dayArray.map((day) => <th className="workDays">{day + 1}</th>);
   const scheduleRendering = nurses.map((nurse) => (
-    <tr>
+    <tr className="metaInfo">
       <td>{nurse.num}</td>
       <td> {nurse.position}</td>
       <td>{nurse.name}</td>
@@ -40,17 +39,22 @@ const WorkSheet = ({ children }) => {
   return (
     <div className="WorkSheet">
       <div className="sheetTop">
-        <button className="monthBtn">&lt;</button>
-        <b
-          style={{
-            fontSize: '1.2rem',
-            textAlign: 'center',
-          }}
-        >
-          {month}
-        </b>
-        <button className="monthBtn">&gt;</button>
-        {children[0]}
+        <div className="month">
+          <button className="monthBtn">&lt;</button>
+
+          <b
+            style={{
+              fontSize: '1.2rem',
+              textAlign: 'center',
+            }}
+          >
+            {month}
+          </b>
+          <button className="monthBtn" onClick={onClickMonthPlus}>
+            &gt;
+          </button>
+        </div>
+        <div className="settingBtn">{children[0]}</div>
       </div>
 
       <table className="tableColumn">

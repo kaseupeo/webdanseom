@@ -11,6 +11,14 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import './TopNavigation.scss';
 
+const thisYearAndMonth = () => {
+  let now = new Date();
+  let year = now.getFullYear();
+  let month = now.getMonth() + 1;
+
+  return { year, month };
+};
+
 const TopNavigation = ({
   groupName,
   isJoinGroup,
@@ -19,7 +27,6 @@ const TopNavigation = ({
   error,
 }) => {
   const navigate = useNavigate();
-
   const [helpHiding, setHelpHiding] = useState(false);
   const [myPageHiding, setMyPageHiding] = useState(false);
   const [memberName, setMemberName] = useState('김현숙');

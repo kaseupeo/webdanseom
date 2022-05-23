@@ -58,7 +58,7 @@ const TopNavigationForm = () => {
       } else {
         dispatch(
           groupState({
-            groupName: '그룹이 없어요',
+            groupName: '',
             joinGroup: false,
             headNurseCheck: false,
           }),
@@ -68,7 +68,7 @@ const TopNavigationForm = () => {
     if (response.message === '그룹조회 실패') {
       dispatch(
         groupState({
-          groupName: '그룹이 없어요',
+          groupName: '',
           joinGroup: false,
           headNurseCheck: false,
         }),

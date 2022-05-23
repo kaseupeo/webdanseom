@@ -5,7 +5,7 @@ const WorkSchedule = () => {
   let date = new Date();
   // Date(date.getFullYear(), date.getMonth() + 1, 0).getDate(),
   const [lastDay, setLastDay] = useState(31);
-  const [dutyCodes, setDutycodes] = useState(['D', 'E', 'N', 'O']);
+  const [dutyCodes, setDutycodes] = useState(['', 'D', 'E', 'N', 'O']);
   const dutycodeList = dutyCodes.map((dutycode) => <option>{dutycode}</option>);
 
   let workArray = [];

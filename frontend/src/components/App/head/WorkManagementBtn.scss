@@ -1,8 +1,16 @@
 .WorkManagementBtn {
-  .btn {
-    display: flex;
-    justify-content: flex-end;
+  display: flex;
 
-    color: #556775;
+
+
+  .btn {
+     text-align: center;
+    display: flex;
+    flex-direction: column;
+    
+    .top{margin-left: auto;}
+    b{   vertical-align: middle;
+    
+     }
   }
 }

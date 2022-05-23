@@ -10,6 +10,7 @@ import { takeLatest } from 'redux-saga/effects';
 const INITIALIZE_FORM = 'menu/INITIALIZE_FORM';
 const [TOKEN] = createRequestActionTypes('menu/TOKEN');
 const [HIDING_MENU] = createRequestActionTypes('menu/HIDING_MENU');
+const [SELECT_MENU] = createRequestActionTypes('menu/SELECT_MENU');
 const [GROUP_STATE] = createRequestActionTypes('menu/GROUP_STATE');
 const [
   GROUP_STATE_LOADING,
@@ -19,6 +20,7 @@ const [
 
 export const initializeForm = createAction(INITIALIZE_FORM, (form) => form);
 export const hidingMenu = createAction(HIDING_MENU, (hiding) => hiding);
+export const selectMenu = createAction(SELECT_MENU, (selecting) => selecting);
 export const token = createAction(TOKEN, (token) => token);
 export const groupState = createAction(
   GROUP_STATE,
@@ -40,6 +42,7 @@ export function* menuSaga() {
 }
 const initialState = {
   hidingMenu: true,
+  selectMenu: 0,
   groupState: {
     groupName: null,
     joinGroup: false,
@@ -67,6 +70,11 @@ const menu = handleActions(
       ...state,
       hidingMenu: hiding,
     }),
+    [SELECT_MENU]: (state, { payload: selecting }) => ({
+      ...state,
+      selectMenu: selecting,
+    }),
+
     [GROUP_STATE]: (state, { payload: groupState }) => ({
       ...state,
       groupState,

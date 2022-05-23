@@ -19,10 +19,10 @@ const LoginForm = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { member, mResponse, mResponseError } = useSelector(({ member }) => ({
-    token: member.token,
-    mResponse: member.response,
-    mResponseError: member.responseError,
+  const { groupState, mResponse, mResponseError } = useSelector(({ menu }) => ({
+    groupState: menu.groupState,
+    mResponse: menu.response,
+    mResponseError: menu.responseError,
   }));
   const { form, fResponse, fResponseError } = useSelector(({ auth }) => ({
     form: auth.login,
@@ -84,7 +84,8 @@ const LoginForm = () => {
       } else {
         setError('');
         dispatch(token(fResponse.data));
-        navigate('/app/h/ManagementWork');
+
+        navigate('/app');
         return;
       }
     }
