@@ -1,7 +1,13 @@
 import './WorkSheet.scss';
 import { useState } from 'react';
 
-const WorkSheet = ({ children, onClickMonthPlus }) => {
+const WorkSheet = ({
+  children,
+  year,
+  month,
+  onClickMonthPlus,
+  onClickMonthMinus,
+}) => {
   const [nurses, setNurses] = useState([
     {
       num: 1,
@@ -20,12 +26,10 @@ const WorkSheet = ({ children, onClickMonthPlus }) => {
     },
   ]);
 
-  let date = new Date();
+  let date = new Date(year, month, 0);
 
-  const [month, setMonth] = useState('2022.05');
-  const [lastDay, setLastDay] = useState(31);
   let dayArray = [];
-  for (let i = 0; i < 31; i++) dayArray.push(i);
+  for (let i = 0; i < date.getDate(); i++) dayArray.push(i);
   const days = dayArray.map((day) => <th className="workDays">{day + 1}</th>);
   const scheduleRendering = nurses.map((nurse) => (
     <tr className="metaInfo">
@@ -40,52 +44,48 @@ const WorkSheet = ({ children, onClickMonthPlus }) => {
     <div className="WorkSheet">
       <div className="sheetTop">
         <div className="month">
-          <button className="monthBtn">&lt;</button>
+          <button className="monthBtn" onClick={onClickMonthMinus}>
+            &lt;
+          </button>
 
-          <b
-            style={{
-              fontSize: '1.2rem',
-              textAlign: 'center',
-            }}
-          >
-            {month}
-          </b>
+          <b>{year + '.' + month.toString().padStart(2, '0')}</b>
           <button className="monthBtn" onClick={onClickMonthPlus}>
             &gt;
           </button>
         </div>
         <div className="settingBtn">{children[0]}</div>
       </div>
+      <div className="scrollTable">
+        <table className="tableColumn">
+          <thead>
+            <tr>
+              <th colSpan={'3'}>간호사 정보</th>
+              <th colSpan={date.getDate()}>근무일</th>
+              <th colSpan={'9'}>합계</th>
+            </tr>
 
-      <table className="tableColumn">
-        <thead>
-          <tr>
-            <th colSpan={'3'}>간호사 정보</th>
-            <th colSpan={'31'}>근무일</th>
-            <th colSpan={'9'}>합계</th>
-          </tr>
+            <tr>
+              <th>순번</th>
+              <th>직책</th>
+              <th>이름</th>
 
-          <tr>
-            <th>순번</th>
-            <th>직책</th>
-            <th>이름</th>
+              {days}
 
-            {days}
-
-            <th>D</th>
-            <th>E</th>
-            <th>N</th>
-            <th>OFF</th>
-            <th>연차</th>
-            <th>반차</th>
-            <th>공가</th>
-            <th>당일OFF</th>
-            <th>누적OFF</th>
-          </tr>
-        </thead>
-        <tbody>{scheduleRendering}</tbody>
-        {children[2]}
-      </table>
+              <th>D</th>
+              <th>E</th>
+              <th>N</th>
+              <th>OFF</th>
+              <th>연차</th>
+              <th>반차</th>
+              <th>공가</th>
+              <th>당일OFF</th>
+              <th>누적OFF</th>
+            </tr>
+          </thead>
+          <tbody>{scheduleRendering}</tbody>
+          {children[2]}
+        </table>
+      </div>
     </div>
   );
 };

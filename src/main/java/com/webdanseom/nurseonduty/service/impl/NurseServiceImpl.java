@@ -42,6 +42,19 @@ public class NurseServiceImpl implements NurseService {
     }
 
     /**
+     * 간호사 조회
+     * @param seq
+     * @return
+     * @throws NotFoundException
+     */
+    @Override
+    public Nurse findByNurseSeq(int seq) throws NotFoundException {
+        Nurse nurse = nurseRepository.findByNurseSeq(seq);
+        if (nurse==null) throw new NotFoundException("간호사가 조회되지 않습니다.");
+        return nurse;
+    }
+
+    /**
      * 간호사 목록 조회
      * @param nurseGroupSeq
      * @return
@@ -64,5 +77,16 @@ public class NurseServiceImpl implements NurseService {
     public void editNurse(Nurse nurse) throws NotFoundException {
         if (nurseRepository.findByNurseSeq(nurse.getNurseSeq())==null) throw new NotFoundException("editNurse(), 회원이 조회되지 않습니다.");
         nurseRepository.save(nurse);
+    }
+
+    /**
+     * 간호사 정보 삭제
+     * @param nurse
+     * @throws Exception
+     */
+    @Override
+    public void deleteNurse(Nurse nurse) throws Exception {
+        if (nurse==null) throw new NotFoundException("deleteNurse(), 간호사가 조회되지 않습니다.");
+        nurseRepository.delete(nurse);
     }
 }

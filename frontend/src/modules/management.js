@@ -16,10 +16,16 @@ const now = new Date();
 //필드 값 초기화
 const INITIALIZE_FORM = 'management/INITIALIZE_FORM';
 
-const SET_Y_AND_M = 'management/SET_Y_AND_M';
+const SET_PLUS_M = 'management/SET_PLUS_M';
+const SET_MINUS_M = 'management/SET_MINUS_M';
+const SET_PLUS_Y = 'management/SET_PLUS_Y';
+const SET_MINUS_Y = 'management/SET_MINUS_Y';
 
 export const initializeForm = createAction(INITIALIZE_FORM, (form) => form);
-export const setYAndM = createAction(SET_Y_AND_M, (date) => date);
+export const setPlusM = createAction(SET_PLUS_M);
+export const setMinusM = createAction(SET_MINUS_M);
+export const setPlusY = createAction(SET_PLUS_Y);
+export const setMinusY = createAction(SET_MINUS_Y);
 
 const initialState = {
   date: {
@@ -43,9 +49,33 @@ const management = handleActions(
 
       [form]: initialState[form],
     }),
-    [SET_Y_AND_M]: (state, { padyload: year, month }) => ({
+    [SET_PLUS_M]: (state) => ({
       ...state,
-      date: { year: year, month: month },
+      date: {
+        year: state.date.year,
+        month: state.date.month + 1,
+      },
+    }),
+    [SET_MINUS_M]: (state) => ({
+      ...state,
+      date: {
+        year: state.date.year,
+        month: state.date.month - 1,
+      },
+    }),
+    [SET_PLUS_Y]: (state) => ({
+      ...state,
+      date: {
+        year: state.date.year + 1,
+        month: 1,
+      },
+    }),
+    [SET_MINUS_Y]: (state) => ({
+      ...state,
+      date: {
+        year: state.date.year - 1,
+        month: 12,
+      },
     }),
   },
   initialState,

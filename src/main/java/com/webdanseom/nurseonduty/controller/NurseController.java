@@ -12,6 +12,7 @@ import com.webdanseom.nurseonduty.model.Member;
 import com.webdanseom.nurseonduty.model.Nurse;
 import com.webdanseom.nurseonduty.model.Response;
 import com.webdanseom.nurseonduty.model.request.RequestNurseGroupSeq;
+import com.webdanseom.nurseonduty.model.request.RequestNurseSeq;
 import com.webdanseom.nurseonduty.service.AuthService;
 import com.webdanseom.nurseonduty.service.CookieUtil;
 import com.webdanseom.nurseonduty.service.GroupService;
@@ -92,6 +93,18 @@ public class NurseController {
             return new Response("success", "간호사 전체 조회 성공", nurse);
         } catch (Exception e) {
             return new Response("error", "간호사 전체 조회 실패", e.getMessage());
+        }
+    }
+
+    // 간호사 정보 삭제
+    @DeleteMapping("/delete")
+    public Response deleteNurse(@RequestBody RequestNurseSeq requestNurseSeq) {
+        try {
+            Nurse nurse = nurseService.findByNurseSeq(requestNurseSeq.getSeq());
+            nurseService.deleteNurse(nurse);
+            return new Response("success", "간호사 삭제 성공", null);
+        } catch (Exception e) {
+            return new Response("error", "간호사 삭제 실패", e.getMessage());
         }
     }
 }

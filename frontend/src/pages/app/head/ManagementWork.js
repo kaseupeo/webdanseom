@@ -1,6 +1,6 @@
 import Title from '../../../components/app/common/Title';
 import WorkSheetForm from '../../../containers/app/head/WorkSheetForm';
-
+import WorkRequestResult from '../../../components/app/head/WorkRequestResult';
 const ManagementWork = () => {
   return (
     <div>
@@ -9,6 +9,7 @@ const ManagementWork = () => {
       </span>
 
       <WorkSheetForm />
+      <WorkRequestResult />
     </div>
   );
 };

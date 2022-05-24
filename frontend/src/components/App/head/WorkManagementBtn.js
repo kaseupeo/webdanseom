@@ -1,9 +1,19 @@
 import './WorkManagementBtn.scss';
+import { useState } from 'react';
 import { Button, SetButton } from '../common/Button';
 import { FaUserNurse, FaHandshake } from 'react-icons/fa';
 import { CgWorkAlt } from 'react-icons/cg';
 import { AiOutlinePlusSquare } from 'react-icons/ai';
+import SetNurseElement from './modals/SetNurseElement';
 const WorkManagementBtn = () => {
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+  const closeModal = () => {
+    setModalOpen(false);
+  };
   return (
     <div className="WorkManagementBtn">
       <div className="btn">
@@ -17,12 +27,13 @@ const WorkManagementBtn = () => {
         </div>
 
         <div className="bottom">
-          <Button>
+          <Button onClick={openModal}>
             <b>
               <FaUserNurse />
               간호사 설정
             </b>
           </Button>
+
           <Button>
             <b>
               <FaHandshake />
@@ -43,6 +54,7 @@ const WorkManagementBtn = () => {
           </Button>
         </div>
       </div>
+      <SetNurseElement modalOpen={modalOpen} closeModal={closeModal} />
     </div>
   );
 };

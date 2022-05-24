@@ -1,47 +1,88 @@
+$mobile-contents-width: 640px;
+$min-contents-width: 1050px;
 .WorkSheet {
   display: flex;
   flex-direction: column;
   background: white;
+  flex-wrap: nowrap; 
 
+  margin-top: 2rem;
   padding: 0px;
   .sheetTop {
+   
     display: flex;
     flex-direction: row;
-    margin-top: 2rem;
+    
     margin-bottom: 1rem;
     align-items: center;
     
     .month{
-      flex-grow: 6;
+      white-space: nowrap;
+      flex-grow: 5;
+     
       margin-top: 30px;
-      justify-content: flex-end;
-  
+     vertical-align: middle;
+    
+      font-size: 1.2rem;
+      
+      @media (max-width: $mobile-contents-width) {
+
+        font-size: 0.7rem;
+        margin-right:0%;
+
+      }
   .monthBtn {
+    
     background-color: white;
     color: #40586a;
     border: thin solid #40586a;
-
+    font-size: 0.4rem;
+    text-align: center;
+    align-items: center;
+ 
     margin: 10px;
     width: 2rem;
     height: 2rem;
     &:hover {
       background-color: #d4e4f0;
     }
+   
+    @media (max-width: $mobile-contents-width) {
+      
+      width: 1rem;
+      height: 1rem;
+      margin: 0.1rem;
+    
+    }
   }
+  
 }
   .settingBtn{
-    flex-grow: 0;
-
+    flex-grow: 0.9;
+ 
+  white-space: nowrap;
   
+  @media (max-width: $min-contents-width) {
+    
+    flex-grow: 2.2;
+  }
+  
+
     
   }
  }
+ .scrollTable{ 
+  width:80vw;
+  overflow:auto;
   .tableColumn {
+
+  
+    flex: 0 0 auto;
     align-items: center;
     height: 5px;
     border: solid thin #d6d6d6;
     border-collapse: collapse;
-    overflow-x: scroll;
+
     select{
       -webkit-appearance:none; 
     -moz-appearance:none;
@@ -60,10 +101,11 @@
       padding: 0;
       align-items: center;
       white-space: nowrap;
+      font-size: 0.8vw;
     }
     tr {
       padding: 0;
-
+      font-size: 0.8vw;
       border-collapse: collapse;
       align-items: center;
     }
@@ -73,6 +115,8 @@
       border-collapse: collapse;
       align-items: center;
       text-align: center;
+      font-size: 0.8vw;
     }
   }
+}
 }

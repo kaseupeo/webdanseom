@@ -29,58 +29,92 @@ const SideNavigation = ({
             {joinGroup ? (
               headNurseCheck ? (
                 <div>
-                  <li onClick={onClickMenu0}>
-                    <BsFillPencilFill />
-                    {menuHiding && <b>근무표 관리</b>}
-                  </li>
+                  {!menuHiding && (
+                    <li onClick={onClickMenu0}>
+                      <BsFillPencilFill />
+                    </li>
+                  )}
+                  {menuHiding && (
+                    <li onClick={onClickMenu0}>
+                      <BsFillPencilFill />
+                      <b>근무표 관리</b>
+                    </li>
+                  )}
 
-                  <li onClick={onClickMenu1}>
-                    <BsCalendar4 />
-                    {menuHiding && <b>근무표 조회</b>}
-                  </li>
+                  {!menuHiding && (
+                    <li onClick={onClickMenu1}>
+                      <BsCalendar4 />
+                    </li>
+                  )}
+                  {menuHiding && (
+                    <li onClick={onClickMenu1}>
+                      <BsCalendar4 />
+                      <b>근무표 조회</b>
+                    </li>
+                  )}
 
-                  <li onClick={onClickMenu2}>
-                    <BsFillPieChartFill />
-                    {menuHiding && <b>통계</b>}
-                  </li>
+                  {!menuHiding && (
+                    <li onClick={onClickMenu2}>
+                      <BsFillPieChartFill />{' '}
+                    </li>
+                  )}
+                  {menuHiding && (
+                    <li onClick={onClickMenu2}>
+                      <BsFillPieChartFill />
+                      <b>통계</b>
+                    </li>
+                  )}
                 </div>
               ) : (
                 <div>
-                  <Link
-                    to="/app/n/selectWork"
-                    style={{ textDecorationLine: 'none' }}
-                  >
-                    <li>
+                  {!menuHiding && (
+                    <li onClick={onClickMenu0}>
                       <BsCalendar4 />
-                      {menuHiding && <b>근무표 조회</b>}
                     </li>
-                  </Link>
-                  <Link
-                    to="/app/n/requestWork"
-                    style={{ textDecorationLine: 'none' }}
-                  >
-                    <li>
+                  )}
+                  {menuHiding && (
+                    <li onClick={onClickMenu0}>
+                      <BsCalendar4 /> <b>근무표 조회</b>
+                    </li>
+                  )}
+
+                  {!menuHiding && (
+                    <li onClick={onClickMenu1}>
                       <BsFillChatRightTextFill />
-                      {menuHiding && <b>근무 요청</b>}
                     </li>
-                  </Link>
-                  <Link
-                    to="/app/n/statisticsWork"
-                    style={{ textDecorationLine: 'none' }}
-                  >
-                    <li>
+                  )}
+                  {menuHiding && (
+                    <li onClick={onClickMenu1}>
+                      <BsFillChatRightTextFill /> <b>근무 요청</b>
+                    </li>
+                  )}
+
+                  {!menuHiding && (
+                    <li onClick={onClickMenu2}>
+                      <BsFillPieChartFill className="icon" />
+                    </li>
+                  )}
+                  {menuHiding && (
+                    <li onClick={onClickMenu2}>
                       <BsFillPieChartFill />
-                      {menuHiding && <b>통계</b>}
+                      <b>통계</b>
                     </li>
-                  </Link>
+                  )}
                 </div>
               )
             ) : (
               <div>
-                <li>
-                  <BsFillPieChartFill />
-                  {menuHiding && <b>그룹 생성/참가</b>}
-                </li>
+                {!menuHiding && (
+                  <li className="icon">
+                    <BsFillPieChartFill />{' '}
+                  </li>
+                )}
+                {menuHiding && (
+                  <li>
+                    <BsFillPieChartFill />
+                    <b>그룹 생성/참가</b>
+                  </li>
+                )}
               </div>
             )}
           </ul>

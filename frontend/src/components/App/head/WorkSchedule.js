@@ -1,16 +1,16 @@
 import './WorkSchedule.scss';
 import React, { useState, useEffect } from 'react';
 
-const WorkSchedule = () => {
-  let date = new Date();
-  // Date(date.getFullYear(), date.getMonth() + 1, 0).getDate(),
+const WorkSchedule = ({ year, month }) => {
+  let date = new Date(year, month, 0);
+
   const [lastDay, setLastDay] = useState(31);
   const [dutyCodes, setDutycodes] = useState(['', 'D', 'E', 'N', 'O']);
   const dutycodeList = dutyCodes.map((dutycode) => <option>{dutycode}</option>);
 
   let workArray = [];
   let workSumArray = [];
-  for (let i = 0; i < 31; i++) workArray.push(i);
+  for (let i = 0; i < date.getDate(); i++) workArray.push(i);
 
   const workSheet = workArray.map(() => (
     <td>
