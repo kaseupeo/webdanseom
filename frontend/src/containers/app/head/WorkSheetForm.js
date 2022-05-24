@@ -35,7 +35,7 @@ const WorkSheetForm = () => {
   };
   const onClickMonthMinus = () => {
     const { year, month } = date;
-    if (month > 0) {
+    if (month > 1) {
       dispatch(setMinusM());
     } else dispatch(setMinusY());
   };
