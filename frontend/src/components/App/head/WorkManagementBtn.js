@@ -36,7 +36,10 @@ const WorkManagementBtn = () => {
       <div className="btn">
         <div className="top">
           <Button>
-            <b>불러오기</b>
+            <b>근무표 불러오기</b>
+          </Button>
+          <Button>
+            <b>근무표 출력</b>
           </Button>
           <Button>
             <b>임시 저장</b>
