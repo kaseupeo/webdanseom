@@ -40,7 +40,6 @@ const MyComponent = () => {
               <BiSearchAlt /> 간편한 근무 조회
             </h2>
             <p>
-              {' '}
               간편하게 근무 일정을
               <br /> 조회할 수 있습니다.
             </p>

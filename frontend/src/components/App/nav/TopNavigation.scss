@@ -10,8 +10,9 @@ $min-contents-width: 1050px;
     height: 4rem;
 
     .topNav {
+      
       display: flex;
-
+      
       flex-direction: row;
       padding-top: 20px;
       padding-left: 13px;
@@ -25,12 +26,14 @@ $min-contents-width: 1050px;
           width: 1.8rem;
           height: 1.8rem;
         }
+        
       }
       .endElement {
         display: flex;
         flex-direction: row;
+        
         margin-left: auto;
-        margin-right: 5rem;
+        margin-right: 0.8rem;
 
         .refreshIcon {
           display: flex;
@@ -45,7 +48,7 @@ $min-contents-width: 1050px;
           display: flex;
 
           flex-direction: row;
-          z-index: 10;
+          z-index: 120;
           padding: 5px;
 
           .helpIcon {
@@ -59,7 +62,7 @@ $min-contents-width: 1050px;
           }
           .helpMenu {
             position: absolute;
-            z-index: 120;
+            z-index: 130;
             margin-top: 30px;
             margin-left: -160px;
             background-color: white;
@@ -114,9 +117,11 @@ $min-contents-width: 1050px;
               background-color: #40586a;
             }
             ul {
+              
               padding: 0;
 
               li {
+                z-index: 140;
                 font-size: 15px;
                 margin-top: 5px;
                 margin-bottom: 5px;
