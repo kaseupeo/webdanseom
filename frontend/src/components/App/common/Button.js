@@ -20,6 +20,26 @@ const StyleButton = styled.button`
   }
 `;
 
+const StyleTempButton = styled.button`
+  background-color: #40586a;
+  white-space: nowrap;
+  overflow: hiddlen;
+  border-radius: 2px;
+  border: solid thin #40586a;
+  color: white;
+  font-size: 1.1rem;
+  z-index: 100;
+  margin: 5px;
+  padding: 6px 20px 6px 20px;
+
+  &:hover {
+    background-color: #556775;
+  }
+  @media (max-width: 800px) {
+    font-size: 0.5rem;
+  }
+`;
+
 const StyleSetButton = styled.button`
   background-color: #40586a;
   white-space: nowrap;
@@ -44,7 +64,7 @@ const ButtonSet = () => {
 };
 
 export const Button = (props) => <StyleButton {...props} />;
-
+export const ButtonTempSet = (props) => <StyleTempButton {...props} />;
 export const SetButton = (props) => <StyleSetButton {...props} />;
 
 export default ButtonSet;

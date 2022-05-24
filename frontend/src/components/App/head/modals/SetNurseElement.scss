@@ -1,0 +1,15 @@
+.SetNurseElement{
+    display: flex;
+    flex-direction: center;
+    table{
+        margin-left: 2rem;
+        border: solid thin #d6d6d6;
+      border-collapse: collapse;
+        th,tr,td{
+              border: solid thin #d6d6d6;
+              border-collapse: collapse;
+
+        }
+    }
+
+}
