@@ -2,6 +2,7 @@ import './SetNurseElement.scss';
 import Modal from './Modal';
 import { FaUserNurse } from 'react-icons/fa';
 import { useState } from 'react';
+import { MiniButton } from '../../common/Button';
 const SetNurseElement = ({ modalOpen, closeModal }) => {
   const [nurses, setNurses] = useState([
     {
@@ -68,12 +69,12 @@ const SetNurseElement = ({ modalOpen, closeModal }) => {
       <div className="SetNurseElement">
         <b className="title">간호사 목록</b>
         <div className="btns">
-          <button>
+          <MiniButton>
             <b>추가</b>
-          </button>
-          <button>
+          </MiniButton>
+          <MiniButton>
             <b>삭제</b>
-          </button>
+          </MiniButton>
         </div>
         <table>
           <tr>

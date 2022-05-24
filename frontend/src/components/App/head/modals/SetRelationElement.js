@@ -1,4 +1,4 @@
-import './SetNurseElement.scss';
+import './SetRelationElement.scss';
 import Modal from './Modal';
 import { FaHandshake } from 'react-icons/fa';
 import { useState } from 'react';
@@ -22,7 +22,8 @@ const SetRelationElement = ({ modalOpen, closeModal }) => {
         </div>
       }
     >
-      <div className="SetNurseElement">
+      <div className="SetRelationElement">
+        <b className="title">관계 목록</b>
         <table>
           <tr></tr>
         </table>

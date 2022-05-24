@@ -59,6 +59,22 @@ const StyleSetButton = styled.button`
     font-size: 0.5rem;
   }
 `;
+
+const StyleMiniButton = styled.button`
+  color: white;
+
+  background-color: #40586a;
+  border-radius: 2px;
+  margin: 0.5rem;
+  margin-right: 0rem;
+  height: 1.8rem;
+  width: 4rem;
+  &:hover {
+    color: white;
+    background-color: #556775;
+  }
+`;
+
 const ButtonSet = () => {
   return;
 };
@@ -66,5 +82,5 @@ const ButtonSet = () => {
 export const Button = (props) => <StyleButton {...props} />;
 export const ButtonTempSet = (props) => <StyleTempButton {...props} />;
 export const SetButton = (props) => <StyleSetButton {...props} />;
-
+export const MiniButton = (props) => <StyleMiniButton {...props} />;
 export default ButtonSet;

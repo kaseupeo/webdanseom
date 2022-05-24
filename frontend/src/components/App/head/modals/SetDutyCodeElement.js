@@ -1,8 +1,8 @@
-import './SetDutyCode.scss';
+import './SetDutyCodeElement.scss';
 import Modal from './Modal';
 import { CgWorkAlt } from 'react-icons/cg';
 import { useState } from 'react';
-
+import { MiniButton } from '../../common/Button';
 import ColorPicker from '../../common/ColorPicker';
 const SetDutyCodeElement = ({ modalOpen, closeModal }) => {
   const [dutyCodes, setDutyCodes] = useState([
@@ -38,7 +38,13 @@ const SetDutyCodeElement = ({ modalOpen, closeModal }) => {
         </div>
       }
     >
-      <div className="SetNurseElement">
+      <div className="SetDutyCodeElement">
+        <b className="title"> 듀티코드 목록</b>
+        <div className="btns">
+          <MiniButton>추가</MiniButton>
+          <MiniButton>삭제</MiniButton>
+        </div>
+
         <table>
           <tr>
             <th>듀티코드</th>
