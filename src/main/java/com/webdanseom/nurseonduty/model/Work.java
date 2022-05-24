@@ -8,7 +8,6 @@ package com.webdanseom.nurseonduty.model;
  * 수정자:표영운
  */
 
-import com.webdanseom.nurseonduty.model.id.WorkId;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -21,14 +20,12 @@ import java.util.Date;
 @Getter
 @Setter
 @NoArgsConstructor
-@IdClass(WorkId.class)
 public class Work {
 
     //근무번호 (기본키)
     @Id
     private  int workSeq;
     //그룹번호 (기본키) --- 외래키
-    @Id
     @ManyToOne
     @JoinColumn(name = "nurseGroup", nullable = false)
     private  NurseGroup nurseGroup;
@@ -40,11 +37,17 @@ public class Work {
     @Temporal(TemporalType.DATE)
     private Date date;
 
+    //간호사 번호 --- 외래키
+    @ManyToOne
+    @JoinColumn(name="nurse")
+    private Nurse nurseSeq;
+    
     //생성자
-    public Work(int workSeq, String duty, Date date) {
+    public Work(int workSeq, String duty, Date date, Nurse nurseSeq) {
         this.workSeq = workSeq;
         this.duty = duty;
         this.date = date;
+        this.nurseSeq = nurseSeq;
     }
 
     @Override
@@ -53,6 +56,7 @@ public class Work {
                 "workNum=" + workSeq +
                 ", duty='" + duty + '\'' +
                 ", date=" + date +
+                ", nurseSeq=" + nurseSeq +
                 '}';
     }
 }
