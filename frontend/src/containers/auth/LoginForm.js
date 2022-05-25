@@ -5,12 +5,8 @@
 
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  changeField,
-  initializeForm as fInitializeForm,
-  login,
-} from '../../modules/auth';
-import { initializeForm as mInitializeForm, token } from '../../modules/menu';
+import { changeField, initializeForm, login } from '../../modules/auth';
+
 import LoginElement from '../../components/auth/LoginElement';
 import { useNavigate } from 'react-router-dom';
 const LoginForm = () => {
@@ -19,15 +15,11 @@ const LoginForm = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { groupState, mResponse, mResponseError } = useSelector(({ menu }) => ({
-    groupState: menu.groupState,
-    mResponse: menu.response,
-    mResponseError: menu.responseError,
-  }));
-  const { form, fResponse, fResponseError } = useSelector(({ auth }) => ({
+
+  const { form, response, responseError } = useSelector(({ auth }) => ({
     form: auth.login,
-    fResponse: auth.response,
-    fResponseError: auth.responseError,
+    response: auth.response,
+    responseError: auth.responseError,
   }));
 
   // 인풋 변경 이벤트 핸들러
@@ -64,32 +56,31 @@ const LoginForm = () => {
   };
 
   useEffect(() => {
-    dispatch(fInitializeForm('login'));
+    dispatch(initializeForm('login'));
   }, [dispatch]);
 
   useEffect(() => {
     if (checkLogin) {
-      if (fResponse.response === null) {
+      if (response.response === null) {
         setError('');
-      } else if (fResponse.response === 'error') {
-        if (fResponse.data === '조회되지 않습니다.') {
+      } else if (response.response === 'error') {
+        if (response.data === '조회되지 않습니다.') {
           setError('가입되지 않은 이메일입니다.');
           return;
         }
-        if (fResponse.data === '비밀번호가 틀립니다.') {
+        if (response.data === '비밀번호가 틀립니다.') {
           setError('잘못된 비밀번호 입니다.');
           return;
         }
         setCheckLogin(false);
       } else {
         setError('');
-        dispatch(token(fResponse.data));
 
         navigate('/app');
         return;
       }
     }
-  }, [fResponse]);
+  }, [response]);
 
   return (
     <LoginElement

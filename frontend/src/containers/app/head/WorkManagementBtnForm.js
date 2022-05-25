@@ -3,8 +3,8 @@ import WorkManagementBtn from '../../../components/app/head/WorkManagementBtn';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import SetNurseForm from './modals/SetNurseForm';
-import SetDutyCodeElement from '../../../components/app/head/modals/SetDutyCodeElement';
-import SetRelationElement from '../../../components/app/head/modals/SetRelationElement';
+import SetDutyCodeFrom from './modals/SetDutyCodeFrom';
+import SetRelationFrom from './modals/SetRelationFrom';
 const WorkManagementBtnForm = () => {
   const dispatch = useDispatch();
   const [nurseModalOpen, setNurseModalOpen] = useState(false);
@@ -39,11 +39,11 @@ const WorkManagementBtnForm = () => {
         openDutyCodeModal={openDutyCodeModal}
       ></WorkManagementBtn>
       <SetNurseForm modalOpen={nurseModalOpen} closeModal={closeNurseModal} />
-      <SetRelationElement
+      <SetRelationFrom
         modalOpen={relationModalOpen}
         closeModal={closeRelationModal}
       />
-      <SetDutyCodeElement
+      <SetDutyCodeFrom
         modalOpen={dutyCodeModalOpen}
         closeModal={closeDutyCodeModal}
       />

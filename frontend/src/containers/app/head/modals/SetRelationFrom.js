@@ -1,4 +1,4 @@
-import SetNurseElement from '../../../../components/app/head/modals/SetNurseElement';
+import SetRelationElement from '../../../../components/app/head/modals/SetRelationElement';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -10,7 +10,7 @@ const WorkSheetForm = ({ modalOpen, closeModal }) => {
   const onClickInsert = () => {};
   const onClickDelete = () => {};
 
-  return <SetNurseElement modalOpen={modalOpen} closeModal={closeModal} />;
+  return <SetRelationElement modalOpen={modalOpen} closeModal={closeModal} />;
 };
 
 export default WorkSheetForm;
