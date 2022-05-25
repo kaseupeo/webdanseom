@@ -6,6 +6,7 @@ import {
   BsFillPieChartFill,
   BsFillChatRightTextFill,
 } from 'react-icons/bs';
+import { HiUserGroup } from 'react-icons/hi';
 import { Outlet, useNavigate, Link } from 'react-router-dom';
 import './SideNavigation.scss';
 import React from 'react';
@@ -106,12 +107,12 @@ const SideNavigation = ({
               <div>
                 {!menuHiding && (
                   <li className="icon">
-                    <BsFillPieChartFill />{' '}
+                    <HiUserGroup />{' '}
                   </li>
                 )}
                 {menuHiding && (
                   <li>
-                    <BsFillPieChartFill />
+                    <HiUserGroup />
                     <b>그룹 생성/참가</b>
                   </li>
                 )}

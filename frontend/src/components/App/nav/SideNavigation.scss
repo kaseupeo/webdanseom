@@ -6,7 +6,7 @@ $mobile-contents-width: 640px;
   margin: 0;
   padding: 0;
   .nav {
-
+    padding-top: 1rem;
     @media (max-width: $mobile-contents-width) {
       position: fixed;
       margin: 0%;

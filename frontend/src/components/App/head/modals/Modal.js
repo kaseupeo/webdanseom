@@ -21,8 +21,9 @@ const Modal = (props) => {
             <table></table>
           </main>
           <footer>
+            <button className="close">적용</button>
             <button className="close" onClick={close}>
-              close
+              닫기
             </button>
           </footer>
         </section>

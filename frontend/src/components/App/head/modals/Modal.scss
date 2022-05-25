@@ -15,7 +15,7 @@
   }
   .modal > section {
     width: 90%;
-    max-width: 100rem;
+    max-width: 60rem;
     margin: 0 auto;
     border-radius: 0.3rem;
     background-color: #fff;
@@ -55,6 +55,9 @@
     background-color: #6c757d;
     border-radius: 5px;
     font-size: 13px;
+    width: 6rem;
+ 
+    margin-right: 1rem;
   }
   .modal.openModal {
     display: flex;
