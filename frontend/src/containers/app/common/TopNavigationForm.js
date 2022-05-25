@@ -8,10 +8,10 @@ import {
 import {
   initializeForm as gInitializeForm,
   groupInfo,
+  setGroupInfo,
 } from '../../../modules/group';
 
 import TopNavigation from '../../../components/app/nav/TopNavigation';
-import { selector } from 'gsap';
 
 const TopNavigationForm = () => {
   const [error, setError] = useState('');
@@ -54,6 +54,7 @@ const TopNavigationForm = () => {
           }),
         );
       }
+      dispatch(setGroupInfo(response.data));
     }
     if (response.message === '그룹조회 실패') {
       dispatch(

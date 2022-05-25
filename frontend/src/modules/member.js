@@ -16,11 +16,16 @@ import { takeLatest } from 'redux-saga/effects';
 const INITIALIZE_FORM = 'member/INITIALIZE_FORM';
 
 export const initializeForm = createAction(INITIALIZE_FORM, (form) => form);
+const [MEMBER, MEMBER_SUCCESS, MEMBER_FAILURE] =
+  createRequestActionTypes('member/MEMBER');
+export const memberInfo = createAction(MEMBER, (member) => member);
+const memberUpdateSaga = createRequestSaga(MEMBER, authAPI.memberUpdate);
+
+export function* memberSaga() {
+  yield takeLatest(MEMBER, memberUpdateSaga);
+}
 
 const initialState = {
-  // nurseGroup:{
-
-  // },
   response: {
     response: null,
     message: null,
@@ -35,6 +40,15 @@ const member = handleActions(
     [INITIALIZE_FORM]: (state, { payload: form }) => ({
       ...state,
       [form]: initialState[form],
+    }),
+    [MEMBER_SUCCESS]: (state, { payload: member }) => ({
+      ...state,
+      response: member,
+      responseError: null,
+    }),
+    [MEMBER_FAILURE]: (state, { payload: error }) => ({
+      ...state,
+      responseError: error,
     }),
   },
   initialState,

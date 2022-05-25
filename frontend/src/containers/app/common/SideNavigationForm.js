@@ -37,7 +37,7 @@ const LeftNavigationForm = () => {
       return;
     }
 
-    if (headNurseCheck)
+    if (headNurseCheck) {
       switch (selecting) {
         case 0:
           navigate('/app/h/managementWork'); //근무표 관리
@@ -52,16 +52,16 @@ const LeftNavigationForm = () => {
           navigate('/app/h/managementWork');
           return;
       }
-    else {
+    } else {
       switch (selecting) {
         case 0:
           navigate('/app/n/selectWork'); //근무표 조회
           return;
         case 1:
-          navigate('/app/h/'); //근무 요청
+          navigate('/app/n/requestWork'); //근무 요청
           return;
         case 2:
-          navigate('/app/h/'); //근무표 통계 조회
+          navigate('/app/n/statisticsWork'); //근무표 통계 조회
           return;
         default:
           navigate('/app/h/managementWork');

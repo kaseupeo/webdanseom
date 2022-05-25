@@ -22,6 +22,9 @@ import MainNavigation from './components/auth/nav/MainNavigation';
 import HeadSelectWork from './pages/app/head/SelectWork';
 import HeadManagementWork from './pages/app/head/ManagementWork';
 import HeadStasticsWork from './pages/app/head/StatisticsWork';
+import NormalSelectWork from './pages/app/normal/SelectWork';
+import NormalRequestWokr from './pages/app/normal/RequestWork.js';
+import NormalStasticsWork from './pages/app/normal/StatisticsWork';
 function App() {
   return (
     <div>
@@ -44,6 +47,16 @@ function App() {
               <Route
                 path="/app/h/statisticsWork"
                 element={<HeadStasticsWork />}
+              />
+
+              <Route path="/app/n/selectWork" element={<NormalSelectWork />} />
+              <Route
+                path="/app/n/requestWork/"
+                element={<NormalRequestWokr />}
+              />
+              <Route
+                path="/app/n/statisticsWork"
+                element={<NormalStasticsWork />}
               />
             </Route>
           </Route>
