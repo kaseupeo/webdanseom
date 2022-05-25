@@ -22,8 +22,11 @@ import java.util.Date;
 @NoArgsConstructor
 public class Duty {
 
-    //듀티코드(기본키) 
+    //듀티seq -- 기본키
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int dutySeq;
+    //듀티코드(기본키)
     private String dutyCode;
     //그룹번호 ---  외래키
     @ManyToOne
@@ -47,8 +50,9 @@ public class Duty {
     private String creator;
 
 
-    public Duty(String dutyCode, NurseGroup nurseGroup, String dutyCodeName, int workingHours, String workType,
+    public Duty(int dutySeq, String dutyCode, NurseGroup nurseGroup, String dutyCodeName, int workingHours, String workType,
                 String hexColor, Date startTime, Boolean isUsable, String creator) {
+        this.dutySeq = dutySeq;
         this.dutyCode = dutyCode;
         this.nurseGroup = nurseGroup;
         this.dutyCodeName = dutyCodeName;
@@ -63,15 +67,16 @@ public class Duty {
     @Override
     public String toString() {
         return "Duty{" +
+                "dutySeq'" + dutySeq + '\'' +
                 "dutyCode='" + dutyCode + '\'' +
                 "nurseGroup'" + nurseGroup + '\'' +
                 ", dutyCodeName='" + dutyCodeName + '\'' +
                 ", workingHours='" + workingHours + '\'' +
                 ", workType='" + workType + '\'' +
                 ", hexColor='" + hexColor + '\'' +
-                ", time=" + startTime +
-                ", dutyUse=" + isUsable +
-                ", creator=" + creator +
+                ", time='" + startTime + '\'' +
+                ", dutyUse='" + isUsable + '\'' +
+                ", creator='" + creator + '\'' +
                 '}';
     }
 }
