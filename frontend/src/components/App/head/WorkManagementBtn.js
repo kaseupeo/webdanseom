@@ -4,33 +4,12 @@ import { Button, SetButton } from '../common/Button';
 import { FaUserNurse, FaHandshake } from 'react-icons/fa';
 import { CgWorkAlt } from 'react-icons/cg';
 import { AiOutlinePlusSquare } from 'react-icons/ai';
-import SetNurseElement from './modals/SetNurseElement';
-import SetDutyCodeElement from './modals/SetDutyCodeElement';
-import SetRelationElement from './modals/SetRelationElement';
-const WorkManagementBtn = () => {
-  const [nurseModalOpen, setNurseModalOpen] = useState(false);
-  const [relationModalOpen, setRelationModalOpen] = useState(false);
-  const [dutyCodeModalOpen, setDutyCodeModalOpen] = useState(false);
-  const openNurseModal = () => {
-    setNurseModalOpen(true);
-  };
-  const closeNurseModal = () => {
-    setNurseModalOpen(false);
-  };
 
-  const openRelationModal = () => {
-    setRelationModalOpen(true);
-  };
-  const closeRelationModal = () => {
-    setRelationModalOpen(false);
-  };
-
-  const openDutyCodeModal = () => {
-    setDutyCodeModalOpen(true);
-  };
-  const closeDutyCodeModal = () => {
-    setDutyCodeModalOpen(false);
-  };
+const WorkManagementBtn = ({
+  openNurseModal,
+  openRelationModal,
+  openDutyCodeModal,
+}) => {
   return (
     <div className="WorkManagementBtn">
       <div className="btn">
@@ -77,18 +56,6 @@ const WorkManagementBtn = () => {
           </Button>
         </div>
       </div>
-      <SetNurseElement
-        modalOpen={nurseModalOpen}
-        closeModal={closeNurseModal}
-      />
-      <SetRelationElement
-        modalOpen={relationModalOpen}
-        closeModal={closeRelationModal}
-      />
-      <SetDutyCodeElement
-        modalOpen={dutyCodeModalOpen}
-        closeModal={closeDutyCodeModal}
-      />
     </div>
   );
 };
