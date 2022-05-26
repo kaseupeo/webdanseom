@@ -8,6 +8,7 @@ package com.webdanseom.nurseonduty.controller;
  * 수정일자: 2022.05.12
  * 수정자:신동현
  */
+import com.webdanseom.nurseonduty.jwt.JwtRequestFilter;
 import com.webdanseom.nurseonduty.jwt.JwtUtil;
 import com.webdanseom.nurseonduty.model.Member;
 import com.webdanseom.nurseonduty.model.Response;
@@ -159,6 +160,25 @@ public class MemberController {
         return response;
     }
 
+    //회원정보 조회
+    @GetMapping("/profile")
+    public Response selectProfile(HttpServletRequest httpServletRequest,
+                                  HttpServletResponse httpServletResponse) {
+        Cookie token = null;
+        String jwt = null;
+        String email = null;
+        try {
+            token = cookieUtil.getCookie(httpServletRequest, JwtUtil.ACCESS_TOKEN_NAME);
+            jwt = token.getValue();
+            email = jwtUtil.getEmail(jwt);
+
+            Member member = authService.findByEmail(email);
+            return new Response("success", "회원 정보 조회 성공", member);
+        } catch (Exception e) {
+            return new Response("error", "회원 정보 조회 실패", e.getMessage());
+        }
+    }
+
     //회원정보 수정
     @PutMapping("/profile")
     public Response editProfile(@RequestBody RequestEditProfile requestEditProfile) {
@@ -186,11 +206,23 @@ public class MemberController {
         return response;
     }
 
-
-
-    @GetMapping("/test")
-    public String test() {
-        return "Hello World!";
+    //로그아웃
+    @PostMapping("/logout")
+    public Response logout(HttpServletRequest httpServletRequest,
+                           HttpServletResponse httpServletResponse) {
+        Cookie token = null;
+        String jwt = null;
+        String email =null;
+        try {
+            token = cookieUtil.getCookie(httpServletRequest, JwtUtil.ACCESS_TOKEN_NAME);
+            jwt = token.getValue();
+            email = jwtUtil.getEmail(jwt);
+            Member member = authService.findByEmail(email);
+            final String refreshJwt = jwtUtil.generateRefreshToken(member);
+            redisUtil.deleteData(jwt);
+            return new Response("success", "로그아웃 성공", httpServletRequest.getCookies());
+        } catch (Exception e) {
+            return new Response("error", "로그아웃 실패", e.getMessage());
+        }
     }
-
 }
