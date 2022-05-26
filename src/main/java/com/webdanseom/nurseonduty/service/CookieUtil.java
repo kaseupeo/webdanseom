@@ -17,9 +17,9 @@ public class CookieUtil {
         return token;
     }
 
-    public Cookie getCookie(HttpServletRequest request, String cookieName) {
+    public Cookie getCookie(HttpServletRequest httpServletRequest, String cookieName) {
 
-        final Cookie[] cookies = request.getCookies();
+        final Cookie[] cookies = httpServletRequest.getCookies();
 
         if (cookies==null) return null;
 
@@ -27,6 +27,20 @@ public class CookieUtil {
             if (cookie.getName().equals(cookieName))
                 return cookie;
 
+        return null;
+    }
+
+    public Cookie deleteCookie(HttpServletRequest httpServletRequest, String cookieName) {
+
+        final Cookie[] cookies = httpServletRequest.getCookies();
+
+        if (cookies!=null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals(cookieName))
+                    cookie.setMaxAge(0);
+                return cookie;
+            }
+        }
         return null;
     }
 }

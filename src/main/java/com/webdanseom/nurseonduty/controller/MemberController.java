@@ -8,7 +8,6 @@ package com.webdanseom.nurseonduty.controller;
  * 수정일자: 2022.05.12
  * 수정자:신동현
  */
-import com.webdanseom.nurseonduty.jwt.JwtRequestFilter;
 import com.webdanseom.nurseonduty.jwt.JwtUtil;
 import com.webdanseom.nurseonduty.model.Member;
 import com.webdanseom.nurseonduty.model.Response;
@@ -207,20 +206,15 @@ public class MemberController {
     }
 
     //로그아웃
-    @PostMapping("/logout")
+    @GetMapping("/logout")
     public Response logout(HttpServletRequest httpServletRequest,
                            HttpServletResponse httpServletResponse) {
-        Cookie token = null;
-        String jwt = null;
-        String email =null;
         try {
-            token = cookieUtil.getCookie(httpServletRequest, JwtUtil.ACCESS_TOKEN_NAME);
-            jwt = token.getValue();
-            email = jwtUtil.getEmail(jwt);
-            Member member = authService.findByEmail(email);
-            final String refreshJwt = jwtUtil.generateRefreshToken(member);
-            redisUtil.deleteData(jwt);
-            return new Response("success", "로그아웃 성공", httpServletRequest.getCookies());
+            Cookie accessToken = cookieUtil.deleteCookie(httpServletRequest, JwtUtil.ACCESS_TOKEN_NAME);
+            Cookie refreshToken = cookieUtil.deleteCookie(httpServletRequest, JwtUtil.REFRESH_TOKEN_NAME);
+            httpServletResponse.addCookie(accessToken);
+            httpServletResponse.addCookie(refreshToken);
+            return new Response("success", "로그아웃 성공", accessToken.getMaxAge());
         } catch (Exception e) {
             return new Response("error", "로그아웃 실패", e.getMessage());
         }
