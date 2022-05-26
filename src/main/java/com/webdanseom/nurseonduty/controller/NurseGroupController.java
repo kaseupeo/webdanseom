@@ -1,16 +1,10 @@
 package com.webdanseom.nurseonduty.controller;
 
 import com.webdanseom.nurseonduty.jwt.JwtUtil;
-import com.webdanseom.nurseonduty.model.Member;
-import com.webdanseom.nurseonduty.model.Nurse;
-import com.webdanseom.nurseonduty.model.NurseGroup;
-import com.webdanseom.nurseonduty.model.Response;
+import com.webdanseom.nurseonduty.model.*;
 import com.webdanseom.nurseonduty.repo.NurseGroupRepository;
-import com.webdanseom.nurseonduty.service.AuthService;
-import com.webdanseom.nurseonduty.service.CookieUtil;
-import com.webdanseom.nurseonduty.service.GroupService;
+import com.webdanseom.nurseonduty.service.*;
 import com.webdanseom.nurseonduty.model.response.ResponseSelectGroup;
-import com.webdanseom.nurseonduty.service.NurseService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.sql.Time;
+import java.util.List;
 
 /**
  * 파일명: NurseGroupController.java
@@ -50,6 +46,9 @@ public class NurseGroupController {
     @Autowired
     private NurseService nurseService;
 
+    @Autowired
+    private DutyService dutyService;
+
 
     //그룹생성
     @PostMapping("/createGroup")
@@ -73,12 +72,15 @@ public class NurseGroupController {
             nurse.setName(member.getName());
             nurse.setPosition("수간호사");
             nurse.setAnnualLeave(10);
-
             nurseService.addNurse(nurse);
+
+            //듀티코드 생성 추가
+            for(int i = 0 ; i < 42; i++)
+                dutyService.initializeDuty(nurseGroup, i);
 
             return new Response("success", "그룹생성 성공", null);
         }catch (Exception e) {
-            return new Response("error", "그룹생성 실패", e);
+            return new Response("error", "그룹생성 실패", e.getMessage());
         }
     }
 

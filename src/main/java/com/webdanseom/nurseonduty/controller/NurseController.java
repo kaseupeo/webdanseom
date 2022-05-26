@@ -72,7 +72,7 @@ public class NurseController {
         }
     }
 
-    //간호사 조회
+    //간호사 조회 (임시)
     @GetMapping("/select")
     public Response selectNurse(@RequestBody RequestNurseGroupSeq requestNurseGroupSeq,
                                 HttpServletRequest httpServletRequest,
