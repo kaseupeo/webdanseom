@@ -26,6 +26,9 @@ const SetNurseElement = ({ modalOpen, closeModal }) => {
   ]);
   const nurseInfo = nurses.map((nurse) => (
     <tr className="metaInfo">
+      <td>
+        <input type="checkBox" value={nurse.num} />
+      </td>
       <td>{nurse.num}</td>
       <td>
         <input type={'text'} value={nurse.name} />
@@ -78,7 +81,7 @@ const SetNurseElement = ({ modalOpen, closeModal }) => {
         </div>
         <table>
           <tr>
-            <th>순번</th>
+            <th colSpan={2}>순번</th>
             <th>이름</th>
             <th>직책</th>
             <th>전담</th>

@@ -3,7 +3,7 @@
  *
  */
 import WorkSchedule from '../../../components/app/head/WorkSchedule';
-import WorkManagementBtn from '../../../components/app/head/WorkManagementBtn';
+import WorkManagementBtnForm from './WorkManagementBtnForm';
 import WorkScheduleSum from '../../../components/app/head/WorkScheduleSum';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -18,9 +18,33 @@ import {
 import WorkSheet from '../../../components/app/head/WorkSheet';
 import { useNavigate } from 'react-router-dom';
 const WorkSheetForm = () => {
+  const dispatch = useDispatch();
   const [error, setError] = useState('');
   const [YAndM, setYAndM] = useState('');
-  const dispatch = useDispatch();
+  const [nurseModalOpen, setNurseModalOpen] = useState(false);
+  const [relationModalOpen, setRelationModalOpen] = useState(false);
+  const [dutyCodeModalOpen, setDutyCodeModalOpen] = useState(false);
+  const openNurseModal = () => {
+    setNurseModalOpen(true);
+  };
+  const closeNurseModal = () => {
+    setNurseModalOpen(false);
+  };
+
+  const openRelationModal = () => {
+    setRelationModalOpen(true);
+  };
+  const closeRelationModal = () => {
+    setRelationModalOpen(false);
+  };
+
+  const openDutyCodeModal = () => {
+    setDutyCodeModalOpen(true);
+  };
+  const closeDutyCodeModal = () => {
+    setDutyCodeModalOpen(false);
+  };
+
   const { date, response, responseError } = useSelector(({ management }) => ({
     date: management.date,
     response: management.response,
@@ -50,7 +74,7 @@ const WorkSheetForm = () => {
       onClickMonthPlus={onClickMonthPlus}
       onClickMonthMinus={onClickMonthMinus}
     >
-      <WorkManagementBtn />
+      <WorkManagementBtnForm />
       <WorkSchedule year={date.year} month={date.month} />
       <WorkScheduleSum year={date.year} month={date.month} />
     </WorkSheet>

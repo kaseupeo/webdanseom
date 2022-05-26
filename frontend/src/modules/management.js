@@ -28,6 +28,8 @@ export const setPlusY = createAction(SET_PLUS_Y);
 export const setMinusY = createAction(SET_MINUS_Y);
 
 const initialState = {
+  headNurseNum: null,
+
   date: {
     year: now.getFullYear(),
     month: now.getMonth() + 1,

@@ -31,7 +31,7 @@ const SideNavigation = ({
               headNurseCheck ? (
                 <div>
                   {!menuHiding && (
-                    <li onClick={onClickMenu0}>
+                    <li className="icon" onClick={onClickMenu0}>
                       <BsFillPencilFill />
                     </li>
                   )}
@@ -43,7 +43,7 @@ const SideNavigation = ({
                   )}
 
                   {!menuHiding && (
-                    <li onClick={onClickMenu1}>
+                    <li className="icon" onClick={onClickMenu1}>
                       <BsCalendar4 />
                     </li>
                   )}
@@ -55,7 +55,7 @@ const SideNavigation = ({
                   )}
 
                   {!menuHiding && (
-                    <li onClick={onClickMenu2}>
+                    <li className="icon" onClick={onClickMenu2}>
                       <BsFillPieChartFill />{' '}
                     </li>
                   )}
@@ -69,7 +69,7 @@ const SideNavigation = ({
               ) : (
                 <div>
                   {!menuHiding && (
-                    <li onClick={onClickMenu0}>
+                    <li className="icon" onClick={onClickMenu0}>
                       <BsCalendar4 />
                     </li>
                   )}
@@ -80,7 +80,7 @@ const SideNavigation = ({
                   )}
 
                   {!menuHiding && (
-                    <li onClick={onClickMenu1}>
+                    <li className="icon" onClick={onClickMenu1}>
                       <BsFillChatRightTextFill />
                     </li>
                   )}
@@ -91,10 +91,11 @@ const SideNavigation = ({
                   )}
 
                   {!menuHiding && (
-                    <li onClick={onClickMenu2}>
+                    <li className="icon" onClick={onClickMenu2}>
                       <BsFillPieChartFill className="icon" />
                     </li>
                   )}
+
                   {menuHiding && (
                     <li onClick={onClickMenu2}>
                       <BsFillPieChartFill />
@@ -107,7 +108,7 @@ const SideNavigation = ({
               <div>
                 {!menuHiding && (
                   <li className="icon">
-                    <HiUserGroup />{' '}
+                    <HiUserGroup />
                   </li>
                 )}
                 {menuHiding && (
