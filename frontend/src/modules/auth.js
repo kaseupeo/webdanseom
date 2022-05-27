@@ -17,7 +17,8 @@ const [SIGNUP, SIGNUP_SUCCESS, SIGNUP_FAILURE] =
   createRequestActionTypes('auth/SIGNUP');
 const [FIND_PASSWORD, FIND_PASSWORD_SUCCESS, FIND_PASSWORD_FAILURE] =
   createRequestActionTypes('auth/FIND_PASSWORD');
-
+const [LOGOUT, LOGOUT_SUCCESS, LOGOUT_FAILURE] =
+  createRequestActionTypes('auth/LOGOUT');
 export const changeField = createAction(
   CHANGE_FIELD,
   ({ form, key, value }) => ({
@@ -47,14 +48,17 @@ export const findPassword = createAction(FIND_PASSWORD, ({ email }) => ({
   email,
 }));
 
+export const logout = createAction(LOGOUT);
+
 const loginSaga = createRequestSaga(LOGIN, authAPI.login);
 const signUpSaga = createRequestSaga(SIGNUP, authAPI.signup);
 const findPasswordSaga = createRequestSaga(FIND_PASSWORD, authAPI.findPassword);
-
+const logoutSaga = createRequestSaga(LOGOUT, authAPI.logout);
 export function* authSaga() {
   yield takeLatest(LOGIN, loginSaga);
   yield takeLatest(SIGNUP, signUpSaga);
   yield takeLatest(FIND_PASSWORD, findPasswordSaga);
+  yield takeLatest(LOGOUT, logoutSaga);
 }
 
 const initialState = {

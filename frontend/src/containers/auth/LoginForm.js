@@ -6,7 +6,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeField, initializeForm, login } from '../../modules/auth';
-
+import { loginState } from '../../modules/menu';
 import LoginElement from '../../components/auth/LoginElement';
 import { useNavigate } from 'react-router-dom';
 const LoginForm = () => {
@@ -21,7 +21,9 @@ const LoginForm = () => {
     response: auth.response,
     responseError: auth.responseError,
   }));
-
+  const { loginStateNow } = useSelector((state) => ({
+    loginStateNow: state.menu.loginState,
+  }));
   // 인풋 변경 이벤트 핸들러
   const onChange = (e) => {
     const { value, name } = e.target;
@@ -75,7 +77,7 @@ const LoginForm = () => {
         setCheckLogin(false);
       } else {
         setError('');
-
+        dispatch(loginState(true));
         navigate('/app');
         return;
       }

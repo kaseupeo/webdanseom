@@ -19,13 +19,7 @@ const thisYearAndMonth = () => {
   return { year, month };
 };
 
-const TopNavigation = ({
-  groupName,
-  isJoinGroup,
-  headNurseCheck,
-  onClickMenu,
-  error,
-}) => {
+const TopNavigation = ({ groupName, onClickLogout, onClickMenu, error }) => {
   const navigate = useNavigate();
   const [helpHiding, setHelpHiding] = useState(false);
   const [myPageHiding, setMyPageHiding] = useState(false);
@@ -93,7 +87,7 @@ const TopNavigation = ({
                     <li>내 정보 수정</li>
                     <li>그룹설정</li>
                     <hr />
-                    <li>로그아웃</li>
+                    <li onClick={onClickLogout}>로그아웃</li>
                   </ul>
                 </div>
               )}

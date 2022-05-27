@@ -16,9 +16,12 @@ import { takeLatest } from 'redux-saga/effects';
 const INITIALIZE_FORM = 'member/INITIALIZE_FORM';
 
 export const initializeForm = createAction(INITIALIZE_FORM, (form) => form);
+
 const [MEMBER, MEMBER_SUCCESS, MEMBER_FAILURE] =
   createRequestActionTypes('member/MEMBER');
+
 export const memberInfo = createAction(MEMBER, (member) => member);
+
 const memberUpdateSaga = createRequestSaga(MEMBER, authAPI.memberUpdate);
 
 export function* memberSaga() {

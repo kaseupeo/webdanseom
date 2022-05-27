@@ -55,3 +55,9 @@ export const findPassword = (
       console.log(response.data);
       return response;
     });
+
+export const logout = () =>
+  client.get('/api/member/logout').then((response) => {
+    console.log(response.data);
+    return response;
+  });
