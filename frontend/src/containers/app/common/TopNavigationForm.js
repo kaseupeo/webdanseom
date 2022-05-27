@@ -41,14 +41,19 @@ const TopNavigationForm = () => {
     dispatch(loginState(false));
     navigate('/auth/login');
   };
-
   useEffect(() => {
-    navigate('/app/');
+    if (loginStateNow === null) return;
+    if (!loginStateNow) {
+      navigate('/auth/login');
+      alert('서비스 이용 시 로그인이 필요합니다');
+    }
+  }, [loginStateNow]);
+  useEffect(() => {
     dispatch(groupInfo());
 
     if (response.message === '그룹조회 성공') {
+      dispatch(loginState(true));
       if (response.data.joinGroup === true) {
-        dispatch(loginState(true));
         dispatch(
           setGroupState({
             groupName: response.data.nurseGroup.groupName,
@@ -78,11 +83,6 @@ const TopNavigationForm = () => {
       if (response.data === 'selectGroup(), 가입이 되어 있지 않습니다.')
         dispatch(loginState(true));
       else dispatch(loginState(false));
-    }
-
-    if (loginStateNow !== null && !loginStateNow) {
-      alert('서비스 이용 시 로그인이 필요합니다');
-      navigate('/auth/login');
     }
   }, [dispatch, response.message]);
   return (
