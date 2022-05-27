@@ -6,9 +6,9 @@ const WorkScheduleSum = ({ year, month }) => {
   let daySumArray = 9;
   const dutyCode = ['D', 'E', 'N', 'OFF'];
   for (let i = 0; i < date.getDate() + daySumArray; i++) dayArray.push(i);
-  const days = dayArray.map((day) => <td>{0}</td>);
+  const days = dayArray.map((day) => <td key={day}>{0}</td>);
   const sumRow = dutyCode.map((code) => (
-    <tr>
+    <tr key={code}>
       <th colSpan={3}>{code}</th>
       {days}
     </tr>

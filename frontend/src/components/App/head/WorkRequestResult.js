@@ -12,7 +12,7 @@ const WorkRequestResult = () => {
   ]);
 
   const result = requests.map((request) => (
-    <tr>
+    <tr key={request.id}>
       <td>{request.id}</td>
       <td>{request.name}</td>
       <td>{request.date}</td>

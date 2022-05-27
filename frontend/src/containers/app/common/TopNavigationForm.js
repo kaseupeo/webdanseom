@@ -70,7 +70,7 @@ const TopNavigationForm = () => {
           }),
         );
       }
-      dispatch(setGroupInfo(response.data));
+      dispatch(setGroupInfo(response.data.nurseGroup));
     }
     if (response.message === '그룹조회 실패') {
       dispatch(

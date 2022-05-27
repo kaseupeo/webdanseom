@@ -12,14 +12,14 @@ import createRequestSaga, {
   createRequestActionTypes,
 } from '../libs/createRequestSaga';
 //필드 값 초기화
-const INITIALIZE_FORM = 'nurse/INITIALIZE_FORM';
+const INITIALIZE_FORM = 'dutyCode/INITIALIZE_FORM';
 
 const [SELECT_DUTYCODE, SELECT_DUTYCODE_SUCCESS, SELECT_DUTYCODE_FAILURE] =
-  createRequestActionTypes('nurse/SELECT_NURSES');
+  createRequestActionTypes('dutyCode/SELECT_DUTYCODE');
 const [INSERT_DUTYCODE, INSERT_DUTYCODE_SUCCESS, INSERT_DUTYCODE_FAILURE] =
-  createRequestActionTypes('nurse/INSERT_NURSES');
+  createRequestActionTypes('dutyCode/INSERT_DUTYCODE');
 const [DELETE_DUTYCODE, DELETE_DUTYCODE_SUCCESS, DELETE_DUTYCODE_FAILURE] =
-  createRequestActionTypes('nurse/DELETE_NURSES');
+  createRequestActionTypes('dutyCode/DELETE_DUTYCODE');
 export const initializeForm = createAction(INITIALIZE_FORM, (form) => form);
 
 export const selectDutyCode = createAction(
@@ -54,7 +54,7 @@ export function* dutyCodeSaga() {
   yield takeLatest(DELETE_DUTYCODE, deleteDutyCodeSaga);
 }
 const initialState = {
-  nurse: {},
+  dutyCode: {},
   response: {
     response: null,
     message: '',

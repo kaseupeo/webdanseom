@@ -30,9 +30,13 @@ const WorkSheet = ({
 
   let dayArray = [];
   for (let i = 0; i < date.getDate(); i++) dayArray.push(i);
-  const days = dayArray.map((day) => <th className="workDays">{day + 1}</th>);
+  const days = dayArray.map((day) => (
+    <th key={day} className="workDays">
+      {day + 1}
+    </th>
+  ));
   const scheduleRendering = nurses.map((nurse) => (
-    <tr className="metaInfo">
+    <tr key={nurse.num} className="metaInfo">
       <td>{nurse.num}</td>
       <td> {nurse.position}</td>
       <td>{nurse.name}</td>

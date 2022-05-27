@@ -36,7 +36,7 @@ export function* nurseSaga() {
   yield takeLatest(DELETE_NURSES, deleteNursesSaga);
 }
 const initialState = {
-  nurse: {},
+  nurses: [],
   response: {
     response: null,
     message: '',
@@ -55,7 +55,7 @@ const nurse = handleActions(
 
     [SELECT_NURSES_SUCCESS]: (state, { payload: nurses }) => ({
       ...state,
-      response: nurses,
+      nurses,
       responseError: null,
     }),
     [SELECT_NURSES_FAILURE]: (state, { payload: error }) => ({

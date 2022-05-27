@@ -7,7 +7,7 @@ import WorkManagementBtnForm from './WorkManagementBtnForm';
 import WorkScheduleSum from '../../../components/app/head/WorkScheduleSum';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
+import { selectNurses } from '../../../modules/nurse';
 import {
   initializeForm,
   setPlusM,
@@ -24,6 +24,8 @@ const WorkSheetForm = () => {
   const [nurseModalOpen, setNurseModalOpen] = useState(false);
   const [relationModalOpen, setRelationModalOpen] = useState(false);
   const [dutyCodeModalOpen, setDutyCodeModalOpen] = useState(false);
+
+  const groupSeq = useSelector(({ group }) => group.nurseGroup.seq);
   const openNurseModal = () => {
     setNurseModalOpen(true);
   };
@@ -65,6 +67,10 @@ const WorkSheetForm = () => {
   };
   useEffect(() => {
     dispatch(initializeForm('response'));
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(selectNurses({ groupSeq }));
   }, [dispatch]);
 
   return (

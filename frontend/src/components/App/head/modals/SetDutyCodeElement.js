@@ -7,6 +7,7 @@ import ColorPicker from '../../common/ColorPicker';
 const SetDutyCodeElement = ({ modalOpen, closeModal }) => {
   const [dutyCodes, setDutyCodes] = useState([
     {
+      id: 1,
       dutyCode: 'D',
       name: '데이',
       color: '',
@@ -16,7 +17,7 @@ const SetDutyCodeElement = ({ modalOpen, closeModal }) => {
     },
   ]);
   const dutyCodeInfo = dutyCodes.map((dutyCode) => (
-    <tr className="metaInfo">
+    <tr key={dutyCode.id} className="metaInfo">
       <td>{dutyCode.dutyCode}</td>
       <td>{dutyCode.name}</td>
       <td>
@@ -46,15 +47,17 @@ const SetDutyCodeElement = ({ modalOpen, closeModal }) => {
         </div>
 
         <table>
-          <tr>
-            <th>듀티코드</th>
-            <th>설명</th>
-            <th>색상</th>
-            <th>시간</th>
-            <th>근무시간</th>
-            <th>근무유형</th>
-          </tr>
-          {dutyCodeInfo}
+          <thead>
+            <tr>
+              <th>듀티코드</th>
+              <th>설명</th>
+              <th>색상</th>
+              <th>시간</th>
+              <th>근무시간</th>
+              <th>근무유형</th>
+            </tr>
+          </thead>
+          <tbody>{dutyCodeInfo}</tbody>
         </table>
       </div>
     </Modal>

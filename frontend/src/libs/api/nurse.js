@@ -7,9 +7,9 @@ import client from './client';
 
 export const selectNurse = ({ seq }) =>
   client
-    .get('/api/nurse/select?seq=3')
+    .get('/api/nurse/select', { seq })
     .then((response) => {
-      console.log(response);
+      console.log(response.data.data);
       return response.data;
     })
     .catch((error) => {
