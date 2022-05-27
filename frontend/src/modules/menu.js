@@ -27,7 +27,7 @@ export const setGroupState = createAction(
 );
 
 const initialState = {
-  loginState: false,
+  loginState: null,
   hidingMenu: true,
   selectMenu: 0,
   groupState: {

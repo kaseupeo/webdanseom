@@ -15,7 +15,7 @@ const WorkSheetForm = ({ modalOpen, closeModal }) => {
   const groupSeq = useSelector((state) => state.group.nurseGroup.seq);
 
   useEffect(() => {
-    dispatch(selectNurses({ seq: '3' }));
+    dispatch(selectNurses({ seq: 3 }));
   }, [groupSeq]);
 
   const onClickInsert = () => {};

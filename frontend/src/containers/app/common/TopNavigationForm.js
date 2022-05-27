@@ -10,7 +10,7 @@ import {
   groupInfo,
   setGroupInfo,
 } from '../../../modules/group';
-import { logout } from '../../../modules/auth';
+import { login, logout } from '../../../modules/auth';
 import { loginState } from '../../../modules/menu';
 
 import TopNavigation from '../../../components/app/nav/TopNavigation';
@@ -44,32 +44,19 @@ const TopNavigationForm = () => {
 
   useEffect(() => {
     navigate('/app/');
-    if (!loginStateNow) {
-      alert('서비스 이용 시 로그인이 필요합니다');
-      navigate('/auth/login');
-    } else {
-      dispatch(groupInfo());
-      if (response.message === '그룹조회 성공') {
-        if (response.data.joinGroup === true) {
-          dispatch(
-            setGroupState({
-              groupName: response.data.nurseGroup.groupName,
-              joinGroup: response.data.joinGroup,
-              headNurseCheck: response.data.headNurseCheck,
-            }),
-          );
-        } else {
-          dispatch(
-            setGroupState({
-              groupName: '',
-              joinGroup: false,
-              headNurseCheck: false,
-            }),
-          );
-        }
-        dispatch(setGroupInfo(response.data));
-      }
-      if (response.message === '그룹조회 실패') {
+    dispatch(groupInfo());
+
+    if (response.message === '그룹조회 성공') {
+      if (response.data.joinGroup === true) {
+        dispatch(loginState(true));
+        dispatch(
+          setGroupState({
+            groupName: response.data.nurseGroup.groupName,
+            joinGroup: response.data.joinGroup,
+            headNurseCheck: response.data.headNurseCheck,
+          }),
+        );
+      } else {
         dispatch(
           setGroupState({
             groupName: '',
@@ -78,8 +65,26 @@ const TopNavigationForm = () => {
           }),
         );
       }
+      dispatch(setGroupInfo(response.data));
     }
-  }, [dispatch, loginStateNow, response.message]);
+    if (response.message === '그룹조회 실패') {
+      dispatch(
+        setGroupState({
+          groupName: '',
+          joinGroup: false,
+          headNurseCheck: false,
+        }),
+      );
+      if (response.data === 'selectGroup(), 가입이 되어 있지 않습니다.')
+        dispatch(loginState(true));
+      else dispatch(loginState(false));
+    }
+
+    if (loginStateNow !== null && !loginStateNow) {
+      alert('서비스 이용 시 로그인이 필요합니다');
+      navigate('/auth/login');
+    }
+  }, [dispatch, response.message]);
   return (
     <TopNavigation
       groupName={groupName}

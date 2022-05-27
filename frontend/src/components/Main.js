@@ -9,7 +9,7 @@ import { BiSidebar, BiSearchAlt } from 'react-icons/bi';
 import { ImStatsDots } from 'react-icons/im';
 import styled from 'styled-components';
 import './Main.scss';
-
+import Loader from './Loader';
 const styleMain = styled.div`
   background-image: url('/img/mainImg.png');
   width: 300px;
@@ -22,6 +22,7 @@ const MyComponent = () => {
       <div className="firstDiv">
         <p>of the nurse, by the nurse, for the nurse</p>
         <h2>간호사들을 위한 근무표</h2>
+        <Loader />
         <h1>Nurse on Duty</h1>
       </div>
       <div className="secondDiv">

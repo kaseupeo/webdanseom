@@ -3,7 +3,11 @@ $min-contents-width: 1050px;
 .whole {
   position: flex;
   height: 100%;
-
+  -ms-user-select: none; 
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
   .TopNavigation {
     box-shadow: 0px 3px 10px 1px rgb(157, 157, 157);
     background: white;

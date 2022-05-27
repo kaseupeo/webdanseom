@@ -1,7 +1,11 @@
 $mobile-contents-width: 640px;
 
 .LoginElement{
-  
+  -ms-user-select: none; 
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
           p{  
             margin-left: 8%;
             margin-top: -4%;

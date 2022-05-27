@@ -14,7 +14,11 @@
     margin-right: auto;
     margin-top: 4rem;
     overflow:hidden;
-
+    -ms-user-select: none; 
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
     .title{
       background: linear-gradient(to right, #547B97, #465d6e);
         color: white;

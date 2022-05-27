@@ -1,6 +1,11 @@
 $mobile-contents-width: 640px;
 $min-contents-width: 1100px;
 .Main {
+  -ms-user-select: none; 
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
   .firstDiv {
     position: flex;
     background-color: white;
@@ -27,6 +32,7 @@ $min-contents-width: 1100px;
     font-size: 2rem;
     padding-top: 0rem;
     padding-left: 20%;
+    
     
     z-index: 10;
     @media (max-width: $min-contents-width) {
