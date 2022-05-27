@@ -72,16 +72,23 @@ public class NurseController {
         }
     }
 
-    //간호사 조회 (임시)
+    //간호사 목록 조회
     @GetMapping("/select")
-    public Response selectNurse(@RequestBody RequestNurseGroupSeq requestNurseGroupSeq,
-                                HttpServletRequest httpServletRequest,
+    public Response selectNurse(HttpServletRequest httpServletRequest,
                                 HttpServletResponse httpServletResponse) {
+        Cookie token = null;
+        String jwt = null;
+        String email = null;
         try {
-            List<Nurse> nurse = nurseService.selectNurse(requestNurseGroupSeq.getSeq());
-            return new Response("success", "간호사 전체 조회 성공", nurse);
+            token = cookieUtil.getCookie(httpServletRequest, JwtUtil.ACCESS_TOKEN_NAME);
+            jwt = token.getValue();
+            email = jwtUtil.getEmail(jwt);
+            Member member = authService.findByEmail(email);
+
+            List<Nurse> nurse = nurseService.selectNurse(member.getGroupSeq().getSeq());
+            return new Response("success", "간호사 목록 조회 성공", nurse);
         } catch (Exception e) {
-            return new Response("error", "간호사 전체 조회 실패", e.getMessage());
+            return new Response("error", "간호사 목록 조회 실패", e.getMessage());
         }
     }
 
@@ -90,9 +97,9 @@ public class NurseController {
     public Response editNurse(@RequestBody Nurse nurse) {
         try {
             nurseService.editNurse(nurse);
-            return new Response("success", "간호사 전체 조회 성공", nurse);
+            return new Response("success", "간호사 정보 수정 성공", nurse);
         } catch (Exception e) {
-            return new Response("error", "간호사 전체 조회 실패", e.getMessage());
+            return new Response("error", "간호사 정보 수정 실패", e.getMessage());
         }
     }
 
