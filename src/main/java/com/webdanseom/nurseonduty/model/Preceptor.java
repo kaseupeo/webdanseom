@@ -4,8 +4,8 @@ package com.webdanseom.nurseonduty.model;
  * 설명: 프리셉터(Preceptor) 테이블
  * 작성일자:2022.05.04
  * 작성자:신동현
- * 수정일자: 2022.05.08
- * 수정자:표영운
+ * 수정일자: 2022.05.27
+ * 수정자:표영운, 신동현
  */
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,24 +28,30 @@ public class Preceptor {
 
     //주임(담당) 간호사  --- 외래키 (간호사번호)
     @NotNull
-    private int headNurseNum;
+    private int chargeNurseNum;
 
     //신입 간호사
     @NotNull
     private int newNurseNum;
 
-    public Preceptor(int preceptorSeq, int headNurseNum, int newNurseNum) {
+    @ManyToOne
+    @JoinColumn(name = "nurseGroup")
+    private NurseGroup nurseGroup;
+
+    public Preceptor(int preceptorSeq, int chargeNurseNum, int newNurseNum, NurseGroup nurseGroup) {
         this.preceptorSeq = preceptorSeq;
-        this.headNurseNum = headNurseNum;
+        this.chargeNurseNum = chargeNurseNum;
         this.newNurseNum = newNurseNum;
+        this.nurseGroup = nurseGroup;
     }
 
     @Override
     public String toString() {
         return "Preceptor{" +
-                "preceptorNum=" + preceptorSeq +
-                ", headNurseName='" + headNurseNum + '\'' +
-                ", newNurseName='" + newNurseNum + '\'' +
+                "preceptorSeq=" + preceptorSeq +
+                ", chargeNurseNum=" + chargeNurseNum +
+                ", newNurseNum=" + newNurseNum +
+                ", nurseGroup=" + nurseGroup +
                 '}';
     }
 }

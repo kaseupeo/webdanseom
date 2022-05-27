@@ -57,7 +57,7 @@ public class NurseServiceImpl implements NurseService {
     /**
      * 간호사 목록 조회
      * @param nurseGroupSeq
-     * @return
+     * @return nurse
      * @throws NotFoundException
      */
     @Override

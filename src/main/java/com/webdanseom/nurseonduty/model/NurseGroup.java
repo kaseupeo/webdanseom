@@ -41,7 +41,6 @@ public class NurseGroup {
     @NotNull
     private String inviteLink;
 
-
     //최소 Day 근무
     @NotNull
     private int numberOfDays;
