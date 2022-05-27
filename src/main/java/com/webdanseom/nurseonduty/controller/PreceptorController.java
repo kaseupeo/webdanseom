@@ -11,20 +11,19 @@ import com.webdanseom.nurseonduty.jwt.JwtUtil;
 import com.webdanseom.nurseonduty.model.Member;
 import com.webdanseom.nurseonduty.model.Preceptor;
 import com.webdanseom.nurseonduty.model.Response;
+import com.webdanseom.nurseonduty.model.request.RequestNurseGroupSeq;
 import com.webdanseom.nurseonduty.service.AuthService;
 import com.webdanseom.nurseonduty.service.CookieUtil;
 import com.webdanseom.nurseonduty.service.PreceptorService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -68,5 +67,17 @@ public class PreceptorController {
         }
     }
 
+    // 관계 목록 조회
+    @GetMapping("select")
+    public Response selectPreceptor(@RequestBody RequestNurseGroupSeq requestNurseGroupSeq,
+                                    HttpServletRequest httpServletRequest,
+                                    HttpServletResponse httpServletResponse) {
+        try {
+            List<Preceptor> preceptors = preceptorService.selectPreceptor(requestNurseGroupSeq.getSeq());
+            return new Response("success", "관계 목록 조회 성공", preceptors);
+        } catch (Exception e) {
+            return new Response("error", "관계 목록 조회 실패", e.getMessage());
+        }
+    }
 
 }
