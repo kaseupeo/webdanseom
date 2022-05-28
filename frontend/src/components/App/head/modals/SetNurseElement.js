@@ -11,9 +11,9 @@ const SetNurseElement = ({
   onClickDelete,
 }) => {
   const nurseInfo = nurses ? (
-    nurses.map((nurse) => (
-      <tr key="1" className="metaInfo">
-        <td className="num">1</td>
+    nurses.map((nurse, index) => (
+      <tr key={index} className="metaInfo">
+        <td className="num">{index + 1}</td>
         <td className="check">
           <input type="checkBox" defaultValue={nurse.charge} />
         </td>

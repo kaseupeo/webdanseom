@@ -8,11 +8,16 @@ $min-contents-width: 1050px;
   -khtml-user-select: none;
   -webkit-user-select: none;
   user-select: none;
+  @media (max-width: $mobile-contents-width) {
+    position: fixed;
+
+  
+  }
   .TopNavigation {
     box-shadow: 0px 3px 10px 1px rgb(157, 157, 157);
     background: white;
     height: 4rem;
-
+ 
     .topNav {
       
       display: flex;
@@ -141,6 +146,11 @@ $min-contents-width: 1050px;
         }
       }
       .content {
+        @media (max-width: $mobile-contents-width) {
+  
+  
+          overflow-y: scroll;
+        }
       }
       .groupName {
         position: absolute;

@@ -29,12 +29,12 @@ const SetDutyCodeElement = ({ modalOpen, closeModal }) => {
   const onChangeTime = () => {};
   const [endTime, setEndTime] = useState('00:00');
 
-  const dutyCodeInfo = dutyCodes.map((dutyCode) => (
-    <tr key="1" className="metaInfo">
+  const dutyCodeInfo = dutyCodes.map((dutyCode, index) => (
+    <tr key={index} className="metaInfo">
       <td className="check">
         <input type="checkBox" />
       </td>
-      <td className="id">{dutyCode.id}</td>
+      <td className="id">{index + 1}</td>
       <td className="dutyCode">
         <input type="text" maxLength={1} defaultValue={dutyCode.dutyCode} />
       </td>

@@ -23,7 +23,6 @@ const SideNavigation = ({
   }));
   return (
     <div>
-      <div></div>
       <div className="LeftNavigation">
         <div className="nav">
           <ul>

@@ -19,9 +19,9 @@ const WorkSheet = ({
     </th>
   ));
 
-  const scheduleRendering = nurses.map((nurse) => (
-    <tr key="1" className="metaInfo">
-      <td>{nurse.name}</td>
+  const scheduleRendering = nurses.map((nurse, index) => (
+    <tr key={index} className="metaInfo">
+      <td>{index + 1}</td>
       <td> {nurse.position}</td>
       <td>{nurse.name}</td>
       {children[1]}
@@ -36,7 +36,9 @@ const WorkSheet = ({
             &lt;
           </button>
 
-          <b>{year + '.' + month.toString().padStart(2, '0')}</b>
+          <b className="monthStr">
+            {year + '.' + month.toString().padStart(2, '0')}
+          </b>
           <button className="monthBtn" onClick={onClickMonthPlus}>
             &gt;
           </button>
