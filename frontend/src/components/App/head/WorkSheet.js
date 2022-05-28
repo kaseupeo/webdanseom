@@ -20,8 +20,8 @@ const WorkSheet = ({
   ));
 
   const scheduleRendering = nurses.map((nurse) => (
-    <tr key={nurse} className="metaInfo">
-      <td>{nurse}</td>
+    <tr key={nurse.name} className="metaInfo">
+      <td>{nurse.name}</td>
       <td> {nurse.position}</td>
       <td>{nurse.name}</td>
       {children[1]}

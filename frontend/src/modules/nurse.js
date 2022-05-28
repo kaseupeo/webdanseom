@@ -36,7 +36,7 @@ export function* nurseSaga() {
   yield takeLatest(DELETE_NURSES, deleteNursesSaga);
 }
 const initialState = {
-  nurses: [],
+  nurses: [''],
   response: {
     response: null,
     message: '',

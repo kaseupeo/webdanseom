@@ -6,7 +6,7 @@ import { MiniButton } from '../../common/Button';
 const SetNurseElement = ({ modalOpen, closeModal, nurses }) => {
   const nurseInfo = nurses ? (
     nurses.map((nurse) => (
-      <tr key={nurse.nurseSeq} className="metaInfo">
+      <tr key={nurse.name} className="metaInfo">
         <td className="num">1</td>
         <td className="check">
           <input type="checkBox" defaultValue={nurse.charge} />
