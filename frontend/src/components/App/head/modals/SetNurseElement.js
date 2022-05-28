@@ -7,10 +7,11 @@ const SetNurseElement = ({ modalOpen, closeModal, nurses }) => {
   const nurseInfo = nurses ? (
     nurses.map((nurse) => (
       <tr key={nurse.nurseSeq} className="metaInfo">
-        <td>
+        <td className="num">1</td>
+        <td className="check">
           <input type="checkBox" defaultValue={nurse.charge} />
         </td>
-        <td>{nurse.position}</td>
+
         <td>
           <input type={'text'} defaultValue={nurse.name} />
         </td>
@@ -63,15 +64,16 @@ const SetNurseElement = ({ modalOpen, closeModal, nurses }) => {
             <b>삭제</b>
           </MiniButton>
         </div>
-        <table>
+        <table className="table">
           <thead>
             <tr>
-              <th colSpan={2}>순번</th>
-              <th>이름</th>
-              <th>직책</th>
-              <th>전담</th>
-              <th>연차</th>
-              <th>이메일</th>
+              <th className="id">순번</th>
+              <th className="check">선택</th>
+              <th className="name">이름</th>
+              <th className="position">직책</th>
+              <th className="charge">전담</th>
+              <th className="annualLeave">연차</th>
+              <th className="email">이메일</th>
             </tr>
           </thead>
           <tbody>{nurseInfo}</tbody>

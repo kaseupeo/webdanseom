@@ -9,7 +9,10 @@ export const selectNurse = ({ seq }) =>
   client
     .get('/api/nurse/select', { seq })
     .then((response) => {
-      console.log(response.data.data);
+      console.log(response);
+      if (response.data.message === '간호사 목록 조회 실패')
+        return { nurses: [''] };
+
       return response.data;
     })
     .catch((error) => {

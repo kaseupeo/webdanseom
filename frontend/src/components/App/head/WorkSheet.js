@@ -7,25 +7,8 @@ const WorkSheet = ({
   month,
   onClickMonthPlus,
   onClickMonthMinus,
+  nurses,
 }) => {
-  const [nurses, setNurses] = useState([
-    {
-      num: 1,
-      position: '수간호사',
-      name: '김한숙',
-    },
-    {
-      num: 2,
-      position: '일반',
-      name: '이영희',
-    },
-    {
-      num: 3,
-      position: '일반',
-      name: '김진숙',
-    },
-  ]);
-
   let date = new Date(year, month, 0);
 
   let dayArray = [];
@@ -35,9 +18,10 @@ const WorkSheet = ({
       {day + 1}
     </th>
   ));
+
   const scheduleRendering = nurses.map((nurse) => (
-    <tr key={nurse.num} className="metaInfo">
-      <td>{nurse.num}</td>
+    <tr key={nurse} className="metaInfo">
+      <td>{nurse}</td>
       <td> {nurse.position}</td>
       <td>{nurse.name}</td>
       {children[1]}

@@ -26,6 +26,7 @@ const WorkSheetForm = () => {
   const [dutyCodeModalOpen, setDutyCodeModalOpen] = useState(false);
 
   const groupSeq = useSelector(({ group }) => group.nurseGroup.seq);
+  const nurses = useSelector(({ nurse }) => nurse.nurses);
   const openNurseModal = () => {
     setNurseModalOpen(true);
   };
@@ -70,6 +71,8 @@ const WorkSheetForm = () => {
   }, [dispatch]);
 
   useEffect(() => {
+    if (groupSeq === null) return;
+
     dispatch(selectNurses({ groupSeq }));
   }, [dispatch]);
 
@@ -79,6 +82,7 @@ const WorkSheetForm = () => {
       month={date.month}
       onClickMonthPlus={onClickMonthPlus}
       onClickMonthMinus={onClickMonthMinus}
+      nurses={nurses}
     >
       <WorkManagementBtnForm />
       <WorkSchedule year={date.year} month={date.month} />

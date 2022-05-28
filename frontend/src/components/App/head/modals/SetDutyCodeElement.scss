@@ -1,27 +1,50 @@
+$mobile-contents-width: 640px;
+$min-contents-width: 1050px;
 .SetDutyCodeElement{
     display: flex;
     padding: 1rem;
     flex-direction: column;
     .title{
+        position: relative;
         font-size: 1rem;
       
     }
     .btns{
+        position: relative;
        display: flex;
        margin-left: auto;
-       
-      
 
     }
     table{
        
         border: solid thin #d6d6d6;
       border-collapse: collapse;
+      overflow:auto;
+      white-space: nowrap;
         th,tr,td{
+            white-space: nowrap;
+            width:20vw;
             text-align: center;
               border: solid thin #d6d6d6;
               border-collapse: collapse;
+              font-size: 0.8vw;
+              .id{width: 1%;
 
+              }
+              .check{width: 1%;
+  
+              }
+               
+              input{
+                  width:90%; border: 0;
+              }
+                .name{width: 10%}
+              .position{width: 10%}
+              .charge{width: 10%;}
+              .annualLeave{width: 5%;}
+              .email{width: 30%;}
+            
+                
         }
     }
 
