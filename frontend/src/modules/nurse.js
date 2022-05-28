@@ -23,7 +23,7 @@ const [DELETE_NURSES, DELETE_NURSES_SUCCESS, DELETE_NURSES_FAILURE] =
 export const initializeForm = createAction(INITIALIZE_FORM, (form) => form);
 
 export const selectNurses = createAction(SELECT_NURSES, (nurses) => nurses);
-export const insertNurses = createAction(INSERT_NURSES, (nurses) => nurses);
+export const insertNurses = createAction(INSERT_NURSES, (response) => response);
 export const deletetNurses = createAction(DELETE_NURSES, (nurses) => nurses);
 
 const selectNursesSaga = createRequestSaga(SELECT_NURSES, authAPI.selectNurse);
@@ -62,9 +62,9 @@ const nurse = handleActions(
       ...state,
       responseError: error,
     }),
-    [INSERT_NURSES_SUCCESS]: (state, { payload: nurses }) => ({
+    [INSERT_NURSES_SUCCESS]: (state, { payload: response }) => ({
       ...state,
-      nurses,
+      response,
     }),
     [INSERT_NURSES_FAILURE]: (state, { payload: error }) => ({
       ...state,

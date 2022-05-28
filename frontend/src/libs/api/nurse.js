@@ -19,9 +19,14 @@ export const selectNurse = ({ seq }) =>
       console.log(error);
     });
 
-export const insertNurse = () =>
+export const insertNurse = ({ name, charge, position, annualLeave }) =>
   client
-    .get('/api/nurse/add')
+    .post('/api/nurse/add', {
+      name: name,
+      charge: charge,
+      position: position,
+      annualLeave: annualLeave,
+    })
     .then((response) => {
       console.log(response);
       return response;
@@ -32,7 +37,7 @@ export const insertNurse = () =>
 
 export const deleteNurse = () =>
   client
-    .get('/api/nurse/delete')
+    .delete('/api/nurse/delete')
     .then((response) => {
       console.log(response);
       return response;

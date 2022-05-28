@@ -28,21 +28,41 @@ $min-contents-width: 1050px;
               border: solid thin #d6d6d6;
               border-collapse: collapse;
               font-size: 0.8vw;
-              .id{width: 1%;
-
-              }
               .check{width: 1%;
   
               }
-               
-              input{
-                  width:90%; border: 0;
+              .id{width: 1%;
+
               }
-                .name{width: 10%}
-              .position{width: 10%}
-              .charge{width: 10%;}
-              .annualLeave{width: 5%;}
-              .email{width: 30%;}
+             
+               
+        
+              .dutyCode{
+                width:90%;
+                
+                font-size: 0.5vw;
+                  width: 1%;
+                  text-align: center;
+            
+                  input{
+                    width:30%; 
+                    @media (max-width: $min-contents-width) {
+                        text-align: center;
+                      font-size: 0.5vw;
+                      
+                  
+                  }
+                }
+            }
+              .dutyCodeName{width: 30%;
+                input{
+                    width:95%;  }}
+              .hexColor{width: 5%;}
+              .startTime{width: 30%;}
+              .workingHours{width: 5%;}
+              .workType{width: 10%;}
+              .useable{width: 5%;}
+
             
                 
         }

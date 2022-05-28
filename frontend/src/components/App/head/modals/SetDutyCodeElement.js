@@ -23,38 +23,42 @@ const SetDutyCodeElement = ({ modalOpen, closeModal }) => {
     hours.push(i);
   }
 
-  const workingHoursOption = hours.map((hour) => <option>{hour}</option>);
+  const workingHoursOption = hours.map((hour) => (
+    <option key={hour}>{hour}</option>
+  ));
   const onChangeTime = () => {};
-  const endTime = {};
+  const [endTime, setEndTime] = useState('00:00');
 
   const dutyCodeInfo = dutyCodes.map((dutyCode) => (
-    <tr key={dutyCode.id} className="metaInfo">
-      <td>
+    <tr key="1" className="metaInfo">
+      <td className="check">
         <input type="checkBox" />
       </td>
-      <td>{dutyCode.id}</td>
-      <td>
-        <input type="text" defaultValue={dutyCode.dutyCode} />
+      <td className="id">{dutyCode.id}</td>
+      <td className="dutyCode">
+        <input type="text" maxLength={1} defaultValue={dutyCode.dutyCode} />
       </td>
-      <td>
-        <input type="text" defaultValue={dutyCode.dutyCodeName} />
-      </td>
-      <td>
+      <td className="hexColor">
         <ColorPicker />
       </td>
-      <td>
+      <td className="dutyCodeName">
+        <input type="text" defaultValue={dutyCode.dutyCodeName} />
+      </td>
+
+      <td className="startTime">
         <input
           type="time"
           defaultValue={dutyCodes.startTime}
           onChange={onChangeTime}
         />
+        ~ {endTime}
       </td>
-      <td>
+      <td className="workingHours">
         <select defaultValue={dutyCodes.workingHours}>
           {workingHoursOption}
         </select>
       </td>
-      <td>
+      <td className="workType">
         <select defaultValue={dutyCode.workType}>
           <option>day</option>
           <option>evening</option>
@@ -66,7 +70,7 @@ const SetDutyCodeElement = ({ modalOpen, closeModal }) => {
           <option>mid</option>
         </select>
       </td>
-      <td>
+      <td className="useable">
         <input type="checkBox" defaultChecked={dutyCode.useable} />
       </td>
     </tr>
@@ -95,12 +99,12 @@ const SetDutyCodeElement = ({ modalOpen, closeModal }) => {
               <th className="check">선택</th>
               <th className="id">순번</th>
               <th className="dutyCode">듀티코드</th>
-              <th className="dutyCodeName">설명</th>
               <th className="hexColor">색상</th>
+              <th className="dutyCodeName">설명</th>
               <th className="startTime">시간</th>
               <th className="workingHours">근무시간</th>
               <th className="workType">근무유형</th>
-              <th className="useable">사용여부</th>
+              <th className="useable">사용 여부</th>
             </tr>
           </thead>
           <tbody>{dutyCodeInfo}</tbody>

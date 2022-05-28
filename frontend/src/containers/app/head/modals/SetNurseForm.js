@@ -11,17 +11,30 @@ import {
 
 const WorkSheetForm = ({ modalOpen, closeModal }) => {
   const [error, setError] = useState('');
-
+  const groupSeq = useSelector(({ group }) => group.nurseGroup.seq);
   const nurses = useSelector(({ nurse }) => nurse.nurses);
   const dispatch = useDispatch();
 
-  const onClickInsert = () => {};
+  const onClickInsert = () => {
+    dispatch(
+      insertNurses({
+        name: '홍길동',
+        charge: '주중 전담',
+        position: '일반',
+        annualLeave: 0,
+      }),
+    );
+    dispatch(selectNurses({ groupSeq }));
+  };
   const onClickDelete = () => {};
+  useEffect(() => {}, []);
 
   return (
     <SetNurseElement
       modalOpen={modalOpen}
       closeModal={closeModal}
+      onClickInsert={onClickInsert}
+      onClickDelete={onClickDelete}
       nurses={nurses}
     />
   );

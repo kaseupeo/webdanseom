@@ -3,10 +3,16 @@ import Modal from './Modal';
 import { FaUserNurse } from 'react-icons/fa';
 import { useState } from 'react';
 import { MiniButton } from '../../common/Button';
-const SetNurseElement = ({ modalOpen, closeModal, nurses }) => {
+const SetNurseElement = ({
+  modalOpen,
+  closeModal,
+  nurses,
+  onClickInsert,
+  onClickDelete,
+}) => {
   const nurseInfo = nurses ? (
     nurses.map((nurse) => (
-      <tr key={nurse.name} className="metaInfo">
+      <tr key="1" className="metaInfo">
         <td className="num">1</td>
         <td className="check">
           <input type="checkBox" defaultValue={nurse.charge} />
@@ -57,7 +63,7 @@ const SetNurseElement = ({ modalOpen, closeModal, nurses }) => {
       <div className="SetNurseElement">
         <b className="title">간호사 목록</b>
         <div className="btns">
-          <MiniButton>
+          <MiniButton onClick={onClickInsert}>
             <b>추가</b>
           </MiniButton>
           <MiniButton>
