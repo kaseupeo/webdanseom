@@ -74,7 +74,7 @@ const WorkSheetForm = () => {
     if (groupSeq === null) return;
 
     dispatch(selectNurses({ groupSeq }));
-  }, [dispatch]);
+  }, [dispatch, groupSeq]);
 
   return (
     <WorkSheet

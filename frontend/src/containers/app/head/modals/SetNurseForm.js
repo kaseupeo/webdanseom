@@ -27,7 +27,12 @@ const WorkSheetForm = ({ modalOpen, closeModal }) => {
     dispatch(selectNurses({ groupSeq }));
   };
   const onClickDelete = () => {};
-  useEffect(() => {}, []);
+
+  useEffect(() => {
+    if (groupSeq === null) return;
+
+    dispatch(selectNurses({ groupSeq }));
+  }, [dispatch, groupSeq]);
 
   return (
     <SetNurseElement
