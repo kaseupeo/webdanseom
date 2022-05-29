@@ -43,16 +43,6 @@ public class AuthServiceIntegreTest {
     public  void signUp() {
         authService.signUpUser(member);
     }
-    @Test
-    public void login() {
-        RequestLoginUser loginUser = new RequestLoginUser(member.getEmail(), member.getPassword());
-        try {
-            authService.loginUser(loginUser.getEmail(), loginUser.getPassword());
-            log.info("로그인 성공");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     @Test
     public void modifyUserRole() {}

@@ -1,5 +1,13 @@
 package com.webdanseom.nurseonduty.controller;
-
+/**
+ * 파일명: NurseGroupController.java
+ * 설명: 그룹 관련 컨트롤러
+ *      그룹가입, 그룹생성, 그룹초대, 그룹조회, 수간호사 확인
+ * 작성일자:2022.05.18
+ * 작성자:표영운
+ * 수정일자: 2022.05.21
+ * 수정자: 표영운
+ */
 import com.webdanseom.nurseonduty.jwt.JwtUtil;
 import com.webdanseom.nurseonduty.model.*;
 import com.webdanseom.nurseonduty.repo.NurseGroupRepository;
@@ -12,18 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.sql.Time;
-import java.util.List;
 
-/**
- * 파일명: NurseGroupController.java
- * 설명: 그룹 관련 컨트롤러
- *      그룹가입, 그룹생성, 그룹초대, 그룹조회, 수간호사 확인 
- * 작성일자:2022.05.18
- * 작성자:표영운
- * 수정일자: 2022.05.21
- * 수정자: 표영운
- */
 @Slf4j
 @RestController
 @RequestMapping("/nurseGroup")

@@ -7,7 +7,6 @@ package com.webdanseom.nurseonduty.model;
  * 수정일자: 2022.05.08
  * 수정자:표영운
  */
-import com.webdanseom.nurseonduty.model.id.WorkAdjustId;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,15 +19,14 @@ import java.util.Date;
 @Getter
 @Setter
 @NoArgsConstructor
-@IdClass(WorkAdjustId.class)
 public class WorkAdjust {
 
     //근무조정번호 (기본키)
     @Id
     @GeneratedValue
     private int workAdjustSeq;
+
     //그룹번호 (기본키) --- 외래키
-    @Id
     @ManyToOne
     @JoinColumn(name = "nurseGroup", nullable = false)
     private NurseGroup nurseGroup;
