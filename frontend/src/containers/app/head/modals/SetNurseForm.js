@@ -13,6 +13,7 @@ import {
 
 const WorkSheetForm = ({ modalOpen, closeModal }) => {
   const [flag, setFlag] = useState(false);
+  const [checkedNurseList, setCheckedNurseList] = useState(['']);
   const flagFuction = () => {
     if (flag) setFlag(false);
     else setFlag(true);
@@ -22,6 +23,9 @@ const WorkSheetForm = ({ modalOpen, closeModal }) => {
   const nurseList = useSelector(({ nurse }) => nurse.nurseList);
   const dispatch = useDispatch();
 
+  const initNurseList = () => {
+    setCheckedNurseList([]);
+  };
   const onClickInsert = () => {
     dispatch(
       insertNurses({
@@ -31,18 +35,35 @@ const WorkSheetForm = ({ modalOpen, closeModal }) => {
         annualLeave: 0,
       }),
     );
+    initNurseList();
+    setCheckedNurseList([]);
     flagFuction();
   };
-  const onClickDelete = (e) => {
-    alert(e);
-    dispatch(deletetNurses({}));
+  useEffect(() => {
+    initNurseList();
+  }, [dispatch]);
+  const onClickDelete = () => {
+    if (checkedNurseList !== [''])
+      dispatch(deletetNurses({ checkedNurseList }));
+    flagFuction();
   };
   const onClickUpdate = () => {
     dispatch(editNurses({ nurseList }));
   };
-  const onCheckedBox = () => {
-    // dispatch(setCheckedNurse(e));
+  const onChecked = (e) => {
+    const { id, checked } = e.target;
+
+    if (checked) {
+      setCheckedNurseList([...checkedNurseList, nurseList[id]]);
+    } else {
+      setCheckedNurseList(
+        checkedNurseList.filter(
+          (checkedNurse) => checkedNurse.nurseSeq !== nurseList[id].nurseSeq,
+        ),
+      );
+    }
   };
+
   useEffect(() => {
     if (groupSeq === null) return;
 
@@ -68,6 +89,7 @@ const WorkSheetForm = ({ modalOpen, closeModal }) => {
       onClickInsert={onClickInsert}
       onClickDelete={onClickDelete}
       onClickUpdate={onClickUpdate}
+      onChecked={onChecked}
       nurseList={nurseList}
     />
   );
