@@ -52,7 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/oauth/**").permitAll()
                 .antMatchers("/v2/api-docs", "/swagger-resources/**", "/swagger-ui/**", "/webjars/**", "/swagger/**").permitAll()
                 // 테스트 용 코드
-                .antMatchers("/nurse/**", "/nurseGroup/**", "/member/password/**", "/duty/**", "/member/**").permitAll()
+                .antMatchers("/nurse/**", "/nurseGroup/**", "/duty/**", "/member/**", "/preceptor/**").permitAll()
                 .antMatchers("/test/user").hasRole("USER")
                 .antMatchers("/test/admin").hasRole("ADMIN")
                 .anyRequest().authenticated();

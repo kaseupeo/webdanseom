@@ -20,6 +20,9 @@ public interface NurseService {
     // 간호사 조회
     Nurse findByNurseSeq(int seq) throws NotFoundException;
 
+    // 간호사 이름으로 조회
+    int findByName(String name) throws NotFoundException;
+
     //간호사 목록 조회
     List<Nurse> selectNurse(int nurseGroupSeq) throws NotFoundException;
 

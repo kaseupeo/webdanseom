@@ -191,6 +191,7 @@ public class MemberController {
         }
         return response;
     }
+
     //회원탈퇴
     @DeleteMapping("/withdrawal")
     public Response withdrawal(@RequestBody RequestLoginUser requestLoginUser) {

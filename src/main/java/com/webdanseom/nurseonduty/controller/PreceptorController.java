@@ -11,9 +11,11 @@ import com.webdanseom.nurseonduty.jwt.JwtUtil;
 import com.webdanseom.nurseonduty.model.Member;
 import com.webdanseom.nurseonduty.model.Preceptor;
 import com.webdanseom.nurseonduty.model.Response;
-import com.webdanseom.nurseonduty.model.request.RequestNurseGroupSeq;
+import com.webdanseom.nurseonduty.model.request.RequestNursesName;
+import com.webdanseom.nurseonduty.model.response.ResponseNursesName;
 import com.webdanseom.nurseonduty.service.AuthService;
 import com.webdanseom.nurseonduty.service.CookieUtil;
+import com.webdanseom.nurseonduty.service.NurseService;
 import com.webdanseom.nurseonduty.service.PreceptorService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -43,11 +46,14 @@ public class PreceptorController {
     private AuthService authService;
 
     @Autowired
+    private NurseService nurseService;
+
+    @Autowired
     private PreceptorService preceptorService;
 
     // 관계 등록
     @PostMapping("/add")
-    public Response addPreceptor(@RequestBody Preceptor preceptor,
+    public Response addPreceptor(@RequestBody RequestNursesName requestNursesName,
                                  HttpServletRequest httpServletRequest,
                                  HttpServletResponse httpServletResponse) {
         Cookie token = null;
@@ -59,6 +65,9 @@ public class PreceptorController {
             email = jwtUtil.getEmail(jwt);
 
             Member member = authService.findByEmail(email);
+            Preceptor preceptor = new Preceptor();
+            preceptor.setChargeNurseNum(nurseService.findByName(requestNursesName.getChargeNurseName()));
+            preceptor.setNewNurseNum(nurseService.findByName(requestNursesName.getNewNurseName()));
             preceptor.setNurseGroup(member.getGroupSeq());
             preceptorService.addPreceptor(preceptor);
             return new Response("success", "관계 등록 성공", null);
@@ -69,15 +78,29 @@ public class PreceptorController {
 
     // 관계 목록 조회
     @GetMapping("select")
-    public Response selectPreceptor(@RequestBody RequestNurseGroupSeq requestNurseGroupSeq,
-                                    HttpServletRequest httpServletRequest,
+    public Response selectPreceptor(HttpServletRequest httpServletRequest,
                                     HttpServletResponse httpServletResponse) {
+        Cookie token = null;
+        String jwt = null;
+        String email = null;
         try {
-            List<Preceptor> preceptors = preceptorService.selectPreceptor(requestNurseGroupSeq.getSeq());
-            return new Response("success", "관계 목록 조회 성공", preceptors);
+            token = cookieUtil.getCookie(httpServletRequest, JwtUtil.ACCESS_TOKEN_NAME);
+            jwt = token.getValue();
+            email = jwtUtil.getEmail(jwt);
+            Member member = authService.findByEmail(email);
+
+            List<Preceptor> preceptors = preceptorService.selectPreceptor(member.getGroupSeq().getSeq());
+            List<ResponseNursesName> preceptorList = new ArrayList<>();
+
+            for (Preceptor preceptor : preceptors)
+                preceptorList.add(new ResponseNursesName(
+                        preceptor.getPreceptorSeq(),
+                        nurseService.findByNurseSeq(preceptor.getChargeNurseNum()).getName(),
+                        nurseService.findByNurseSeq(preceptor.getNewNurseNum()).getName()));
+
+            return new Response("success", "관계 목록 조회 성공", preceptorList);
         } catch (Exception e) {
             return new Response("error", "관계 목록 조회 실패", e.getMessage());
         }
     }
-
 }

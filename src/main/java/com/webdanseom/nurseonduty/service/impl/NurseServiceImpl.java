@@ -55,6 +55,19 @@ public class NurseServiceImpl implements NurseService {
     }
 
     /**
+     * 간호사 이름으로 조회
+     * @param name
+     * @return
+     * @throws NotFoundException
+     */
+    @Override
+    public int findByName(String name) throws NotFoundException {
+        Nurse nurse = nurseRepository.findByName(name);
+        if (nurse==null) throw new NotFoundException("간호사가 조회되지 않습니다.");
+        return nurse.getNurseSeq();
+    }
+
+    /**
      * 간호사 목록 조회
      * @param nurseGroupSeq
      * @return nurse
