@@ -1,3 +1,5 @@
+$mobile-contents-width: 800px;
+
 .modal {
     display: none;
     position: fixed;
@@ -14,7 +16,13 @@
     border: 0;
   }
   .modal > section {
-    width: 90%;
+    width: 40%;
+    @media (max-width: $mobile-contents-width) {
+      width: 80%;
+     
+    
+    
+    }
     max-width: 60rem;
     margin: 0 auto;
     border-radius: 0.3rem;
@@ -82,4 +90,6 @@
     to {
       opacity: 1;
     }
+
+    
   }

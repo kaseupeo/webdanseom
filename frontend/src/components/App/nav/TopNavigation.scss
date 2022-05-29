@@ -4,7 +4,7 @@ $min-contents-width: 1050px;
   position: flex;
   height: 100%;
   -ms-user-select: none; 
-  -moz-user-select: -moz-none;
+
   -khtml-user-select: none;
   -webkit-user-select: none;
   user-select: none;
@@ -110,7 +110,7 @@ $min-contents-width: 1050px;
           }
           .myPageMenu {
             position: absolute;
-            z-index: 120;
+           
             margin-top: 30px;
             margin-left: -160px;
 

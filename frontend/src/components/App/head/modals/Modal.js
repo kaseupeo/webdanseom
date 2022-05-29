@@ -24,6 +24,15 @@ const Modal = (props) => {
             <button className="close" onClick={onClickUpdate}>
               적용
             </button>
+            <button
+              className="close"
+              onClick={() => {
+                onClickUpdate();
+                close();
+              }}
+            >
+              확인
+            </button>
             <button className="close" onClick={close}>
               닫기
             </button>

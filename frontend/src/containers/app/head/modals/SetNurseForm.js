@@ -11,7 +11,7 @@ import {
   changeNurse,
 } from '../../../../modules/nurse';
 
-const WorkSheetForm = ({ modalOpen, closeModal }) => {
+const SetNurseForm = ({ modalOpen, closeModal }) => {
   const [flag, setFlag] = useState(false);
   const [checkedNurseList, setCheckedNurseList] = useState(['']);
   const flagFuction = () => {
@@ -95,4 +95,4 @@ const WorkSheetForm = ({ modalOpen, closeModal }) => {
   );
 };
 
-export default WorkSheetForm;
+export default SetNurseForm;

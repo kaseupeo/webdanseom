@@ -1,4 +1,5 @@
 $mobile-contents-width: 640px;
+
 $min-contents-width: 1050px;
 .SetNurseElement{
     display: flex;
@@ -49,11 +50,11 @@ $min-contents-width: 1050px;
             input{
                 width:100%; border: 0;
             }
-              .dutyCode{width: 10%}
-            .dutyCode{width: 10%}
-            .charge{width: 10%;}
-            .annualLeave{width: 5%;}
-            .email{width: 30%;}
+              .name{width: 5%}
+            .position{width: 8%}
+            .charge{width: 4%;}
+            .annualLeave{width: 1%;}
+
               select,input{
                 width:85%;
                 font-size: 1rem;

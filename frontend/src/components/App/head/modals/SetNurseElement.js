@@ -16,12 +16,11 @@ const SetNurseElement = ({
   const nurseInfo = nurseList ? (
     nurseList.map((nurse, index) => (
       <tr key={index} className="metaInfo">
-        <td className="num">{index}</td>
         <td className="check">
           <input type="checkBox" id={index} onClick={onChecked} />
         </td>
-
-        <td>
+        <td className="num">{index + 1}</td>
+        <td className="name">
           <input
             name="name"
             type={'text'}
@@ -30,7 +29,7 @@ const SetNurseElement = ({
             id={index}
           />
         </td>
-        <td>
+        <td className="position">
           <select
             name="position"
             onChange={onChange}
@@ -66,9 +65,6 @@ const SetNurseElement = ({
             id={index}
           ></input>
         </td>
-        <td>
-          <input type={'text'} defaultValue={''} id={index} />
-        </td>
       </tr>
     ))
   ) : (
@@ -99,13 +95,12 @@ const SetNurseElement = ({
         <table className="table">
           <thead>
             <tr>
-              <th className="id">순번</th>
               <th className="check">선택</th>
+              <th className="id">순번</th>
               <th className="name">이름</th>
               <th className="position">직책</th>
               <th className="charge">전담</th>
               <th className="annualLeave">연차</th>
-              <th className="email">이메일</th>
             </tr>
           </thead>
           <tbody>{nurseInfo}</tbody>
