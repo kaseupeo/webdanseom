@@ -110,10 +110,12 @@ public class NurseController {
 
     // 간호사 정보 삭제
     @DeleteMapping("/delete")
-    public Response deleteNurse(@RequestBody RequestNurseSeq requestNurseSeq) {
+    public Response deleteNurse(@RequestBody RequestNurseList requestNurseList) {
         try {
-            Nurse nurse = nurseService.findByNurseSeq(requestNurseSeq.getSeq());
-            nurseService.deleteNurse(nurse);
+            for (int i = 0; i < requestNurseList.getNurseList().size(); i++) {
+                if (nurseService.findByNurseSeq(requestNurseList.getNurseList().get(i).getNurseSeq())!=null)
+                    nurseService.deleteNurse(requestNurseList.getNurseList().get(i));
+            }
             return new Response("success", "간호사 삭제 성공", null);
         } catch (Exception e) {
             return new Response("error", "간호사 삭제 실패", e.getMessage());
