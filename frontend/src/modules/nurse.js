@@ -41,9 +41,9 @@ export const selectNurses = createAction(
 export const insertNurses = createAction(INSERT_NURSES, (response) => response);
 export const deletetNurses = createAction(
   DELETE_NURSES,
-  (nurseList) => nurseList,
+  (response) => response,
 );
-export const editNurses = createAction(EDIT_NURSES, (nurseList) => nurseList);
+export const editNurses = createAction(EDIT_NURSES, (response) => response);
 
 const selectNursesSaga = createRequestSaga(SELECT_NURSES, authAPI.selectNurse);
 const insertNursesSaga = createRequestSaga(INSERT_NURSES, authAPI.insertNurse);

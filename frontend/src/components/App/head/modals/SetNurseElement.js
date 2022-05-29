@@ -11,13 +11,14 @@ const SetNurseElement = ({
   onClickInsert,
   onClickDelete,
   onClickUpdate,
+  onChecked,
 }) => {
   const nurseInfo = nurseList ? (
     nurseList.map((nurse, index) => (
       <tr key={index} className="metaInfo">
-        <td className="num">{index + 1}</td>
+        <td className="num">{index}</td>
         <td className="check">
-          <input type="checkBox" />
+          <input type="checkBox" id={index} onClick={onChecked} />
         </td>
 
         <td>
@@ -26,7 +27,6 @@ const SetNurseElement = ({
             type={'text'}
             onChange={onChange}
             defaultValue={nurse.name}
-            value={nurse.name}
             id={index}
           />
         </td>
@@ -35,7 +35,6 @@ const SetNurseElement = ({
             name="position"
             onChange={onChange}
             defaultValue={nurse.position}
-            value={nurse.position}
             id={index}
           >
             <option value="수간호사">수간호사</option>
@@ -50,7 +49,6 @@ const SetNurseElement = ({
             name="charge"
             onChange={onChange}
             defaultValue={nurse.charge}
-            value={nurse.charge}
             id={index}
           >
             <option value="없음">없음</option>
@@ -65,12 +63,11 @@ const SetNurseElement = ({
             name="annualLeave"
             onChange={onChange}
             defaultValue={nurse.annualLeave}
-            value={nurse.annualLeave}
             id={index}
           ></input>
         </td>
         <td>
-          <input type={'text'} defaultValue={''} value={''} id={index} />
+          <input type={'text'} defaultValue={''} id={index} />
         </td>
       </tr>
     ))
