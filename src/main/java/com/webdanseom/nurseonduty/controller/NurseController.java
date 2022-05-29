@@ -12,6 +12,7 @@ import com.webdanseom.nurseonduty.model.Member;
 import com.webdanseom.nurseonduty.model.Nurse;
 import com.webdanseom.nurseonduty.model.Response;
 import com.webdanseom.nurseonduty.model.request.RequestNurseGroupSeq;
+import com.webdanseom.nurseonduty.model.request.RequestNurseList;
 import com.webdanseom.nurseonduty.model.request.RequestNurseSeq;
 import com.webdanseom.nurseonduty.service.AuthService;
 import com.webdanseom.nurseonduty.service.CookieUtil;
@@ -94,12 +95,16 @@ public class NurseController {
 
     //간호사 정보 수정
     @PutMapping("/edit")
-    public Response editNurse(@RequestBody Nurse nurse) {
+    public Response editNurse(@RequestBody RequestNurseList requestNurseList) {
         try {
-            nurseService.editNurse(nurse);
-            return new Response("success", "간호사 정보 수정 성공", nurse);
+
+            for (int i = 0; i < requestNurseList.getNurseList().size(); i++) {
+                if (nurseService.findByNurseSeq(requestNurseList.getNurseList().get(i).getNurseSeq())!=null)
+                    nurseService.editNurse(requestNurseList.getNurseList().get(i));
+            }
+            return new Response("success", "간호사 정보 수정 성공", requestNurseList);
         } catch (Exception e) {
-            return new Response("error", "간호사 정보 수정 실패", e.getMessage());
+            return new Response("error", "간호사 정보 수정 실패", e.getMessage() + ", " + requestNurseList.getNurseList());
         }
     }
 
