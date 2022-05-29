@@ -9,16 +9,24 @@ export const selectNurse = ({ seq }) =>
   client
     .get('/api/nurse/select', { seq })
     .then((response) => {
-      console.log(response.data.data);
+      console.log(response);
+      if (response.data.message === '간호사 목록 조회 실패')
+        return { nurses: [''] };
+
       return response.data;
     })
     .catch((error) => {
       console.log(error);
     });
 
-export const insertNurse = () =>
+export const insertNurse = ({ name, charge, position, annualLeave }) =>
   client
-    .get('/api/nurse/add')
+    .post('/api/nurse/add', {
+      name: name,
+      charge: charge,
+      position: position,
+      annualLeave: annualLeave,
+    })
     .then((response) => {
       console.log(response);
       return response;
@@ -27,9 +35,19 @@ export const insertNurse = () =>
       console.log(error);
     });
 
-export const deleteNurse = () =>
+export const deleteNurses = () =>
   client
-    .get('/api/nurse/delete')
+    .delete('/api/nurse/delete')
+    .then((response) => {
+      console.log(response);
+      return response;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+export const editNurses = ({ nurseList }) =>
+  client
+    .put('/api/nurse/edit', { nurseList: nurseList })
     .then((response) => {
       console.log(response);
       return response;

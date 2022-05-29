@@ -33,7 +33,7 @@ const LeftNavigationForm = () => {
 
   useEffect(() => {
     if (!joinGroup) {
-      navigate('/app/h/managementWork'); //그룹생성/참가 수정필요
+      navigate('/app/g'); //그룹생성/참가 수정필요
       return;
     }
 

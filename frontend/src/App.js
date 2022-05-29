@@ -25,6 +25,7 @@ import HeadStasticsWork from './pages/app/head/StatisticsWork';
 import NormalSelectWork from './pages/app/normal/SelectWork';
 import NormalRequestWokr from './pages/app/normal/RequestWork.js';
 import NormalStasticsWork from './pages/app/normal/StatisticsWork';
+import Temp from './temp/temp';
 function App() {
   return (
     <div>
@@ -39,6 +40,8 @@ function App() {
 
           <Route element={<TopNavigationForm />}>
             <Route path="/app" element={<SideNavigationForm />}>
+              <Route path="/app/g/" element={<Temp />} />
+
               <Route
                 path="/app/h/ManagementWork/"
                 element={<HeadManagementWork />}

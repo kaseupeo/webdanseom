@@ -7,42 +7,68 @@ import {
   selectNurses,
   insertNurses,
   deletetNurses,
+  editNurses,
+  changeNurse,
 } from '../../../../modules/nurse';
 
 const WorkSheetForm = ({ modalOpen, closeModal }) => {
-  let [nursess, setNursess] = useState([
-    {
-      nurseSeq: 1,
-      name: '김한숙',
-      position: '수간호사',
-      charge: 'D',
-      annualLeave: 10,
-      email: 'harry03330@hs.ac.kr',
-    },
-    {
-      nurseSeq: 2,
-      name: '이영희',
-      position: '일반',
-    },
-    {
-      nurseSeq: 3,
-      name: '김진숙',
-      position: '일반',
-    },
-  ]);
-  const [error, setError] = useState('');
+  const [flag, setFlag] = useState(false);
+  const flagFuction = () => {
+    if (flag) setFlag(false);
+    else setFlag(true);
+  };
 
-  const nurses = useSelector(({ nurse }) => nurse.nurses);
+  const groupSeq = useSelector(({ group }) => group.nurseGroup.seq);
+  const nurseList = useSelector(({ nurse }) => nurse.nurseList);
   const dispatch = useDispatch();
 
-  const onClickInsert = () => {};
-  const onClickDelete = () => {};
+  const onClickInsert = () => {
+    dispatch(
+      insertNurses({
+        name: '홍길동',
+        charge: '주중 전담',
+        position: '일반',
+        annualLeave: 0,
+      }),
+    );
+    flagFuction();
+  };
+  const onClickDelete = (e) => {
+    alert(e);
+    dispatch(deletetNurses({}));
+  };
+  const onClickUpdate = () => {
+    dispatch(editNurses({ nurseList }));
+  };
+  const onCheckedBox = () => {
+    // dispatch(setCheckedNurse(e));
+  };
+  useEffect(() => {
+    if (groupSeq === null) return;
 
+    dispatch(selectNurses({ groupSeq }));
+  }, [flag]);
+  const onChange = (e) => {
+    const { value, name, id } = e.target;
+
+    console.log(id);
+    dispatch(
+      changeNurse({
+        index: id,
+        key: name,
+        value,
+      }),
+    );
+  };
   return (
     <SetNurseElement
       modalOpen={modalOpen}
       closeModal={closeModal}
-      nurses={nurses}
+      onChange={onChange}
+      onClickInsert={onClickInsert}
+      onClickDelete={onClickDelete}
+      onClickUpdate={onClickUpdate}
+      nurseList={nurseList}
     />
   );
 };

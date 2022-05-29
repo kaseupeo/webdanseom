@@ -7,25 +7,8 @@ const WorkSheet = ({
   month,
   onClickMonthPlus,
   onClickMonthMinus,
+  nurseList,
 }) => {
-  const [nurses, setNurses] = useState([
-    {
-      num: 1,
-      position: '수간호사',
-      name: '김한숙',
-    },
-    {
-      num: 2,
-      position: '일반',
-      name: '이영희',
-    },
-    {
-      num: 3,
-      position: '일반',
-      name: '김진숙',
-    },
-  ]);
-
   let date = new Date(year, month, 0);
 
   let dayArray = [];
@@ -35,9 +18,10 @@ const WorkSheet = ({
       {day + 1}
     </th>
   ));
-  const scheduleRendering = nurses.map((nurse) => (
-    <tr key={nurse.num} className="metaInfo">
-      <td>{nurse.num}</td>
+
+  const scheduleRendering = nurseList.map((nurse, index) => (
+    <tr key={index} className="metaInfo">
+      <td>{index + 1}</td>
       <td> {nurse.position}</td>
       <td>{nurse.name}</td>
       {children[1]}
@@ -52,7 +36,9 @@ const WorkSheet = ({
             &lt;
           </button>
 
-          <b>{year + '.' + month.toString().padStart(2, '0')}</b>
+          <b className="monthStr">
+            {year + '.' + month.toString().padStart(2, '0')}
+          </b>
           <button className="monthBtn" onClick={onClickMonthPlus}>
             &gt;
           </button>

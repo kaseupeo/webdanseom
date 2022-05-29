@@ -13,6 +13,7 @@ import createRequestSaga, {
 } from '../libs/createRequestSaga';
 //필드 값 초기화
 const INITIALIZE_FORM = 'nurse/INITIALIZE_FORM';
+const CHANGE_NURSE = 'nurse/CHANGE_NURSE';
 
 const [SELECT_NURSES, SELECT_NURSES_SUCCESS, SELECT_NURSES_FAILURE] =
   createRequestActionTypes('nurse/SELECT_NURSES');
@@ -20,23 +21,43 @@ const [INSERT_NURSES, INSERT_NURSES_SUCCESS, INSERT_NURSES_FAILURE] =
   createRequestActionTypes('nurse/INSERT_NURSES');
 const [DELETE_NURSES, DELETE_NURSES_SUCCESS, DELETE_NURSES_FAILURE] =
   createRequestActionTypes('nurse/DELETE_NURSES');
-export const initializeForm = createAction(INITIALIZE_FORM, (form) => form);
+const [EDIT_NURSES, EDIT_NURSES_SUCCESS, EDIT_NURSES_FAILURE] =
+  createRequestActionTypes('nurse/EDIT_NURSES');
 
-export const selectNurses = createAction(SELECT_NURSES, (nurses) => nurses);
-export const insertNurses = createAction(INSERT_NURSES, (nurses) => nurses);
-export const deletetNurses = createAction(DELETE_NURSES, (nurses) => nurses);
+export const initializeForm = createAction(INITIALIZE_FORM, (form) => form);
+export const changeNurse = createAction(
+  CHANGE_NURSE,
+  ({ index, key, value }) => ({
+    index,
+    key,
+    value,
+  }),
+);
+
+export const selectNurses = createAction(
+  SELECT_NURSES,
+  (nurseList) => nurseList,
+);
+export const insertNurses = createAction(INSERT_NURSES, (response) => response);
+export const deletetNurses = createAction(
+  DELETE_NURSES,
+  (nurseList) => nurseList,
+);
+export const editNurses = createAction(EDIT_NURSES, (nurseList) => nurseList);
 
 const selectNursesSaga = createRequestSaga(SELECT_NURSES, authAPI.selectNurse);
 const insertNursesSaga = createRequestSaga(INSERT_NURSES, authAPI.insertNurse);
-const deleteNursesSaga = createRequestSaga(DELETE_NURSES, authAPI.deleteNurse);
+const deleteNursesSaga = createRequestSaga(DELETE_NURSES, authAPI.deleteNurses);
+const editNursesSaga = createRequestSaga(EDIT_NURSES, authAPI.editNurses);
 
 export function* nurseSaga() {
   yield takeLatest(SELECT_NURSES, selectNursesSaga);
   yield takeLatest(INSERT_NURSES, insertNursesSaga);
   yield takeLatest(DELETE_NURSES, deleteNursesSaga);
+  yield takeLatest(EDIT_NURSES, editNursesSaga);
 }
 const initialState = {
-  nurses: [],
+  nurseList: [''],
   response: {
     response: null,
     message: '',
@@ -52,27 +73,38 @@ const nurse = handleActions(
       ...state,
       [form]: initialState[form],
     }),
-
-    [SELECT_NURSES_SUCCESS]: (state, { payload: nurses }) => ({
+    [CHANGE_NURSE]: (state, { payload: { index, key, value } }) =>
+      produce(state, (draft) => {
+        draft['nurseList'][index][key] = value;
+      }),
+    [SELECT_NURSES_SUCCESS]: (state, { payload: nurseList }) => ({
       ...state,
-      nurses,
+      nurseList,
       responseError: null,
     }),
     [SELECT_NURSES_FAILURE]: (state, { payload: error }) => ({
       ...state,
       responseError: error,
     }),
-    [INSERT_NURSES_SUCCESS]: (state, { payload: nurses }) => ({
+    [INSERT_NURSES_SUCCESS]: (state, { payload: response }) => ({
       ...state,
-      nurses,
+      response,
     }),
     [INSERT_NURSES_FAILURE]: (state, { payload: error }) => ({
       ...state,
       responseError: error,
     }),
-    [DELETE_NURSES_SUCCESS]: (state, { payload: nurses }) => ({
+    [EDIT_NURSES_SUCCESS]: (state, { payload: response }) => ({
       ...state,
-      nurses,
+      response,
+    }),
+    [EDIT_NURSES_FAILURE]: (state, { payload: error }) => ({
+      ...state,
+      responseError: error,
+    }),
+    [DELETE_NURSES_SUCCESS]: (state, { payload: response }) => ({
+      ...state,
+      response,
     }),
     [DELETE_NURSES_FAILURE]: (state, { payload: error }) => ({
       ...state,

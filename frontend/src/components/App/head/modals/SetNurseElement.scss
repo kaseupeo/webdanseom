@@ -1,28 +1,74 @@
+$mobile-contents-width: 640px;
+$min-contents-width: 1050px;
 .SetNurseElement{
     display: flex;
     padding: 1rem;
     flex-direction: column;
+ 
+    
     .title{
+        position: relative;
+       
         font-size: 1rem;
       
     }
+
+    
     .btns{
+        position: relative;
+        right: 0;
        display: flex;
        margin-left: auto;
        
       
 
     }
-    table{
-       
+    overflow:auto;
+    white-space: nowrap;
+    .table{
+        overflow:auto;
         border: solid thin #d6d6d6;
-      border-collapse: collapse;
-        th,tr,td{
+        border-collapse: collapse;
+        font-size: 1rem;
+        white-space: nowrap;
+        th,tr,td{white-space: nowrap;
+            width:20vw;
             text-align: center;
               border: solid thin #d6d6d6;
               border-collapse: collapse;
+              font-size: 0.8vw;
+            padding: 0;
+            margin: 0;
+            .id{width: 1%;
 
+            }
+            .check{width: 1%;
+
+            }
+             
+            input{
+                width:100%; border: 0;
+            }
+              .dutyCode{width: 10%}
+            .dutyCode{width: 10%}
+            .charge{width: 10%;}
+            .annualLeave{width: 5%;}
+            .email{width: 30%;}
+              select,input{
+                width:85%;
+                font-size: 1rem;
+                @media (max-width: $min-contents-width) {
+  
+                    font-size: 0.8vw;
+                
+                
+                }
+              }
+              
         }
     }
+
+
+
 
 }

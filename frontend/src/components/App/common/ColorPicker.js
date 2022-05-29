@@ -29,13 +29,13 @@ class ColorPicker extends React.Component {
     const styles = reactCSS({
       default: {
         color: {
-          width: '36px',
+          width: '20px',
           height: '14px',
           borderRadius: '2px',
           background: `rgba(${this.state.color.r}, ${this.state.color.g}, ${this.state.color.b}, ${this.state.color.a})`,
         },
         swatch: {
-          padding: '5px',
+          padding: '2px',
           background: '#fff',
           borderRadius: '1px',
           boxShadow: '0 0 0 1px rgba(0,0,0,.1)',
