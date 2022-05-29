@@ -18,7 +18,7 @@ public interface DutyService  {
     void addDuty(Duty duty) throws NotFoundException;
 
     //듀티수정
-    void updateDuty(int seq, int updateSeq) throws  NotFoundException;
+    void updateDuty(Duty duty) throws  NotFoundException;
 
     //듀티삭제
     void deleteDuty(Duty duty) throws Exception;

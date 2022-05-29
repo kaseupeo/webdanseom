@@ -100,34 +100,15 @@ public class DutyController {
 
 
     //듀티수정
-    @PostMapping("/updateDuty")
-    public Response updateDuty(@RequestBody RequestDutyList updateDutyList,
-                               HttpServletRequest httpServletRequest) {
-        Cookie token = null;
-        String jwt = null;
-        String email = null;
+    @PutMapping("/updateDuty")
+    public Response updateDuty(@RequestBody RequestDutyList updateDutyList) {
         try {
-            token = cookieUtil.getCookie(httpServletRequest, jwtUtil.ACCESS_TOKEN_NAME);
-            jwt = token.getValue();
-            email = jwtUtil.getEmail(jwt);
-
-            Member member = authService.findByEmail(email);
-            NurseGroup nurseGroup = member.getGroupSeq();
-
-            List<Duty> dutyList = dutyRepository.findByNurseGroupSeq(nurseGroup.getSeq());
-
-
             for(int i = 0; i < updateDutyList.getDutyList().size(); i++) {
-                int updateSeq = 0;
-                int seq = 0;
-                if(dutyList.get(i) != updateDutyList.getDutyList().get(i)) {
-                    seq = dutyList.get(i).getDutySeq();
-                    updateSeq = updateDutyList.getDutyList().get(i).getDutySeq();
+                if(dutyService.selectDuty(updateDutyList.getDutyList().get(i).getDutySeq())!=null) {
+                    dutyService.updateDuty(updateDutyList.getDutyList().get(i));
                 }
-                dutyService.updateDuty(seq, updateSeq);
             }
-
-            return new Response("success", "듀티코드 수정 성공", null);
+            return new Response("success", "듀티코드 수정 성공", updateDutyList);
         }catch (Exception e) {
             return new Response("error", "듀티코드 수정 실패", e.getMessage());
         }

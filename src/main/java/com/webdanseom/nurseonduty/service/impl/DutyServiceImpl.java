@@ -104,25 +104,12 @@ public class DutyServiceImpl implements DutyService {
 
     /**
      *듀티수정
-     * @param seq
-     * @param updateSeq
-     * @param updateSeq
+     * @param duty
      * @throws NotFoundException
      *  */
     @Override
-    public void updateDuty(int seq, int updateSeq) throws NotFoundException{
-        Duty duty = dutyRepository.findByDutySeq(seq);
-        Duty updateDuty = dutyRepository.findByDutySeq(updateSeq);
-        if(updateDuty == null) throw new NotFoundException("updateDuty(), 수정할 듀티가 없습니다.");
-
-        duty.setDutyCode(updateDuty.getDutyCode());
-        duty.setDutyCodeName(updateDuty.getDutyCodeName());
-        duty.setHexColor(updateDuty.getHexColor());
-        duty.setIsUsable(updateDuty.getIsUsable());
-        duty.setStartTime(updateDuty.getStartTime());
-        duty.setWorkType(updateDuty.getWorkType());
-        duty.setWorkingHours(updateDuty.getWorkingHours());
-
+    public void updateDuty(Duty duty) throws NotFoundException{
+        if(duty == null) throw new NotFoundException("updateDuty(), 수정할 듀티가 없습니다.");
         dutyRepository.save(duty);
     }
 
