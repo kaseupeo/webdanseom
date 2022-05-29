@@ -7,7 +7,7 @@ const WorkSheet = ({
   month,
   onClickMonthPlus,
   onClickMonthMinus,
-  nurses,
+  nurseList,
 }) => {
   let date = new Date(year, month, 0);
 
@@ -19,7 +19,7 @@ const WorkSheet = ({
     </th>
   ));
 
-  const scheduleRendering = nurses.map((nurse, index) => (
+  const scheduleRendering = nurseList.map((nurse, index) => (
     <tr key={index} className="metaInfo">
       <td>{index + 1}</td>
       <td> {nurse.position}</td>

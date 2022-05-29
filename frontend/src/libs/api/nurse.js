@@ -35,9 +35,19 @@ export const insertNurse = ({ name, charge, position, annualLeave }) =>
       console.log(error);
     });
 
-export const deleteNurse = () =>
+export const deleteNurses = () =>
   client
     .delete('/api/nurse/delete')
+    .then((response) => {
+      console.log(response);
+      return response;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+export const editNurses = ({ nurseList }) =>
+  client
+    .put('/api/nurse/edit', { nurseList: nurseList })
     .then((response) => {
       console.log(response);
       return response;

@@ -7,12 +7,19 @@ import {
   selectNurses,
   insertNurses,
   deletetNurses,
+  editNurses,
+  changeNurse,
 } from '../../../../modules/nurse';
 
 const WorkSheetForm = ({ modalOpen, closeModal }) => {
-  const [error, setError] = useState('');
+  const [flag, setFlag] = useState(false);
+  const flagFuction = () => {
+    if (flag) setFlag(false);
+    else setFlag(true);
+  };
+
   const groupSeq = useSelector(({ group }) => group.nurseGroup.seq);
-  const nurses = useSelector(({ nurse }) => nurse.nurses);
+  const nurseList = useSelector(({ nurse }) => nurse.nurseList);
   const dispatch = useDispatch();
 
   const onClickInsert = () => {
@@ -24,23 +31,44 @@ const WorkSheetForm = ({ modalOpen, closeModal }) => {
         annualLeave: 0,
       }),
     );
-    dispatch(selectNurses({ groupSeq }));
+    flagFuction();
   };
-  const onClickDelete = () => {};
-
+  const onClickDelete = (e) => {
+    alert(e);
+    dispatch(deletetNurses({}));
+  };
+  const onClickUpdate = () => {
+    dispatch(editNurses({ nurseList }));
+  };
+  const onCheckedBox = () => {
+    // dispatch(setCheckedNurse(e));
+  };
   useEffect(() => {
     if (groupSeq === null) return;
 
     dispatch(selectNurses({ groupSeq }));
-  }, [dispatch, groupSeq]);
+  }, [flag]);
+  const onChange = (e) => {
+    const { value, name, id } = e.target;
 
+    console.log(id);
+    dispatch(
+      changeNurse({
+        index: id,
+        key: name,
+        value,
+      }),
+    );
+  };
   return (
     <SetNurseElement
       modalOpen={modalOpen}
       closeModal={closeModal}
+      onChange={onChange}
       onClickInsert={onClickInsert}
       onClickDelete={onClickDelete}
-      nurses={nurses}
+      onClickUpdate={onClickUpdate}
+      nurseList={nurseList}
     />
   );
 };

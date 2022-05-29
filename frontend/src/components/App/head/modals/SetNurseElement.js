@@ -6,43 +6,71 @@ import { MiniButton } from '../../common/Button';
 const SetNurseElement = ({
   modalOpen,
   closeModal,
-  nurses,
+  onChange,
+  nurseList,
   onClickInsert,
   onClickDelete,
+  onClickUpdate,
 }) => {
-  const nurseInfo = nurses ? (
-    nurses.map((nurse, index) => (
+  const nurseInfo = nurseList ? (
+    nurseList.map((nurse, index) => (
       <tr key={index} className="metaInfo">
         <td className="num">{index + 1}</td>
         <td className="check">
-          <input type="checkBox" defaultValue={nurse.charge} />
+          <input type="checkBox" />
         </td>
 
         <td>
-          <input type={'text'} defaultValue={nurse.name} />
+          <input
+            name="name"
+            type={'text'}
+            onChange={onChange}
+            defaultValue={nurse.name}
+            value={nurse.name}
+            id={index}
+          />
         </td>
         <td>
-          <select defaultValue={nurse.position}>
-            <option>수 간호사</option>
-            <option>책임 간호사</option>
-            <option>주임 간호사</option>
-            <option>평 간호사</option>
-            <option>신입 간호사</option>
+          <select
+            name="position"
+            onChange={onChange}
+            defaultValue={nurse.position}
+            value={nurse.position}
+            id={index}
+          >
+            <option value="수간호사">수간호사</option>
+            <option value="책임간호사">책임간호사</option>
+            <option value="주임간호사">주임간호사</option>
+            <option value="일반간호사">일반간호사</option>
+            <option value="신입간호사">신입간호사</option>
           </select>
         </td>
         <td>
-          <select>
-            <option>주중근무</option>
-            <option>D,E 전담</option>
-            <option>N 전담</option>
-            <option>없음</option>
+          <select
+            name="charge"
+            onChange={onChange}
+            defaultValue={nurse.charge}
+            value={nurse.charge}
+            id={index}
+          >
+            <option value="없음">없음</option>
+            <option value="주중근무">주중근무</option>
+            <option value="D,E전담">D,E전담</option>
+            <option value="N전담">N전담</option>
           </select>
         </td>
         <td>
-          <input type="text" defaultValue={nurse.annualLeave}></input>
+          <input
+            type="text"
+            name="annualLeave"
+            onChange={onChange}
+            defaultValue={nurse.annualLeave}
+            value={nurse.annualLeave}
+            id={index}
+          ></input>
         </td>
         <td>
-          <input type={'text'} defaultValue={''} />
+          <input type={'text'} defaultValue={''} value={''} id={index} />
         </td>
       </tr>
     ))
@@ -59,6 +87,7 @@ const SetNurseElement = ({
           간호사 설정
         </div>
       }
+      onClickUpdate={onClickUpdate}
     >
       <div className="SetNurseElement">
         <b className="title">간호사 목록</b>
@@ -66,7 +95,7 @@ const SetNurseElement = ({
           <MiniButton onClick={onClickInsert}>
             <b>추가</b>
           </MiniButton>
-          <MiniButton>
+          <MiniButton onClick={onClickDelete}>
             <b>삭제</b>
           </MiniButton>
         </div>

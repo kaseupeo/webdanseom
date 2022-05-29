@@ -57,7 +57,7 @@ $min-contents-width: 1050px;
           display: flex;
 
           flex-direction: row;
-          z-index: 120;
+         
           padding: 5px;
 
           .helpIcon {
@@ -71,7 +71,7 @@ $min-contents-width: 1050px;
           }
           .helpMenu {
             position: absolute;
-            z-index: 130;
+        
             margin-top: 30px;
             margin-left: -160px;
             background-color: white;

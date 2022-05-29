@@ -3,7 +3,7 @@ import './Modal.scss';
 import { FaUserNurse } from 'react-icons/fa';
 const Modal = (props) => {
   // 열기, 닫기, 모달 헤더 텍스트를 부모로부터 받아옴
-  const { open, close, header } = props;
+  const { open, close, header, onClickUpdate } = props;
 
   return (
     // 모달이 열릴때 openModal 클래스가 생성된다.
@@ -21,7 +21,9 @@ const Modal = (props) => {
             <table></table>
           </main>
           <footer>
-            <button className="close">적용</button>
+            <button className="close" onClick={onClickUpdate}>
+              적용
+            </button>
             <button className="close" onClick={close}>
               닫기
             </button>
