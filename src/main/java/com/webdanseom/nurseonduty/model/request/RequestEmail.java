@@ -12,6 +12,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class RequestFindPassword {
+public class RequestEmail {
     private String email;
 }

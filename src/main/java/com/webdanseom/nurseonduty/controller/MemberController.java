@@ -87,10 +87,10 @@ public class MemberController {
 
     //인증번호 보냄
     @PostMapping("/verify")
-    public Response verify(@RequestBody RequestVerifyEmail requestVerifyEmail, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
+    public Response verify(@RequestBody RequestEmail requestEmail, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
         Response response;
         try {
-            Member member = authService.findByEmail(requestVerifyEmail.getEmail());
+            Member member = authService.findByEmail(requestEmail.getEmail());
             authService.sendVerificationMail(member);
             response = new Response("success", "성공적으로 인증메일을 보냈습니다.", null);
         } catch (Exception e) {
@@ -129,12 +129,12 @@ public class MemberController {
 
     //비밀번호 변경
     @PutMapping("/password")
-    public Response changePassword(@RequestBody RequestChangePassword requestChangePassword) {
+    public Response changePassword(@RequestBody RequestLoginUser requestLoginUser) {
         Response response;
         try{
-            Member member = authService.findByEmail(requestChangePassword.getEmail());
-            authService.isValidPassword(requestChangePassword.getPassword());
-            authService.changePassword(member,requestChangePassword.getPassword());
+            Member member = authService.findByEmail(requestLoginUser.getEmail());
+            authService.isValidPassword(requestLoginUser.getPassword());
+            authService.changePassword(member,requestLoginUser.getPassword());
             response = new Response("success","성공적으로 사용자의 비밀번호를 변경했습니다.",null);
         }catch(Exception e){
             response = new Response("error","사용자의 비밀번호를 변경할 수 없었습니다.",e.getMessage());
@@ -144,11 +144,11 @@ public class MemberController {
 
     //비밀번호 찾기
     @PostMapping("/password")
-    public Response findPassword(@RequestBody RequestFindPassword requestFindPassword) {
+    public Response findPassword(@RequestBody RequestEmail requestEmail) {
         Response response;
         try {
-            Member member = authService.findByEmail(requestFindPassword.getEmail());
-            if (!member.getEmail().equals(requestFindPassword.getEmail())) throw new NoSuchFieldException("");
+            Member member = authService.findByEmail(requestEmail.getEmail());
+            if (!member.getEmail().equals(requestEmail.getEmail())) throw new NoSuchFieldException("");
             authService.findPassword(member);
             response = new Response("success", "성공적으로 사용자의 비밀번호 변경요청을 수행했습니다.", null );
         } catch (NoSuchFieldException e) {
@@ -193,11 +193,11 @@ public class MemberController {
     }
     //회원탈퇴
     @DeleteMapping("/withdrawal")
-    public Response withdrawal(@RequestBody RequestWithdrawal requestWithdrawal) {
+    public Response withdrawal(@RequestBody RequestLoginUser requestLoginUser) {
         Response response;
         try {
-            Member member = authService.findByEmail(requestWithdrawal.getEmail());
-            authService.withdrawal(member, requestWithdrawal.getPassword());
+            Member member = authService.findByEmail(requestLoginUser.getEmail());
+            authService.withdrawal(member, requestLoginUser.getPassword());
             response = new Response("success", "회원탈퇴를 성공했습니다.",null);
         } catch (Exception e) {
             response = new Response("error", "회원탈퇴를 할 수 없습니다.", null);
