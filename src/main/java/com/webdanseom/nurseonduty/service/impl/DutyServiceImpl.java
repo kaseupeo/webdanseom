@@ -5,6 +5,7 @@ import com.webdanseom.nurseonduty.model.NurseGroup;
 import com.webdanseom.nurseonduty.repo.DutyRepository;
 import com.webdanseom.nurseonduty.repo.NurseGroupRepository;
 import com.webdanseom.nurseonduty.service.DutyService;
+import com.webdanseom.nurseonduty.service.GroupService;
 import javassist.NotFoundException;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,9 @@ public class DutyServiceImpl implements DutyService {
 
     @Autowired
     private NurseGroupRepository nurseGroupRepository;
+
+    @Autowired
+    private GroupService groupService;
 
     /**
      * 초기 듀티코드 생성
@@ -124,25 +128,26 @@ public class DutyServiceImpl implements DutyService {
 
     /**
      *듀티삭제
-     * @param dutySeq
-     * @throws NotFoundException
+     * @param duty
+     * @throws Exception
      */
     @Override
-    public void deleteDuty(int dutySeq) throws  NotFoundException {
-        Duty duty = dutyRepository.findByDutySeq(dutySeq);
+    public void deleteDuty(Duty duty) throws  Exception {
         if(duty == null) throw new NotFoundException("deleteDuty(), 삭제할 듀티가 없습니다. \n 삭제할 듀티를 선택해 주세요.");
         dutyRepository.delete(duty);
     }
 
     /**
      *초기화
-     * @param
+     * @param duty
      */
     @Override
-    public void returnDuty(Duty duty, int index) throws NotFoundException {
+    public void returnDuty(Duty duty) throws Exception {
         if(duty == null) throw new NotFoundException("returnDuty(), 초기화 실패.");
-        deleteDuty(duty.getDutySeq());
-        initializeDuty(duty.getNurseGroup(), index);
+        deleteDuty(duty);
+        NurseGroup nurseGroup = nurseGroupRepository.findBySeq(duty.getNurseGroup().getSeq());
+        for(int i = 0; i < 42; i++)
+            initializeDuty(nurseGroup, i);
     }
 
 

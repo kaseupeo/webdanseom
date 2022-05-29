@@ -134,10 +134,11 @@ public class DutyController {
     }
 
     //듀티삭제
-    @PostMapping("/deleteDuty")
+    @DeleteMapping("/deleteDuty")
     public Response deleteDuty(@RequestBody RequestDutySeq requestDutySeq) {
         try {
-            dutyService.deleteDuty(requestDutySeq.getDutySeq());
+            Duty duty = dutyRepository.findByDutySeq(requestDutySeq.getDutySeq());
+            dutyService.deleteDuty(duty);
             return new Response("success", "듀티코드 삭제 성공", null);
         }catch (Exception e) {
             return new Response("error", "듀티코드 실패 실패", e.getMessage());
@@ -161,7 +162,7 @@ public class DutyController {
             List<Duty> dutyList = dutyService.selectDuty(nurseGroup.getSeq());
             for(int i = 0; i < dutyList.size(); i++) {
                 Duty duty = dutyList.get(i);
-                dutyService.returnDuty(duty, i);
+                dutyService.returnDuty(duty);
             }
             //초기듀티생성부분
             return new Response("success", "듀티 초기화 성공", null);

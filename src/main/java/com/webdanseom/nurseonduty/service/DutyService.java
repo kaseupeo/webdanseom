@@ -21,9 +21,9 @@ public interface DutyService  {
     void updateDuty(int seq, int updateSeq) throws  NotFoundException;
 
     //듀티삭제
-    void deleteDuty(int dutySeq) throws  NotFoundException;
+    void deleteDuty(Duty duty) throws Exception;
 
     //초기화
-    void returnDuty(Duty duty, int index) throws NotFoundException;
+    void returnDuty(Duty duty) throws Exception;
 
 }
