@@ -3,13 +3,10 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import nurse, {
-  initializeForm,
   selectNursesAsync,
   insertNursesAsync,
   deleteNursesAsync,
-  editinsertNursesAsync,
-  deletetNurses,
-  editNurses,
+  editNursesAsync,
   changeNurse,
 } from '../../../../modules/nurse';
 
@@ -33,9 +30,11 @@ const SetNurseForm = ({ modalOpen, closeModal }) => {
     }
     checkBoxAll[0].checked = false;
   };
+  //간호사 리스트 체크 초기화
   const initNurseList = () => {
     setCheckedNurseList([]);
   };
+  //삽입
   const onClickInsert = () => {
     dispatch(
       insertNursesAsync({
@@ -51,7 +50,7 @@ const SetNurseForm = ({ modalOpen, closeModal }) => {
 
     setExNurseSeq(exNurseSeq + 1);
   };
-
+  //삭제
   const onClickDelete = () => {
     if (checkedNurseList !== [''])
       dispatch(deleteNursesAsync({ checkedNurseList }));
@@ -59,9 +58,9 @@ const SetNurseForm = ({ modalOpen, closeModal }) => {
     dispatch(selectNursesAsync({ groupSeq }));
     if (response.message === '간호사 목록 조회 성공') flagFuction();
   };
-
+  //수정
   const onClickUpdate = () => {
-    dispatch(editinsertNursesAsync({ nurseList }));
+    dispatch(editNursesAsync({ nurseList }));
     dispatch(selectNursesAsync({ groupSeq }));
     initCheckBox();
   };

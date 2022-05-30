@@ -5,7 +5,7 @@ $min-contents-width: 1050px;
     display: flex;
     padding: 1rem;
     flex-direction: column;
- 
+    max-height: 20rem ;
     
     .title{
         position: relative;
@@ -26,6 +26,7 @@ $min-contents-width: 1050px;
     }
     overflow:auto;
     white-space: nowrap;
+    .tableDiv{  overflow-y: scroll;
     .table{
         overflow:auto;
         border: solid thin #d6d6d6;
@@ -67,7 +68,7 @@ $min-contents-width: 1050px;
                 
                 }
               }
-              
+            }
         }
     }
 

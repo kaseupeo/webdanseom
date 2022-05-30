@@ -62,7 +62,7 @@ export const deleteNursesAsync = createRequestThunk(
   DELETE_NURSES,
   authAPI.deleteNurses,
 );
-export const editinsertNursesAsync = createRequestThunk(
+export const editNursesAsync = createRequestThunk(
   EDIT_NURSES,
   authAPI.editNurses,
 );

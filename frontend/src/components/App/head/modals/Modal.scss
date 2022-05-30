@@ -16,7 +16,8 @@ $mobile-contents-width: 800px;
     border: 0;
   }
   .modal > section {
-    width: 40%;
+    
+    max-width: 40%;
     @media (max-width: $mobile-contents-width) {
       width: 80%;
      

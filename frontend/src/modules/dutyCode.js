@@ -11,30 +11,68 @@ import * as authAPI from '../libs/api/dutyCode';
 import createRequestSaga, {
   createRequestActionTypes,
 } from '../libs/createRequestSaga';
+import createRequestThunk, {
+  createRequestActionTypes as createRequestActionTypesThunk,
+} from '../libs/createRequestThunk';
 //필드 값 초기화
 const INITIALIZE_FORM = 'dutyCode/INITIALIZE_FORM';
-
+const CHANGE_DUTYCODE = 'dutyCode/CHANGE_NURSE';
 const [SELECT_DUTYCODE, SELECT_DUTYCODE_SUCCESS, SELECT_DUTYCODE_FAILURE] =
   createRequestActionTypes('dutyCode/SELECT_DUTYCODE');
 const [INSERT_DUTYCODE, INSERT_DUTYCODE_SUCCESS, INSERT_DUTYCODE_FAILURE] =
   createRequestActionTypes('dutyCode/INSERT_DUTYCODE');
 const [DELETE_DUTYCODE, DELETE_DUTYCODE_SUCCESS, DELETE_DUTYCODE_FAILURE] =
   createRequestActionTypes('dutyCode/DELETE_DUTYCODE');
-export const initializeForm = createAction(INITIALIZE_FORM, (form) => form);
+const [EDIT_DUTYCODE, EDIT_DUTYCODE_SUCCESS, EDIT_DUTYCODE_FAILURE] =
+  createRequestActionTypes('dutyCode/EDIT_DUTYCODE');
+const [INIT_DUTYCODE, INIT_DUTYCODE_SUCCESS, INIT_DUTYCODE_FAILURE] =
+  createRequestActionTypes('dutyCode/INIT_DUTYCODE');
 
+export const initializeForm = createAction(INITIALIZE_FORM, (form) => form);
+export const changeDutyCode = createAction(
+  CHANGE_DUTYCODE,
+  ({ index, key, value }) => ({
+    index,
+    key,
+    value,
+  }),
+);
 export const selectDutyCode = createAction(
   SELECT_DUTYCODE,
-  (dutyCode) => dutyCode,
+  (dutyCodeList) => dutyCodeList,
 );
 export const insertDutyCode = createAction(
   INSERT_DUTYCODE,
-  (dutyCode) => dutyCode,
+  (response) => response,
 );
 export const deletetDutyCode = createAction(
   DELETE_DUTYCODE,
-  (dutyCode) => dutyCode,
+  (response) => response,
 );
-
+export const editDutyCode = createAction(EDIT_DUTYCODE, (response) => response);
+export const initDutyCode = createAction(INIT_DUTYCODE, (response) => response);
+//청크
+export const selectDutyCodeAsync = createRequestThunk(
+  SELECT_DUTYCODE,
+  authAPI.selectDutyCode,
+);
+export const insertDutyCodeAsync = createRequestThunk(
+  INSERT_DUTYCODE,
+  authAPI.insertDutyCode,
+);
+export const deleteDutyCodeAsync = createRequestThunk(
+  DELETE_DUTYCODE,
+  authAPI.deleteDutyCode,
+);
+export const editDutyCodeAsync = createRequestThunk(
+  EDIT_DUTYCODE,
+  authAPI.editDutyCode,
+);
+export const initDutyCodeAsync = createRequestThunk(
+  INIT_DUTYCODE,
+  authAPI.initDutyCode,
+);
+//사가
 const selectDutyCodeSaga = createRequestSaga(
   SELECT_DUTYCODE,
   authAPI.selectDutyCode,
@@ -47,14 +85,18 @@ const deleteDutyCodeSaga = createRequestSaga(
   DELETE_DUTYCODE,
   authAPI.deleteDutyCode,
 );
-
+const editDutyCodeSaga = createRequestSaga(EDIT_DUTYCODE, authAPI.editDutyCode);
+const initDutyCodeSaga = createRequestSaga(INIT_DUTYCODE, authAPI.initDutyCode);
 export function* dutyCodeSaga() {
   yield takeLatest(SELECT_DUTYCODE, selectDutyCodeSaga);
   yield takeLatest(INSERT_DUTYCODE, insertDutyCodeSaga);
   yield takeLatest(DELETE_DUTYCODE, deleteDutyCodeSaga);
+  yield takeLatest(EDIT_DUTYCODE, editDutyCodeSaga);
+  yield takeLatest(INIT_DUTYCODE, initDutyCodeSaga);
 }
+
 const initialState = {
-  dutyCode: {},
+  dutyCodeList: [''],
   response: {
     response: null,
     message: '',
@@ -64,39 +106,59 @@ const initialState = {
   responseError: null,
 };
 
-const nurse = handleActions(
+const dutyCode = handleActions(
   {
     [INITIALIZE_FORM]: (state, { payload: form }) => ({
       ...state,
       [form]: initialState[form],
     }),
-
-    [SELECT_DUTYCODE_SUCCESS]: (state, { payload: dutyCode }) => ({
+    [CHANGE_DUTYCODE]: (state, { payload: { index, key, value } }) =>
+      produce(state, (draft) => {
+        draft['dutyCodeList'][index][key] = value;
+      }),
+    [SELECT_DUTYCODE_SUCCESS]: (state, { payload: response }) => ({
       ...state,
-      response: dutyCode,
+      dutyCodeList: response.data,
+      response: response,
       responseError: null,
     }),
     [SELECT_DUTYCODE_FAILURE]: (state, { payload: error }) => ({
       ...state,
       responseError: error,
     }),
-    [INSERT_DUTYCODE_SUCCESS]: (state, { payload: dutyCode }) => ({
+    [INSERT_DUTYCODE_SUCCESS]: (state, { payload: response }) => ({
       ...state,
-      dutyCode,
+      response: response,
     }),
     [INSERT_DUTYCODE_FAILURE]: (state, { payload: error }) => ({
       ...state,
       responseError: error,
     }),
-    [DELETE_DUTYCODE_SUCCESS]: (state, { payload: dutyCode }) => ({
+    [DELETE_DUTYCODE_SUCCESS]: (state, { payload: response }) => ({
       ...state,
-      dutyCode,
+      response: response,
     }),
     [DELETE_DUTYCODE_FAILURE]: (state, { payload: error }) => ({
+      ...state,
+      responseError: error,
+    }),
+    [EDIT_DUTYCODE_SUCCESS]: (state, { payload: response }) => ({
+      ...state,
+      response: response,
+    }),
+    [EDIT_DUTYCODE_FAILURE]: (state, { payload: error }) => ({
+      ...state,
+      responseError: error,
+    }),
+    [INIT_DUTYCODE_SUCCESS]: (state, { payload: response }) => ({
+      ...state,
+      response: response,
+    }),
+    [INIT_DUTYCODE_FAILURE]: (state, { payload: error }) => ({
       ...state,
       responseError: error,
     }),
   },
   initialState,
 );
-export default nurse;
+export default dutyCode;

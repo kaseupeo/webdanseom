@@ -110,28 +110,30 @@ const SetNurseElement = ({
             <b>삭제</b>
           </MiniButton>
         </div>
-        <table className="table">
-          <thead>
-            <tr>
-              <th className="check">
-                <div>선택</div>
-                <div>
-                  <input
-                    type="checkbox"
-                    className="checkBoxAll"
-                    onClick={onCheckedAll}
-                  />
-                </div>
-              </th>
-              <th className="id">순번</th>
-              <th className="name">이름</th>
-              <th className="position">직책</th>
-              <th className="charge">전담</th>
-              <th className="annualLeave">연차</th>
-            </tr>
-          </thead>
-          <tbody>{nurseInfo}</tbody>
-        </table>
+        <div className="tableDiv">
+          <table className="table">
+            <thead>
+              <tr>
+                <th className="check">
+                  <div>선택</div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      className="checkBoxAll"
+                      onClick={onCheckedAll}
+                    />
+                  </div>
+                </th>
+                <th className="id">순번</th>
+                <th className="name">이름</th>
+                <th className="position">직책</th>
+                <th className="charge">전담</th>
+                <th className="annualLeave">연차</th>
+              </tr>
+            </thead>
+            <tbody>{nurseInfo}</tbody>
+          </table>
+        </div>
       </div>
     </Modal>
   );
