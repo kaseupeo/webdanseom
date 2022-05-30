@@ -4,8 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import nurse, {
   initializeForm,
-  selectNurses,
-  insertNurses,
+  selectNursesAsync,
+  insertNursesAsync,
+  deleteNursesAsync,
+  editinsertNursesAsync,
   deletetNurses,
   editNurses,
   changeNurse,
@@ -36,14 +38,14 @@ const SetNurseForm = ({ modalOpen, closeModal }) => {
   };
   const onClickInsert = () => {
     dispatch(
-      insertNurses({
+      insertNursesAsync({
         name: '간호사 ' + exNurseSeq,
         charge: '주중 전담',
         position: '일반',
         annualLeave: 0,
       }),
     );
-
+    dispatch(selectNursesAsync({ groupSeq }));
     setCheckedNurseList([]);
     flagFuction();
 
@@ -52,13 +54,15 @@ const SetNurseForm = ({ modalOpen, closeModal }) => {
 
   const onClickDelete = () => {
     if (checkedNurseList !== [''])
-      dispatch(deletetNurses({ checkedNurseList }));
-
+      dispatch(deleteNursesAsync({ checkedNurseList }));
+    initCheckBox();
+    dispatch(selectNursesAsync({ groupSeq }));
     if (response.message === '간호사 목록 조회 성공') flagFuction();
   };
 
   const onClickUpdate = () => {
-    dispatch(editNurses({ nurseList }));
+    dispatch(editinsertNursesAsync({ nurseList }));
+    dispatch(selectNursesAsync({ groupSeq }));
     initCheckBox();
   };
 
@@ -94,10 +98,7 @@ const SetNurseForm = ({ modalOpen, closeModal }) => {
     }
   };
   useEffect(() => {
-    setTimeout(() => {
-      dispatch(selectNurses({ groupSeq }));
-      initCheckBox();
-    }, 1000);
+    dispatch(selectNursesAsync({ groupSeq }));
   }, [dispatch, flag]);
   const onChange = (e) => {
     const { value, name, id } = e.target;
