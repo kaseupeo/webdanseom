@@ -97,7 +97,7 @@ const TopNavigation = ({ groupName, onClickLogout, onClickMenu, error }) => {
       </header>
 
       <main className="content">
-        <Outlet />
+        <Outlet className="content" />
       </main>
     </div>
   );

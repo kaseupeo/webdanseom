@@ -2,15 +2,15 @@ $mobile-contents-width: 640px;
 $min-contents-width: 1050px;
 .whole {
   position: flex;
-  height: 100%;
+  width: 100%;
   -ms-user-select: none; 
-
+ background-color: white;
   -khtml-user-select: none;
   -webkit-user-select: none;
   user-select: none;
   @media (max-width: $mobile-contents-width) {
     position: fixed;
-
+    width: 100%;
   
   }
   .TopNavigation {
@@ -30,7 +30,7 @@ $min-contents-width: 1050px;
 
       .menu {
         position: absolute;
-
+        
         .menuIcon {
           width: 1.8rem;
           height: 1.8rem;
@@ -146,11 +146,13 @@ $min-contents-width: 1050px;
         }
       }
       .content {
+        
         @media (max-width: $mobile-contents-width) {
   
   
           overflow-y: scroll;
         }
+      
       }
       .groupName {
         position: absolute;

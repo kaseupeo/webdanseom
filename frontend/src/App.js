@@ -10,7 +10,7 @@ import {
   Route,
   NavLink,
 } from 'react-router-dom';
-
+import './App.css';
 import MainForm from './pages/MainForm';
 import SignUpPage from './pages/auth/SignUpPage';
 import LoginPage from './pages/auth/LoginPage';
@@ -28,7 +28,7 @@ import NormalStasticsWork from './pages/app/normal/StatisticsWork';
 import Temp from './temp/temp';
 function App() {
   return (
-    <div>
+    <div className="App">
       <Router>
         <Routes>
           <Route path="/" element={<MainNavigation />}>

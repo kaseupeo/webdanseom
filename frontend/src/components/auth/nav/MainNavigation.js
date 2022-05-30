@@ -21,7 +21,7 @@ const MyComponent = () => {
         </div>
       </header>
 
-      <main>
+      <main className="contents">
         <Outlet />
       </main>
     </div>

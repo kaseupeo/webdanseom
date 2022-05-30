@@ -25,40 +25,37 @@ const SideNavigation = ({
     <div>
       <div className="LeftNavigation">
         <div className="nav">
-          <ul>
+          <ul className={!menuHiding ? 'ul_hide_nav' : ''}>
             {joinGroup ? (
               headNurseCheck ? (
                 <div>
-                  {!menuHiding && (
+                  {!menuHiding ? (
                     <li className="icon" onClick={onClickMenu0}>
                       <BsFillPencilFill />
                     </li>
-                  )}
-                  {menuHiding && (
+                  ) : (
                     <li onClick={onClickMenu0}>
                       <BsFillPencilFill />
                       <b>근무표 관리</b>
                     </li>
                   )}
 
-                  {!menuHiding && (
+                  {!menuHiding ? (
                     <li className="icon" onClick={onClickMenu1}>
                       <BsCalendar4 />
                     </li>
-                  )}
-                  {menuHiding && (
+                  ) : (
                     <li onClick={onClickMenu1}>
                       <BsCalendar4 />
                       <b>근무표 조회</b>
                     </li>
                   )}
 
-                  {!menuHiding && (
+                  {!menuHiding ? (
                     <li className="icon" onClick={onClickMenu2}>
                       <BsFillPieChartFill />{' '}
                     </li>
-                  )}
-                  {menuHiding && (
+                  ) : (
                     <li onClick={onClickMenu2}>
                       <BsFillPieChartFill />
                       <b>통계</b>
@@ -67,35 +64,31 @@ const SideNavigation = ({
                 </div>
               ) : (
                 <div>
-                  {!menuHiding && (
+                  {!menuHiding ? (
                     <li className="icon" onClick={onClickMenu0}>
                       <BsCalendar4 />
                     </li>
-                  )}
-                  {menuHiding && (
+                  ) : (
                     <li onClick={onClickMenu0}>
                       <BsCalendar4 /> <b>근무표 조회</b>
                     </li>
                   )}
 
-                  {!menuHiding && (
+                  {!menuHiding ? (
                     <li className="icon" onClick={onClickMenu1}>
                       <BsFillChatRightTextFill />
                     </li>
-                  )}
-                  {menuHiding && (
+                  ) : (
                     <li onClick={onClickMenu1}>
                       <BsFillChatRightTextFill /> <b>근무 요청</b>
                     </li>
                   )}
 
-                  {!menuHiding && (
+                  {!menuHiding ? (
                     <li className="icon" onClick={onClickMenu2}>
                       <BsFillPieChartFill className="icon" />
                     </li>
-                  )}
-
-                  {menuHiding && (
+                  ) : (
                     <li onClick={onClickMenu2}>
                       <BsFillPieChartFill />
                       <b>통계</b>
@@ -105,12 +98,11 @@ const SideNavigation = ({
               )
             ) : (
               <div>
-                {!menuHiding && (
+                {!menuHiding ? (
                   <li className="icon">
                     <HiUserGroup />
                   </li>
-                )}
-                {menuHiding && (
+                ) : (
                   <li>
                     <HiUserGroup />
                     <b>그룹 생성/참가</b>
@@ -120,10 +112,15 @@ const SideNavigation = ({
             )}
           </ul>
         </div>
-
-        <main className="content">
-          <Outlet />
-        </main>
+        {menuHiding ? (
+          <main className="content">
+            <Outlet />
+          </main>
+        ) : (
+          <main className="content_hide_nav">
+            <Outlet />
+          </main>
+        )}
       </div>
     </div>
   );
