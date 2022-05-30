@@ -8,6 +8,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import reportWebVitals from './reportWebVitals';
 import createSagaMiddleware from '@redux-saga/core';
 import rootReducer, { rootSaga } from './modules';
+import client from './libs/api/client';
 
 const sagaMiddleware = createSagaMiddleware();
 

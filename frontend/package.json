@@ -30,8 +30,10 @@
     "redux-thunk": "^2.4.1",
     "sass": "^1.51.0",
     "styled-components": "^5.3.5",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "proxy": "http://210.183.24.244:8080"
   },
+
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

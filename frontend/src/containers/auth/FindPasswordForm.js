@@ -12,7 +12,7 @@ const FindPasswordForm = () => {
   const dispatch = useDispatch();
   const { form, auth, authError } = useSelector(({ auth }) => ({
     form: auth.findPassword,
-    auth: auth.auth,
+    auth: auth,
     authError: auth.authError,
   }));
 
@@ -57,7 +57,7 @@ const FindPasswordForm = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (auth.response === 'success') {
+    if (auth.response.response === 'success') {
       setError('');
       setEmail(form.email);
       dispatch(initializeForm('findPassword'));
