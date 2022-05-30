@@ -41,14 +41,33 @@ export const selectNurses = createAction(
   SELECT_NURSES,
   (nurseList) => nurseList,
 );
+
 export const insertNurses = createAction(INSERT_NURSES, (response) => response);
+
 export const deletetNurses = createAction(
   DELETE_NURSES,
   (response) => response,
 );
 export const editNurses = createAction(EDIT_NURSES, (response) => response);
 
-const selectNursesSaga = createRequestThunk(SELECT_NURSES, authAPI.selectNurse);
+export const selectNursesAsync = createRequestThunk(
+  SELECT_NURSES,
+  authAPI.selectNurse,
+);
+export const insertNursesAsync = createRequestThunk(
+  INSERT_NURSES,
+  authAPI.insertNurse,
+);
+export const deleteNursesAsync = createRequestThunk(
+  DELETE_NURSES,
+  authAPI.deleteNurses,
+);
+export const editinsertNursesAsync = createRequestThunk(
+  EDIT_NURSES,
+  authAPI.editNurses,
+);
+
+const selectNursesSaga = createRequestSaga(SELECT_NURSES, authAPI.selectNurse);
 const insertNursesSaga = createRequestSaga(INSERT_NURSES, authAPI.insertNurse);
 const deleteNursesSaga = createRequestSaga(DELETE_NURSES, authAPI.deleteNurses);
 const editNursesSaga = createRequestSaga(EDIT_NURSES, authAPI.editNurses);

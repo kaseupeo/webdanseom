@@ -7,7 +7,7 @@ import WorkManagementBtnForm from './WorkManagementBtnForm';
 import WorkScheduleSum from '../../../components/app/head/WorkScheduleSum';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectNurses } from '../../../modules/nurse';
+import { selectNursesAsync } from '../../../modules/nurse';
 import {
   initializeForm,
   setPlusM,
@@ -73,7 +73,7 @@ const WorkSheetForm = () => {
   useEffect(() => {
     if (groupSeq === null) return;
 
-    dispatch(selectNurses({ groupSeq }));
+    dispatch(selectNursesAsync({ groupSeq }));
   }, [dispatch, groupSeq]);
 
   return (
