@@ -26,7 +26,6 @@ public class Preceptor {
     @GeneratedValue
     private int preceptorSeq;
 
-    //주임(담당) 간호사  --- 외래키 (간호사번호)
     @NotNull
     private int chargeNurseNum;
 
