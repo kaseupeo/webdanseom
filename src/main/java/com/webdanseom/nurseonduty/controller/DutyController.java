@@ -98,13 +98,12 @@ public class DutyController {
         }
     }
 
-
     //듀티수정
     @PutMapping("/updateDuty")
     public Response updateDuty(@RequestBody RequestDutyList updateDutyList) {
         try {
             for(int i = 0; i < updateDutyList.getDutyList().size(); i++) {
-                if(dutyService.selectDuty(updateDutyList.getDutyList().get(i).getDutySeq())!=null) {
+                if(dutyService.findByDutySeq(updateDutyList.getDutyList().get(i).getDutySeq())!=null) {
                     dutyService.updateDuty(updateDutyList.getDutyList().get(i));
                 }
             }

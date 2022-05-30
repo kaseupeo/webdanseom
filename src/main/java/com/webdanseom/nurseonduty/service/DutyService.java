@@ -11,6 +11,9 @@ public interface DutyService  {
     //초기 듀티코드 생성
     void initializeDuty(NurseGroup nurseGroup, int index) throws NotFoundException;
 
+    //간호사 조회
+    Duty findByDutySeq(int dutySeq) throws NotFoundException;
+
     //듀티조회
     List<Duty> selectDuty(int nurseGroupSeq) throws NotFoundException;
 
