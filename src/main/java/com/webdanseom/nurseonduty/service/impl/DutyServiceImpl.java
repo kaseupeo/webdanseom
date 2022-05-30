@@ -77,9 +77,19 @@ public class DutyServiceImpl implements DutyService {
             addDuty(duty);
     }
 
-    
     /**
-     * 듀티조회
+     * 듀티 조회
+     * @param dutySeq
+     * */
+    @Override
+    public Duty findByDutySeq(int dutySeq) throws NotFoundException {
+        Duty duty = dutyRepository.findByDutySeq(dutySeq);
+        if(duty == null) throw new NotFoundException("듀티가 조회되지 않습니다.");
+        return duty;
+    }
+
+    /**
+     * 듀티 목록 조회
      * @param nurseGroupSeq
      * @throws NotFoundException
      * */
