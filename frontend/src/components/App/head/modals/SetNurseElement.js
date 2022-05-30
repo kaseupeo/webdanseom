@@ -12,12 +12,30 @@ const SetNurseElement = ({
   onClickDelete,
   onClickUpdate,
   onChecked,
+  onCheckedAll,
 }) => {
   const nurseInfo = nurseList ? (
     nurseList.map((nurse, index) => (
       <tr key={index} className="metaInfo">
         <td className="check">
-          <input type="checkBox" id={index} onClick={onChecked} />
+          {index === 0 ? (
+            <input
+              type="checkBox"
+              id={index}
+              className="checkBox"
+              onClick={onChecked}
+              defaultChecked={false}
+              disabled
+            />
+          ) : (
+            <input
+              type="checkBox"
+              id={index}
+              className="checkBox"
+              onClick={onChecked}
+              defaultChecked={false}
+            />
+          )}
         </td>
         <td className="num">{index + 1}</td>
         <td className="name">
@@ -88,14 +106,23 @@ const SetNurseElement = ({
           <MiniButton onClick={onClickInsert}>
             <b>추가</b>
           </MiniButton>
-          <MiniButton onClick={onClickDelete}>
+          <MiniButton onClick={() => onClickDelete()}>
             <b>삭제</b>
           </MiniButton>
         </div>
         <table className="table">
           <thead>
             <tr>
-              <th className="check">선택</th>
+              <th className="check">
+                <div>선택</div>
+                <div>
+                  <input
+                    type="checkbox"
+                    className="checkBoxAll"
+                    onClick={onCheckedAll}
+                  />
+                </div>
+              </th>
               <th className="id">순번</th>
               <th className="name">이름</th>
               <th className="position">직책</th>

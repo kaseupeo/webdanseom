@@ -11,6 +11,9 @@ import * as authAPI from '../libs/api/nurse';
 import createRequestSaga, {
   createRequestActionTypes,
 } from '../libs/createRequestSaga';
+import createRequestThunk, {
+  createRequestActionTypes as createRequestActionTypesThunk,
+} from '../libs/createRequestThunk';
 //필드 값 초기화
 const INITIALIZE_FORM = 'nurse/INITIALIZE_FORM';
 const CHANGE_NURSE = 'nurse/CHANGE_NURSE';
@@ -45,7 +48,7 @@ export const deletetNurses = createAction(
 );
 export const editNurses = createAction(EDIT_NURSES, (response) => response);
 
-const selectNursesSaga = createRequestSaga(SELECT_NURSES, authAPI.selectNurse);
+const selectNursesSaga = createRequestThunk(SELECT_NURSES, authAPI.selectNurse);
 const insertNursesSaga = createRequestSaga(INSERT_NURSES, authAPI.insertNurse);
 const deleteNursesSaga = createRequestSaga(DELETE_NURSES, authAPI.deleteNurses);
 const editNursesSaga = createRequestSaga(EDIT_NURSES, authAPI.editNurses);
@@ -56,6 +59,7 @@ export function* nurseSaga() {
   yield takeLatest(DELETE_NURSES, deleteNursesSaga);
   yield takeLatest(EDIT_NURSES, editNursesSaga);
 }
+
 const initialState = {
   nurseList: [''],
   response: {
@@ -77,9 +81,10 @@ const nurse = handleActions(
       produce(state, (draft) => {
         draft['nurseList'][index][key] = value;
       }),
-    [SELECT_NURSES_SUCCESS]: (state, { payload: nurseList }) => ({
+    [SELECT_NURSES_SUCCESS]: (state, { payload: response }) => ({
       ...state,
-      nurseList,
+      nurseList: response.data,
+      response: response,
       responseError: null,
     }),
     [SELECT_NURSES_FAILURE]: (state, { payload: error }) => ({

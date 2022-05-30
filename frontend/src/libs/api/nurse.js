@@ -13,7 +13,7 @@ export const selectNurse = ({ seq }) =>
       if (response.data.message === '간호사 목록 조회 실패')
         return { nurses: [''] };
 
-      return response.data;
+      return response;
     })
     .catch((error) => {
       console.log(error);

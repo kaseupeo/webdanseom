@@ -43,8 +43,10 @@ $min-contents-width: 1050px;
             .id{width: 1%;
 
             }
-            .check{width: 1%;
-
+            .check{width: 2%;
+              .checkBox{
+                padding: 0;
+              }
             }
              
             input{

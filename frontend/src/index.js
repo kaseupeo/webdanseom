@@ -9,12 +9,13 @@ import reportWebVitals from './reportWebVitals';
 import createSagaMiddleware from '@redux-saga/core';
 import rootReducer, { rootSaga } from './modules';
 import client from './libs/api/client';
+import ReduxThunk from 'redux-thunk';
 
 const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(
   rootReducer,
-  composeWithDevTools(applyMiddleware(sagaMiddleware)),
+  composeWithDevTools(applyMiddleware(sagaMiddleware, ReduxThunk)),
 );
 sagaMiddleware.run(rootSaga);
 
