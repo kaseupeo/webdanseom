@@ -46,6 +46,10 @@ const TopNavigation = ({ groupName, onClickLogout, onClickMenu, error }) => {
     setMyPageHiding(false);
   };
   const outSection = useRef();
+
+  const onClickEditUserInfo = () => {
+    navigate('/editUserInfo')
+  }
   return (
     <div className="whole" onCanPlay={onClickInit}>
       <header className="TopNavigation">
@@ -84,7 +88,7 @@ const TopNavigation = ({ groupName, onClickLogout, onClickMenu, error }) => {
                     <b>{memberName} 님</b>
                   </div>
                   <ul style={{ margin: '0px' }}>
-                    <li>내 정보 수정</li>
+                    <li onClick={onClickEditUserInfo}>내 정보 수정</li>
                     <li>그룹설정</li>
                     <hr />
                     <li onClick={onClickLogout}>로그아웃</li>
