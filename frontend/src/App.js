@@ -25,7 +25,10 @@ import HeadStasticsWork from './pages/app/head/StatisticsWork';
 import NormalSelectWork from './pages/app/normal/SelectWork';
 import NormalRequestWokr from './pages/app/normal/RequestWork.js';
 import NormalStasticsWork from './pages/app/normal/StatisticsWork';
-import Temp from './temp/temp';
+
+import TempContents from './temp/tempContents';
+import EditUserInfo from './temp2/editUserInfo';
+
 function App() {
   return (
     <div className="App">
@@ -38,9 +41,12 @@ function App() {
             <Route path="/auth/findPassword" element={<FindPasswordPage />} />
           </Route>
 
+          <Route path="/appc" element={<TempContents />} />
+          <Route path="/appi" element={<EditUserInfo />} />
+
           <Route element={<TopNavigationForm />}>
             <Route path="/app" element={<SideNavigationForm />}>
-              <Route path="/app/g/" element={<Temp />} />
+              {/* <Route path="/app/g/" element={<Temp />} /> */}
 
               <Route
                 path="/app/h/ManagementWork/"
