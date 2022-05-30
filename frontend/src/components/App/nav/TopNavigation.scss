@@ -1,7 +1,8 @@
 $mobile-contents-width: 640px;
 $min-contents-width: 1050px;
 .whole {
-  position: flex;
+  position: absolute;
+  height: 100%;
   width: 100%;
   -ms-user-select: none; 
  background-color: white;
@@ -9,8 +10,8 @@ $min-contents-width: 1050px;
   -webkit-user-select: none;
   user-select: none;
   @media (max-width: $mobile-contents-width) {
-    position: fixed;
-    width: 100%;
+    position: absolute;
+ 
   
   }
   .TopNavigation {
@@ -147,11 +148,7 @@ $min-contents-width: 1050px;
       }
       .content {
         
-        @media (max-width: $mobile-contents-width) {
-  
-  
-          overflow-y: scroll;
-        }
+      
       
       }
       .groupName {

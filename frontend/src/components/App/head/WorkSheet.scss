@@ -1,5 +1,5 @@
-$mobile-contents-width: 640px;
-$min-contents-width: 1050px;
+$mobile-contents-width: 700px;
+$min-contents-width: 1400px;
 .WorkSheet {
   display: flex;
   flex-direction: column;
@@ -18,7 +18,7 @@ $min-contents-width: 1050px;
     
     .month{
       white-space: nowrap;
-      flex-grow: 5;
+      flex-grow: 1.5;
      
       margin-top: 30px;
      vertical-align: middle;
@@ -67,7 +67,7 @@ $min-contents-width: 1050px;
   
   @media (max-width: $min-contents-width) {
     
-    flex-grow: 2.2;
+    flex-grow: 5;
   }
   
 
