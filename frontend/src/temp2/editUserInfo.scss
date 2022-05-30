@@ -1,0 +1,35 @@
+.edit-userInfo-area{
+    width: 100%;
+    height: 100%;
+    p {
+        font-size: 14px;
+    }
+    .userInfo-form{
+        display:flex;
+        flex-direction: column;
+        .userInfo-row{
+            display:flex;
+            align-items: center;
+            border-bottom: 1px solid #808080;
+
+            .userInfo-title{
+                display:flex;
+                align-items: center;
+                width: 120px;
+                height: 40px;
+                padding: 0 0 0 10px;
+                background-color: #D9DCEB;
+            }
+            .userInfo-content{
+                padding: 0 10px;
+            }
+            .userInfo-content input{
+                width: 180px;
+                height: 24px;
+            }
+        }
+        .userInfo-row:nth-child(1){
+            border-top: 1px solid #808080;
+        }
+    }
+}
