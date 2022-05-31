@@ -49,7 +49,7 @@ public class Nurse {
     private double annualLeave;
 
     //프리셉터 --- 외래키
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "preceptorSeq")
     private Preceptor preceptorSeq;
 
