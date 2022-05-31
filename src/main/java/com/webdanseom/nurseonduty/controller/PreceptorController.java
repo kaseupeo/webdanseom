@@ -131,5 +131,16 @@ public class PreceptorController {
         }
     }
 
-
+    // 관계 삭제
+    @DeleteMapping("/delete")
+    public Response deletePreceptor(@RequestBody RequestPreceptorList requestPreceptorList) {
+        try {
+            for (int i = 0; i < requestPreceptorList.getRequestPreceptorList().size(); i++) {
+                preceptorService.deletePreceptor(requestPreceptorList.getRequestPreceptorList().get(i).getSeq());
+            }
+            return new Response("success", "관계 삭제 성공", null);
+        } catch (Exception e) {
+            return new Response("error", "관계 삭제 실패", e.getMessage());
+        }
+    }
 }
