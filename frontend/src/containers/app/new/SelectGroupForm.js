@@ -7,8 +7,10 @@ import {
   selectMenu,
 } from '../../../modules/menu';
 import { useNavigate } from 'react-router-dom';
-import SideNavigation from '../../../components/app/nav/SideNavigation';
-import { selector } from 'gsap';
+import SelectGroup, {
+  SelectGroupTemplate,
+} from '../../../components/app/new/SelectGroup';
+import GroupTemplate from '../../../components/app/new/GroupTemplate';
 
 const LeftNavigationForm = () => {
   const dispatch = useDispatch();
@@ -21,9 +23,6 @@ const LeftNavigationForm = () => {
       response: menu.response,
       responseError: menu.responseError,
     }));
-  useEffect(() => {
-    dispatch(selectMenu(0));
-  }, []);
   const onClickMenu0 = () => {
     dispatch(selectMenu(0));
   };
@@ -51,48 +50,12 @@ const LeftNavigationForm = () => {
           return;
       }
     }
-
-    if (headNurseCheck) {
-      switch (selecting) {
-        case 0:
-          navigate('/app/h/managementWork'); //근무표 관리
-          return;
-        case 1:
-          navigate('/app/h/selectWork'); //근무표 조회
-          return;
-        case 2:
-          navigate('/app/h/statisticsWork'); //근무표 통계 조회
-          return;
-        default:
-          navigate('/app/h/managementWork');
-          return;
-      }
-    } else {
-      switch (selecting) {
-        case 0:
-          navigate('/app/n/selectWork'); //근무표 조회
-          return;
-        case 1:
-          navigate('/app/n/requestWork'); //근무 요청
-          return;
-        case 2:
-          navigate('/app/n/statisticsWork'); //근무표 통계 조회
-          return;
-        default:
-          navigate('/app/h/managementWork');
-          return;
-      }
-    }
   }, [headNurseCheck, joinGroup, navigate, selecting]);
 
   return (
-    <SideNavigation
-      joinGroup={joinGroup}
-      headNurseCheck={headNurseCheck}
-      onClickMenu0={onClickMenu0}
-      onClickMenu1={onClickMenu1}
-      onClickMenu2={onClickMenu2}
-    />
+    <GroupTemplate>
+      <SelectGroup onClickMenu1={onClickMenu1} onClickMenu2={onClickMenu2} />
+    </GroupTemplate>
   );
 };
 

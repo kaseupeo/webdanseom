@@ -48,11 +48,6 @@ public class Nurse {
     @NotNull
     private double annualLeave;
 
-    //프리셉터 --- 외래키
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "preceptorSeq")
-    private Preceptor preceptorSeq;
-
     public Nurse(int nurseSeq, NurseGroup nurseGroup, String name, String charge, String position, double annualLeave) {
         this.nurseSeq = nurseSeq;
         this.nurseGroup = nurseGroup;

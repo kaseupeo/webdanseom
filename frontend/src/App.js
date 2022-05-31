@@ -25,8 +25,10 @@ import HeadStasticsWork from './pages/app/head/StatisticsWork';
 import NormalSelectWork from './pages/app/normal/SelectWork';
 import NormalRequestWokr from './pages/app/normal/RequestWork.js';
 import NormalStasticsWork from './pages/app/normal/StatisticsWork';
-import Temp from './temp/tempContents';
-import EditUserInfo from './temp2/editUserInfo';
+import SelectGroup from './pages/app/new/SelectGroup';
+import JoinGroup from './pages/app/new/JoinGroup';
+import CreateGroup from './pages/app/new/CreateGroup';
+import EditUserInfo from './components/app/myPage/editUserInfo';
 
 function App() {
   return (
@@ -40,13 +42,12 @@ function App() {
             <Route path="/auth/findPassword" element={<FindPasswordPage />} />
           </Route>
 
-          <Route path="/editUserInfo" element={<EditUserInfo />} />
-
           <Route element={<TopNavigationForm />}>
             <Route path="/app" element={<SideNavigationForm />}>
-              <Route path="/app/g/" element={<Temp />} />
+              <Route path="/app/g/selectGroup" element={<SelectGroup />} />
+              <Route path="/app/g/createGroup" element={<CreateGroup />} />
+              <Route path="/app/g/joinGroup" element={<JoinGroup />} />
               <Route path="/app/editUserInfo" element={<EditUserInfo />} />
-              
 
               <Route
                 path="/app/h/ManagementWork/"

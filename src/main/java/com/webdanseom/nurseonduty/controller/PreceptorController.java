@@ -13,7 +13,8 @@ import com.webdanseom.nurseonduty.model.Nurse;
 import com.webdanseom.nurseonduty.model.Preceptor;
 import com.webdanseom.nurseonduty.model.Response;
 import com.webdanseom.nurseonduty.model.request.RequestNursesName;
-import com.webdanseom.nurseonduty.model.response.ResponseNursesName;
+import com.webdanseom.nurseonduty.model.request.RequestPreceptorList;
+import com.webdanseom.nurseonduty.model.response.ResponsePreceptor;
 import com.webdanseom.nurseonduty.service.AuthService;
 import com.webdanseom.nurseonduty.service.CookieUtil;
 import com.webdanseom.nurseonduty.service.NurseService;
@@ -75,11 +76,6 @@ public class PreceptorController {
             preceptor.setNurseGroup(member.getGroupSeq());
             preceptorService.addPreceptor(preceptor);
 
-            chargeNurse.setPreceptorSeq(preceptor);
-            newNurse.setPreceptorSeq(preceptor);
-            nurseService.editNurse(chargeNurse);
-            nurseService.editNurse(newNurse);
-
             return new Response("success", "관계 등록 성공", null);
         } catch (Exception e) {
             return new Response("error", "관계 등록 실패", e.getMessage());
@@ -100,10 +96,10 @@ public class PreceptorController {
             Member member = authService.findByEmail(email);
 
             List<Preceptor> preceptors = preceptorService.selectPreceptor(member.getGroupSeq().getSeq());
-            List<ResponseNursesName> preceptorList = new ArrayList<>();
+            List<ResponsePreceptor> preceptorList = new ArrayList<>();
 
             for (Preceptor preceptor : preceptors)
-                preceptorList.add(new ResponseNursesName(
+                preceptorList.add(new ResponsePreceptor(
                         preceptor.getPreceptorSeq(),
                         nurseService.findByNurseSeq(preceptor.getChargeNurseNum()).getName(),
                         nurseService.findByNurseSeq(preceptor.getNewNurseNum()).getName()));
@@ -111,6 +107,40 @@ public class PreceptorController {
             return new Response("success", "관계 목록 조회 성공", preceptorList);
         } catch (Exception e) {
             return new Response("error", "관계 목록 조회 실패", e.getMessage());
+        }
+    }
+
+    // 관계 수정
+    @PutMapping("/update")
+    public Response updatePreceptor(@RequestBody RequestPreceptorList requestPreceptorList) {
+        try {
+            for (int i = 0; i < requestPreceptorList.getRequestPreceptorList().size(); i++) {
+                Preceptor preceptor = new Preceptor();
+                Nurse chargeNurse = nurseService.findByName(requestPreceptorList.getRequestPreceptorList().get(i).getChargeNurseName());
+                Nurse newNurse = nurseService.findByName(requestPreceptorList.getRequestPreceptorList().get(i).getNewNurseName());
+
+                preceptor.setPreceptorSeq(requestPreceptorList.getRequestPreceptorList().get(i).getSeq());
+                preceptor.setChargeNurseNum(chargeNurse.getNurseSeq());
+                preceptor.setNewNurseNum(newNurse.getNurseSeq());
+                preceptor.setNurseGroup(chargeNurse.getNurseGroup());
+                preceptorService.updatePreceptor(preceptor);
+            }
+            return new Response("success", "관계 수정 성공", requestPreceptorList);
+        } catch (Exception e) {
+            return new Response("error", "관계 수정 실패",e.getMessage());
+        }
+    }
+
+    // 관계 삭제
+    @DeleteMapping("/delete")
+    public Response deletePreceptor(@RequestBody RequestPreceptorList requestPreceptorList) {
+        try {
+            for (int i = 0; i < requestPreceptorList.getRequestPreceptorList().size(); i++) {
+                preceptorService.deletePreceptor(requestPreceptorList.getRequestPreceptorList().get(i).getSeq());
+            }
+            return new Response("success", "관계 삭제 성공", null);
+        } catch (Exception e) {
+            return new Response("error", "관계 삭제 실패", e.getMessage());
         }
     }
 }

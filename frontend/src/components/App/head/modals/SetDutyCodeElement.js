@@ -1,7 +1,7 @@
 import './SetDutyCodeElement.scss';
 import Modal from './Modal';
 import { CgWorkAlt } from 'react-icons/cg';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { MiniButton } from '../../common/Button';
 import ColorPicker from '../../common/ColorPicker';
 const SetDutyCodeElement = ({
@@ -23,7 +23,10 @@ const SetDutyCodeElement = ({
   const workingHoursOption = hours.map((hour) => (
     <option key={hour}>{hour}</option>
   ));
-  const onChangeTime = () => {};
+
+  const [startTimeTemp, setStartTimeTemp] = useState();
+  const [timeTemp, setTimeTemp] = useState(0);
+
   const [endTime, setEndTime] = useState('00:00');
 
   const dutyCodeInfo = dutyCodeList ? (
@@ -45,16 +48,18 @@ const SetDutyCodeElement = ({
             type="text"
             maxLength={1}
             defaultValue={dutyCode.dutyCode}
+            onChange={onChange}
           />
         </td>
         <td className="hexColor">
-          <ColorPicker />
+          <input type="color" defaultValut={dutyCode.hexColor} />
         </td>
         <td className="dutyCodeName">
           <input
             name="dutyCodeName"
             type="text"
             defaultValue={dutyCode.dutyCodeName}
+            onChange={onChange}
           />
         </td>
 
@@ -63,14 +68,17 @@ const SetDutyCodeElement = ({
             type="time"
             name="startTime"
             defaultValue={dutyCode.startTime}
-            onChange={onChangeTime}
+            onChange={onChange}
           />
-          ~ {endTime}
+          ~ {}
         </td>
         <td className="workingHours">
-          <select name="workingHours" defaultValue={dutyCode.workingHours}>
-            {workingHoursOption}
-          </select>
+          <input
+            type={'number'}
+            name="workingHours"
+            defaultValue={dutyCode.workingHours}
+            onChange={onChange}
+          />
         </td>
         <td className="workType">
           <select name="workType" defaultValue={dutyCode.workType}>

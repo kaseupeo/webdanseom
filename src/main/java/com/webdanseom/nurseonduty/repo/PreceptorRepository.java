@@ -14,4 +14,5 @@ import java.util.List;
 
 public interface PreceptorRepository extends CrudRepository<Preceptor, Long> {
     List<Preceptor> findByNurseGroupSeq(int nurseGroupSeq);
+    Preceptor findByPreceptorSeq(int preceptorSeq);
 }

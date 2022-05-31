@@ -29,27 +29,14 @@ const WorkSheetForm = ({ modalOpen, closeModal }) => {
     for (var i = 0; i < checkBox.length; i++) {
       checkBox[i].checked = false;
     }
-    checkBoxAll[0].checked = false;
+    checkBoxAll.checked = false;
   };
   //듀티코드 리스트 체크 초기화
   const initDutyCodeList = () => {
     setCheckedDutyCodeList([]);
   };
   const onClickInsert = () => {
-    dispatch(
-      insertDutyCodeAsync({
-        creator: '시스템',
-        dutyCode: 'D',
-        dutyCodeName: '데이',
-        dutySeq: 169,
-        hexColor: '#FFFFFF',
-        isUsable: true,
-
-        startTime: '07:00:00',
-        workType: 'Day',
-        workingHours: 8,
-      }),
-    );
+    dispatch(insertDutyCodeAsync());
     dispatch(selectDutyCodeAsync({ groupSeq }));
     setCheckedDutyCodeList([]);
     flagFuction();

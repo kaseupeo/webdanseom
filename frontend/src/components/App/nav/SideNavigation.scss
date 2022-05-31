@@ -86,14 +86,14 @@ $mobile-contents-width: 640px;
   }
   
   .content {
-    display: flex;
-    justify-content: center;
+    
+    
   
-    height: 120%;
+
     width: 100%;
-  
+    
     margin: 2.1rem;
-    margin-left: 15rem;
+    margin-left: 17rem;
   
     @media (max-width: $mobile-contents-width) { 
      margin: 2rem 1rem;

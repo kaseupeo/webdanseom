@@ -50,24 +50,34 @@ $min-contents-width: 1050px;
                   text-align: center;
             
                   input{
-                    width:30%; 
+                    width:70%; 
                     @media (max-width: $min-contents-width) {
                         text-align: center;
                       font-size: 0.5vw;
-                      
-                  
+                    
                   }
                 }
             }
-              .dutyCodeName{width: 30%;
+              .dutyCodeName{width: 15%;
                 input{
-                    width:95%;  }}
+                    width:90%;  }}
               .hexColor{width: 5%;}
-              .startTime{width: 30%;}
+              .startTime{width: 15%;}
               .workingHours{width: 5%;}
               .workType{width: 10%;}
-              .useable{width: 5%;}
-
+              .useable{width: 5%;
+                font-size: 0.5vw;
+              }
+              .creator{width:5%;
+                input{
+                  width:90%; 
+                  @media (max-width: $min-contents-width) {
+                      text-align: center;
+                    font-size: 0.5vw;
+                    
+                
+                }}
+              }
             
                 
         }

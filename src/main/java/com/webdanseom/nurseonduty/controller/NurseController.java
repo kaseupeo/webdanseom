@@ -95,7 +95,6 @@ public class NurseController {
     @PutMapping("/edit")
     public Response editNurse(@RequestBody RequestNurseList requestNurseList) {
         try {
-
             for (int i = 0; i < requestNurseList.getNurseList().size(); i++) {
                 if (nurseService.findByNurseSeq(requestNurseList.getNurseList().get(i).getNurseSeq())!=null)
                     nurseService.editNurse(requestNurseList.getNurseList().get(i));
