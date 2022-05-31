@@ -58,7 +58,7 @@ public class DutyController {
             Member member = authService.findByEmail(email);
             NurseGroup nurseGroup = member.getGroupSeq();
 
-            duty.setDutyCode("D1");
+            duty.setDutyCode("N");
             duty.setNurseGroup(nurseGroup);
             duty.setDutyCodeName("설명");
             duty.setWorkingHours(8);
@@ -113,7 +113,7 @@ public class DutyController {
         }
     }
 
-    //듀티삭제
+    //듀티삭제 <List로 변경>
     @DeleteMapping("/deleteDuty")
     public Response deleteDuty(@RequestBody RequestDutySeq requestDutySeq) {
         try {
@@ -124,6 +124,7 @@ public class DutyController {
             return new Response("error", "듀티코드 실패 실패", e.getMessage());
         }
     }
+    
     //초기화
     @GetMapping("/returnDuty")
     public Response returnDuty(HttpServletRequest httpServletRequest) {
