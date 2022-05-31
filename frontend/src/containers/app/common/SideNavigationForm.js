@@ -33,8 +33,20 @@ const LeftNavigationForm = () => {
 
   useEffect(() => {
     if (!joinGroup) {
-      navigate('/app/g'); //그룹생성/참가 수정필요
-      return;
+      switch (selecting) {
+        case 0:
+          navigate('/app/g/selectGroup'); //그룹생성/참가
+          return;
+        case 1:
+          navigate('/app/g/createGroup'); //그룹생성
+          return;
+        case 2:
+          navigate('/app/g/joinGroup'); //그룹참가
+          return;
+        default:
+          navigate('/app/g/selectGroup');
+          return;
+      }
     }
 
     if (headNurseCheck) {

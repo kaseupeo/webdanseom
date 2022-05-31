@@ -3,8 +3,8 @@ import WorkManagementBtn from '../../../components/app/head/WorkManagementBtn';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import SetNurseForm from './modals/SetNurseForm';
-import SetDutyCodeFrom from './modals/SetDutyCodeFrom';
-import SetRelationFrom from './modals/SetRelationFrom';
+import SetDutyCodeFrom from './modals/SetDutyCodeForm';
+import SetRelationFrom from './modals/SetRelationForm';
 import { selectNurses } from '../../../modules/nurse';
 const WorkManagementBtnForm = () => {
   const dispatch = useDispatch();

@@ -11,33 +11,20 @@ export const selectDutyCode = ({ seq }) =>
       console.log(error);
     });
 
-export const insertDutyCode = ({
-  dutyCode,
-  dutyCodeName,
-  hexColor,
-  isUsable,
-}) =>
+export const insertDutyCode = () =>
   client
-    .get('/api/duty/addDuty')
-    .then(
-      (response) => {
-        console.log(response);
-        return response;
-      },
-      {
-        dutyCode: dutyCode,
-        dutyCodeName: dutyCodeName,
-        hexColor: hexColor,
-        isUsable: isUsable,
-      },
-    )
+    .post('/api/duty/addDuty')
+    .then((response) => {
+      console.log(response);
+      return response;
+    })
     .catch((error) => {
       console.log(error);
     });
 
 export const deleteDutyCode = ({ checkedDutyCodeList }) =>
   client
-    .get('/api/duty/deleteDuty', {
+    .Delete('/api/duty/deleteDuty', {
       data: { dutyCodeList: checkedDutyCodeList },
     })
     .then((response) => {
@@ -47,9 +34,9 @@ export const deleteDutyCode = ({ checkedDutyCodeList }) =>
     .catch((error) => {
       console.log(error);
     });
-export const editDutyCode = ({ dutyCodeList }) =>
+export const editDutyCode = ({ dutyList }) =>
   client
-    .get('/api/duty/updateDuty', { dutyCodeList: dutyCodeList })
+    .put('/api/duty/updateDuty', { dutyList })
     .then((response) => {
       console.log(response);
       return response;
