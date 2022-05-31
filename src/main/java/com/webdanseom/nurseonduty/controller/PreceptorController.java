@@ -9,6 +9,7 @@ package com.webdanseom.nurseonduty.controller;
  */
 import com.webdanseom.nurseonduty.jwt.JwtUtil;
 import com.webdanseom.nurseonduty.model.Member;
+import com.webdanseom.nurseonduty.model.Nurse;
 import com.webdanseom.nurseonduty.model.Preceptor;
 import com.webdanseom.nurseonduty.model.Response;
 import com.webdanseom.nurseonduty.model.request.RequestNursesName;
@@ -66,10 +67,19 @@ public class PreceptorController {
 
             Member member = authService.findByEmail(email);
             Preceptor preceptor = new Preceptor();
-            preceptor.setChargeNurseNum(nurseService.findByName(requestNursesName.getChargeNurseName()));
-            preceptor.setNewNurseNum(nurseService.findByName(requestNursesName.getNewNurseName()));
+            Nurse chargeNurse = nurseService.findByName(requestNursesName.getChargeNurseName());
+            Nurse newNurse = nurseService.findByName(requestNursesName.getNewNurseName());
+
+            preceptor.setChargeNurseNum(chargeNurse.getNurseSeq());
+            preceptor.setNewNurseNum(newNurse.getNurseSeq());
             preceptor.setNurseGroup(member.getGroupSeq());
             preceptorService.addPreceptor(preceptor);
+
+            chargeNurse.setPreceptorSeq(preceptor);
+            newNurse.setPreceptorSeq(preceptor);
+            nurseService.editNurse(chargeNurse);
+            nurseService.editNurse(newNurse);
+
             return new Response("success", "관계 등록 성공", null);
         } catch (Exception e) {
             return new Response("error", "관계 등록 실패", e.getMessage());

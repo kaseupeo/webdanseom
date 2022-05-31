@@ -61,10 +61,10 @@ public class NurseServiceImpl implements NurseService {
      * @throws NotFoundException
      */
     @Override
-    public int findByName(String name) throws NotFoundException {
+    public Nurse findByName(String name) throws NotFoundException {
         Nurse nurse = nurseRepository.findByName(name);
         if (nurse==null) throw new NotFoundException("간호사가 조회되지 않습니다.");
-        return nurse.getNurseSeq();
+        return nurse;
     }
 
     /**
