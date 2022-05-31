@@ -64,4 +64,16 @@ public class PreceptorServiceImpl implements PreceptorService {
         if (preceptorRepository.findByPreceptorSeq(preceptor.getPreceptorSeq())==null) throw new NotFoundException("updatePreceptor(), 프리셉터 조회되지 않습니다.");
         preceptorRepository.save(preceptor);
     }
+
+    /**
+     * 관계 삭제
+     * @param preceptorSeq
+     * @throws Exception
+     */
+    @Override
+    public void deletePreceptor(int preceptorSeq) throws Exception {
+        Preceptor preceptor = preceptorRepository.findByPreceptorSeq(preceptorSeq);
+        if (preceptor==null) throw new NotFoundException("deletePreceptor(), 프리셉터가 조회되지 않습니다.");
+        preceptorRepository.delete(preceptor);
+    }
 }
