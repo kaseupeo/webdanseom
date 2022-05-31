@@ -1,10 +1,10 @@
 import Title from '../../../components/app/common/Title';
-import SelectGroup from '../../../components/app/new/SelectGroup';
+import SelectGroup from '../../../containers/app/new/SelectGroupForm';
 const ManagementWork = () => {
   return (
     <div>
       <span>
-        <Title title="그룹 생성/참가" />
+        <Title title="그룹 생성/참여" />
       </span>
       <SelectGroup />
     </div>

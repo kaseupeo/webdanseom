@@ -6,113 +6,42 @@ import React, {
 } from 'react';
 import './SelectGroup.scss';
 
-const AddGroupDialog = forwardRef((props, ref) => {
-  useImperativeHandle(ref, () => ({
-    openDialog: () => {},
-  }));
+import { MdOutlineGroupAdd, MdOutlineGroups } from 'react-icons/md';
+import CreateGroup from './CreateGroup';
 
-  const [open, setOpen] = useState(false);
-  const [inputValue, setInputValue] = useState('');
-
-  const onChangeInput = (e) => {
-    setInputValue(e.target.value);
-  };
-
-  const onClickAddButton = () => {
-    console.log(inputValue);
-    alert('그룹 생성');
-  };
-
+const SelectGroup = ({ onClickMenu1, onClickMenu2 }) => {
   return (
-    <div className={open ? 'dialog addGroup' : 'dialog addGroup close'}>
-      <div className="dialog-title">
-        <h2>그룹 생성</h2>
-        <button>X</button>
-      </div>
-      <div className="dialog-content">
-        <label>그룹명: </label>
-        <input type="text" onChange={onChangeInput} maxLength="50" />
-      </div>
-      <div className="dialog-footer">
-        <button>그룹 생성</button>
-      </div>
-    </div>
-  );
-});
-
-const JoinGroupDialog = forwardRef((props, ref) => {
-  useImperativeHandle(ref, () => ({
-    openDialog: () => {
-      openDialog();
-    },
-  }));
-
-  const [open, setOpen] = useState(false);
-  const [inputValue, setInputValue] = useState('');
-
-  const openDialog = () => {
-    setOpen(true);
-  };
-  const closeDialog = () => {
-    setOpen(false);
-  };
-
-  const onChangeInput = (e) => {
-    setInputValue(e.target.value);
-  };
-
-  const onClickJoinButton = () => {
-    console.log(inputValue);
-    alert('그룹 참가');
-  };
-
-  return (
-    <div className={open ? 'dialog joinGroup' : 'dialog joinGroup close'}>
-      <div className="dialog-title">
-        <h2>그룹 참가</h2>
-        <button onClick={closeDialog}>X</button>
-      </div>
-      <div className="dialog-content">
-        <label>초대링크: </label>
-        <input type="text" onChange={onChangeInput} maxLength="50" />
-      </div>
-      <div className="dialog-footer">
-        <button onClick={onClickJoinButton}>그룹 참가</button>
-      </div>
-    </div>
-  );
-});
-
-const TempContents = () => {
-  const addGroupRef = useRef();
-  const joinGroupRef = useRef();
-
-  const openAddGroup = () => {
-    addGroupRef.current.openDialog();
-  };
-  const openJoinGroup = () => {
-    joinGroupRef.current.openDialog();
-  };
-
-  return (
-    <div className="temp-contents-area">
-      <div className="title-wrap"></div>
+    <div className="SelectGroup">
       <div className="group-area">
-        <div className="group-wrap" onClick={openAddGroup}>
-          <img src={''} alt="add group" /> {/* 여기에 이미지 넣어주세요 */}
-          <label>그룹 생성</label>
+        <div className="group-wrap" onClick={onClickMenu1}>
+          <MdOutlineGroupAdd className="group-icon" />
+          <b>그룹 생성</b>
         </div>
 
-        <div className="group-wrap">
-          <img src={''} alt="join group" onClick={openJoinGroup} />{' '}
-          {/* 여기에 이미지 넣어주세요 */}
-          <label>그룹 참여</label>
+        <div className="group-wrap" onClick={onClickMenu2}>
+          <MdOutlineGroups className="group-icon" />
+          <b>그룹 참여</b>
         </div>
       </div>
-      <AddGroupDialog ref={addGroupRef} />
-      <JoinGroupDialog ref={joinGroupRef} />
+      <div className="menu-texts">
+        <div className="menu-text">
+          <b>
+            수 간호사를 위한 그룹 생성 메뉴 입니다.
+            <br />
+            그룹 생성 후 다른 간호사들을 그룹에 초대할 수있습니다.
+          </b>
+        </div>
+
+        <div className="menu-text">
+          <b>
+            일반 간호사를 위한 그룹 참여 메뉴 입니다.
+            <br />
+            그룹 초대코드를 통해 그룹에 참여할 수 있습니다.
+          </b>
+        </div>
+      </div>
     </div>
   );
 };
 
-export default TempContents;
+export default SelectGroup;

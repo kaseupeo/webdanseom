@@ -4,7 +4,7 @@ const JoinGroup = () => {
   return (
     <div>
       <span>
-        <Title title="그룹 참가" />
+        <Title title="그룹 참여" />
       </span>
     </div>
   );
