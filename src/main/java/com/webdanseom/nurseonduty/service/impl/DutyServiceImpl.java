@@ -33,7 +33,6 @@ public class DutyServiceImpl implements DutyService {
      * @param index
      * @throws NotFoundException
      * */
-
     @Override
     public  void initializeDuty(NurseGroup nurseGroup, int index) throws NotFoundException {
         if(nurseGroup == null) throw new NotFoundException("initializeDuty(), 받은 초기 듀티코드가 없습니다.");
@@ -80,6 +79,7 @@ public class DutyServiceImpl implements DutyService {
     /**
      * 듀티 조회
      * @param dutySeq
+     * @throws NotFoundException
      * */
     @Override
     public Duty findByDutySeq(int dutySeq) throws NotFoundException {
@@ -137,6 +137,7 @@ public class DutyServiceImpl implements DutyService {
     /**
      *초기화
      * @param duty
+     * @throws Exception
      */
     @Override
     public void returnDuty(Duty duty) throws Exception {
@@ -146,7 +147,4 @@ public class DutyServiceImpl implements DutyService {
         for(int i = 0; i < 42; i++)
             initializeDuty(nurseGroup, i);
     }
-
-
-
 }

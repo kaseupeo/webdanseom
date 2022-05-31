@@ -6,7 +6,6 @@ import com.webdanseom.nurseonduty.model.Member;
 import com.webdanseom.nurseonduty.model.NurseGroup;
 import com.webdanseom.nurseonduty.model.Response;
 import com.webdanseom.nurseonduty.model.request.RequestDutyList;
-import com.webdanseom.nurseonduty.model.request.RequestDutySeq;
 import com.webdanseom.nurseonduty.repo.DutyRepository;
 import com.webdanseom.nurseonduty.service.AuthService;
 import com.webdanseom.nurseonduty.service.CookieUtil;
@@ -113,12 +112,15 @@ public class DutyController {
         }
     }
 
-    //듀티삭제 <List로 변경>
+    //듀티삭제
     @DeleteMapping("/deleteDuty")
-    public Response deleteDuty(@RequestBody RequestDutySeq requestDutySeq) {
+    public Response deleteDuty(@RequestBody RequestDutyList updateDutyList) {
         try {
-            Duty duty = dutyRepository.findByDutySeq(requestDutySeq.getDutySeq());
-            dutyService.deleteDuty(duty);
+            for(int i = 0; i < updateDutyList.getDutyList().size(); i++) {
+                if(dutyService.findByDutySeq(updateDutyList.getDutyList().get(i).getDutySeq())!=null) {
+                    dutyService.updateDuty(updateDutyList.getDutyList().get(i));
+                }
+            }
             return new Response("success", "듀티코드 삭제 성공", null);
         }catch (Exception e) {
             return new Response("error", "듀티코드 실패 실패", e.getMessage());
