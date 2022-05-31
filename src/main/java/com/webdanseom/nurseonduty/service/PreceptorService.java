@@ -19,4 +19,7 @@ public interface PreceptorService {
 
     // 관계 조회
     List<Preceptor> selectPreceptor(int nurseGroupSeq) throws NotFoundException;
+
+    // 관계 수정
+    void updatePreceptor(Preceptor preceptor) throws NotFoundException;
 }

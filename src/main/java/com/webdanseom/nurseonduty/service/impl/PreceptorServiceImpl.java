@@ -53,4 +53,15 @@ public class PreceptorServiceImpl implements PreceptorService {
         List<Preceptor> preceptors = preceptorRepository.findByNurseGroupSeq(nurseGroupSeq);
         return preceptors;
     }
+
+    /**
+     * 관계 수정
+     * @param preceptor
+     * @throws NotFoundException
+     */
+    @Override
+    public void updatePreceptor(Preceptor preceptor) throws NotFoundException {
+        if (preceptorRepository.findByPreceptorSeq(preceptor.getPreceptorSeq())==null) throw new NotFoundException("updatePreceptor(), 프리셉터 조회되지 않습니다.");
+        preceptorRepository.save(preceptor);
+    }
 }
