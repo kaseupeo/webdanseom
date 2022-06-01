@@ -11,33 +11,38 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import './TopNavigation.scss';
 
-const thisYearAndMonth = () => {
-  let now = new Date();
-  let year = now.getFullYear();
-  let month = now.getMonth() + 1;
-
-  return { year, month };
-};
-
 const TopNavigation = ({ groupName, onClickLogout, onClickMenu, error }) => {
   const navigate = useNavigate();
+  const outHelping = useRef();
+
   const [helpHiding, setHelpHiding] = useState(false);
   const [myPageHiding, setMyPageHiding] = useState(false);
   const [memberName, setMemberName] = useState('김현숙');
   const [menuHiding, setMenuHiding] = useState(false);
 
+  const modalCloseHandler = ({ target }) => {
+    console.log('zz');
+    if (helpHiding && !outHelping.current.contains(target))
+      setHelpHiding(false);
+  };
+
+  useEffect(() => {
+    window.addEventListener('click', modalCloseHandler);
+    return () => {
+      window.removeEventListener('click', modalCloseHandler);
+    };
+  }, []);
+
   const onClickRefresh = () => {};
   const onClickHelp = () => {
     if (helpHiding) setHelpHiding(false);
     else {
-      setMyPageHiding(false);
       setHelpHiding(true);
     }
   };
   const onClickMyPage = () => {
     if (myPageHiding) setMyPageHiding(false);
     else {
-      setHelpHiding(false);
       setMyPageHiding(true);
     }
   };
@@ -45,13 +50,12 @@ const TopNavigation = ({ groupName, onClickLogout, onClickMenu, error }) => {
     setHelpHiding(false);
     setMyPageHiding(false);
   };
-  const outSection = useRef();
 
   const onClickEditUserInfo = () => {
-    navigate('/editUserInfo')
-  }
+    navigate('/editUserInfo');
+  };
   return (
-    <div className="whole" onCanPlay={onClickInit}>
+    <div className="whole">
       <header className="TopNavigation">
         <div className="topNav">
           <div className="menu" onClick={onClickMenu}>
@@ -68,10 +72,15 @@ const TopNavigation = ({ groupName, onClickLogout, onClickMenu, error }) => {
             </div>
 
             <div className="help">
-              <BiHelpCircle className="helpIcon" onClick={onClickHelp} />
+              <BiHelpCircle
+                className="helpIcon"
+                onClick={() => {
+                  onClickHelp();
+                }}
+              />
               <RiArrowDropDownFill className="bottomArrowIcon" />
               {helpHiding && (
-                <div className="helpMenu">
+                <div className="helpMenu" ref={outHelping}>
                   <ul>
                     <li>도움말 가이드</li>
                     <li>피드백 보내기</li>
