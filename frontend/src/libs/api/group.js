@@ -19,5 +19,35 @@ export const groupState = () =>
     })
     .catch((error) => {
       console.log(error);
+    });
+
+export const createGroup = ({ groupName }) =>
+  client
+    .post('/api/nurseGroup/createGroup', { groupName: groupName })
+    .then((response) => {
+      console.log(response.data);
+      return response;
     })
-    .finally();
+    .catch((error) => {
+      console.log(error);
+    });
+export const joinGroup = ({ inviteLink }) =>
+  client
+    .post('/api/nurseGroup/join', { inviteLink: inviteLink })
+    .then((response) => {
+      console.log(response.data);
+      return response;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+export const inviteGroup = () =>
+  client
+    .post('/api/nurseGroup/invite')
+    .then((response) => {
+      console.log(response.data);
+      return response;
+    })
+    .catch((error) => {
+      console.log(error);
+    });

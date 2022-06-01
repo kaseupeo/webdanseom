@@ -6,11 +6,12 @@ import {
   groupState,
   selectMenu,
 } from '../../../modules/menu';
+import { changeField, joinGroupThunk } from '../../../modules/group';
+
 import { useNavigate } from 'react-router-dom';
 import JoinGroup from '../../../components/app/new/JoinGroup';
 import GroupTemplate from '../../../components/app/new/GroupTemplate';
-
-const LeftNavigationForm = () => {
+const JoinGroupForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { joinGroup, headNurseCheck, selecting, response, responseError } =
@@ -23,6 +24,21 @@ const LeftNavigationForm = () => {
     }));
   const onClickMenu0 = () => {
     dispatch(selectMenu(0));
+    navigate('/app/g/selectGroup');
+  };
+  const onChange = (e) => {
+    const { value } = e.target;
+    dispatch(
+      changeField({
+        key: 'inputGroupName',
+        value,
+      }),
+    );
+  };
+
+  const onClickJoin = (e) => {
+    e.preventDefault();
+    const inviteCode = e.target.value;
   };
   useEffect(() => {
     if (!joinGroup) {
@@ -45,9 +61,13 @@ const LeftNavigationForm = () => {
 
   return (
     <GroupTemplate>
-      <JoinGroup />
+      <JoinGroup
+        onClickMenu0={onClickMenu0}
+        onClickJoin={onClickJoin}
+        onChange={onChange}
+      />
     </GroupTemplate>
   );
 };
 
-export default LeftNavigationForm;
+export default JoinGroupForm;

@@ -9,8 +9,12 @@ import {
 import { useNavigate } from 'react-router-dom';
 import CreateGroup from '../../../components/app/new/CreateGroup';
 import GroupTemplate from '../../../components/app/new/GroupTemplate';
-
-const LeftNavigationForm = () => {
+import {
+  initializeForm as ginitializeForm,
+  changeField,
+  createGroupsAsync,
+} from '../../../modules/group';
+const CreateGroupForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { joinGroup, headNurseCheck, selecting, response, responseError } =
@@ -21,8 +25,26 @@ const LeftNavigationForm = () => {
       response: menu.response,
       responseError: menu.responseError,
     }));
+  const { groupName, gResponse, gResponseError } = useSelector(({ group }) => ({
+    groupName: group.inputGroupName,
+    gResponse: group.response,
+    gResponseError: group.responseError,
+  }));
   const onClickMenu0 = () => {
     dispatch(selectMenu(0));
+  };
+  const onChange = (e) => {
+    const { value } = e.target;
+    dispatch(
+      changeField({
+        key: 'inputGroupName',
+        value,
+      }),
+    );
+  };
+  const onClickCreate = (e) => {
+    e.preventDefault();
+    dispatch(createGroupsAsync({ groupName }));
   };
   useEffect(() => {
     if (!joinGroup) {
@@ -45,9 +67,13 @@ const LeftNavigationForm = () => {
 
   return (
     <GroupTemplate>
-      <CreateGroup />
+      <CreateGroup
+        onClickMenu0={onClickMenu0}
+        onChange={onChange}
+        onClickCreate={onClickCreate}
+      />
     </GroupTemplate>
   );
 };
 
-export default LeftNavigationForm;
+export default CreateGroupForm;

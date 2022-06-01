@@ -99,11 +99,11 @@ const SideNavigation = ({
             ) : (
               <div>
                 {!menuHiding ? (
-                  <li className="icon">
+                  <li className="icon" onClick={onClickMenu0}>
                     <HiUserGroup />
                   </li>
                 ) : (
-                  <li>
+                  <li onClick={onClickMenu0}>
                     <HiUserGroup />
                     <b>그룹 생성/참가</b>
                   </li>
