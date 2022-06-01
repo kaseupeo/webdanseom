@@ -1,0 +1,101 @@
+$mobile-contents-width: 650px;
+$min-contents-width: 1500px;
+.JoinGroup{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .backBtn{
+        right:auto;
+        position:absolute;
+        display: flex;
+        margin-left: 50vw;
+        margin-bottom:25vw;
+        background-color: white;
+        border: solid thin black;
+        border-radius: 0.2rem;
+        
+        width: 2rem;
+        height: 2rem;
+        @media (min-width:$min-contents-width) {
+            margin-bottom:25rem;
+            margin-left: 60rem;
+        
+          
+        }
+        @media (max-width:$mobile-contents-width) {
+            margin-bottom:70vw;
+            margin-left: 22rem;
+          
+          
+        }
+        vertical-align: middle;
+        text-align: center;
+        &:hover{
+            background-color: #c6c6c6;
+            color:white;
+        }
+        &:active{
+            background-color: #b4b4b4;
+        }
+        .icon{
+            font-size: 2rem;
+            color: #b4b4b4;
+            
+        }
+    }
+   
+ 
+    
+    .content{
+        width: auto;
+        margin:0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        @media (max-width:$mobile-contents-width) {
+            margin-left: 0;
+            margin-bottom: 0;
+          
+        }
+        .title{
+            margin-top:2rem;
+            width: auto;
+            font-size: 1.2rem;
+            color: #555555;
+           
+        }
+   input{
+       margin: 0.5rem;
+       font-size: 1.2rem;
+       height: 2rem;
+       width: 16rem;
+   }
+
+    }
+   
+  
+    .submitBtn{
+        padding:0.3rem;
+        display: flex;
+        justify-content: center;
+      
+        margin: 1.5rem;
+        margin-bottom: 2rem;
+        font-size: 1.4rem;
+        border: solid thin #40586a;
+        border-radius: 0.2rem;
+        color:#40586a;
+        background-color: white;
+        text-align: center;
+        width: 10rem;
+        height: 2rem;
+        &:hover{
+            background-color: #3ec0be;
+            color:white;
+        }
+        &:active{
+            background-color: #37a5a3;
+        }
+    }
+}

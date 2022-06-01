@@ -1,6 +1,6 @@
 import Title from '../../../components/app/common/Title';
 import CreateGroup from '../../../containers/app/new/CreateGroupForm';
-const ManagementWork = () => {
+const CreateGroupPage = () => {
   return (
     <div>
       <span>
@@ -11,4 +11,4 @@ const ManagementWork = () => {
   );
 };
 
-export default ManagementWork;
+export default CreateGroupPage;

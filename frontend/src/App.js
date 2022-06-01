@@ -16,8 +16,8 @@ import SignUpPage from './pages/auth/SignUpPage';
 import LoginPage from './pages/auth/LoginPage';
 import FindPasswordPage from './pages/auth/FindPasswordPage';
 
-import TopNavigationForm from './containers/app/common/TopNavigationForm';
-import SideNavigationForm from './containers/app/common/SideNavigationForm';
+import TopNavigationForm from './containers/app/nav/TopNavigationForm';
+import SideNavigationForm from './containers/app/nav/SideNavigationForm';
 import MainNavigation from './components/auth/nav/MainNavigation';
 import HeadSelectWork from './pages/app/head/SelectWork';
 import HeadManagementWork from './pages/app/head/ManagementWork';

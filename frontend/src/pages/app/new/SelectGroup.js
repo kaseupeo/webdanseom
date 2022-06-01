@@ -1,6 +1,6 @@
 import Title from '../../../components/app/common/Title';
 import SelectGroup from '../../../containers/app/new/SelectGroupForm';
-const ManagementWork = () => {
+const SelectGroupPage = () => {
   return (
     <div>
       <span>
@@ -11,4 +11,4 @@ const ManagementWork = () => {
   );
 };
 
-export default ManagementWork;
+export default SelectGroupPage;

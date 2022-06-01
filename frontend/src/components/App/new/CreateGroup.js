@@ -1,17 +1,18 @@
+import { IoMdArrowRoundBack } from 'react-icons/io';
+import './CreateGroup.scss';
 const CreateGroup = () => {
   return (
-    <div>
-      <div className="dialog-title">
-        <h2>그룹 생성</h2>
-        <button>X</button>
+    <div className="CreateGroup">
+      <div className="backBtn">
+        <IoMdArrowRoundBack className="icon" />
       </div>
-      <div className="dialog-content">
-        <label>그룹명: </label>
-        <input type="text" />
+
+      <div className="content">
+        <b className="title">그룹명</b>
+        <input type="text" placeholder="그룹명을 입력해주세요." />
       </div>
-      <div className="dialog-footer">
-        <button>그룹 생성</button>
-      </div>
+
+      <div className="submitBtn">그룹 생성</div>
     </div>
   );
 };
