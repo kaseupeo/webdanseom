@@ -6,12 +6,13 @@ import {
   groupState,
   selectMenu,
 } from '../../../modules/menu';
-import { changeField, joinGroupThunk } from '../../../modules/group';
+import { changeField, joinGroupAsync } from '../../../modules/group';
 
 import { useNavigate } from 'react-router-dom';
 import JoinGroup from '../../../components/app/new/JoinGroup';
 import GroupTemplate from '../../../components/app/new/GroupTemplate';
 const JoinGroupForm = () => {
+  const [errorMSG, setErrorMSG] = useState('');
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { joinGroup, headNurseCheck, selecting, response, responseError } =
@@ -22,6 +23,14 @@ const JoinGroupForm = () => {
       response: menu.response,
       responseError: menu.responseError,
     }));
+  const { inviteLink, gResponse, gResponseError } = useSelector(
+    ({ group }) => ({
+      inviteLink: group.inputInviteCode,
+
+      response: group.response,
+      responseError: group.responseError,
+    }),
+  );
   const onClickMenu0 = () => {
     dispatch(selectMenu(0));
     navigate('/app/g/selectGroup');
@@ -30,7 +39,7 @@ const JoinGroupForm = () => {
     const { value } = e.target;
     dispatch(
       changeField({
-        key: 'inputGroupName',
+        key: 'inputInviteCode',
         value,
       }),
     );
@@ -38,8 +47,13 @@ const JoinGroupForm = () => {
 
   const onClickJoin = (e) => {
     e.preventDefault();
-    const inviteCode = e.target.value;
+    dispatch(joinGroupAsync(inviteLink));
   };
+  //마이페이지 추가후 수정할것
+  useEffect(() => {
+    if (response.response === 'error')
+      setErrorMSG('해당 초대장은 만료되었거나 존재하지 않습니다.');
+  }, [response]);
   useEffect(() => {
     if (!joinGroup) {
       switch (selecting) {
@@ -65,6 +79,7 @@ const JoinGroupForm = () => {
         onClickMenu0={onClickMenu0}
         onClickJoin={onClickJoin}
         onChange={onChange}
+        errorMSG={errorMSG}
       />
     </GroupTemplate>
   );
