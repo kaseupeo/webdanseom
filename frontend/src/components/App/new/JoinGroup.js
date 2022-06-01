@@ -1,6 +1,6 @@
 import { IoMdArrowRoundBack } from 'react-icons/io';
 import './JoinGroup.scss';
-const JoinGroup = ({ onClickMenu0, onChange, onClickJoin }) => {
+const JoinGroup = ({ onClickMenu0, onChange, onClickJoin, errorMSG }) => {
   return (
     <div className="JoinGroup">
       <div className="backBtn" onClick={onClickMenu0}>
@@ -15,7 +15,7 @@ const JoinGroup = ({ onClickMenu0, onChange, onClickJoin }) => {
           onChange={onChange}
         />
       </div>
-
+      <b>{errorMSG}</b>
       <div className="submitBtn" onClick={onClickJoin}>
         그룹 참가
       </div>
