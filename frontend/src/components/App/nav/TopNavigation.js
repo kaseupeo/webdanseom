@@ -21,7 +21,6 @@ const TopNavigation = ({ groupName, onClickLogout, onClickMenu, error }) => {
   const [menuHiding, setMenuHiding] = useState(false);
 
   const modalCloseHandler = ({ target }) => {
-    console.log('zz');
     if (helpHiding && !outHelping.current.contains(target))
       setHelpHiding(false);
   };

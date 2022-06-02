@@ -27,10 +27,11 @@ export const setGroupState = createAction(
 );
 
 const initialState = {
-  loginState: null,
+  loginState: false,
   hidingMenu: true,
   selectMenu: 0,
   groupState: {
+    groupChecked: false,
     groupName: null,
     joinGroup: false,
     headNurseCheck: false,
@@ -59,6 +60,7 @@ const menu = handleActions(
     ) => ({
       ...state,
       groupState: {
+        groupChecked: true,
         groupName: groupName,
         joinGroup: joinGroup,
         headNurseCheck: headNurseCheck,

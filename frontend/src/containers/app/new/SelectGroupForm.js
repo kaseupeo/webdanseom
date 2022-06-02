@@ -24,33 +24,14 @@ const LeftNavigationForm = () => {
       responseError: menu.responseError,
     }));
   const onClickMenu0 = () => {
-    dispatch(selectMenu(0));
+    navigate('/app/g/selectGroup');
   };
   const onClickMenu1 = () => {
-    dispatch(selectMenu(1));
+    navigate('/app/g/createGroup');
   };
   const onClickMenu2 = () => {
-    dispatch(selectMenu(2));
+    navigate('/app/g/joinGroup');
   };
-
-  useEffect(() => {
-    if (!joinGroup) {
-      switch (selecting) {
-        case 0:
-          navigate('/app/g/selectGroup'); //그룹생성/참가
-          return;
-        case 1:
-          navigate('/app/g/createGroup'); //그룹생성
-          return;
-        case 2:
-          navigate('/app/g/joinGroup'); //그룹참가
-          return;
-        default:
-          navigate('/app/g/selectGroup');
-          return;
-      }
-    }
-  }, [headNurseCheck, joinGroup, navigate, selecting]);
 
   return (
     <GroupTemplate>

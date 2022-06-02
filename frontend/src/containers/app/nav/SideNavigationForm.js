@@ -13,77 +13,59 @@ import { selector } from 'gsap';
 const LeftNavigationForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { joinGroup, headNurseCheck, selecting, response, responseError } =
-    useSelector(({ menu }) => ({
-      joinGroup: menu.groupState.joinGroup,
-      headNurseCheck: menu.groupState.headNurseCheck,
-      selecting: menu.selectMenu,
-      response: menu.response,
-      responseError: menu.responseError,
-    }));
+  const {
+    groupChecked,
+    joinGroup,
+    headNurseCheck,
+    selecting,
+    response,
+    responseError,
+  } = useSelector(({ menu }) => ({
+    groupChecked: menu.groupState.groupChecked,
+    joinGroup: menu.groupState.joinGroup,
+    headNurseCheck: menu.groupState.headNurseCheck,
+    selecting: menu.selectMenu,
+    response: menu.response,
+    responseError: menu.responseError,
+  }));
+
   useEffect(() => {
-    dispatch(selectMenu(0));
-  }, []);
+    if (!groupChecked) navigate('/app');
+    else if (!joinGroup) {
+      navigate('/app/g/selectGroup');
+    } else if (headNurseCheck) {
+      navigate('/app/h/managementWork');
+    } else {
+      navigate('/app/n/selectWork');
+    }
+  }, [headNurseCheck, joinGroup]);
   const onClickMenu0 = () => {
-    dispatch(selectMenu(0));
+    if (!joinGroup) {
+      navigate('/app/g/selectGroup'); //그룹생성/참가
+    } else if (headNurseCheck) {
+      navigate('/app/h/managementWork'); //그룹생성
+    } else {
+      navigate('/app/n/selectWork'); //그룹참가
+    }
   };
   const onClickMenu1 = () => {
-    dispatch(selectMenu(1));
+    if (!joinGroup) {
+      navigate('/app/g/createGroup'); //근무표 관리
+    } else if (headNurseCheck) {
+      navigate('/app/h/selectWork'); //근무표 조회
+    } else {
+      navigate('/app/n/requestWork'); //근무표 통계 조회
+    }
   };
   const onClickMenu2 = () => {
-    dispatch(selectMenu(2));
-  };
-
-  useEffect(() => {
     if (!joinGroup) {
-      switch (selecting) {
-        case 0:
-          navigate('/app/g/selectGroup'); //그룹생성/참가
-          return;
-        case 1:
-          navigate('/app/g/createGroup'); //그룹생성
-          return;
-        case 2:
-          navigate('/app/g/joinGroup'); //그룹참가
-          return;
-        default:
-          navigate('/app/g/selectGroup');
-          return;
-      }
-    }
-
-    if (headNurseCheck) {
-      switch (selecting) {
-        case 0:
-          navigate('/app/h/managementWork'); //근무표 관리
-          return;
-        case 1:
-          navigate('/app/h/selectWork'); //근무표 조회
-          return;
-        case 2:
-          navigate('/app/h/statisticsWork'); //근무표 통계 조회
-          return;
-        default:
-          navigate('/app/h/managementWork');
-          return;
-      }
+      navigate('/app/g/joinGroup'); //근무표 조회
+    } else if (headNurseCheck) {
+      navigate('/app/h/statisticsWork'); //근무 요청
     } else {
-      switch (selecting) {
-        case 0:
-          navigate('/app/n/selectWork'); //근무표 조회
-          return;
-        case 1:
-          navigate('/app/n/requestWork'); //근무 요청
-          return;
-        case 2:
-          navigate('/app/n/statisticsWork'); //근무표 통계 조회
-          return;
-        default:
-          navigate('/app/h/managementWork');
-          return;
-      }
+      navigate('/app/n/statisticsWork'); //근무표 통계 조회
     }
-  }, [headNurseCheck, joinGroup, navigate, selecting]);
+  };
 
   return (
     <SideNavigation

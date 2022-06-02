@@ -3,6 +3,7 @@ import produce from 'immer';
 import createRequestSaga, {
   createRequestActionTypes,
 } from '../libs/createRequestSaga';
+import createRequestThunk from '../libs/createRequestThunk';
 import * as authAPI from '../libs/api/auth';
 import { takeLatest } from 'redux-saga/effects';
 
@@ -50,6 +51,7 @@ export const findPassword = createAction(FIND_PASSWORD, ({ email }) => ({
 
 export const logout = createAction(LOGOUT);
 
+export const logoutSync = createRequestThunk(LOGOUT, authAPI.logout);
 const loginSaga = createRequestSaga(LOGIN, authAPI.login);
 const signUpSaga = createRequestSaga(SIGNUP, authAPI.signup);
 const findPasswordSaga = createRequestSaga(FIND_PASSWORD, authAPI.findPassword);

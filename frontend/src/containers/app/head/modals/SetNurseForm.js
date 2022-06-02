@@ -22,6 +22,7 @@ const SetNurseForm = ({ modalOpen, closeModal }) => {
   const nurseList = useSelector(({ nurse }) => nurse.nurseList);
   const dispatch = useDispatch();
   const [exNurseSeq, setExNurseSeq] = useState(1);
+  //체크박스 초기화
   const initCheckBox = () => {
     const checkBox = document.getElementsByClassName('checkBox');
     const checkBoxAll = document.getElementsByClassName('checkBoxAll');
