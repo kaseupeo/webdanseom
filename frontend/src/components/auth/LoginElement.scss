@@ -27,6 +27,7 @@ $mobile-contents-width: 640px;
 
             }
             .loginBtn{
+              border-radius: 0.2rem;
                display: flex;
                align-items:center;
                justify-content:center;
@@ -70,11 +71,13 @@ $mobile-contents-width: 640px;
               }
 
               .otherElement{
+                
               display: flex;
               align-items:center;
               justify-content:center;
               margin-right: 2%;
               .signBtn{
+                border-radius: 0.2rem;
                margin-left:0.7rem;
                 display: flex;
                align-items:center;
@@ -94,7 +97,7 @@ $mobile-contents-width: 640px;
                        }
               }
               .findPasswordBtn{
-
+                border-radius: 0.2rem;
                 display: flex;
                align-items:center;
                justify-content:center;

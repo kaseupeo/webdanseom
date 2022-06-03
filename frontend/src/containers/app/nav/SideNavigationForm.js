@@ -6,6 +6,7 @@ import {
   groupState,
   selectMenu,
 } from '../../../modules/menu';
+import { selectGroup } from '../../../modules/group';
 import { useNavigate } from 'react-router-dom';
 import SideNavigation from '../../../components/app/nav/SideNavigation';
 import { selector } from 'gsap';
@@ -30,6 +31,7 @@ const LeftNavigationForm = () => {
   }));
 
   useEffect(() => {
+    dispatch(selectGroup());
     if (!joinGroup) {
       navigate('/app/g/selectGroup');
     } else if (headNurseCheck) {
@@ -37,7 +39,7 @@ const LeftNavigationForm = () => {
     } else {
       navigate('/app/n/selectWork');
     }
-  }, [headNurseCheck, joinGroup]);
+  }, [headNurseCheck, joinGroup, dispatch]);
   const onClickMenu0 = () => {
     if (!joinGroup) {
       navigate('/app/g/selectGroup'); //그룹생성/참가

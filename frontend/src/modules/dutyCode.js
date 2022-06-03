@@ -96,7 +96,7 @@ export function* dutyCodeSaga() {
 }
 
 const initialState = {
-  dutyCodeList: [''],
+  dutyCodeList: [],
   response: {
     response: null,
     message: '',

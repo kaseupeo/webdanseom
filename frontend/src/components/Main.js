@@ -10,12 +10,6 @@ import { ImStatsDots } from 'react-icons/im';
 import styled from 'styled-components';
 import './Main.scss';
 
-const styleMain = styled.div`
-  background-image: url('/img/mainImg.png');
-  width: 300px;
-  height: 300px;
-`;
-
 const MyComponent = () => {
   return (
     <div className="Main">

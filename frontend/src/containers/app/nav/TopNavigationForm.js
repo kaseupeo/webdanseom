@@ -7,8 +7,7 @@ import {
 } from '../../../modules/menu';
 import {
   initializeForm as gInitializeForm,
-  groupInfo,
-  setGroupInfo,
+  selectGroup,
 } from '../../../modules/group';
 import { login, logout } from '../../../modules/auth';
 import { loginState } from '../../../modules/menu';
@@ -42,15 +41,9 @@ const TopNavigationForm = () => {
     dispatch(loginState(false));
     navigate('/auth/login');
   };
+
   useEffect(() => {
-    if (loginStateNow === null) return;
-    if (!loginStateNow) {
-      navigate('/auth/login');
-      alert('서비스 이용 시 로그인이 필요합니다');
-    }
-  }, [loginStateNow]);
-  useEffect(() => {
-    dispatch(groupInfo());
+    dispatch(selectGroup());
 
     if (response.message === '그룹조회 성공') {
       dispatch(loginState(true));
@@ -62,6 +55,7 @@ const TopNavigationForm = () => {
             headNurseCheck: response.data.headNurseCheck,
           }),
         );
+        dispatch(loginState(true));
       } else {
         dispatch(
           setGroupState({
@@ -71,19 +65,40 @@ const TopNavigationForm = () => {
           }),
         );
       }
-      dispatch(setGroupInfo(response.data.nurseGroup));
+      dispatch(selectGroup(response.data.nurseGroup));
     }
     if (response.message === '그룹조회 실패') {
-      dispatch(
-        setGroupState({
-          groupName: '',
-          joinGroup: false,
-          headNurseCheck: false,
-        }),
-      );
-      if (response.data === 'selectGroup(), 가입이 되어 있지 않습니다.')
+      if ('가입이 되어 있지 않습니다.') {
+        dispatch(
+          setGroupState({
+            groupName: '',
+            joinGroup: false,
+            headNurseCheck: false,
+          }),
+        );
         dispatch(loginState(true));
-      else dispatch(loginState(false));
+      } else if (
+        response.data ===
+        'Cannot invoke "javax.servlet.http.Cookie.getValue()" because "token" is null'
+      ) {
+        dispatch(
+          setGroupState({
+            groupName: '',
+            joinGroup: false,
+            headNurseCheck: false,
+          }),
+        );
+        dispatch(loginState(false));
+      } else {
+        dispatch(
+          setGroupState({
+            groupName: '',
+            joinGroup: false,
+            headNurseCheck: false,
+          }),
+        );
+        dispatch(loginState(false));
+      }
     }
   }, [dispatch, response.message]);
   return (
