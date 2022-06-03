@@ -30,8 +30,7 @@ const LeftNavigationForm = () => {
   }));
 
   useEffect(() => {
-    if (!groupChecked) navigate('/app');
-    else if (!joinGroup) {
+    if (!joinGroup) {
       navigate('/app/g/selectGroup');
     } else if (headNurseCheck) {
       navigate('/app/h/managementWork');

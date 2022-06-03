@@ -29,7 +29,7 @@ import SelectGroup from './pages/app/new/SelectGroup';
 import JoinGroup from './pages/app/new/JoinGroup';
 import CreateGroup from './pages/app/new/CreateGroup';
 import EditUserInfo from './components/app/myPage/editUserInfo';
-
+import NotFound from './pages/error/NotFound404';
 function App() {
   return (
     <div className="App">
@@ -70,6 +70,7 @@ function App() {
               />
             </Route>
           </Route>
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
     </div>

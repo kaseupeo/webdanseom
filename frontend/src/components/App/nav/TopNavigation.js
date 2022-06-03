@@ -11,13 +11,19 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import './TopNavigation.scss';
 
-const TopNavigation = ({ groupName, onClickLogout, onClickMenu, error }) => {
+const TopNavigation = ({
+  groupName,
+  memberName,
+  onClickLogout,
+  onClickMenu,
+  error,
+}) => {
   const navigate = useNavigate();
   const outHelping = useRef();
 
   const [helpHiding, setHelpHiding] = useState(false);
   const [myPageHiding, setMyPageHiding] = useState(false);
-  const [memberName, setMemberName] = useState('김현숙');
+
   const [menuHiding, setMenuHiding] = useState(false);
 
   const modalCloseHandler = ({ target }) => {

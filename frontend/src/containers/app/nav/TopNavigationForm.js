@@ -28,6 +28,7 @@ const TopNavigationForm = () => {
     loginStateNow: menu.loginState,
     groupName: menu.groupState.groupName,
   }));
+  const { memberName } = '김현숙';
 
   const onClickMenu = (e) => {
     e.preventDefault();
@@ -88,6 +89,7 @@ const TopNavigationForm = () => {
   return (
     <TopNavigation
       groupName={groupName}
+      memberName={memberName}
       onClickMenu={onClickMenu}
       onClickLogout={onClickLogout}
       error={error}
