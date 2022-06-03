@@ -1,5 +1,7 @@
 $mobile-contents-width: 640px;
 $min-contents-width: 1100px;
+
+
 .Main {
 
   -ms-user-select: none; 
@@ -23,7 +25,7 @@ $min-contents-width: 1100px;
         rgba(255, 255, 255, 0.1) 80%,
         rgba(255, 255, 255, 1) 90%
       ),
-      url('./mainImg.png');
+      url('../../public/img/mainImg.png');
     background-position: 90%;
     background-repeat: no-repeat;
     background-size: contain;

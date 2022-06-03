@@ -1,0 +1,72 @@
+.NotFound404{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    padding:0;
+    .content{
+    display: flex;
+    flex-direction: column;
+    border-radius: 1rem;
+    background-color: white;
+    box-shadow: 0px 3px 10px 1px rgb(157, 157, 157);
+    align-items: center;
+    justify-content: center;
+    padding: 5rem;
+    white-space: nowrap;
+    .icon{
+        width: 5rem;
+        height: 5rem;
+        color: rgb(102, 184, 157);
+    }
+    .title{
+        font-size: 1.5rem;
+        text-align: center;
+    }
+    .text{
+        font-size: 1.2rem;
+        text-align: center;
+        color: #9e9e9e;
+    }
+    .btnBack{
+        text-decoration: none;
+        margin-top: 2rem;
+        margin-left:1.1rem;
+        margin-right: 1.1rem;
+       
+        width: 12rem;
+        height: 2.5rem;
+        font-size: 1.1rem;
+        border-radius: 0.2rem;
+        border: 1rem thin ;
+        background-color: white;
+        border-color: #547b97;
+        color: #547b97;
+        &:hover{
+            background-color: #f5f5f5;
+        
+        }
+        
+    }
+    .btnHome{
+        text-decoration: none;
+        margin-top: 2rem;
+        margin-left:1.1rem;
+        margin-right: 1.1rem;
+       
+        width: 12rem;
+        height: 2.5rem;
+        font-size: 1.1rem;
+        border-radius: 0.2rem;
+        
+        background-color: #547b97;
+        color: white;
+        &:hover{
+            background-color: #4e728c;
+      
+        }
+        
+    }
+    }
+}

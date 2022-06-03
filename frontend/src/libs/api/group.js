@@ -10,7 +10,7 @@ import client from './client';
  * @param {} param0
  * @returns
  */
-export const groupState = () =>
+export const selectGroup = () =>
   client
     .get('/api/nurseGroup/selectGroup')
     .then((response) => {

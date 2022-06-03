@@ -14,7 +14,6 @@ import createRequestThunk from '../libs/createRequestThunk';
 //필드 값 초기화
 const INITIALIZE_FORM = 'group/INITIALIZE_FORM';
 const CHANGE_FIELD = 'group/CHANGE_FIELD';
-const SET_GROUP_INFO = 'group/SET_GROUP_INFO';
 const [SELECT_GROUP, SELECT_GROUP_SUCCESS, SELECT_GROUP_FAILURE] =
   createRequestActionTypes('group/SELECT_GROUP');
 const [CREATE_GROUP, CREATE_GROUP_SUCCESS, CREATE_GROUP_FAILURE] =
@@ -28,15 +27,12 @@ export const changeField = createAction(CHANGE_FIELD, ({ key, value }) => ({
   value,
 }));
 
-export const groupInfo = createAction(SELECT_GROUP, (group) => group);
-export const setGroupInfo = createAction(
-  SET_GROUP_INFO,
-  (nurseGroup) => nurseGroup,
-);
+export const selectGroup = createAction(SELECT_GROUP, (response) => response);
+
 export const createGroup = createAction(CREATE_GROUP, (response) => response);
 export const joinGroup = createAction(JOIN_GROUP, (response) => response);
 
-const groupInfoSaga = createRequestSaga(SELECT_GROUP, authAPI.groupState);
+const selectGroupSaga = createRequestSaga(SELECT_GROUP, authAPI.selectGroup);
 
 export const createGroupsAsync = createRequestThunk(
   CREATE_GROUP,
@@ -45,7 +41,7 @@ export const createGroupsAsync = createRequestThunk(
 export const joinGroupAsync = createRequestThunk(JOIN_GROUP, authAPI.joinGroup);
 
 export function* groupSaga() {
-  yield takeLatest(SELECT_GROUP, groupInfoSaga);
+  yield takeLatest(SELECT_GROUP, selectGroupSaga);
 }
 const initialState = {
   nurseGroup: {
@@ -78,19 +74,17 @@ const group = handleActions(
       produce(state, (draft) => {
         draft[key] = value;
       }),
-    [SELECT_GROUP_SUCCESS]: (state, { payload: group }) => ({
+    [SELECT_GROUP_SUCCESS]: (state, { payload: response }) => ({
       ...state,
-      response: group,
+      nurseGroup: response.data,
+      response: response,
       responseError: null,
     }),
     [SELECT_GROUP_FAILURE]: (state, { payload: error }) => ({
       ...state,
       responseError: error,
     }),
-    [SET_GROUP_INFO]: (state, { payload: nurseGroup }) => ({
-      ...state,
-      nurseGroup,
-    }),
+
     [CREATE_GROUP_SUCCESS]: (state, { payload: response }) => ({
       ...state,
       response: response,

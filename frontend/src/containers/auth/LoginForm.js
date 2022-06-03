@@ -77,7 +77,6 @@ const LoginForm = () => {
         setCheckLogin(false);
       } else {
         setError('');
-        dispatch(loginState(true));
         navigate('/app');
         return;
       }
