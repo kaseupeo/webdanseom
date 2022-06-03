@@ -8,8 +8,12 @@ package com.webdanseom.nurseonduty.service;
  * 수정자: 표영운
  */
 import com.webdanseom.nurseonduty.model.Member;
+import com.webdanseom.nurseonduty.model.Nurse;
 import com.webdanseom.nurseonduty.model.NurseGroup;
+import com.webdanseom.nurseonduty.model.request.RequestNurseGroup;
 import javassist.NotFoundException;
+
+import java.util.List;
 
 public interface GroupService {
     //그룹생성
@@ -27,6 +31,21 @@ public interface GroupService {
     //그룹가입 여부 검사
     boolean isJoinGroup(Member member);
 
-    //*수간호사 확인
+    //수간호사 확인
     boolean isHeadNurseCheck(NurseGroup nurseGroup, Member member);
+
+    //그룹맴버조회
+    List<Member> selectJoinMemberList(int nurseGroupNum) throws  NotFoundException;
+
+    //그룹수정
+    void updateGroup(NurseGroup nurseGroup, RequestNurseGroup requestNurseGroup);
+
+    //수간호사 권한이전
+    void moveHeadnurseAuth(NurseGroup nurseGroup, int memberSeq);
+
+    //그룹탈퇴
+    void dropGroup(Member member) throws NotFoundException;
+
+    //그룹삭제
+    void deleteGroup(NurseGroup nurseGroup) throws NotFoundException;
 }

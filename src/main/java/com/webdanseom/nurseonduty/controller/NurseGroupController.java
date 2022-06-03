@@ -10,6 +10,9 @@ package com.webdanseom.nurseonduty.controller;
  */
 import com.webdanseom.nurseonduty.jwt.JwtUtil;
 import com.webdanseom.nurseonduty.model.*;
+import com.webdanseom.nurseonduty.model.request.RequestEmail;
+import com.webdanseom.nurseonduty.model.request.RequestNurseGroup;
+import com.webdanseom.nurseonduty.repo.MemberRepository;
 import com.webdanseom.nurseonduty.repo.NurseGroupRepository;
 import com.webdanseom.nurseonduty.service.*;
 import com.webdanseom.nurseonduty.model.response.ResponseSelectGroup;
@@ -20,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -45,6 +49,9 @@ public class NurseGroupController {
 
     @Autowired
     private DutyService dutyService;
+
+    @Autowired
+    private MemberRepository memberRepository;
 
 
     //그룹생성
@@ -158,4 +165,133 @@ public class NurseGroupController {
             return  new Response("error", "그룹조회 실패", e.getMessage());
         }
     }
+    
+    
+    //그룹멤버조회
+    @GetMapping("/selectJoinMemberList")
+    public  Response selectJoinMemberList(HttpServletRequest httpServletRequest) {
+        Cookie token = null;
+        String jwt = null;
+        String email = null;
+        try {
+            token = cookieUtil.getCookie(httpServletRequest, jwtUtil.ACCESS_TOKEN_NAME);
+            jwt = token.getValue();
+            email = jwtUtil.getEmail(jwt);
+            Member member = authService.findByEmail(email);
+
+            List<Member> memberList = groupService.selectJoinMemberList(member.getGroupSeq().getSeq());
+
+        return new Response("success", "그룹멤버조회 성공", member);
+    }catch (Exception e) {
+        return  new Response("error", "그룹멤버조회 실패", e.getMessage());
+        }
+    }
+
+    //그룹수정
+    @PostMapping("/updateGroup")
+    public Response updateGroup(@RequestBody RequestNurseGroup requestNurseGroup,
+                                HttpServletRequest httpServletRequest) {
+        Cookie token = null;
+        String jwt = null;
+        String email = null;
+        try {
+            token = cookieUtil.getCookie(httpServletRequest, jwtUtil.ACCESS_TOKEN_NAME);
+            jwt = token.getValue();
+            email = jwtUtil.getEmail(jwt);
+            Member member = authService.findByEmail(email);
+            NurseGroup nurseGroup = nurseGroupRepository.findBySeq(member.getGroupSeq().getSeq());
+
+            groupService.updateGroup(nurseGroup, requestNurseGroup);
+        return new Response("success", "그룹수정 성공", null);
+    }catch (Exception e) {
+        return  new Response("error", "그룹수정 실패", e.getMessage());
+        }
+    }
+
+    //수간호사 권한이전
+    @PostMapping("/moveHeadnurseAuth")
+    public Response moveHeadnurseAuth(@RequestBody RequestEmail requestEmail,
+                                      HttpServletRequest httpServletRequest) {
+        Cookie token = null;
+        String jwt = null;
+        String email = null;
+
+        try {
+            token = cookieUtil.getCookie(httpServletRequest, jwtUtil.ACCESS_TOKEN_NAME);
+            jwt = token.getValue();
+            email = jwtUtil.getEmail(jwt);
+            Member member = authService.findByEmail(email);
+            NurseGroup nurseGroup = nurseGroupRepository.findBySeq(member.getGroupSeq().getSeq());
+
+            Member moveMember = authService.findByEmail(requestEmail.getEmail());
+
+            groupService.moveHeadnurseAuth(nurseGroup, moveMember.getMemberSeq());
+
+            return new Response("success", "수간호사 권한이전 성공", null);
+        }catch (Exception e) {
+            return  new Response("error", "수간호사 권한이전 실패", e.getMessage());
+        }
+    }
+
+    //그룹탈퇴
+    @PostMapping("/dropGroup")
+    public Response dropGroup(HttpServletRequest httpServletRequest) {
+        Cookie token = null;
+        String jwt = null;
+        String email = null;
+
+        try {
+            token = cookieUtil.getCookie(httpServletRequest, jwtUtil.ACCESS_TOKEN_NAME);
+            jwt = token.getValue();
+            email = jwtUtil.getEmail(jwt);
+            Member member = authService.findByEmail(email);
+            groupService.dropGroup(member);
+
+            return new Response("success", "그룹탈퇴 성공", null);
+        }catch (Exception e) {
+            return  new Response("error", "그룹탈퇴 실패", e.getMessage());
+        }
+    }
+
+    //그룹삭제
+    @DeleteMapping("/deleteGroup")
+    public Response deleteGroup(HttpServletRequest httpServletRequest) {
+        Cookie token = null;
+        String jwt = null;
+        String email = null;
+
+        try {
+            token = cookieUtil.getCookie(httpServletRequest, jwtUtil.ACCESS_TOKEN_NAME);
+            jwt = token.getValue();
+            email = jwtUtil.getEmail(jwt);
+            Member member = authService.findByEmail(email);
+            NurseGroup nurseGroup = nurseGroupRepository.findBySeq(member.getGroupSeq().getSeq());
+            groupService.moveHeadnurseAuth(nurseGroup, 0);
+
+            List<Nurse> nurseList = nurseService.selectNurse(member.getGroupSeq().getSeq());
+            for(int i = 0; i < nurseList.size(); i++) {
+                if(nurseService.findByNurseSeq(nurseList.get(i).getNurseSeq())!=null)
+                   nurseService.deleteNurse(nurseList.get(i));
+            }
+
+            List<Duty> dutyList = dutyService.selectDuty(nurseGroup.getSeq());
+            for(int i = 0; i < dutyList.size();i++) {
+                if(dutyService.findByDutySeq(dutyList.get(i).getDutySeq())!=null)
+                    dutyService.deleteDuty(dutyList.get(i));
+            }
+
+            List<Member> memberList = memberRepository.findByGroupSeq(member.getGroupSeq().getSeq());
+            for(int  i = 0; i < memberList.size(); i++) {
+                if(authService.findByEmail(memberList.get(i).getEmail())!=null)
+                    groupService.dropGroup(memberList.get(i));
+            }
+
+            groupService.deleteGroup(nurseGroup);
+
+            return new Response("success", "그룹삭제 성공", null);
+        }catch (Exception e) {
+            return  new Response("error", "그룹삭제 실패", e.getMessage());
+        }
+    }
+
 }

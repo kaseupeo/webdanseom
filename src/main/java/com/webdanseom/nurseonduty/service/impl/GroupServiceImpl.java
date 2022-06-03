@@ -8,7 +8,9 @@ package com.webdanseom.nurseonduty.service.impl;
  * 수정자: 표영운
  */
 import com.webdanseom.nurseonduty.model.Member;
+import com.webdanseom.nurseonduty.model.Nurse;
 import com.webdanseom.nurseonduty.model.NurseGroup;
+import com.webdanseom.nurseonduty.model.request.RequestNurseGroup;
 import com.webdanseom.nurseonduty.repo.MemberRepository;
 import com.webdanseom.nurseonduty.repo.NurseGroupRepository;
 import com.webdanseom.nurseonduty.service.AuthService;
@@ -19,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -101,7 +104,6 @@ public class GroupServiceImpl implements GroupService{
     /**
      * 그룹가입 여부
      * @param member
-     * 그룹 조회와 동시에 그룹가입여부 확인
      * */
     @Override
     public boolean isJoinGroup(Member member){
@@ -122,6 +124,66 @@ public class GroupServiceImpl implements GroupService{
             return true;
         else
             return false;
+    }
+
+    /**
+     * 그룹맴버조회
+     * @param  nurseGroupNum
+     * @throws NotFoundException
+     * */
+    @Override
+    public List<Member> selectJoinMemberList(int nurseGroupNum) throws NotFoundException {
+        NurseGroup nurseGroup = nurseGroupRepository.findBySeq(nurseGroupNum);
+        if(nurseGroup == null) throw  new NotFoundException("그룹멤버 조회가 되지 않습니다.");
+        List<Member> memberList = memberRepository.findByGroupSeq(nurseGroupNum);
+        return memberList;
+    }
+
+    /**
+     *  그룹수정
+     * @param nurseGroup
+     * @param requestNurseGroup
+     */
+    @Override
+    public void updateGroup(NurseGroup nurseGroup, RequestNurseGroup requestNurseGroup) {
+        nurseGroup.setNumberOfDays(requestNurseGroup.getNumberOfDays());
+        nurseGroup.setNumberOfEvenings(requestNurseGroup.getNumberOfEvenings());
+        nurseGroup.setNumberOfNights(requestNurseGroup.getNumberOfNights());
+        nurseGroupRepository.save(nurseGroup);
+    }
+
+    /**
+     * 수간호사 권한이전
+     * @param nurseGroup
+     * @param memberSeq
+     * */
+    @Override
+    public void moveHeadnurseAuth(NurseGroup nurseGroup, int memberSeq){
+        nurseGroup.setHeadNurseNum(memberSeq);
+        nurseGroupRepository.save(nurseGroup);
+    }
+
+    /**
+     * 그룹탈퇴
+     * @param member
+     * @throws NotFoundException
+     * */
+    @Override
+    public void dropGroup(Member member) throws NotFoundException {
+        if(member == null) throw new NotFoundException("dropGroup(), 해당 그룹에 속한 맴버는 없습니다.");
+        member.setGroupSeq(null);
+        memberRepository.save(member);
+    }
+
+    /**
+     * 그룹삭제
+     * @param nurseGroup
+     * @throws NotFoundException
+     * */
+    @Override
+    public void deleteGroup(NurseGroup nurseGroup) throws NotFoundException {
+        if(nurseGroup == null) throw new NotFoundException("deleteGroup(), 그룹삭제 실패");
+        nurseGroupRepository.delete(nurseGroup);
     }
 
 }

@@ -118,7 +118,7 @@ public class DutyController {
         try {
             for(int i = 0; i < updateDutyList.getDutyList().size(); i++) {
                 if(dutyService.findByDutySeq(updateDutyList.getDutyList().get(i).getDutySeq())!=null) {
-                    dutyService.updateDuty(updateDutyList.getDutyList().get(i));
+                    dutyService.deleteDuty(updateDutyList.getDutyList().get(i));
                 }
             }
             return new Response("success", "듀티코드 삭제 성공", null);
