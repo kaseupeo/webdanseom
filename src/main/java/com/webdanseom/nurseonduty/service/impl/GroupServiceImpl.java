@@ -8,13 +8,11 @@ package com.webdanseom.nurseonduty.service.impl;
  * 수정자: 표영운
  */
 import com.webdanseom.nurseonduty.model.Member;
-import com.webdanseom.nurseonduty.model.Nurse;
 import com.webdanseom.nurseonduty.model.NurseGroup;
 import com.webdanseom.nurseonduty.model.request.RequestNurseGroup;
 import com.webdanseom.nurseonduty.repo.MemberRepository;
 import com.webdanseom.nurseonduty.repo.NurseGroupRepository;
 import com.webdanseom.nurseonduty.service.AuthService;
-import com.webdanseom.nurseonduty.service.EmailService;
 import com.webdanseom.nurseonduty.service.GroupService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -135,7 +133,7 @@ public class GroupServiceImpl implements GroupService{
     public List<Member> selectJoinMemberList(int nurseGroupNum) throws NotFoundException {
         NurseGroup nurseGroup = nurseGroupRepository.findBySeq(nurseGroupNum);
         if(nurseGroup == null) throw  new NotFoundException("그룹멤버 조회가 되지 않습니다.");
-        List<Member> memberList = memberRepository.findByGroupSeq(nurseGroupNum);
+        List<Member> memberList = memberRepository.findByGroupSeqSeq(nurseGroupNum);
         return memberList;
     }
 

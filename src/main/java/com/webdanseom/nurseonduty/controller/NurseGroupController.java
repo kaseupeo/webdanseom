@@ -280,7 +280,7 @@ public class NurseGroupController {
                     dutyService.deleteDuty(dutyList.get(i));
             }
 
-            List<Member> memberList = memberRepository.findByGroupSeq(member.getGroupSeq().getSeq());
+            List<Member> memberList = memberRepository.findByGroupSeqSeq(member.getGroupSeq().getSeq());
             for(int  i = 0; i < memberList.size(); i++) {
                 if(authService.findByEmail(memberList.get(i).getEmail())!=null)
                     groupService.dropGroup(memberList.get(i));

@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface MemberRepository extends CrudRepository<Member, Long> {
     Member findByEmail(String email);
-    List<Member> findByGroupSeq(int seq);
+    List<Member> findByGroupSeqSeq(int seq);
 }
