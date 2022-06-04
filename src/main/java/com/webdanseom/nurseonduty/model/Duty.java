@@ -43,13 +43,11 @@ public class Duty {
     //색상
     private String hexColor;
     //근무시작시간
-//    @Temporal(TemporalType.TIME)
     private Time startTime;
     //사용여부
     private Boolean isUsable;
     //작성자
     private String creator;
-
 
     public Duty(int dutySeq, String dutyCode, NurseGroup nurseGroup, String dutyCodeName, int workingHours, String workType,
                 String hexColor, Time startTime, Boolean isUsable, String creator) {
