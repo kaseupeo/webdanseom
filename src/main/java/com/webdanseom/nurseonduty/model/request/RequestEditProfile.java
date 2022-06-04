@@ -13,6 +13,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class RequestEditProfile {
-    private String email;
+    private String name;
     private String phoneNumber;
 }

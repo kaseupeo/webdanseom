@@ -245,8 +245,9 @@ public class AuthServiceImpl implements AuthService {
      * @throws NotFoundException
      */
     @Override
-    public void editProfile(Member member, String phoneNumber) throws NotFoundException {
+    public void editProfile(Member member, String name, String phoneNumber) throws NotFoundException {
         if (member == null) throw new NotFoundException("editProfile(), 회원이 조회되지 않습니다.");
+        member.setName(name);
         member.setPhoneNumber(phoneNumber);
         memberRepository.save(member);
     }

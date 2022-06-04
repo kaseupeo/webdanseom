@@ -62,7 +62,7 @@ public interface AuthService {
     void findPassword(Member member) throws NotFoundException;
 
     //회원정보 수정
-    void editProfile(Member member, String phoneNumber) throws NotFoundException;
+    void editProfile(Member member, String name, String phoneNumber) throws NotFoundException;
 
     //회원탈퇴
     void withdrawal(Member member, String password) throws Exception;

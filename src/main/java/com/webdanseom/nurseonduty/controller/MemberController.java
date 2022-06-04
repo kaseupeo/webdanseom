@@ -88,75 +88,65 @@ public class MemberController {
     //인증번호 보냄
     @PostMapping("/verify")
     public Response verify(@RequestBody RequestEmail requestEmail, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
-        Response response;
         try {
             Member member = authService.findByEmail(requestEmail.getEmail());
             authService.sendVerificationMail(member);
-            response = new Response("success", "성공적으로 인증메일을 보냈습니다.", null);
+            return new Response("success", "성공적으로 인증메일을 보냈습니다.", null);
         } catch (Exception e) {
-            response = new Response("error", "인증메일을 보내는데 문제가 발생했습니다.", e);
+            return new Response("error", "인증메일을 보내는데 문제가 발생했습니다.", e);
         }
-        return response;
     }
 
     //인증메일 확인
     @GetMapping("/verify/{key}")
     public Response getVerify(@PathVariable String key) {
-        Response response;
         try {
             authService.verifyEmail(key);
-            response = new Response("success", "성공적으로 인증메일을 확인했습니다.", null);
+            return new Response("success", "성공적으로 인증메일을 확인했습니다.", null);
         } catch (Exception e) {
-            response = new Response("error", "인증메일을 확인하는데 실패했습니다.", null);
+            return new Response("error", "인증메일을 확인하는데 실패했습니다.", null);
         }
-        return response;
     }
 
     //인증번호 확인
     @GetMapping("/password/{key}")
     public Response isPasswordUUIdValidate(@PathVariable String key) {
-        Response response;
         try {
             if (authService.isPasswordUuidValidate(key))
-                response = new Response("success", "정상적인 접근입니다.", null);
+                return new Response("success", "정상적인 접근입니다.", null);
             else
-                response = new Response("error", "유효하지 않은 Key 값입니다.", null);
+                return new Response("error", "유효하지 않은 Key 값입니다.", null);
         } catch (Exception e) {
-            response = new Response("error", "유효하지 않은 key 값입니다.", null);
+            return new Response("error", "유효하지 않은 key 값입니다.", null);
         }
-        return response;
     }
 
     //비밀번호 변경
     @PutMapping("/password")
     public Response changePassword(@RequestBody RequestLoginUser requestLoginUser) {
-        Response response;
         try{
             Member member = authService.findByEmail(requestLoginUser.getEmail());
             authService.isValidPassword(requestLoginUser.getPassword());
             authService.changePassword(member,requestLoginUser.getPassword());
-            response = new Response("success","성공적으로 사용자의 비밀번호를 변경했습니다.",null);
+            return new Response("success","성공적으로 사용자의 비밀번호를 변경했습니다.",null);
         }catch(Exception e){
-            response = new Response("error","사용자의 비밀번호를 변경할 수 없었습니다.",e.getMessage());
+            return new Response("error","사용자의 비밀번호를 변경할 수 없었습니다.",e.getMessage());
         }
-        return response;
     }
 
     //비밀번호 찾기
     @PostMapping("/password")
     public Response findPassword(@RequestBody RequestEmail requestEmail) {
-        Response response;
         try {
             Member member = authService.findByEmail(requestEmail.getEmail());
             if (!member.getEmail().equals(requestEmail.getEmail())) throw new NoSuchFieldException("");
             authService.findPassword(member);
-            response = new Response("success", "성공적으로 사용자의 비밀번호 변경요청을 수행했습니다.", null );
+            return new Response("success", "성공적으로 사용자의 비밀번호 변경요청을 수행했습니다.", null );
         } catch (NoSuchFieldException e) {
-            response = new Response("error", "사용자 이메일을 조회할 수 없습니다.",  e.getMessage());
+            return new Response("error", "사용자 이메일을 조회할 수 없습니다.",  e.getMessage());
         } catch (Exception e) {
-            response = new Response("error", "비밀번호 변경 요청을 할 수 없습니다.",  e.getMessage());
+            return new Response("error", "비밀번호 변경 요청을 할 수 없습니다.",  e.getMessage());
         }
-        return response;
     }
 
     //회원정보 조회
@@ -180,30 +170,35 @@ public class MemberController {
 
     //회원정보 수정
     @PutMapping("/profile")
-    public Response editProfile(@RequestBody RequestEditProfile requestEditProfile) {
-        Response response;
+    public Response editProfile(@RequestBody RequestEditProfile requestEditProfile,
+                                HttpServletRequest httpServletRequest,
+                                HttpServletResponse httpServletResponse) {
+        Cookie token = null;
+        String jwt = null;
+        String email = null;
         try {
-            Member member = authService.findByEmail(requestEditProfile.getEmail());
-            authService.editProfile(member, requestEditProfile.getPhoneNumber());
-            response = new Response("success", "성공적으로 사용자의 정보를 변경했습니다.", member);
+            token = cookieUtil.getCookie(httpServletRequest, JwtUtil.ACCESS_TOKEN_NAME);
+            jwt = token.getValue();
+            email = jwtUtil.getEmail(jwt);
+
+            Member member = authService.findByEmail(email);
+            authService.editProfile(member, requestEditProfile.getName(), requestEditProfile.getPhoneNumber());
+            return new Response("success", "성공적으로 사용자의 정보를 변경했습니다.", member);
         } catch (Exception e) {
-            response = new Response("error","사용자의 정보를 변경할 수 없습니다.", null);
+            return new Response("error","사용자의 정보를 변경할 수 없습니다.", null);
         }
-        return response;
     }
 
     //회원탈퇴
     @DeleteMapping("/withdrawal")
     public Response withdrawal(@RequestBody RequestLoginUser requestLoginUser) {
-        Response response;
         try {
             Member member = authService.findByEmail(requestLoginUser.getEmail());
             authService.withdrawal(member, requestLoginUser.getPassword());
-            response = new Response("success", "회원탈퇴를 성공했습니다.",null);
+            return new Response("success", "회원탈퇴를 성공했습니다.",null);
         } catch (Exception e) {
-            response = new Response("error", "회원탈퇴를 할 수 없습니다.", null);
+            return new Response("error", "회원탈퇴를 할 수 없습니다.", null);
         }
-        return response;
     }
 
     //로그아웃
