@@ -98,6 +98,7 @@ public class DutyServiceImpl implements DutyService {
         NurseGroup nurseGroup = nurseGroupRepository.findBySeq(nurseGroupSeq);
         if(nurseGroup == null) throw new NotFoundException("듀티가 조회되지 않습니다.");
         List<Duty> duty = dutyRepository.findByNurseGroupSeq(nurseGroupSeq);
+
         return duty;
     }
 
@@ -129,7 +130,7 @@ public class DutyServiceImpl implements DutyService {
      * @throws Exception
      */
     @Override
-    public void deleteDuty(Duty duty) throws  Exception {
+    public void deleteDuty(Duty duty) throws Exception {
         if(duty == null) throw new NotFoundException("deleteDuty(), 삭제할 듀티가 없습니다. \n 삭제할 듀티를 선택해 주세요.");
         dutyRepository.delete(duty);
     }
@@ -142,7 +143,7 @@ public class DutyServiceImpl implements DutyService {
     @Override
     public void returnDuty(Duty duty) throws Exception {
         if(duty == null) throw new NotFoundException("returnDuty(), 초기화 실패.");
-        deleteDuty(duty);
+
         NurseGroup nurseGroup = nurseGroupRepository.findBySeq(duty.getNurseGroup().getSeq());
         for(int i = 0; i < 42; i++)
             initializeDuty(nurseGroup, i);
