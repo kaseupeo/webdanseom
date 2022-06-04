@@ -168,11 +168,11 @@ public class MemberController {
         }
     }
 
-    //회원정보 수정
+    //회원정보 수정 - 이름, 전화번호
     @PutMapping("/profile")
-    public Response editProfile(@RequestBody RequestEditProfile requestEditProfile,
-                                HttpServletRequest httpServletRequest,
-                                HttpServletResponse httpServletResponse) {
+    public Response updateProfile(@RequestBody RequestEditProfile requestEditProfile,
+                                  HttpServletRequest httpServletRequest,
+                                  HttpServletResponse httpServletResponse) {
         Cookie token = null;
         String jwt = null;
         String email = null;
@@ -182,10 +182,35 @@ public class MemberController {
             email = jwtUtil.getEmail(jwt);
 
             Member member = authService.findByEmail(email);
-            authService.editProfile(member, requestEditProfile.getName(), requestEditProfile.getPhoneNumber());
+            authService.isValidPhoneNumber(requestEditProfile.getPhoneNumber());
+            authService.updateProfile(member, requestEditProfile.getName(), requestEditProfile.getPhoneNumber());
             return new Response("success", "성공적으로 사용자의 정보를 변경했습니다.", member);
         } catch (Exception e) {
             return new Response("error","사용자의 정보를 변경할 수 없습니다.", null);
+        }
+    }
+
+    //회원정보 수정 - 비밀번호
+    @PutMapping("/updatePassword")
+    public Response updatePassword(@RequestBody RequestUpdatePassword requestPassword,
+                                   HttpServletRequest httpServletRequest,
+                                   HttpServletResponse httpServletResponse) {
+        Cookie token = null;
+        String jwt = null;
+        String email = null;
+        try {
+            token = cookieUtil.getCookie(httpServletRequest, JwtUtil.ACCESS_TOKEN_NAME);
+            jwt = token.getValue();
+            email = jwtUtil.getEmail(jwt);
+
+            authService.loginUser(email, requestPassword.getBeforePassword());
+            if (requestPassword.getBeforePassword().equals(requestPassword.getAfterPassword())) throw new Exception("기존 비밀번호랑 동일합니다.");
+            Member member = authService.findByEmail(email);
+            authService.isValidPassword(requestPassword.getAfterPassword());
+            authService.changePassword(member,requestPassword.getAfterPassword());
+            return new Response("success", "성공적으로 사용자의 비밀번호를 변경했습니다.", member);
+        } catch (Exception e) {
+            return new Response("error","사용자의 비밀번호를 변경할 수 없습니다.", e.getMessage());
         }
     }
 
