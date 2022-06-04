@@ -51,7 +51,7 @@ public class DutyController {
         String email = null;
 
         try {
-            token = cookieUtil.getCookie(httpServletRequest, jwtUtil.ACCESS_TOKEN_NAME);
+            token = cookieUtil.getCookie(httpServletRequest, JwtUtil.ACCESS_TOKEN_NAME);
             jwt = token.getValue();
             email = jwtUtil.getEmail(jwt);
 
@@ -83,7 +83,7 @@ public class DutyController {
         String email = null;
 
         try{
-            token = cookieUtil.getCookie(httpServletRequest, jwtUtil.ACCESS_TOKEN_NAME);
+            token = cookieUtil.getCookie(httpServletRequest, JwtUtil.ACCESS_TOKEN_NAME);
             jwt = token.getValue();
             email = jwtUtil.getEmail(jwt);
 

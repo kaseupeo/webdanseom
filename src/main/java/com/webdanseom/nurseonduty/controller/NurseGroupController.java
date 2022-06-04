@@ -65,7 +65,7 @@ public class NurseGroupController {
         String email = null;
 
         try{
-            token = cookieUtil.getCookie(httpServletRequest, jwtUtil.ACCESS_TOKEN_NAME);
+            token = cookieUtil.getCookie(httpServletRequest, JwtUtil.ACCESS_TOKEN_NAME);
             jwt = token.getValue();
             email = jwtUtil.getEmail(jwt);
             Member member = authService.findByEmail(email);
@@ -97,7 +97,7 @@ public class NurseGroupController {
         String jwt = null;
         String email = null;
         try {
-            token = cookieUtil.getCookie(httpServletRequest, jwtUtil.ACCESS_TOKEN_NAME);
+            token = cookieUtil.getCookie(httpServletRequest, JwtUtil.ACCESS_TOKEN_NAME);
             jwt = token.getValue();
             email = jwtUtil.getEmail(jwt);
             Member member = authService.findByEmail(email);
@@ -122,7 +122,7 @@ public class NurseGroupController {
         String jwt = null;
         String email = null;
         try {
-            token = cookieUtil.getCookie(httpServletRequest, jwtUtil.ACCESS_TOKEN_NAME);
+            token = cookieUtil.getCookie(httpServletRequest, JwtUtil.ACCESS_TOKEN_NAME);
             jwt = token.getValue();
             email = jwtUtil.getEmail(jwt);
             Member member = authService.findByEmail(email);
@@ -144,7 +144,7 @@ public class NurseGroupController {
         String jwt = null;
         String email = null;
         try {
-            token = cookieUtil.getCookie(httpServletRequest, jwtUtil.ACCESS_TOKEN_NAME);
+            token = cookieUtil.getCookie(httpServletRequest, JwtUtil.ACCESS_TOKEN_NAME);
             jwt = token.getValue();
             email = jwtUtil.getEmail(jwt);
             Member member = authService.findByEmail(email);
@@ -174,7 +174,7 @@ public class NurseGroupController {
         String jwt = null;
         String email = null;
         try {
-            token = cookieUtil.getCookie(httpServletRequest, jwtUtil.ACCESS_TOKEN_NAME);
+            token = cookieUtil.getCookie(httpServletRequest, JwtUtil.ACCESS_TOKEN_NAME);
             jwt = token.getValue();
             email = jwtUtil.getEmail(jwt);
             Member member = authService.findByEmail(email);
@@ -195,7 +195,7 @@ public class NurseGroupController {
         String jwt = null;
         String email = null;
         try {
-            token = cookieUtil.getCookie(httpServletRequest, jwtUtil.ACCESS_TOKEN_NAME);
+            token = cookieUtil.getCookie(httpServletRequest, JwtUtil.ACCESS_TOKEN_NAME);
             jwt = token.getValue();
             email = jwtUtil.getEmail(jwt);
             Member member = authService.findByEmail(email);
@@ -217,7 +217,7 @@ public class NurseGroupController {
         String email = null;
 
         try {
-            token = cookieUtil.getCookie(httpServletRequest, jwtUtil.ACCESS_TOKEN_NAME);
+            token = cookieUtil.getCookie(httpServletRequest, JwtUtil.ACCESS_TOKEN_NAME);
             jwt = token.getValue();
             email = jwtUtil.getEmail(jwt);
             Member member = authService.findByEmail(email);
@@ -241,7 +241,7 @@ public class NurseGroupController {
         String email = null;
 
         try {
-            token = cookieUtil.getCookie(httpServletRequest, jwtUtil.ACCESS_TOKEN_NAME);
+            token = cookieUtil.getCookie(httpServletRequest, JwtUtil.ACCESS_TOKEN_NAME);
             jwt = token.getValue();
             email = jwtUtil.getEmail(jwt);
             Member member = authService.findByEmail(email);
@@ -261,7 +261,7 @@ public class NurseGroupController {
         String email = null;
 
         try {
-            token = cookieUtil.getCookie(httpServletRequest, jwtUtil.ACCESS_TOKEN_NAME);
+            token = cookieUtil.getCookie(httpServletRequest, JwtUtil.ACCESS_TOKEN_NAME);
             jwt = token.getValue();
             email = jwtUtil.getEmail(jwt);
             Member member = authService.findByEmail(email);
