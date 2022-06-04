@@ -22,10 +22,10 @@ export const insertDutyCode = () =>
       console.log(error);
     });
 
-export const deleteDutyCode = ({ checkedDutyCodeList }) =>
+export const deleteDutyCode = ({ checkedDutyList }) =>
   client
-    .Delete('/api/duty/deleteDuty', {
-      data: { dutyCodeList: checkedDutyCodeList },
+    .delete('/api/duty/deleteDuty', {
+      data: { dutyList: checkedDutyList },
     })
     .then((response) => {
       console.log(response);
@@ -36,7 +36,7 @@ export const deleteDutyCode = ({ checkedDutyCodeList }) =>
     });
 export const editDutyCode = ({ dutyList }) =>
   client
-    .put('/api/duty/updateDuty', { dutyList })
+    .put('/api/duty/updateDuty', { dutyList: dutyList })
     .then((response) => {
       console.log(response);
       return response;

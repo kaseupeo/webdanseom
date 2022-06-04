@@ -37,9 +37,10 @@ export const changeDutyCode = createAction(
     value,
   }),
 );
+
 export const selectDutyCode = createAction(
   SELECT_DUTYCODE,
-  (dutyCodeList) => dutyCodeList,
+  (response) => response,
 );
 export const insertDutyCode = createAction(
   INSERT_DUTYCODE,
@@ -73,30 +74,31 @@ export const initDutyCodeAsync = createRequestThunk(
   authAPI.initDutyCode,
 );
 //사가
-const selectDutyCodeSaga = createRequestSaga(
+const selectDutySaga = createRequestSaga(
   SELECT_DUTYCODE,
   authAPI.selectDutyCode,
 );
-const insertDutyCodeSaga = createRequestSaga(
+const insertDutySaga = createRequestSaga(
   INSERT_DUTYCODE,
   authAPI.insertDutyCode,
 );
-const deleteDutyCodeSaga = createRequestSaga(
+const deleteDutySaga = createRequestSaga(
   DELETE_DUTYCODE,
   authAPI.deleteDutyCode,
 );
-const editDutyCodeSaga = createRequestSaga(EDIT_DUTYCODE, authAPI.editDutyCode);
-const initDutyCodeSaga = createRequestSaga(INIT_DUTYCODE, authAPI.initDutyCode);
+
+const editDutySaga = createRequestSaga(EDIT_DUTYCODE, authAPI.editDutyCode);
+const initDutySaga = createRequestSaga(INIT_DUTYCODE, authAPI.initDutyCode);
 export function* dutyCodeSaga() {
-  yield takeLatest(SELECT_DUTYCODE, selectDutyCodeSaga);
-  yield takeLatest(INSERT_DUTYCODE, insertDutyCodeSaga);
-  yield takeLatest(DELETE_DUTYCODE, deleteDutyCodeSaga);
-  yield takeLatest(EDIT_DUTYCODE, editDutyCodeSaga);
-  yield takeLatest(INIT_DUTYCODE, initDutyCodeSaga);
+  yield takeLatest(SELECT_DUTYCODE, selectDutySaga);
+  yield takeLatest(INSERT_DUTYCODE, insertDutySaga);
+  yield takeLatest(DELETE_DUTYCODE, deleteDutySaga);
+  yield takeLatest(EDIT_DUTYCODE, editDutySaga);
+  yield takeLatest(INIT_DUTYCODE, initDutySaga);
 }
 
 const initialState = {
-  dutyCodeList: [],
+  dutyList: [],
   response: {
     response: null,
     message: '',
@@ -114,11 +116,11 @@ const dutyCode = handleActions(
     }),
     [CHANGE_DUTYCODE]: (state, { payload: { index, key, value } }) =>
       produce(state, (draft) => {
-        draft['dutyCodeList'][index][key] = value;
+        draft['dutyList'][index][key] = value;
       }),
     [SELECT_DUTYCODE_SUCCESS]: (state, { payload: response }) => ({
       ...state,
-      dutyCodeList: response.data,
+      dutyList: response.data,
       response: response,
       responseError: null,
     }),
@@ -128,6 +130,7 @@ const dutyCode = handleActions(
     }),
     [INSERT_DUTYCODE_SUCCESS]: (state, { payload: response }) => ({
       ...state,
+      responseError: null,
       response: response,
     }),
     [INSERT_DUTYCODE_FAILURE]: (state, { payload: error }) => ({
@@ -136,6 +139,7 @@ const dutyCode = handleActions(
     }),
     [DELETE_DUTYCODE_SUCCESS]: (state, { payload: response }) => ({
       ...state,
+      responseError: null,
       response: response,
     }),
     [DELETE_DUTYCODE_FAILURE]: (state, { payload: error }) => ({
@@ -144,6 +148,7 @@ const dutyCode = handleActions(
     }),
     [EDIT_DUTYCODE_SUCCESS]: (state, { payload: response }) => ({
       ...state,
+      responseError: null,
       response: response,
     }),
     [EDIT_DUTYCODE_FAILURE]: (state, { payload: error }) => ({
@@ -153,6 +158,7 @@ const dutyCode = handleActions(
     [INIT_DUTYCODE_SUCCESS]: (state, { payload: response }) => ({
       ...state,
       response: response,
+      responseError: null,
     }),
     [INIT_DUTYCODE_FAILURE]: (state, { payload: error }) => ({
       ...state,
