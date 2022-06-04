@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.sql.Time;
 import java.util.Date;
 
 @Entity
@@ -42,8 +43,8 @@ public class Duty {
     //색상
     private String hexColor;
     //근무시작시간
-    @Temporal(TemporalType.TIME)
-    private Date startTime;
+//    @Temporal(TemporalType.TIME)
+    private Time startTime;
     //사용여부
     private Boolean isUsable;
     //작성자
@@ -51,7 +52,7 @@ public class Duty {
 
 
     public Duty(int dutySeq, String dutyCode, NurseGroup nurseGroup, String dutyCodeName, int workingHours, String workType,
-                String hexColor, Date startTime, Boolean isUsable, String creator) {
+                String hexColor, Time startTime, Boolean isUsable, String creator) {
         this.dutySeq = dutySeq;
         this.dutyCode = dutyCode;
         this.nurseGroup = nurseGroup;

@@ -88,6 +88,7 @@ public class DutyServiceImpl implements DutyService {
         return duty;
     }
 
+
     /**
      * 듀티 목록 조회
      * @param nurseGroupSeq
@@ -96,7 +97,7 @@ public class DutyServiceImpl implements DutyService {
     @Override
     public List<Duty> selectDuty(int nurseGroupSeq) throws NotFoundException {
         NurseGroup nurseGroup = nurseGroupRepository.findBySeq(nurseGroupSeq);
-        if(nurseGroup == null) throw new NotFoundException("듀티가 조회되지 않습니다.");
+        if(nurseGroup == null) throw new NotFoundException("selectDuty(), 듀티가 조회되지 않습니다.");
         List<Duty> duty = dutyRepository.findByNurseGroupSeq(nurseGroupSeq);
 
         return duty;

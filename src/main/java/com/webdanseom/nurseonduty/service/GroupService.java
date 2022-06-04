@@ -8,7 +8,6 @@ package com.webdanseom.nurseonduty.service;
  * 수정자: 표영운
  */
 import com.webdanseom.nurseonduty.model.Member;
-import com.webdanseom.nurseonduty.model.Nurse;
 import com.webdanseom.nurseonduty.model.NurseGroup;
 import com.webdanseom.nurseonduty.model.request.RequestNurseGroup;
 import javassist.NotFoundException;
@@ -47,5 +46,5 @@ public interface GroupService {
     void dropGroup(Member member) throws NotFoundException;
 
     //그룹삭제
-    void deleteGroup(NurseGroup nurseGroup) throws NotFoundException;
+    void deleteGroup(NurseGroup nurseGroup) throws Exception;
 }

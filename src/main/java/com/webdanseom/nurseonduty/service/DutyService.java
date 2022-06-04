@@ -14,6 +14,7 @@ public interface DutyService  {
     //간호사 조회
     Duty findByDutySeq(int dutySeq) throws NotFoundException;
 
+
     //듀티조회
     List<Duty> selectDuty(int nurseGroupSeq) throws NotFoundException;
 

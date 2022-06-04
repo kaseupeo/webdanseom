@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import java.sql.Date;
 import java.sql.Time;
 import java.util.List;
 
@@ -99,14 +100,14 @@ public class DutyController {
 
     //듀티수정
     @PutMapping("/updateDuty")
-    public Response updateDuty(@RequestBody RequestDutyList updateDutyList) {
+    public Response updateDuty(@RequestBody RequestDutyList requestDutyList) {
         try {
-            for(int i = 0; i < updateDutyList.getDutyList().size(); i++) {
-                if(dutyService.findByDutySeq(updateDutyList.getDutyList().get(i).getDutySeq())!=null) {
-                    dutyService.updateDuty(updateDutyList.getDutyList().get(i));
+            for(int i = 0; i < requestDutyList.getDutyList().size(); i++) {
+                if(dutyService.findByDutySeq(requestDutyList.getDutyList().get(i).getDutySeq())!=null) {
+                    dutyService.updateDuty(requestDutyList.getDutyList().get(i));
                 }
             }
-            return new Response("success", "듀티코드 수정 성공", updateDutyList);
+            return new Response("success", "듀티코드 수정 성공", requestDutyList);
         }catch (Exception e) {
             return new Response("error", "듀티코드 수정 실패", e.getMessage());
         }
@@ -114,11 +115,11 @@ public class DutyController {
 
     //듀티삭제
     @DeleteMapping("/deleteDuty")
-    public Response deleteDuty(@RequestBody RequestDutyList updateDutyList) {
+    public Response deleteDuty(@RequestBody RequestDutyList requestDutyList) {
         try {
-            for(int i = 0; i < updateDutyList.getDutyList().size(); i++) {
-                if(dutyService.findByDutySeq(updateDutyList.getDutyList().get(i).getDutySeq())!=null) {
-                    dutyService.deleteDuty(updateDutyList.getDutyList().get(i));
+            for(int i = 0; i < requestDutyList.getDutyList().size(); i++) {
+                if(dutyService.findByDutySeq(requestDutyList.getDutyList().get(i).getDutySeq())!=null) {
+                    dutyService.deleteDuty(requestDutyList.getDutyList().get(i));
                 }
             }
             return new Response("success", "듀티코드 삭제 성공", null);
@@ -143,6 +144,10 @@ public class DutyController {
             NurseGroup nurseGroup = member.getGroupSeq();
 
             List<Duty> dutyList = dutyService.selectDuty(nurseGroup.getSeq());
+            for(int i = 0; i < dutyList.size();i++) {
+                if(dutyService.findByDutySeq(dutyList.get(i).getDutySeq())!=null)
+                    dutyService.deleteDuty(dutyList.get(i));
+            }
             for(int i = 0; i < dutyList.size(); i++) {
                 Duty duty = dutyList.get(i);
                 dutyService.returnDuty(duty);
