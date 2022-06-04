@@ -5,9 +5,35 @@
  */
 import client from './client';
 
-export const memberUpdate = () =>
+export const selectMember = () =>
   client
-    .post('/api/member/')
+    .get('/api/member/profile')
+    .then((response) => {
+      console.log(response.data);
+      return response;
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+    .finally();
+
+export const updateMember = ({ name, phoneNumber }) =>
+  client
+    .put('/api/member/profile', { name, phoneNumber })
+    .then((response) => {
+      console.log(response.data);
+      return response;
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+    .finally();
+
+export const deleteMember = ({ email, password }) =>
+  client
+    .delete('/api/member/withdrawal', {
+      data: { email: email, password: password },
+    })
     .then((response) => {
       console.log(response.data);
       return response;

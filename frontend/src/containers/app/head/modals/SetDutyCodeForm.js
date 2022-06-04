@@ -35,7 +35,6 @@ const WorkSheetForm = ({ modalOpen, closeModal }) => {
   };
   //듀티코드 리스트 체크 초기화
   const initDutyCodeList = () => {
-    initDutyCodeAsync({});
     setCheckedDutyList([]);
   };
 

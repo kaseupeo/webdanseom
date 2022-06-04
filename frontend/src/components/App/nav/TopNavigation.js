@@ -57,7 +57,10 @@ const TopNavigation = ({
   };
 
   const onClickEditUserInfo = () => {
-    navigate('/editUserInfo');
+    navigate('/app/m/editUserInfo');
+  };
+  const onClickEditGroupInfo = () => {
+    navigate('/app/m/editGroupInfo');
   };
   return (
     <div className="whole">
@@ -103,7 +106,7 @@ const TopNavigation = ({
                   </div>
                   <ul style={{ margin: '0px' }}>
                     <li onClick={onClickEditUserInfo}>내 정보 수정</li>
-                    <li>그룹설정</li>
+                    <li onClick={onClickEditGroupInfo}>그룹 설정</li>
                     <hr />
                     <li onClick={onClickLogout}>로그아웃</li>
                   </ul>

@@ -9,6 +9,7 @@ import {
   initializeForm as gInitializeForm,
   selectGroup,
 } from '../../../modules/group';
+import { selectMember } from '../../../modules/member';
 import { login, logout } from '../../../modules/auth';
 import { loginState } from '../../../modules/menu';
 
@@ -20,6 +21,7 @@ const TopNavigationForm = () => {
   const [checkHiding, setCheckHiding] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const { response } = useSelector(({ group }) => ({
     response: group.response,
   }));
@@ -27,7 +29,12 @@ const TopNavigationForm = () => {
     loginStateNow: menu.loginState,
     groupName: menu.groupState.groupName,
   }));
-  const { memberName } = '김현숙';
+  const { memberName } = useSelector(({ member }) => ({
+    memberName: member.memberInfo.name,
+  }));
+  useEffect(() => {
+    dispatch(selectMember());
+  }, []);
 
   const onClickMenu = (e) => {
     e.preventDefault();

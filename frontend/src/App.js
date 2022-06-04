@@ -28,7 +28,10 @@ import NormalStasticsWork from './pages/app/normal/StatisticsWork';
 import SelectGroup from './pages/app/new/SelectGroup';
 import JoinGroup from './pages/app/new/JoinGroup';
 import CreateGroup from './pages/app/new/CreateGroup';
-import EditUserInfo from './components/app/myPage/editUserInfo';
+import EditUserInfo from './pages/app/myPage/EditUserInfo';
+import EditGroupInfo from './pages/app/myPage/EditGroupInfo';
+import EditPassword from './pages/app/myPage/EditPassword';
+import DeleteUser from './pages/app/myPage/DeleteUser';
 import NotFound from './pages/error/NotFound404';
 function App() {
   return (
@@ -47,7 +50,6 @@ function App() {
               <Route path="/app/g/selectGroup" element={<SelectGroup />} />
               <Route path="/app/g/createGroup" element={<CreateGroup />} />
               <Route path="/app/g/joinGroup" element={<JoinGroup />} />
-              <Route path="/app/editUserInfo" element={<EditUserInfo />} />
 
               <Route
                 path="/app/h/ManagementWork/"
@@ -68,6 +70,10 @@ function App() {
                 path="/app/n/statisticsWork"
                 element={<NormalStasticsWork />}
               />
+              <Route path="/app/m/editUserInfo" element={<EditUserInfo />} />
+              <Route path="/app/m/editGroupInfo" element={<EditGroupInfo />} />
+              <Route path="/app/m/editPassword" element={<EditPassword />} />
+              <Route path="/app/m/deleteUser" element={<DeleteUser />} />
             </Route>
           </Route>
           <Route path="*" element={<NotFound />} />
