@@ -15,6 +15,7 @@ const SetDutyCodeElement = ({
   onCheckedAll,
   onChange,
   dutyCodeList,
+  onClickInit,
 }) => {
   const hours = [];
   for (let i = 1; i < 25; i++) {
@@ -67,7 +68,7 @@ const SetDutyCodeElement = ({
             name="hexColor"
             type="color"
             id={index}
-            defaultValut={dutyCode.hexColor}
+            defaultValue={dutyCode.hexColor}
             onChange={onChange}
           />
         </td>
@@ -88,6 +89,7 @@ const SetDutyCodeElement = ({
             <input
               type="time"
               name="startTime"
+              className="without_ampm"
               id={index}
               defaultValue={dutyCode.startTime}
               onChange={onChange}
@@ -174,6 +176,9 @@ const SetDutyCodeElement = ({
       <div className="SetDutyCodeElement">
         <b className="title"> 듀티코드 목록</b>
         <div className="btns">
+          <MiniButton onClick={onClickInit} style={{ marginRight: '3rem' }}>
+            초기화
+          </MiniButton>
           <MiniButton onClick={onClickInsert}>추가</MiniButton>
           <MiniButton onClick={onClickDelete}>삭제</MiniButton>
         </div>

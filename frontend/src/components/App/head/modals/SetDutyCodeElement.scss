@@ -14,6 +14,8 @@ $min-contents-width: 1050px;
         position: relative;
        display: flex;
        margin-left: auto;
+       margin-bottom: 0.5rem;
+       
 
     }
     .tableDiv{
@@ -34,7 +36,8 @@ $min-contents-width: 1050px;
               border-collapse: collapse;
               font-size: 0.8vw;
               .check{width: 1%;
-  
+                font-size: 0.4rem;
+                zoom: 1.3;
               }
               .id{width: 1%;
 
@@ -58,15 +61,35 @@ $min-contents-width: 1050px;
                   }
                 }
             }
-              .dutyCodeName{width: 15%;
+              .dutyCodeName{width: 5%;
+                padding: 0%;
                 input{
-                    width:90%;  }}
-              .hexColor{width: 5%;}
-              .startTime{width: 15%;}
-              .workingHours{width: 5%;}
-              .workType{width: 10%;}
-              .useable{width: 5%;
+                    width:10rem;
+                  }}
+              .hexColor{width: 1%; 
+              input{width: 1.5rem; padding: 0;}}
+              .startTime{width: 15%;
+                .without_ampm::-webkit-datetime-edit-ampm-field {
+                  display: none;
+                }
+                input[type=time]::-webkit-clear-button {
+                  -webkit-appearance: none;
+                  -moz-appearance: none;
+                  -o-appearance: none;
+                  -ms-appearance:none;
+                  appearance: none;
+                  margin: -10px; 
+                }
+              }
+              .workingHours{width: 5%;
+              input{
+                width: 70%;
+              }}
+              .workType{width: 5%;}
+              .usable{width: 1%;
                 font-size: 0.5vw;
+                input{zoom: 1.3;
+                }
               }
               .creator{width:5%;
                 input{

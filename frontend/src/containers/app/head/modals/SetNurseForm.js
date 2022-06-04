@@ -55,6 +55,7 @@ const SetNurseForm = ({ modalOpen, closeModal }) => {
   const onClickDelete = () => {
     if (checkedNurseList !== [''])
       dispatch(deleteNursesAsync({ checkedNurseList }));
+    initNurseList();
     initCheckBox();
     dispatch(selectNursesAsync({ groupSeq }));
     if (response.message === '간호사 목록 조회 성공') flagFuction();
@@ -63,6 +64,7 @@ const SetNurseForm = ({ modalOpen, closeModal }) => {
   const onClickUpdate = () => {
     dispatch(editNursesAsync({ nurseList }));
     dispatch(selectNursesAsync({ groupSeq }));
+    initNurseList();
     initCheckBox();
   };
 

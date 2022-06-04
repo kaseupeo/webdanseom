@@ -8,18 +8,20 @@ import dutyCode, {
   deleteDutyCodeAsync,
   editDutyCodeAsync,
   changeDutyCode,
+  initDutyCodeAsync,
 } from '../../../../modules/dutyCode';
 
 const WorkSheetForm = ({ modalOpen, closeModal }) => {
-  const [checkedDutyCodeList, setCheckedDutyCodeList] = useState([]);
+  const [checkedDutyList, setCheckedDutyList] = useState([]);
   const [flag, setFlag] = useState(false);
+
   const flagFuction = () => {
     if (flag) setFlag(false);
     else setFlag(true);
   };
   const groupSeq = useSelector(({ group }) => group.nurseGroup.seq);
   const response = useSelector(({ dutyCode }) => dutyCode.response);
-  const dutyCodeList = useSelector(({ dutyCode }) => dutyCode.dutyCodeList);
+  const dutyList = useSelector(({ dutyCode }) => dutyCode.dutyList);
   const dispatch = useDispatch();
 
   //체크박스 초기화
@@ -33,36 +35,45 @@ const WorkSheetForm = ({ modalOpen, closeModal }) => {
   };
   //듀티코드 리스트 체크 초기화
   const initDutyCodeList = () => {
-    setCheckedDutyCodeList([]);
+    initDutyCodeAsync({});
+    setCheckedDutyList([]);
+  };
+
+  const onClickInit = () => {
+    setCheckedDutyList([]);
+    dispatch(initDutyCodeAsync());
+    dispatch(selectDutyCodeAsync({ groupSeq }));
   };
   const onClickInsert = () => {
     dispatch(insertDutyCodeAsync());
     dispatch(selectDutyCodeAsync({ groupSeq }));
-    setCheckedDutyCodeList([]);
+    setCheckedDutyList([]);
     flagFuction();
   };
   const onClickDelete = () => {
-    if (checkedDutyCodeList !== [''])
-      dispatch(deleteDutyCodeAsync({ checkedDutyCodeList }));
+    console.log(checkedDutyList);
+    if (checkedDutyList !== [''])
+      dispatch(deleteDutyCodeAsync({ checkedDutyList }));
+    initDutyCodeList();
     initCheckBox();
     dispatch(selectDutyCodeAsync({ groupSeq }));
     if (response.message === '듀티 전체 조회 성공') flagFuction();
   };
   const onClickUpdate = () => {
-    dispatch(editDutyCodeAsync({ dutyCodeList }));
+    dispatch(editDutyCodeAsync({ dutyList }));
     dispatch(selectDutyCodeAsync({ groupSeq }));
+    initDutyCodeList();
     initCheckBox();
   };
   const onChecked = (e) => {
     const { id, checked } = e.target;
-    console.log(checkedDutyCodeList);
+
     if (checked) {
-      setCheckedDutyCodeList([...checkedDutyCodeList, dutyCodeList[id]]);
+      setCheckedDutyList([...checkedDutyList, dutyList[id]]);
     } else {
-      setCheckedDutyCodeList(
-        checkedDutyCodeList.filter(
-          (checkedDutyCode) =>
-            checkedDutyCode.dutySeq !== dutyCodeList[id].dutySeq,
+      setCheckedDutyList(
+        checkedDutyList.filter(
+          (checkedDutyCode) => checkedDutyCode.dutySeq !== dutyList[id].dutySeq,
         ),
       );
     }
@@ -76,13 +87,11 @@ const WorkSheetForm = ({ modalOpen, closeModal }) => {
         checkBox[i].checked = true;
       }
 
-      setCheckedDutyCodeList(
-        dutyCodeList.filter(
-          (dutyCode) => dutyCode.dutySeq !== dutyCodeList[0].dutySeq,
-        ),
+      setCheckedDutyList(
+        dutyList.filter((dutyCode) => dutyCode.dutySeq !== dutyList[0].dutySeq),
       );
     } else {
-      setCheckedDutyCodeList([]);
+      setCheckedDutyList([]);
     }
   };
 
@@ -111,7 +120,8 @@ const WorkSheetForm = ({ modalOpen, closeModal }) => {
       onChecked={onChecked}
       onCheckedAll={onCheckedAll}
       onChange={onChange}
-      dutyCodeList={dutyCodeList}
+      dutyCodeList={dutyList}
+      onClickInit={onClickInit}
     />
   );
 };
