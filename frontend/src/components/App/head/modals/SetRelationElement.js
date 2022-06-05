@@ -2,7 +2,14 @@ import './SetRelationElement.scss';
 import Modal from './Modal';
 import { FaHandshake } from 'react-icons/fa';
 import { useState } from 'react';
-const SetRelationElement = ({ modalOpen, closeModal, nurseList }) => {
+import { MiniButton } from '../../common/Button';
+const SetRelationElement = ({
+  modalOpen,
+  closeModal,
+  nurseList,
+  onClickInsert,
+  onClickDelete,
+}) => {
   const [relations, setRelation] = useState([{ id: 0, name: '간호사1' }]);
   const rNurseList = nurseList ? (
     nurseList.map((nurse) => (
@@ -33,6 +40,14 @@ const SetRelationElement = ({ modalOpen, closeModal, nurseList }) => {
         </div>
       }
     >
+      <div className="btns">
+        <MiniButton onClick={onClickInsert}>
+          <b>추가</b>
+        </MiniButton>
+        <MiniButton onClick={() => onClickDelete()}>
+          <b>삭제</b>
+        </MiniButton>
+      </div>
       <div className="SetRelationElement">
         <b className="title">관계 목록</b>
         <select>{rNurseList}</select>

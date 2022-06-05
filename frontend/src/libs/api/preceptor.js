@@ -1,10 +1,5 @@
 import client from './client';
 
-/**
- * 이메일 토큰 값을 통한 그룹의 유무 판단
- * @param {} param0
- * @returns
- */
 export const selectPreceptor = () =>
   client
     .get('/api/preceptor/select')
