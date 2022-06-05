@@ -17,6 +17,7 @@ import {
 } from '../../../modules/management';
 import WorkSheet from '../../../components/app/head/WorkSheet';
 import { useNavigate } from 'react-router-dom';
+import dutyCode, { selectDutyCode } from '../../../modules/dutyCode';
 const WorkSheetForm = () => {
   const dispatch = useDispatch();
   const [error, setError] = useState('');
@@ -27,6 +28,18 @@ const WorkSheetForm = () => {
 
   const groupSeq = useSelector(({ group }) => group.nurseGroup.seq);
   const nurseList = useSelector(({ nurse }) => nurse.nurseList);
+  const [dutyList, setDutyList] = useState([]);
+  const tempDutyList = useSelector(({ dutyCode }) => dutyCode.dutyList);
+
+  useEffect(() => {
+    const temp = [{}];
+
+    for (let i = 0; i < tempDutyList.length; i++) {
+      if (tempDutyList[i].isUsable) temp.push(tempDutyList[i]);
+    }
+    setDutyList(temp);
+  }, [tempDutyList]);
+
   const openNurseModal = () => {
     setNurseModalOpen(true);
   };
@@ -72,8 +85,9 @@ const WorkSheetForm = () => {
 
   useEffect(() => {
     if (groupSeq === null) return;
-
+    dispatch(selectDutyCode({ groupSeq }));
     dispatch(selectNursesAsync({ groupSeq }));
+    setDutyList([]);
   }, [dispatch, groupSeq]);
 
   return (
@@ -85,8 +99,12 @@ const WorkSheetForm = () => {
       nurseList={nurseList}
     >
       <WorkManagementBtnForm />
-      <WorkSchedule year={date.year} month={date.month} />
-      <WorkScheduleSum year={date.year} month={date.month} />
+      <WorkSchedule year={date.year} month={date.month} dutyList={dutyList} />
+      <WorkScheduleSum
+        year={date.year}
+        month={date.month}
+        dutyList={dutyList}
+      />
     </WorkSheet>
   );
 };

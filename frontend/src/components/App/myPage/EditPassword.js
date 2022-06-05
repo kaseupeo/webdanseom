@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './EditUserInfo.scss';
-import { IoMdArrowRoundBack } from 'react-icons/io';
+
 const EditUserInfo = ({}) => {
   return (
     <div className="edit-userInfo-area">

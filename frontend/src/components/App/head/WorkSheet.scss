@@ -3,11 +3,18 @@ $min-contents-width: 1400px;
 .WorkSheet {
   display: flex;
   flex-direction: column;
-  background: white;
-  flex-wrap: nowrap; 
+    flex-wrap: nowrap; 
+    padding:0;
+    margin:0;
+    padding:0;
+    margin:0;
+    justify-content: center;
 
   margin-top: 2rem;
-  padding: 0px;
+
+  .contentDiv{
+
+   
   .sheetTop {
    
     display: flex;
@@ -75,8 +82,9 @@ $min-contents-width: 1400px;
   }
  }
  .scrollTable{ 
-  width:80vw;
+  width:90vw;
   overflow:auto;
+ 
   .tableColumn {
 
   
@@ -140,4 +148,4 @@ $min-contents-width: 1400px;
   border-radius: 10px;
   box-shadow: inset 0px 0px 5px white;
 }
-}
+}}

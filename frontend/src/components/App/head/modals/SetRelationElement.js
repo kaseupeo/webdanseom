@@ -2,12 +2,23 @@ import './SetRelationElement.scss';
 import Modal from './Modal';
 import { FaHandshake } from 'react-icons/fa';
 import { useState } from 'react';
-const SetRelationElement = ({ modalOpen, closeModal }) => {
+const SetRelationElement = ({ modalOpen, closeModal, nurseList }) => {
   const [relations, setRelation] = useState([{ id: 0, name: '간호사1' }]);
-  const relationInfo = relations.map((nurse) => (
+  const rNurseList = nurseList ? (
+    nurseList.map((nurse) => (
+      <option key={nurse.nurseSeq} value={nurse.name}>
+        {nurse.name}
+      </option>
+    ))
+  ) : (
+    <option>간호사 목록이 없습니다</option>
+  );
+  const relationInfo = relations.map((nurse, index) => (
     <tr className="metaInfo">
-      <td>{nurse.num}</td>
-      <td></td>
+      <td>{index}</td>
+      <td>
+        <input type="checkBox" id={index} />
+      </td>
       <td>{nurse.name}</td>
     </tr>
   ));
@@ -24,9 +35,7 @@ const SetRelationElement = ({ modalOpen, closeModal }) => {
     >
       <div className="SetRelationElement">
         <b className="title">관계 목록</b>
-        <select>
-          <option></option>
-        </select>
+        <select>{rNurseList}</select>
         <table>
           <thead>
             <tr>
@@ -34,7 +43,7 @@ const SetRelationElement = ({ modalOpen, closeModal }) => {
               <th>간호사</th>
             </tr>
           </thead>
-          <tbody></tbody>
+          <tbody>{relationInfo}</tbody>
         </table>
       </div>
     </Modal>
