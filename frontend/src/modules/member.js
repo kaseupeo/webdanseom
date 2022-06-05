@@ -20,6 +20,8 @@ const [SELECT_MEMBER, SELECT_MEMBER_SUCCESS, SELECT_MEMBER_FAILURE] =
   createRequestActionTypes('member/SELECT_MEMBER');
 const [UPDATE_MEMBER, UPDATE_MEMBER_SUCCESS, UPDATE_MEMBER_FAILURE] =
   createRequestActionTypes('member/UPDATE_MEMBER');
+const [UPDATE_PASSWORD, UPDATE_PASSWORD_SUCCESS, UPDATE_PASSWORD_FAILURE] =
+  createRequestActionTypes('member/UPDATE_PASSWORD');
 const [DELETE_MEMBER, DELETE_MEMBER_SUCCESS, DELETE_MEMBER_FAILURE] =
   createRequestActionTypes('member/DELETE_MEMBER');
 export const initializeForm = createAction(INITIALIZE_FORM, (form) => form);
@@ -33,6 +35,10 @@ export const changeMember = createAction(
 );
 export const selectMember = createAction(SELECT_MEMBER, (response) => response);
 export const updateMember = createAction(UPDATE_MEMBER, (response) => response);
+export const updatePassword = createAction(
+  UPDATE_PASSWORD,
+  (response) => response,
+);
 export const deleteMember = createAction(DELETE_MEMBER, (response) => response);
 
 export const selectMemberAsync = createRequestThunk(
@@ -42,6 +48,10 @@ export const selectMemberAsync = createRequestThunk(
 export const updateMemberAsync = createRequestThunk(
   UPDATE_MEMBER,
   authAPI.updateMember,
+);
+export const updatePasswordAsync = createRequestThunk(
+  UPDATE_PASSWORD,
+  authAPI.updatePassword,
 );
 export const deleteMemberAsync = createRequestThunk(
   DELETE_MEMBER,
@@ -55,17 +65,21 @@ export function* memberSaga() {
 }
 
 const initialState = {
-  passwordInfo: {
-    password: null,
-    passwordChecked: null,
-    newPassword: null,
-  },
   memberInfo: {
     memberSeq: null,
     email: null,
     name: null,
     phoneNumber: null,
     nurseSeq: null,
+  },
+  passwordInfo: {
+    beforePassword: null,
+    passwordChecked: null,
+    afterPassword: null,
+  },
+  deleteInfo: {
+    email: null,
+    password: null,
   },
   response: {
     response: null,
@@ -111,6 +125,15 @@ const member = handleActions(
       responseError: null,
     }),
     [DELETE_MEMBER_FAILURE]: (state, { payload: error }) => ({
+      ...state,
+      responseError: error,
+    }),
+    [UPDATE_PASSWORD_SUCCESS]: (state, { payload: response }) => ({
+      ...state,
+      response: response,
+      responseError: null,
+    }),
+    [UPDATE_PASSWORD_FAILURE]: (state, { payload: error }) => ({
       ...state,
       responseError: error,
     }),

@@ -83,7 +83,7 @@ public class PreceptorController {
     }
 
     // 관계 목록 조회
-    @GetMapping("select")
+    @GetMapping("/select")
     public Response selectPreceptor(HttpServletRequest httpServletRequest,
                                     HttpServletResponse httpServletResponse) {
         Cookie token = null;

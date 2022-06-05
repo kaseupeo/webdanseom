@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './EditUserInfo.scss';
 
-const EditUserInfo = ({}) => {
+const EditUserInfo = ({ onChange, onClick }) => {
   return (
     <div className="edit-userInfo-area">
       <div className="blocks-cover">
@@ -18,7 +18,12 @@ const EditUserInfo = ({}) => {
             <b>비밀번호</b>
           </div>
           <div className="userInfo-content">
-            <input name="name" type="text" className="name" maxLength="10" />
+            <input
+              name="password"
+              type="password"
+              className="name"
+              onChange={onChange}
+            />
           </div>
         </div>
       </div>
@@ -29,7 +34,7 @@ const EditUserInfo = ({}) => {
           회원 둘 이상이 그룹내에 속해 있을경우 수간호사 권한이 없을 경우에만
           회원 탈퇴가 가능합니다.
         </p>
-        <button>회원 탈퇴</button>
+        <button onClick={onClick}>회원 탈퇴</button>
       </div>
     </div>
   );

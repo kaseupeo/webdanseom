@@ -29,6 +29,21 @@ export const updateMember = ({ name, phoneNumber }) =>
     })
     .finally();
 
+export const updatePassword = ({ beforePassword, afterPassword }) =>
+  client
+    .put('/api/member/updatePassword', {
+      beforePassword: beforePassword,
+      afterPassword: afterPassword,
+    })
+    .then((response) => {
+      console.log(response.data);
+      return response;
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+    .finally();
+
 export const deleteMember = ({ email, password }) =>
   client
     .delete('/api/member/withdrawal', {
