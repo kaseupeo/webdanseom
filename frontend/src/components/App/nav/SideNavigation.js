@@ -22,6 +22,7 @@ const SideNavigation = ({
   const { menuHiding } = useSelector(({ menu }) => ({
     menuHiding: menu.hidingMenu,
   }));
+
   return (
     <div className="SideNavigation">
       <div className="nav">
@@ -45,10 +46,16 @@ const SideNavigation = ({
                     <BsCalendar4 />
                   </li>
                 ) : (
-                  <li onClick={onClickMenu1}>
-                    <BsCalendar4 />
-                    <b>근무표 조회</b>
-                  </li>
+                  <div className="masterSelect">
+                    <li onClick={onClickMenu1}>
+                      <BsCalendar4 />
+                      <b>근무표 조회</b>
+                    </li>
+                    <ul className="masterSelectEl">
+                      <li>달력형</li>
+                      <li>목록형</li>
+                    </ul>
+                  </div>
                 )}
 
                 {!menuHiding ? (
@@ -69,9 +76,11 @@ const SideNavigation = ({
                     <BsCalendar4 />
                   </li>
                 ) : (
-                  <li onClick={onClickMenu0}>
-                    <BsCalendar4 /> <b>근무표 조회</b>
-                  </li>
+                  <div>
+                    <li onClick={onClickMenu0}>
+                      <BsCalendar4 /> <b>근무표 조회</b>
+                    </li>
+                  </div>
                 )}
 
                 {!menuHiding ? (

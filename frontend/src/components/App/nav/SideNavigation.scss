@@ -38,7 +38,70 @@ $mobile-contents-width: 640px;
       padding-top: 10px;
       margin: 0%;
       text-decoration: none;
- 
+     
+      .masterSelect{
+        .masterSelectEl{
+          
+          visibility : hidden;
+          opacity : 0;
+          transition : .2s ease-in-out;
+          transform : translateY (-20px);
+          padding: 0;
+          display:none;
+          background-color: #40586a;
+          li{
+            padding-top:1rem;
+            padding-left: 6rem;
+          }
+        }
+       &:hover{
+        .masterSelectEl{
+          display: block;
+          visibility : visible;
+          opacity : 1;
+        transform : translateY (0);
+        transform : rotateX (0) rotateY (-90deg);
+        @keyframes slide-fade-in-dropdown-animation {
+          0% {
+            transform: translateY(-100%);
+          }
+        
+          100% {
+            transform: translateY(0);
+          }
+        }
+        
+        .slide-fade-in-dropdown {
+          overflow: hidden;
+        }
+        
+        .slide-fade-in-dropdown > ul {
+          animation: slide-fade-in-dropdown-animation .4s ease;
+        }
+        
+        /* fade out */
+        
+        @keyframes slide-fade-out-dropdown-animation {
+          0% {
+            transform: translateY(0);
+          }
+        
+          100% {
+            transform: translateY(-100%);
+          }
+        }
+        
+        .slide-fade-out-dropdown {
+          overflow: hidden;
+        }
+        
+        .slide-fade-out-dropdown > ul {
+          animation: slide-fade-out-dropdown-animation 0.4s ease;
+          animation-fill-mode: forwards;
+        }
+        }
+       }
+      }
       li {
         color: white;
         list-style: none;
