@@ -53,6 +53,7 @@ $min-contents-width: 1500px;
         display: flex;
         flex-direction: column;
         justify-content: center;
+        
         @media (max-width:$mobile-contents-width) {
             margin-left: 0;
             margin-bottom: 0;
@@ -71,17 +72,13 @@ $min-contents-width: 1500px;
        height: 2rem;
        width: 16rem;
    }
-
-    }
-   
-  
-    .submitBtn{
+   .submitBtn{
         padding:0.3rem;
-        display: flex;
+       
         justify-content: center;
       
-        margin: 1.5rem;
-        margin-bottom: 2rem;
+        margin: 2rem;
+        margin-left: 3.5rem;
         font-size: 1.4rem;
         border: solid thin #40586a;
         border-radius: 0.2rem;
@@ -89,7 +86,7 @@ $min-contents-width: 1500px;
         background-color: white;
         text-align: center;
         width: 10rem;
-        height: 2rem;
+        height: 2.5rem;
         &:hover{
             background-color: #3ec0be;
             color:white;
@@ -98,4 +95,9 @@ $min-contents-width: 1500px;
             background-color: #37a5a3;
         }
     }
+
+    }
+   
+  
+    
 }

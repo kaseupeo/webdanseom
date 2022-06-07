@@ -1,6 +1,7 @@
 $mobile-contents-width: 700px;
 $min-contents-width: 1400px;
 .WorkSheet {
+  position: relative;
   display: flex;
   flex-direction: column;
     flex-wrap: nowrap; 
@@ -14,7 +15,6 @@ $min-contents-width: 1400px;
 
   .contentDiv{
 
-   
   .sheetTop {
    
     display: flex;
@@ -68,21 +68,19 @@ $min-contents-width: 1400px;
   padding-top: 500px;
 }
   .settingBtn{
-    flex-grow: 0.5;
- 
+   
+ float: right;
+ margin-right: 3rem;
   white-space: nowrap;
-  
-  @media (max-width: $min-contents-width) {
-    
-    flex-grow: 5;
-  }
+ 
   
 
     
   }
  }
  .scrollTable{ 
-  width:80vw;
+  width:70vw;
+  margin-right: 4rem;
   overflow:auto;
  
   .tableColumn {

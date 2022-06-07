@@ -14,10 +14,9 @@ const CreateGroup = ({ onClickMenu0, onChange, onClickCreate }) => {
           placeholder="그룹명을 입력해주세요."
           onChange={onChange}
         />
-      </div>
-
-      <div className="submitBtn" onClick={onClickCreate}>
-        그룹 생성
+        <button className="submitBtn" onClick={onClickCreate}>
+          그룹 생성
+        </button>
       </div>
     </div>
   );

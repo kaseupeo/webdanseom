@@ -118,7 +118,7 @@ const TopNavigation = ({
       </header>
 
       <main className="content">
-        <Outlet className="content" />
+        <Outlet />
       </main>
     </div>
   );

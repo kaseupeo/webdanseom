@@ -1,9 +1,16 @@
 import React, { useState } from 'react';
-import './EditUserInfo.scss';
+import './EditPassword.scss';
 
-const EditUserInfo = ({ onChange, onClick, errorMsg }) => {
+const EditUserInfo = ({
+  onChange,
+  onSubmit,
+  errorMsg,
+  beforePassword,
+  passwordChecked,
+  afterPassword,
+}) => {
   return (
-    <div className="edit-userInfo-area">
+    <div className="EditPassword">
       <div className="blocks-cover">
         <div className="blocks">
           <div className="block-top" />
@@ -11,8 +18,7 @@ const EditUserInfo = ({ onChange, onClick, errorMsg }) => {
         </div>
         <h2>비밀번호 변경</h2>
       </div>
-
-      <div className="userInfo-form">
+      <form onSubmit={onSubmit} className="userInfo-form">
         <div className="userInfo-row">
           <div className="userInfo-title">
             <b>현재 비밀번호</b>
@@ -22,6 +28,7 @@ const EditUserInfo = ({ onChange, onClick, errorMsg }) => {
               name="beforePassword"
               type="password"
               className="name"
+              value={beforePassword}
               onChange={onChange}
             />
           </div>
@@ -37,6 +44,7 @@ const EditUserInfo = ({ onChange, onClick, errorMsg }) => {
               type="password"
               className="name"
               onChange={onChange}
+              value={afterPassword}
             />
           </div>
         </div>
@@ -50,19 +58,23 @@ const EditUserInfo = ({ onChange, onClick, errorMsg }) => {
               type="password"
               className="name"
               onChange={onChange}
+              value={passwordChecked}
             />
           </div>
         </div>
-      </div>
-      {errorMsg}
-      <div className="btn-div">
-        <hr />
-        <p>
-          비밀 번호는 8자 이상의 영문 대/소문자 , 숫자, 특수기호 조합을 사용할
-          수 있습니다.
-        </p>
-        <button onClick={onClick}>비밀번호 변경</button>
-      </div>
+
+        <div className="btn-div">
+          <b style={{ position: 'absolute', color: 'red' }}>{errorMsg}</b>
+          <hr />
+          <p>
+            비밀 번호는 8자 이상의 영문 대/소문자 , 숫자, 특수기호 조합을 사용할
+            수 있습니다.
+          </p>
+          <button type="submit" className="btn-edit">
+            비밀번호 변경
+          </button>
+        </div>
+      </form>
     </div>
   );
 };
