@@ -25,6 +25,7 @@ public class Work {
     //근무번호 (기본키)
     @Id
     private  int workSeq;
+
     //그룹번호 (기본키) --- 외래키
     @ManyToOne
     @JoinColumn(name = "nurseGroup", nullable = false)
@@ -40,14 +41,14 @@ public class Work {
     //간호사 번호 --- 외래키
     @ManyToOne
     @JoinColumn(name="nurse")
-    private Nurse nurseSeq;
+    private Nurse nurse;
     
     //생성자
     public Work(int workSeq, String duty, Date date, Nurse nurseSeq) {
         this.workSeq = workSeq;
         this.duty = duty;
         this.date = date;
-        this.nurseSeq = nurseSeq;
+        this.nurse = nurseSeq;
     }
 
     @Override
@@ -56,7 +57,7 @@ public class Work {
                 "workNum=" + workSeq +
                 ", duty='" + duty + '\'' +
                 ", date=" + date +
-                ", nurseSeq=" + nurseSeq +
+                ", nurseSeq=" + nurse +
                 '}';
     }
 }
