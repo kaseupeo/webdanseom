@@ -28,5 +28,28 @@ $mobile-contents-width: 650px;
             
             
         }
+        .submitBtn{
+            padding:0.3rem;
+           
+            justify-content: center;
+          
+            margin: 2rem;
+            margin-left: 3.5rem;
+            font-size: 1.4rem;
+            border: solid thin #40586a;
+            border-radius: 0.2rem;
+            color:#40586a;
+            background-color: white;
+            text-align: center;
+            width: 10rem;
+            height: 2.5rem;
+            &:hover{
+                background-color: #3ec0be;
+                color:white;
+            }
+            &:active{
+                background-color: #37a5a3;
+            }
+        }
     }
 }

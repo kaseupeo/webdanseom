@@ -44,13 +44,24 @@ const SetDutyCodeElement = ({
     dutyCodeList.map((dutyCode, index) => (
       <tr key={index} className="metaInfo">
         <td className="check">
-          <input
-            type="checkBox"
-            id={index}
-            className="checkBox"
-            onClick={onChecked}
-            defaultChecked={false}
-          />
+          {index === 0 ? (
+            <input
+              type="checkBox"
+              id={index}
+              className="checkBox"
+              onClick={onChecked}
+              checked={false}
+              disabled
+            />
+          ) : (
+            <input
+              type="checkBox"
+              id={index}
+              className="checkBox"
+              onClick={onChecked}
+              defaultChecked={false}
+            />
+          )}
         </td>
         <td className="id">{index + 1}</td>
         <td className="dutyCode">
@@ -59,7 +70,7 @@ const SetDutyCodeElement = ({
             id={index}
             type="text"
             maxLength={1}
-            defaultValue={dutyCode.dutyCode}
+            value={dutyCode.dutyCode}
             onChange={onChange}
           />
         </td>
@@ -68,7 +79,7 @@ const SetDutyCodeElement = ({
             name="hexColor"
             type="color"
             id={index}
-            defaultValue={dutyCode.hexColor}
+            value={dutyCode.hexColor}
             onChange={onChange}
           />
         </td>
@@ -77,7 +88,7 @@ const SetDutyCodeElement = ({
             name="dutyCodeName"
             type="text"
             id={index}
-            defaultValue={dutyCode.dutyCodeName}
+            value={dutyCode.dutyCodeName}
             onChange={onChange}
           />
         </td>
@@ -91,7 +102,7 @@ const SetDutyCodeElement = ({
               name="startTime"
               className="without_ampm"
               id={index}
-              defaultValue={dutyCode.startTime}
+              value={dutyCode.startTime}
               onChange={onChange}
             />
           )}
@@ -110,7 +121,7 @@ const SetDutyCodeElement = ({
               max="24"
               step="0.5"
               id={index}
-              defaultValue={dutyCode.workingHours}
+              value={dutyCode.workingHours}
               onChange={onChange}
             />
           )}
@@ -119,7 +130,7 @@ const SetDutyCodeElement = ({
           <select
             name="workType"
             id={index}
-            defaultValue={dutyCode.workType}
+            value={dutyCode.workType}
             onChange={onChange}
           >
             <option value="Day">Day</option>
@@ -137,10 +148,11 @@ const SetDutyCodeElement = ({
         </td>
         <td className="usable">
           <input
-            name="usable"
+            name="isUsable"
             type="checkBox"
             id={index}
             defaultChecked={dutyCode.isUsable}
+            defaultValue={dutyCode.isUsable}
             onChange={onChange}
           />
         </td>
@@ -148,7 +160,7 @@ const SetDutyCodeElement = ({
           <select
             name="creator"
             id={index}
-            defaultValue={dutyCode.creator}
+            value={dutyCode.creator}
             onChange={onChange}
           >
             <option>시스템</option>
@@ -179,14 +191,23 @@ const SetDutyCodeElement = ({
           <MiniButton onClick={onClickInit} style={{ marginRight: '3rem' }}>
             초기화
           </MiniButton>
-          <MiniButton onClick={onClickInsert}>추가</MiniButton>
-          <MiniButton onClick={onClickDelete}>삭제</MiniButton>
+          <MiniButton onClick={() => onClickInsert()}>추가</MiniButton>
+          <MiniButton onClick={() => onClickDelete()}>삭제</MiniButton>
         </div>
         <div className="tableDiv">
           <table>
             <thead>
               <tr>
-                <th className="check">선택</th>
+                <th className="check">
+                  <div>선택</div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      className="checkBoxAll"
+                      onClick={onCheckedAll}
+                    />
+                  </div>
+                </th>
                 <th className="id">순번</th>
                 <th className="dutyCode">듀티코드</th>
                 <th className="hexColor">색상</th>

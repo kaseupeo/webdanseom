@@ -4,11 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import dutyCode, {
   selectDutyCodeAsync,
-  insertDutyCodeAsync,
+  selectDutyCode,
+  insertDutyCode,
   deleteDutyCodeAsync,
   editDutyCodeAsync,
   changeDutyCode,
-  initDutyCodeAsync,
+  initDutyCode,
 } from '../../../../modules/dutyCode';
 
 const WorkSheetForm = ({ modalOpen, closeModal }) => {
@@ -31,33 +32,38 @@ const WorkSheetForm = ({ modalOpen, closeModal }) => {
     for (var i = 0; i < checkBox.length; i++) {
       checkBox[i].checked = false;
     }
-    checkBoxAll.checked = false;
+    checkBoxAll[0].checked = false;
   };
   //듀티코드 리스트 체크 초기화
   const initDutyCodeList = () => {
     setCheckedDutyList([]);
   };
 
+  //초기화
   const onClickInit = () => {
     setCheckedDutyList([]);
-    dispatch(initDutyCodeAsync());
+    dispatch(initDutyCode());
     dispatch(selectDutyCodeAsync({ groupSeq }));
+    if (response.message === '듀티 초기화 성공') flagFuction();
   };
+  //삽입
   const onClickInsert = () => {
-    dispatch(insertDutyCodeAsync());
+    dispatch(insertDutyCode());
     dispatch(selectDutyCodeAsync({ groupSeq }));
     setCheckedDutyList([]);
     flagFuction();
   };
+  //삭제
   const onClickDelete = () => {
-    console.log(checkedDutyList);
     if (checkedDutyList !== [''])
       dispatch(deleteDutyCodeAsync({ checkedDutyList }));
     initDutyCodeList();
     initCheckBox();
     dispatch(selectDutyCodeAsync({ groupSeq }));
+
     if (response.message === '듀티 전체 조회 성공') flagFuction();
   };
+  //수정
   const onClickUpdate = () => {
     dispatch(editDutyCodeAsync({ dutyList }));
     dispatch(selectDutyCodeAsync({ groupSeq }));
@@ -82,7 +88,7 @@ const WorkSheetForm = ({ modalOpen, closeModal }) => {
 
     if (checked) {
       const checkBox = document.getElementsByClassName('checkBox');
-      for (var i = 1; i < checkBox.length; i++) {
+      for (var i = 0; i < checkBox.length; i++) {
         checkBox[i].checked = true;
       }
 
@@ -91,23 +97,44 @@ const WorkSheetForm = ({ modalOpen, closeModal }) => {
       );
     } else {
       setCheckedDutyList([]);
+      const checkBox = document.getElementsByClassName('checkBox');
+      for (var i = 1; i < checkBox.length; i++) {
+        checkBox[i].checked = false;
+      }
     }
   };
 
   useEffect(() => {
-    dispatch(selectDutyCodeAsync({ groupSeq }));
+    dispatch(selectDutyCode({ groupSeq }));
   }, [dispatch, flag]);
+
   const onChange = (e) => {
     const { value, name, id } = e.target;
-
-    console.log(id);
-    dispatch(
-      changeDutyCode({
-        index: id,
-        key: name,
-        value,
-      }),
-    );
+    if (name === 'isUsable') {
+      if (value === 'true')
+        dispatch(
+          changeDutyCode({
+            index: id,
+            key: name,
+            value: false,
+          }),
+        );
+      else
+        dispatch(
+          changeDutyCode({
+            index: id,
+            key: name,
+            value: true,
+          }),
+        );
+    } else
+      dispatch(
+        changeDutyCode({
+          index: id,
+          key: name,
+          value,
+        }),
+      );
   };
   return (
     <SetDutyCodeElement

@@ -1,13 +1,11 @@
 import './WorkSchedule.scss';
 import React, { useState, useEffect } from 'react';
 
-const WorkSchedule = ({ year, month }) => {
+const WorkSchedule = ({ year, month, dutyList }) => {
   let date = new Date(year, month, 0);
 
-  const [lastDay, setLastDay] = useState(31);
-  const [dutyCodes, setDutycodes] = useState(['', 'D', 'E', 'N', 'O']);
-  const dutycodeList = dutyCodes.map((dutycode) => (
-    <option key={dutycode}>{dutycode}</option>
+  const dutycodeList = dutyList.map((dutycode) => (
+    <option key={dutycode.dutySeq}>{dutycode.dutyCode}</option>
   ));
 
   let workArray = [];

@@ -118,6 +118,7 @@ const SetNurseElement = ({
                   <div>선택</div>
                   <div>
                     <input
+                      name="checkedAll"
                       type="checkbox"
                       className="checkBoxAll"
                       onClick={onCheckedAll}

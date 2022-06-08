@@ -6,6 +6,7 @@ import SetNurseForm from './modals/SetNurseForm';
 import SetDutyCodeFrom from './modals/SetDutyCodeForm';
 import SetRelationFrom from './modals/SetRelationForm';
 import { selectNurses } from '../../../modules/nurse';
+import { selectDutyCode } from '../../../modules/dutyCode';
 const WorkManagementBtnForm = () => {
   const dispatch = useDispatch();
   const groupSeq = useSelector(({ group }) => group.nurseGroup.seq);
@@ -14,6 +15,7 @@ const WorkManagementBtnForm = () => {
   const [dutyCodeModalOpen, setDutyCodeModalOpen] = useState(false);
   const openNurseModal = () => {
     setNurseModalOpen(true);
+    dispatch(selectNurses({ groupSeq }));
   };
   const closeNurseModal = () => {
     setNurseModalOpen(false);
@@ -29,9 +31,11 @@ const WorkManagementBtnForm = () => {
 
   const openDutyCodeModal = () => {
     setDutyCodeModalOpen(true);
+    dispatch(selectDutyCode({ groupSeq }));
   };
   const closeDutyCodeModal = () => {
     setDutyCodeModalOpen(false);
+    dispatch(selectDutyCode({ groupSeq }));
   };
 
   return (

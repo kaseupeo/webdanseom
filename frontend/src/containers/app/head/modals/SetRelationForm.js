@@ -2,15 +2,33 @@ import SetRelationElement from '../../../../components/app/head/modals/SetRelati
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { selectNursesAsync } from '../../../../modules/nurse';
+
+import { selectPreceptorsAsync } from '../../../../modules/preceptor';
 const WorkSheetForm = ({ modalOpen, closeModal }) => {
   const [error, setError] = useState('');
 
   const dispatch = useDispatch();
+  const nurseList = useSelector(({ nurse }) => nurse.nurseList);
+  const preceptorList = useSelector(({ preceptor }) => preceptor.preceptorList);
+
+  useEffect(() => {
+    dispatch(selectNursesAsync());
+    dispatch(selectPreceptorsAsync());
+  }, []);
 
   const onClickInsert = () => {};
   const onClickDelete = () => {};
 
-  return <SetRelationElement modalOpen={modalOpen} closeModal={closeModal} />;
+  return (
+    <SetRelationElement
+      modalOpen={modalOpen}
+      closeModal={closeModal}
+      onClickInsert={onClickInsert}
+      onClickDelete={onClickDelete}
+      nurseList={nurseList}
+    />
+  );
 };
 
 export default WorkSheetForm;

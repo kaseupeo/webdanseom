@@ -3,12 +3,13 @@
  * 간호사 Top 네비게이션
  * 작성자: 정진욱
  */
-import { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { BiHelpCircle } from 'react-icons/bi';
 import { GrRefresh, GrMenu, GrUserSettings } from 'react-icons/gr';
 import { RiArrowDropDownFill } from 'react-icons/ri';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import MyPageModal from './modals/MyPageModal';
 import './TopNavigation.scss';
 
 const TopNavigation = ({
@@ -19,41 +20,28 @@ const TopNavigation = ({
   error,
 }) => {
   const navigate = useNavigate();
-  const outHelping = useRef();
-
-  const [helpHiding, setHelpHiding] = useState(false);
-  const [myPageHiding, setMyPageHiding] = useState(false);
-
-  const [menuHiding, setMenuHiding] = useState(false);
-
-  const modalCloseHandler = ({ target }) => {
-    if (helpHiding && !outHelping.current.contains(target))
-      setHelpHiding(false);
-  };
+  const outMyPage = useRef();
+  const [isMyPage, setIsMyPage] = useState(false);
 
   useEffect(() => {
-    window.addEventListener('click', modalCloseHandler);
-    return () => {
-      window.removeEventListener('click', modalCloseHandler);
+    const handleOutsideClick = (e) => {
+      if (outMyPage.current || !outMyPage.current.contains(e.target)) {
+        setIsMyPage(false);
+      }
     };
-  }, []);
+
+    document.addEventListener('click', handleOutsideClick, true);
+    return () => {
+      document.removeEventListener('click', handleOutsideClick, true);
+    };
+  }, [outMyPage]);
+
+  const [isHelp, setIsHelp] = useState(false);
 
   const onClickRefresh = () => {};
+
   const onClickHelp = () => {
-    if (helpHiding) setHelpHiding(false);
-    else {
-      setHelpHiding(true);
-    }
-  };
-  const onClickMyPage = () => {
-    if (myPageHiding) setMyPageHiding(false);
-    else {
-      setMyPageHiding(true);
-    }
-  };
-  const onClickInit = () => {
-    setHelpHiding(false);
-    setMyPageHiding(false);
+    setIsHelp(true);
   };
 
   const onClickEditUserInfo = () => {
@@ -87,8 +75,8 @@ const TopNavigation = ({
                 }}
               />
               <RiArrowDropDownFill className="bottomArrowIcon" />
-              {helpHiding && (
-                <div className="helpMenu" ref={outHelping}>
+              {isHelp && (
+                <div className="helpMenu">
                   <ul>
                     <li>도움말 가이드</li>
                     <li>피드백 보내기</li>
@@ -96,21 +84,22 @@ const TopNavigation = ({
                 </div>
               )}
             </div>
-            <div className="myPage" onClick={onClickMyPage}>
+            <div
+              className="myPage"
+              onClick={() => {
+                setIsMyPage(!isMyPage);
+              }}
+            >
               <GrUserSettings className="settingIcon" />
               <RiArrowDropDownFill className="bottomArrowIcon" />
-              {myPageHiding && (
-                <div className="myPageMenu">
-                  <div className="myName">
-                    <b>{memberName} 님</b>
-                  </div>
-                  <ul style={{ margin: '0px' }}>
-                    <li onClick={onClickEditUserInfo}>내 정보 수정</li>
-                    <li onClick={onClickEditGroupInfo}>그룹 설정</li>
-                    <hr />
-                    <li onClick={onClickLogout}>로그아웃</li>
-                  </ul>
-                </div>
+              {isMyPage && (
+                <MyPageModal
+                  ref={outMyPage}
+                  memberName={memberName}
+                  onClickEditUserInfo={onClickEditUserInfo}
+                  onClickEditGroupInfo={onClickEditGroupInfo}
+                  onClickLogout={onClickLogout}
+                ></MyPageModal>
               )}
             </div>
           </div>
@@ -118,7 +107,7 @@ const TopNavigation = ({
       </header>
 
       <main className="content">
-        <Outlet className="content" />
+        <Outlet />
       </main>
     </div>
   );

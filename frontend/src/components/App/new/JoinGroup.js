@@ -14,10 +14,10 @@ const JoinGroup = ({ onClickMenu0, onChange, onClickJoin, errorMSG }) => {
           placeholder="그룹 코드를 입력해주세요."
           onChange={onChange}
         />
-      </div>
-      <b>{errorMSG}</b>
-      <div className="submitBtn" onClick={onClickJoin}>
-        그룹 참가
+        <b>{errorMSG}</b>
+        <div className="submitBtn" onClick={onClickJoin}>
+          그룹 참여
+        </div>
       </div>
     </div>
   );

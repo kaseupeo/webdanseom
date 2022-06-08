@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import './WorkScheduleSum.scss';
-const WorkScheduleSum = ({ year, month }) => {
+const WorkScheduleSum = ({ year, month, dutyList }) => {
   let date = new Date(year, month, 0);
   let dayArray = [];
   let daySumArray = 9;
-  const dutyCode = ['D', 'E', 'N', 'OFF'];
+
   for (let i = 0; i < date.getDate() + daySumArray; i++) dayArray.push(i);
   const days = dayArray.map((day) => <td key={day}>{0}</td>);
-  const sumRow = dutyCode.map((code) => (
-    <tr key={code}>
-      <th colSpan={3}>{code}</th>
+  const sumRow = dutyList.map((code) => (
+    <tr key={code.dutyCode}>
+      <th colSpan={3}>{code.dutyCode}</th>
       {days}
     </tr>
   ));

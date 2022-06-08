@@ -97,6 +97,10 @@ const SetNurseForm = ({ modalOpen, closeModal }) => {
       );
     } else {
       setCheckedNurseList([]);
+      const checkBox = document.getElementsByClassName('checkBox');
+      for (var i = 1; i < checkBox.length; i++) {
+        checkBox[i].checked = false;
+      }
     }
   };
   useEffect(() => {

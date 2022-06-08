@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import EditUserInfo from '../../../components/app/myPage/EditUserInfo';
 
 const EditUserInfoForm = () => {
+  const [errorMsg, setErrorMsg] = useState('');
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { email, name, phoneNumber, password, response, responseError } =
@@ -33,10 +34,16 @@ const EditUserInfoForm = () => {
     navigate('/app/m/editPassword');
   };
   const onClickEdit = () => {
+    if (!/^\d{11}$/.test(phoneNumber)) {
+      setErrorMsg('수정실패!-전화번호 형식이 아닙니다.');
+      return;
+    }
     dispatch(updateMemberAsync({ name, phoneNumber }));
+
     if (response.response === 'success')
       alert('성공적으로 개인정보를 수정하였습니다.');
   };
+
   const onClickDelete = () => {
     navigate('/app/m/deleteUser');
   };
@@ -54,6 +61,7 @@ const EditUserInfoForm = () => {
       email={email}
       name={name}
       phoneNumber={phoneNumber}
+      errorMsg={errorMsg}
     />
   );
 };

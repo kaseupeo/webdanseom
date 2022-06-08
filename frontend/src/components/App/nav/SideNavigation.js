@@ -22,107 +22,109 @@ const SideNavigation = ({
   const { menuHiding } = useSelector(({ menu }) => ({
     menuHiding: menu.hidingMenu,
   }));
-  return (
-    <div>
-      <div className="LeftNavigation">
-        <div className="nav">
-          <ul className={!menuHiding ? 'ul_hide_nav' : ''}>
-            {joinGroup ? (
-              headNurseCheck ? (
-                <div>
-                  {!menuHiding ? (
-                    <li className="icon" onClick={onClickMenu0}>
-                      <BsFillPencilFill />
-                    </li>
-                  ) : (
-                    <li onClick={onClickMenu0}>
-                      <BsFillPencilFill />
-                      <b>근무표 관리</b>
-                    </li>
-                  )}
 
-                  {!menuHiding ? (
-                    <li className="icon" onClick={onClickMenu1}>
-                      <BsCalendar4 />
-                    </li>
-                  ) : (
+  return (
+    <div className="SideNavigation">
+      <div className="nav">
+        <ul className={!menuHiding ? 'ul_hide_nav' : ''}>
+          {joinGroup ? (
+            headNurseCheck ? (
+              <div>
+                {!menuHiding ? (
+                  <li className="icon" onClick={onClickMenu0}>
+                    <BsFillPencilFill />
+                  </li>
+                ) : (
+                  <li onClick={onClickMenu0}>
+                    <BsFillPencilFill />
+                    <b>근무표 관리</b>
+                  </li>
+                )}
+
+                {!menuHiding ? (
+                  <li className="icon" onClick={onClickMenu1}>
+                    <BsCalendar4 />
+                  </li>
+                ) : (
+                  <div className="masterSelect">
                     <li onClick={onClickMenu1}>
                       <BsCalendar4 />
                       <b>근무표 조회</b>
                     </li>
-                  )}
+                    <ul className="masterSelectEl">
+                      <li>달력형</li>
+                      <li>목록형</li>
+                    </ul>
+                  </div>
+                )}
 
-                  {!menuHiding ? (
-                    <li className="icon" onClick={onClickMenu2}>
-                      <BsFillPieChartFill />{' '}
-                    </li>
-                  ) : (
-                    <li onClick={onClickMenu2}>
-                      <BsFillPieChartFill />
-                      <b>통계</b>
-                    </li>
-                  )}
-                </div>
-              ) : (
-                <div>
-                  {!menuHiding ? (
-                    <li className="icon" onClick={onClickMenu0}>
-                      <BsCalendar4 />
-                    </li>
-                  ) : (
-                    <li onClick={onClickMenu0}>
-                      <BsCalendar4 /> <b>근무표 조회</b>
-                    </li>
-                  )}
-
-                  {!menuHiding ? (
-                    <li className="icon" onClick={onClickMenu1}>
-                      <BsFillChatRightTextFill />
-                    </li>
-                  ) : (
-                    <li onClick={onClickMenu1}>
-                      <BsFillChatRightTextFill /> <b>근무 요청</b>
-                    </li>
-                  )}
-
-                  {!menuHiding ? (
-                    <li className="icon" onClick={onClickMenu2}>
-                      <BsFillPieChartFill className="icon" />
-                    </li>
-                  ) : (
-                    <li onClick={onClickMenu2}>
-                      <BsFillPieChartFill />
-                      <b>통계</b>
-                    </li>
-                  )}
-                </div>
-              )
+                {!menuHiding ? (
+                  <li className="icon" onClick={onClickMenu2}>
+                    <BsFillPieChartFill />{' '}
+                  </li>
+                ) : (
+                  <li onClick={onClickMenu2}>
+                    <BsFillPieChartFill />
+                    <b>통계</b>
+                  </li>
+                )}
+              </div>
             ) : (
               <div>
                 {!menuHiding ? (
                   <li className="icon" onClick={onClickMenu0}>
-                    <HiUserGroup />
+                    <BsCalendar4 />
                   </li>
                 ) : (
-                  <li onClick={onClickMenu0}>
-                    <HiUserGroup />
-                    <b>그룹 생성/참가</b>
+                  <div>
+                    <li onClick={onClickMenu0}>
+                      <BsCalendar4 /> <b>근무표 조회</b>
+                    </li>
+                  </div>
+                )}
+
+                {!menuHiding ? (
+                  <li className="icon" onClick={onClickMenu1}>
+                    <BsFillChatRightTextFill />
+                  </li>
+                ) : (
+                  <li onClick={onClickMenu1}>
+                    <BsFillChatRightTextFill /> <b>근무 요청</b>
+                  </li>
+                )}
+
+                {!menuHiding ? (
+                  <li className="icon" onClick={onClickMenu2}>
+                    <BsFillPieChartFill className="icon" />
+                  </li>
+                ) : (
+                  <li onClick={onClickMenu2}>
+                    <BsFillPieChartFill />
+                    <b>통계</b>
                   </li>
                 )}
               </div>
-            )}
-          </ul>
-        </div>
-        {menuHiding ? (
-          <main className="content">
-            <Outlet />
-          </main>
-        ) : (
-          <main className="content_hide_nav">
-            <Outlet />
-          </main>
-        )}
+            )
+          ) : (
+            <div>
+              {!menuHiding ? (
+                <li className="icon" onClick={onClickMenu0}>
+                  <HiUserGroup />
+                </li>
+              ) : (
+                <li onClick={onClickMenu0}>
+                  <HiUserGroup />
+                  <b>그룹 생성/참가</b>
+                </li>
+              )}
+            </div>
+          )}
+        </ul>
       </div>
+
+      <main className={menuHiding ? 'content' : 'content_hide_nav'}>
+        <Outlet />
+      </main>
     </div>
   );
 };

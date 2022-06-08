@@ -10,41 +10,10 @@ const EditUserInfo = ({
   email,
   name,
   phoneNumber,
+  errorMsg,
 }) => {
-  // const onClickEditUserInfo = () => {
-  //   if (email === '') {
-  //     alert('E-mail을 입력해주세요');
-  //   } else if (
-  //     !/^[0-9a-zA-Z]([-.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/.test(
-  //       email,
-  //     )
-  //   ) {
-  //     alert('이메일 형식이 맞지 않습니다.');
-  //   } else if (password === '') {
-  //     alert('비밀번호를 입력해주세요');
-  //   } else if (
-  //     !/^(?=.*[A-Za-z])(?=.*\d)(?=.*[~!@#$%^&()+|=])[A-Za-z\d~!@#$%^&*()+|=]{8,}$/.test(
-  //       password,
-  //     )
-  //   ) {
-  //     alert('비밀번호는 영문,숫자,특수문자를 포함한 8자 이상이어야 합니다.');
-  //   } else if (passwordConfirm === '') {
-  //     alert('비밀번호 확인을 입력해주세요');
-  //   } else if (password !== passwordConfirm) {
-  //     alert('비밀번호가 일치하지 않습니다.');
-  //   } else if (name === '') {
-  //     alert('이름을 입력해주세요');
-  //   } else if (tel === '') {
-  //     alert('전화번호를 입력해주세요');
-  //   } else if (!/^\d{11}$/.test(tel)) {
-  //     alert('올바른 전화번호 형식이 아닙니다.(하이픈 - 없이 11자리)');
-  //   } else {
-
-  //   }
-  // };
-
   return (
-    <div className="edit-userInfo-area">
+    <div className="EditUserInfo">
       <div className="blocks-cover">
         <div className="blocks">
           <div className="block-top" />
@@ -102,18 +71,29 @@ const EditUserInfo = ({
           </div>
         </div>
       </div>
+
       <div className="btn-div">
+        <b
+          style={{
+            marginLeft: '0.5rem',
+
+            color: 'red',
+          }}
+        >
+          {errorMsg}
+        </b>
+        <hr />
+
         <button className="btn-edit" onClick={onClickEdit}>
           <b>회원 정보 수정</b>
+        </button>
+        <button className="btn-delete" onClick={onClickDelete}>
+          <b>회원 탈퇴</b>
         </button>
         <button className="btn-cancel" onClick={onClickBack}>
           <b>취소</b>
         </button>
       </div>
-
-      <button onClick={onClickDelete}>
-        <b>회원 탈퇴</b>
-      </button>
     </div>
   );
 };

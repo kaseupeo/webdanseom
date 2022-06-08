@@ -21,7 +21,9 @@ const TopNavigationForm = () => {
   const [checkHiding, setCheckHiding] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const { mResponse } = useSelector(({ member }) => ({
+    mResponse: member.response,
+  }));
   const { response } = useSelector(({ group }) => ({
     response: group.response,
   }));
@@ -48,7 +50,15 @@ const TopNavigationForm = () => {
     dispatch(loginState(false));
     navigate('/auth/login');
   };
-
+  useEffect(() => {
+    dispatch(selectMember());
+    if (mResponse.message === '회원 정보 조회 실패') {
+      alert(
+        '로그인 상태가 아니거나 만료되었습니다.\n 로그인 화면으로 이동합니다',
+      );
+      navigate('/auth/login');
+    }
+  }, [navigate, dispatch, mResponse.message]);
   useEffect(() => {
     dispatch(selectGroup());
 
