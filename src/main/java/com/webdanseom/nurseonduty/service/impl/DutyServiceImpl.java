@@ -37,30 +37,24 @@ public class DutyServiceImpl implements DutyService {
         List<Duty> dutyList = new ArrayList<Duty>();
         Duty duty = new Duty();
         String[] dutyCode = {"D","E","N", "/", "DE", "EN", "X", "H", "6", "8","9", "10","11", "1P", "2P", "M", "연", "반"
-                , "교", "출", "훈","병", "분", "산", "청", "휴", "결", "파", "사", "G", "D단1", "D단2", "D단3", "D단4", "D단5"
-                , "D단6", "E단1", "E단2", "E단3", "E단4", "E단5", "E단6"};
+                , "교", "출", "훈","병", "분", "산", "청", "휴", "결", "파", "사", "G"};
         String[] dutyName = {"데이", "이브닝", "나이트", "오프", "데이이브닝", "이브닝나이트", "없음", "Half", "6A", "8A"
                 , "9A", "10A", "11A", "1P", "2P", "12MD", "연차", "반차", "교육", "츌장", "훈련", "병가", "분만", "산재", "청휴"
-                , "휴직", "결근", "파견", "사직", "타부서지원", "D단축1시간", "D단축2시간", "D단축3시간", "D단축4시간","D단축5시간"
-                , "D단축6시간", "E단축1시간", "E단축2시간", "E단축3시간", "E단축4시간", "E단축5시간", "E단축6시간"};
+                , "휴직", "결근", "파견", "사직", "타부서지원"};
         Time[] startTime = {Time.valueOf("07:00:00"),Time.valueOf("15:00:00"), Time.valueOf("23:00:00")
                 , null, Time.valueOf("07:00:00"), Time.valueOf("15:00:00"), null , Time.valueOf("07:00:00")
                 , Time.valueOf("06:00:00"), Time.valueOf("08:00:00"), Time.valueOf("09:00:00"), Time.valueOf("10:00:00")
                 , Time.valueOf("11:00:00"), Time.valueOf("13:00:00"), Time.valueOf("14:00:00"), Time.valueOf("12:00:00")
                 , null, Time.valueOf("00:00:00"), Time.valueOf("09:00:00"), Time.valueOf("09:00:00"), Time.valueOf("00:00:00")
-                , null, null, null, null, null, null, Time.valueOf("00:00:00"), null, Time.valueOf("00:00:00")
-                , Time.valueOf("07:00:00"), Time.valueOf("07:00:00"), Time.valueOf("07:00:00"), Time.valueOf("07:00:00")
-                , Time.valueOf("07:00:00"), Time.valueOf("07:00:00"), Time.valueOf("15:00:00"), Time.valueOf("15:00:00")
-                , Time.valueOf("15:00:00"), Time.valueOf("15:00:00"), Time.valueOf("15:00:00"), Time.valueOf("15:00:00")};
-        int[] workingHours = {8,8,8,0,16,16,0,4,8,8,8,8,8,8,8,8,0,4,8,8,0,0,0,0,0,0,0,0,0,8,1,2,3,4,5,6,1,2,3,4,5,6};
+                , null, null, null, null, null, null, Time.valueOf("00:00:00"), null, Time.valueOf("00:00:00")};
+        int[] workingHours = {8,8,8,0,16,16,0,4,8,8,8,8,8,8,8,8,0,4,8,8,0,0,0,0,0,0,0,0,0,8};
         String[] workType = {"Day", "Evening", "Night", "Off", "DayEvening", "EveningNight", "Off like", "Day like", "Day like"
                 , "Day like", "Day like", "Day like", "Day like", "Evening Like", "Evening Like", "Mid", "Off like", "Day like"
                 , "Day like", "Day like", "Day like", "Off like", "Off like", "Off like", "Off like", "Off like", "Off like"
-                , "Day like", "Off like", "Day like", "Day like", "Day like", "Day like", "Day like", "Day like", "Day like"
-                , "Evening Like", "Evening Like", "Evening Like", "Evening Like", "Evening Like", "Evening Like"};
+                , "Day like", "Off like", "Day like"};
         Boolean[] isUsable ={true, true, true, true, true, true, true, false, false, false, false, false, false, false
                 , false, true, true, true, false, false, false, false, false, false, false, false, false, false, false,
-                false, false, false, false, false, false, false, false, false, false, false, false, false};
+                false};
 
             duty.setDutyCode(dutyCode[index]);
             duty.setNurseGroup(nurseGroup);
@@ -82,7 +76,7 @@ public class DutyServiceImpl implements DutyService {
     @Override
     public Duty findByDutySeq(int dutySeq) throws NotFoundException {
         Duty duty = dutyRepository.findByDutySeq(dutySeq);
-        if(duty == null) throw new NotFoundException("듀티가 조회되지 않습니다.");
+        if(duty == null) throw new NotFoundException("findByDutySeq(),듀티가 조회되지 않습니다.");
         return duty;
     }
 
@@ -94,9 +88,8 @@ public class DutyServiceImpl implements DutyService {
      * */
     @Override
     public List<Duty> selectDuty(int nurseGroupSeq) throws NotFoundException {
-        NurseGroup nurseGroup = nurseGroupRepository.findBySeq(nurseGroupSeq);
-        if(nurseGroup == null) throw new NotFoundException("selectDuty(), 듀티가 조회되지 않습니다.");
         List<Duty> duty = dutyRepository.findByNurseGroupSeq(nurseGroupSeq);
+        if(duty == null) throw new NotFoundException("selectDuty(), 듀티가 조회되지 않습니다.");
 
         return duty;
     }
@@ -119,7 +112,7 @@ public class DutyServiceImpl implements DutyService {
      *  */
     @Override
     public void updateDuty(Duty duty) throws NotFoundException{
-        if(duty == null) throw new NotFoundException("updateDuty(), 수정할 듀티가 없습니다.");
+        if(duty == null) throw new NotFoundException("updateDuty(), 수정한 듀티가 없습니다.");
         dutyRepository.save(duty);
     }
 
@@ -136,15 +129,20 @@ public class DutyServiceImpl implements DutyService {
 
     /**
      *초기화
-     * @param duty
+     * @param dutyList
      * @throws Exception
      */
     @Override
-    public void returnDuty(Duty duty) throws Exception {
-        if(duty == null) throw new NotFoundException("returnDuty(), 초기화 실패.");
+    public void returnDuty(List<Duty> dutyList, int nurseGroupSeq) throws Exception {
+        if(dutyList != null) {
+            for(int i = 0; i < dutyList.size();i++) {
+                if(findByDutySeq(dutyList.get(i).getDutySeq())!=null)
+                    deleteDuty(dutyList.get(i));
+            }
+        }
 
-        NurseGroup nurseGroup = nurseGroupRepository.findBySeq(duty.getNurseGroup().getSeq());
-        for(int i = 0; i < 42; i++)
+        NurseGroup nurseGroup = nurseGroupRepository.findBySeq(nurseGroupSeq);
+        for(int i = 0; i < 30; i++)
             initializeDuty(nurseGroup, i);
     }
 }

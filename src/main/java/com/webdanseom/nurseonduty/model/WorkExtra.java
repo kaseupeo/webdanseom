@@ -26,6 +26,7 @@ public class WorkExtra {
 
     //임시근무번호 (기본키)
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int workExtraSeq;
 
     //그룹번호 (기본키) --- 외래키
