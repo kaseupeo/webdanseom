@@ -75,7 +75,7 @@ public class WorkServiceImpl implements WorkService {
     public List<Work> selectNurseWork(int nurseSeq, Date date) throws Exception {
         Nurse nurse = nurseRepository.findByNurseSeq(nurseSeq);
         if (nurse==null) throw new NotFoundException("간호사정보가 없습니다.");
-        List<Work> workList = workRepository.findByNurseNurseSeq(nurseSeq);
+        List<Work> workList = workRepository.findByNurseWork(nurseSeq, date);
         return workList;
     }
 
