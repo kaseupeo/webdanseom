@@ -64,6 +64,9 @@ public interface AuthService {
     //회원정보 수정 - 이름, 번호
     void updateProfile(Member member, String name, String phoneNumber) throws NotFoundException;
 
+    //간호사 등록 - 간호사seq
+    void updateNurseSeq(Member member) throws NotFoundException;
+
     //회원탈퇴
     void withdrawal(Member member, String password) throws Exception;
 

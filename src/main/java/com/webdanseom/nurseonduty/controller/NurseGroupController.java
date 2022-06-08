@@ -71,15 +71,22 @@ public class NurseGroupController {
             Member member = authService.findByEmail(email);
 
             nurseGroup = groupService.createGroup(nurseGroup, member);
+            //그룹가입
             groupService.joinGroup(nurseGroup.getInviteLink(), member);
+
+            //수간호사 등록
             nurse.setNurseGroup(member.getGroupSeq());
             nurse.setName(member.getName());
             nurse.setPosition("수간호사");
             nurse.setAnnualLeave(10);
             nurseService.addNurse(nurse);
+            
+            //간호사 연동
+            member.setNurseSeq(nurse.getNurseSeq());
+            authService.updateNurseSeq(member);
 
             //듀티코드 생성 추가
-            for(int i = 0 ; i < 42; i++)
+            for(int i = 0 ; i < 30; i++)
                 dutyService.initializeDuty(nurseGroup, i);
 
             return new Response("success", "그룹생성 성공", null);
@@ -285,7 +292,6 @@ public class NurseGroupController {
                 if(authService.findByEmail(memberList.get(i).getEmail())!=null)
                     groupService.dropGroup(memberList.get(i));
             }
-
             groupService.deleteGroup(nurseGroup);
 
             return new Response("success", "그룹삭제 성공", null);

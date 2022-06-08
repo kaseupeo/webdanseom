@@ -246,9 +246,20 @@ public class AuthServiceImpl implements AuthService {
      */
     @Override
     public void updateProfile(Member member, String name, String phoneNumber) throws NotFoundException {
-        if (member == null) throw new NotFoundException("editProfile(), 회원이 조회되지 않습니다.");
+        if (member == null) throw new NotFoundException("updateProfile(), 회원이 조회되지 않습니다.");
         member.setName(name);
         member.setPhoneNumber(phoneNumber);
+        memberRepository.save(member);
+    }
+    
+    /**
+     * 간호사 연동
+     * @param
+     * @throws
+     * */
+    @Override
+    public void updateNurseSeq(Member member) throws NotFoundException {
+        if (member == null) throw new NotFoundException("updateNurseSeq(), 회원이 조회되지 않습니다.");
         memberRepository.save(member);
     }
 
