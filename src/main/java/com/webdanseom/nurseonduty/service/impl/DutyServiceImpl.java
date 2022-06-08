@@ -129,15 +129,20 @@ public class DutyServiceImpl implements DutyService {
 
     /**
      *초기화
-     * @param duty
+     * @param dutyList
      * @throws Exception
      */
     @Override
-    public void returnDuty(Duty duty) throws Exception {
-        if(duty == null) throw new NotFoundException("returnDuty(), 초기화 실패.");
+    public void returnDuty(List<Duty> dutyList, int nurseGroupSeq) throws Exception {
+        if(dutyList != null) {
+            for(int i = 0; i < dutyList.size();i++) {
+                if(findByDutySeq(dutyList.get(i).getDutySeq())!=null)
+                    deleteDuty(dutyList.get(i));
+            }
+        }
 
-        NurseGroup nurseGroup = nurseGroupRepository.findBySeq(duty.getNurseGroup().getSeq());
-        for(int i = 0; i < 42; i++)
+        NurseGroup nurseGroup = nurseGroupRepository.findBySeq(nurseGroupSeq);
+        for(int i = 0; i < 30; i++)
             initializeDuty(nurseGroup, i);
     }
 }

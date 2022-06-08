@@ -144,15 +144,8 @@ public class DutyController {
             NurseGroup nurseGroup = member.getGroupSeq();
 
             List<Duty> dutyList = dutyService.selectDuty(nurseGroup.getSeq());
-            for(int i = 0; i < dutyList.size();i++) {
-                if(dutyService.findByDutySeq(dutyList.get(i).getDutySeq())!=null)
-                    dutyService.deleteDuty(dutyList.get(i));
-            }
-            for(int i = 0; i < dutyList.size(); i++) {
-                Duty duty = dutyList.get(i);
-                dutyService.returnDuty(duty);
-            }
-            //초기듀티생성부분
+            dutyService.returnDuty(dutyList, nurseGroup.getSeq());
+
             return new Response("success", "듀티 초기화 성공", null);
         }catch (Exception e) {
             return new Response("error", "듀티 초기화 실패", null);
