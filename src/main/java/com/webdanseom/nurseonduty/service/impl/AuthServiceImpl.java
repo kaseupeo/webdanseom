@@ -254,8 +254,8 @@ public class AuthServiceImpl implements AuthService {
     
     /**
      * 간호사 연동
-     * @param
-     * @throws
+     * @param member
+     * @throws NotFoundException
      * */
     @Override
     public void updateNurseSeq(Member member) throws NotFoundException {
