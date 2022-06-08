@@ -52,7 +52,7 @@ public class WorkController {
     @Autowired
     private WorkService workService;
 
-    // 근무 등록
+    // 근무 등록 및 수정
     @PostMapping("/add")
     public Response addWork(@RequestBody RequestWorkList requestWorkList,
                             HttpServletRequest httpServletRequest,

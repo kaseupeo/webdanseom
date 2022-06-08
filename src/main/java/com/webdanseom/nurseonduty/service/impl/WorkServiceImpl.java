@@ -35,7 +35,7 @@ public class WorkServiceImpl implements WorkService {
     private NurseRepository nurseRepository;
 
     /**
-     * 근무 등록
+     * 근무 등록 및 수정
      * @param work
      * @throws Exception
      */
@@ -44,6 +44,8 @@ public class WorkServiceImpl implements WorkService {
     public void addWork(Work work) throws Exception {
         if (work.getNurse()==null) throw new NotFoundException("간호사정보가 없습니다.");
         if (work.getNurseGroup()==null) throw new NotFoundException("그룹정보가 없습니다.");
+        Work beforeWork = workRepository.findByDateAndNurseNurseSeqAndNurseGroupSeq(work.getDate(), work.getNurse().getNurseSeq(), work.getNurseGroup().getSeq());
+        if (beforeWork!=null) work.setWorkSeq(beforeWork.getWorkSeq());
         workRepository.save(work);
     }
 

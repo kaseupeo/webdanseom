@@ -14,7 +14,7 @@ import java.util.List;
 
 public interface WorkService {
 
-    // 근무 등록
+    // 근무 등록 및 수정
     void addWork(Work work) throws Exception;
 
     // 근무표 조회 - 수간호사
