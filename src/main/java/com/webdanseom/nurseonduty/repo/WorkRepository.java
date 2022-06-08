@@ -15,4 +15,5 @@ public interface WorkRepository extends CrudRepository<Work, Long> {
                              @Param("date") Date date);
     List<Work> findByNurseNurseSeq(int nurseSeq);
     Work findByDateAndNurseNurseSeqAndNurseGroupSeq(Date date, int nurseSeq, int nurseGroupSeq);
+    List<Work> findByNurseGroupSeq(int nurseGroupSeq);
 }

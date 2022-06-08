@@ -78,4 +78,18 @@ public class WorkServiceImpl implements WorkService {
         List<Work> workList = workRepository.findByNurseNurseSeq(nurseSeq);
         return workList;
     }
+
+    /**
+     * 근무표 삭제 - 그룹삭제시
+     * @param nurseGroupSeq
+     * @throws Exception
+     */
+    @Override
+    public void deleteWork(int nurseGroupSeq) throws Exception {
+        NurseGroup nurseGroup = nurseGroupRepository.findBySeq(nurseGroupSeq);
+        if (nurseGroup==null) throw new NotFoundException("그룹정보가 없습니다.");
+        List<Work> workList = workRepository.findByNurseGroupSeq(nurseGroupSeq);
+        for (int i = 0; i < workList.size(); i++)
+            workRepository.delete(workList.get(i));
+    }
 }

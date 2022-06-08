@@ -17,9 +17,12 @@ public interface WorkService {
     // 근무 등록 및 수정
     void addWork(Work work) throws Exception;
 
-    // 근무표 조회 - 수간호사
+    // 근무 조회 - 수간호사
     List<Work> selectGroupWork(int nurseGroupSeq, Date date) throws Exception;
 
-    // 근무표 조회 - 일반간호사
+    // 근무 조회 - 일반간호사
     List<Work> selectNurseWork(int nurseSeq, Date date) throws Exception;
+
+    // 근무 삭제 - 그룹삭제시
+    void deleteWork(int nurseGroupSeq) throws Exception;
 }
