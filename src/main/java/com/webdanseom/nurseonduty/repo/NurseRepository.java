@@ -9,4 +9,5 @@ public interface NurseRepository extends CrudRepository<Nurse, Long> {
     List<Nurse> findByNurseGroupSeq(int nurseGroupSeq);
     Nurse findByNurseSeq(int nurseSeq);
     Nurse findByName(String name);
+    Nurse findByNameAndNurseGroupSeq(String name, int nurseGroupSeq);
 }

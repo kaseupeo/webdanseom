@@ -24,15 +24,16 @@ public class Work {
 
     //근무번호 (기본키)
     @Id
-    private  int workSeq;
+    @GeneratedValue
+    private int workSeq;
 
     //그룹번호 (기본키) --- 외래키
     @ManyToOne
-    @JoinColumn(name = "nurseGroup", nullable = false)
-    private  NurseGroup nurseGroup;
+    @JoinColumn(name = "nurseGroup")
+    private NurseGroup nurseGroup;
     
     //듀티
-    private  String duty;
+    private String duty;
 
     //근무날짜 (년월일)
     @Temporal(TemporalType.DATE)

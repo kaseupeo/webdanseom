@@ -7,7 +7,6 @@ package com.webdanseom.nurseonduty.model.request;
  * 수정일자:
  * 수정자:
  */
-import com.webdanseom.nurseonduty.model.Work;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,5 +17,5 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 public class RequestWorkList {
-    private List<Work> workList;
+    private List<RequestWork> requestWorkList;
 }

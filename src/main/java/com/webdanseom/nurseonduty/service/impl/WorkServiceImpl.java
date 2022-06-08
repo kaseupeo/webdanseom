@@ -7,7 +7,9 @@ package com.webdanseom.nurseonduty.service.impl;
  * 수정일자: 2022.06.
  * 수정자:
  */
+import com.webdanseom.nurseonduty.model.NurseGroup;
 import com.webdanseom.nurseonduty.model.Work;
+import com.webdanseom.nurseonduty.repo.NurseGroupRepository;
 import com.webdanseom.nurseonduty.repo.WorkRepository;
 import com.webdanseom.nurseonduty.service.WorkService;
 import javassist.NotFoundException;
@@ -15,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -22,6 +25,9 @@ public class WorkServiceImpl implements WorkService {
 
     @Autowired
     private WorkRepository workRepository;
+
+    @Autowired
+    private NurseGroupRepository nurseGroupRepository;
 
     /**
      * 근무 등록
@@ -36,13 +42,24 @@ public class WorkServiceImpl implements WorkService {
         workRepository.save(work);
     }
 
+    /**
+     * 근무표 조회 - 수간호사용
+     * @param nurseGroupSeq
+     * @param date
+     * @return
+     * @throws Exception
+     */
     @Override
-    public List<Work> selectGroupWork(int nurseGroupSeq, String date) throws Exception {
-        return null;
+    public List<Work> selectGroupWork(int nurseGroupSeq, Date date) throws Exception {
+        NurseGroup nurseGroup = nurseGroupRepository.findBySeq(nurseGroupSeq);
+        if (nurseGroup==null) throw new NotFoundException("그룹정보가 없습니다.");
+        List<Work> workList = workRepository.findGroupWork(nurseGroupSeq, date);
+        return workList;
     }
 
     @Override
-    public List<Work> selectNurseWork(int nurseSeq, String date) throws Exception {
+    public List<Work> selectNurseWork(int nurseSeq, Date date) throws Exception {
+        List<Work> workList = workRepository.findByNurseNurseSeq(nurseSeq);
         return null;
     }
 }

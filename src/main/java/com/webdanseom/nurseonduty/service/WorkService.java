@@ -9,6 +9,7 @@ package com.webdanseom.nurseonduty.service;
  */
 import com.webdanseom.nurseonduty.model.Work;
 
+import java.util.Date;
 import java.util.List;
 
 public interface WorkService {
@@ -17,8 +18,8 @@ public interface WorkService {
     void addWork(Work work) throws Exception;
 
     // 근무표 조회 - 수간호사
-    public List<Work> selectGroupWork(int nurseGroupSeq, String date) throws Exception;
+    public List<Work> selectGroupWork(int nurseGroupSeq, Date date) throws Exception;
 
     // 근무표 조회 - 일반간호사
-    public List<Work> selectNurseWork(int nurseSeq, String date) throws Exception;
+    public List<Work> selectNurseWork(int nurseSeq, Date date) throws Exception;
 }
