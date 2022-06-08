@@ -7,9 +7,11 @@ package com.webdanseom.nurseonduty.service.impl;
  * 수정일자: 2022.06.
  * 수정자:
  */
+import com.webdanseom.nurseonduty.model.Nurse;
 import com.webdanseom.nurseonduty.model.NurseGroup;
 import com.webdanseom.nurseonduty.model.Work;
 import com.webdanseom.nurseonduty.repo.NurseGroupRepository;
+import com.webdanseom.nurseonduty.repo.NurseRepository;
 import com.webdanseom.nurseonduty.repo.WorkRepository;
 import com.webdanseom.nurseonduty.service.WorkService;
 import javassist.NotFoundException;
@@ -28,6 +30,9 @@ public class WorkServiceImpl implements WorkService {
 
     @Autowired
     private NurseGroupRepository nurseGroupRepository;
+
+    @Autowired
+    private NurseRepository nurseRepository;
 
     /**
      * 근무 등록
@@ -57,9 +62,18 @@ public class WorkServiceImpl implements WorkService {
         return workList;
     }
 
+    /**
+     * 근무표 조회 - 일반간호사용
+     * @param nurseSeq
+     * @param date
+     * @return
+     * @throws Exception
+     */
     @Override
     public List<Work> selectNurseWork(int nurseSeq, Date date) throws Exception {
+        Nurse nurse = nurseRepository.findByNurseSeq(nurseSeq);
+        if (nurse==null) throw new NotFoundException("간호사정보가 없습니다.");
         List<Work> workList = workRepository.findByNurseNurseSeq(nurseSeq);
-        return null;
+        return workList;
     }
 }

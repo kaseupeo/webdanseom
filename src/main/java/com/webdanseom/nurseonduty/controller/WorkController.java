@@ -83,7 +83,8 @@ public class WorkController {
 
     // 근무 조회 - 수간호사용
     @GetMapping("/selectGroup/{strDate}")
-    public Response selectGroupWork(@PathVariable String strDate, HttpServletRequest httpServletRequest,
+    public Response selectGroupWork(@PathVariable String strDate,
+                                    HttpServletRequest httpServletRequest,
                                     HttpServletResponse httpServletResponse) {
         Cookie token = null;
         String jwt = null;
@@ -97,6 +98,29 @@ public class WorkController {
             Member member = authService.findByEmail(email);
 
             List<Work> workList = workService.selectGroupWork(member.getGroupSeq().getSeq(), date);
+            return new Response("success", "근무 조회 성공", workList);
+        } catch (Exception e) {
+            return new Response("error", "근무 조회 실패", e.getMessage());
+        }
+    }
+
+    // 근무 조회 - 일반간호사용
+    @GetMapping("/selectNurse/{strDate}")
+    public Response selectNurseWork(@PathVariable String strDate,
+                                    HttpServletRequest httpServletRequest,
+                                    HttpServletResponse httpServletResponse) {
+        Cookie token = null;
+        String jwt = null;
+        String email = null;
+        try {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMM");
+            Date date = simpleDateFormat.parse(strDate);
+            token = cookieUtil.getCookie(httpServletRequest, JwtUtil.ACCESS_TOKEN_NAME);
+            jwt = token.getValue();
+            email = jwtUtil.getEmail(jwt);
+            Member member = authService.findByEmail(email);
+
+            List<Work> workList = workService.selectNurseWork(member.getNurseSeq(), date);
             return new Response("success", "근무 조회 성공", workList);
         } catch (Exception e) {
             return new Response("error", "근무 조회 실패", e.getMessage());
