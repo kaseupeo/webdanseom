@@ -3,6 +3,7 @@ $min-contents-width: 1400px;
 .WorkSheet {
   position: relative;
   display: flex;
+
   flex-direction: column;
     flex-wrap: nowrap; 
     padding:0;
@@ -19,7 +20,7 @@ $min-contents-width: 1400px;
    
     display: flex;
     flex-direction: row;
-    
+
     margin-bottom: 1rem;
     align-items: center;
     
@@ -64,23 +65,28 @@ $min-contents-width: 1400px;
   }
   
 }
-.monthStr{
-  padding-top: 500px;
-}
+
   .settingBtn{
    
- float: right;
- margin-right: 3rem;
+    float: right;
+    margin-left: auto;
+ 
   white-space: nowrap;
  
+  @media (min-width: 1200px) {
+      
+    position: relative;
+    margin-right: 0rem;
+
   
+  }
 
     
   }
  }
  .scrollTable{ 
-  width:70vw;
-  margin-right: 4rem;
+  width:80vw;
+
   overflow:auto;
  
   .tableColumn {

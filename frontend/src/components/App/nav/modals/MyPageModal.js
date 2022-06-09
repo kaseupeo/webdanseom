@@ -1,4 +1,5 @@
 import React from 'react';
+import './MyPageModal.scss';
 import { useEffect, useState, useRef } from 'react';
 
 const MyPageModal = ({
@@ -8,7 +9,7 @@ const MyPageModal = ({
   onClickLogout,
 }) => {
   return (
-    <div className="myPageMenu">
+    <div className="MyPageModal">
       <div className="myName">
         <b>{memberName} 님</b>
       </div>

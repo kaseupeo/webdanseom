@@ -26,7 +26,7 @@ export const setGroupState = createAction(
 
 const initialState = {
   hidingMenu: true,
-  selectMenu: 0,
+
   groupState: {
     groupName: null,
     joinGroup: null,

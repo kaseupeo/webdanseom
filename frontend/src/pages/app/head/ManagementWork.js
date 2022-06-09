@@ -7,9 +7,10 @@ const ManagementWork = () => {
       <span>
         <Title title="근무표 관리" />
       </span>
-
-      <WorkSheetForm />
-      <WorkRequestResult />
+      <div>
+        <WorkSheetForm />
+        <WorkRequestResult />
+      </div>
     </div>
   );
 };

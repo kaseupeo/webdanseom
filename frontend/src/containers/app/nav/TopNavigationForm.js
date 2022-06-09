@@ -78,17 +78,21 @@ const TopNavigationForm = () => {
     if (nurseGroup.nurseSeq !== null) {
       dispatch(
         setGroupState({
-          groupName: nurseGroup.nurseGroup.groupName,
-          joinGroup: nurseGroup.joinGroup,
-          headNurseCheck: nurseGroup.headNurseCheck,
+          groupName: nurseGroup.nurseGroup.groupName
+            ? nurseGroup.nurseGroup.groupName
+            : null,
+          joinGroup: nurseGroup.joinGroup ? nurseGroup.joinGroup : null,
+          headNurseCheck: nurseGroup.headNurseCheck
+            ? nurseGroup.headNurseCheck
+            : null,
         }),
       );
     } else {
       dispatch(
         setGroupState({
           groupName: null,
-          joinGroup: false,
-          headNurseCheck: false,
+          joinGroup: null,
+          headNurseCheck: null,
         }),
       );
     }

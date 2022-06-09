@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { GrUserSettings } from 'react-icons/gr';
+import { FiSettings } from 'react-icons/fi';
 import { useSelector } from 'react-redux';
 import {
   BsFillPencilFill,
@@ -18,6 +18,8 @@ const SideNavigation = ({
   onClickMenu0,
   onClickMenu1,
   onClickMenu2,
+  onClickEditMyInfo,
+  onClickEditGroup,
 }) => {
   const { menuHiding } = useSelector(({ menu }) => ({
     menuHiding: menu.hidingMenu,
@@ -52,8 +54,10 @@ const SideNavigation = ({
                       <b>근무표 조회</b>
                     </li>
                     <ul className="masterSelectEl">
-                      <li>달력형</li>
-                      <li>목록형</li>
+                      <li className="subMenu" onClick={onClickMenu1}>
+                        달력형
+                      </li>
+                      <li className="subMenu">목록형</li>
                     </ul>
                   </div>
                 )}
@@ -119,10 +123,31 @@ const SideNavigation = ({
               )}
             </div>
           )}
+
+          {!menuHiding ? (
+            <li className="icon" onClick={onClickEditMyInfo}>
+              <FiSettings />
+            </li>
+          ) : (
+            <div className="masterSelect">
+              <li onClick={onClickEditMyInfo}>
+                <FiSettings />
+                <b>마이 페이지</b>
+              </li>
+              <ul className="masterSelectEl">
+                <li className="subMenu" onClick={onClickEditMyInfo}>
+                  내 정보관리
+                </li>
+                <li className="subMenu" onClick={onClickEditGroup}>
+                  그룹 관리
+                </li>
+              </ul>
+            </div>
+          )}
         </ul>
       </div>
 
-      <main className={menuHiding ? 'content' : 'content_hide_nav'}>
+      <main className={menuHiding ? 'contents' : 'contents_hide_nav'}>
         <Outlet />
       </main>
     </div>

@@ -1,0 +1,24 @@
+.HelpModal {
+    position: absolute;
+
+    margin-top: 35px;
+    margin-left: -110px;
+    background-color: white;
+    width: 200px;
+    border: solid 1px grey;
+    z-index: 50;
+    box-shadow: 0px 3px 5px 1px rgb(157, 157, 157);
+    ul {
+      padding: 0;
+      li {
+        font-size: 15px;
+
+        padding: 10px 15px 10px 15px;
+        list-style: none;
+        text-decoration: none;
+        &:hover {
+          background-color: #d3d3d3;
+        }
+      }
+    }
+  }
