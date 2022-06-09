@@ -120,7 +120,10 @@ const dutyCode = handleActions(
       }),
     [SELECT_DUTYCODE_SUCCESS]: (state, { payload: response }) => ({
       ...state,
-      dutyList: response.data,
+      dutyList:
+        response.response === 'success'
+          ? response.data
+          : initialState['dutyList'],
       response: response,
       responseError: null,
     }),

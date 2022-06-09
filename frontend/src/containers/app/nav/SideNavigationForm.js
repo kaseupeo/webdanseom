@@ -1,43 +1,27 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  initializeForm,
-  groupStateLoad,
-  groupState,
-  selectMenu,
-} from '../../../modules/menu';
-import { selectGroup } from '../../../modules/group';
+
 import { useNavigate } from 'react-router-dom';
 import SideNavigation from '../../../components/app/nav/SideNavigation';
-import { selector } from 'gsap';
 
 const LeftNavigationForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const {
-    groupChecked,
-    joinGroup,
-    headNurseCheck,
-    selecting,
-    response,
-    responseError,
-  } = useSelector(({ menu }) => ({
-    groupChecked: menu.groupState.groupChecked,
+  const { joinGroup, headNurseCheck } = useSelector(({ menu }) => ({
     joinGroup: menu.groupState.joinGroup,
     headNurseCheck: menu.groupState.headNurseCheck,
-    selecting: menu.selectMenu,
-    response: menu.response,
-    responseError: menu.responseError,
   }));
 
   useEffect(() => {
-    dispatch(selectGroup());
+    if (joinGroup === null) {
+      return;
+    }
     if (!joinGroup) {
-      navigate('/app/g/selectGroup');
+      navigate('/app/g/selectGroup', { replace: true });
     } else if (headNurseCheck) {
-      navigate('/app/h/managementWork');
+      navigate('/app/h/managementWork', { replace: true });
     } else {
-      navigate('/app/n/selectWork');
+      navigate('/app/n/selectWork', { replace: true });
     }
   }, [headNurseCheck, joinGroup, dispatch]);
   const onClickMenu0 = () => {

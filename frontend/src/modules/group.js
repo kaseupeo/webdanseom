@@ -32,6 +32,10 @@ export const selectGroup = createAction(SELECT_GROUP, (response) => response);
 export const createGroup = createAction(CREATE_GROUP, (response) => response);
 export const joinGroup = createAction(JOIN_GROUP, (response) => response);
 
+export const selectGroupAsync = createRequestThunk(
+  SELECT_GROUP,
+  authAPI.selectGroup,
+);
 const selectGroupSaga = createRequestSaga(SELECT_GROUP, authAPI.selectGroup);
 
 export const createGroupsAsync = createRequestThunk(
@@ -45,13 +49,15 @@ export function* groupSaga() {
 }
 const initialState = {
   nurseGroup: {
-    seq: null,
-    groupName: null,
-    headNurseNum: null,
-    inviteLink: null,
-    numberOfDays: 0,
-    numberOfEvenings: 0,
-    numberOfNights: 0,
+    nurseGroup: {
+      seq: null,
+      groupName: null,
+      headNurseNum: null,
+      inviteLink: null,
+      numberOfDays: 0,
+      numberOfEvenings: 0,
+      numberOfNights: 0,
+    },
   },
   inputGroupName: null,
   inputInviteCode: null,
@@ -74,12 +80,15 @@ const group = handleActions(
       produce(state, (draft) => {
         draft[key] = value;
       }),
-    [SELECT_GROUP_SUCCESS]: (state, { payload: response }) => ({
-      ...state,
-      nurseGroup: response.data,
-      response: response,
-      responseError: null,
-    }),
+    [SELECT_GROUP_SUCCESS]: (state, { payload: response }) =>
+      produce(state, (draft) => {
+        draft['nurseGroup'] =
+          response.response === 'success'
+            ? response.data
+            : initialState['nurseGroup'];
+        draft['response'] = response;
+        draft['responseError'] = null;
+      }),
     [SELECT_GROUP_FAILURE]: (state, { payload: error }) => ({
       ...state,
       responseError: error,

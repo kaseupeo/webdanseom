@@ -15,6 +15,7 @@ import { takeLatest } from 'redux-saga/effects';
 
 //필드 값 초기화
 const INITIALIZE_FORM = 'member/INITIALIZE_FORM';
+const INIT_LOGINSTATE = 'member/INIT_LOGINSTATE';
 const CHANGE_MEMBER = 'member/CHANGE_MEMBER';
 const [SELECT_MEMBER, SELECT_MEMBER_SUCCESS, SELECT_MEMBER_FAILURE] =
   createRequestActionTypes('member/SELECT_MEMBER');
@@ -41,6 +42,8 @@ export const updatePassword = createAction(
 );
 export const deleteMember = createAction(DELETE_MEMBER, (response) => response);
 
+export const initAsync = createRequestThunk(INITIALIZE_FORM);
+export const initLoginState = createAction(INIT_LOGINSTATE);
 export const selectMemberAsync = createRequestThunk(
   SELECT_MEMBER,
   authAPI.selectMember,
@@ -65,6 +68,7 @@ export function* memberSaga() {
 }
 
 const initialState = {
+  loginState: null,
   memberInfo: {
     memberSeq: null,
     email: null,
@@ -96,13 +100,21 @@ const member = handleActions(
       ...state,
       [form]: initialState[form],
     }),
+    [INIT_LOGINSTATE]: (state) => ({
+      ...state,
+      loginState: null,
+    }),
     [CHANGE_MEMBER]: (state, { payload: { form, key, value } }) =>
       produce(state, (draft) => {
         draft[form][key] = value;
       }),
     [SELECT_MEMBER_SUCCESS]: (state, { payload: response }) => ({
       ...state,
-      memberInfo: response.data,
+      loginState: response.response === 'success' ? true : false,
+      memberInfo:
+        response.response === 'success'
+          ? response.data
+          : initialState['memberInfo'],
       response: response,
       responseError: null,
     }),

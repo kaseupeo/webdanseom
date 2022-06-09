@@ -12,8 +12,8 @@ const SetRelationElement = ({
 }) => {
   const [relations, setRelation] = useState([{ id: 0, name: '간호사1' }]);
   const rNurseList = nurseList ? (
-    nurseList.map((nurse) => (
-      <option key={nurse.nurseSeq} value={nurse.name}>
+    nurseList.map((nurse, index) => (
+      <option key={index} value={nurse.name}>
         {nurse.name}
       </option>
     ))
@@ -21,7 +21,7 @@ const SetRelationElement = ({
     <option>간호사 목록이 없습니다</option>
   );
   const relationInfo = relations.map((nurse, index) => (
-    <tr className="metaInfo">
+    <tr key={index} className="metaInfo">
       <td>{index}</td>
       <td>
         <input type="checkBox" id={index} />

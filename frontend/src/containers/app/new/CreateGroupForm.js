@@ -42,9 +42,11 @@ const CreateGroupForm = () => {
       }),
     );
   };
-  const onClickCreate = (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
-    dispatch(createGroupsAsync({ groupName }));
+    dispatch(createGroupsAsync({ groupName }))
+      .then(navigate('/app'))
+      .then(window.location.replace(window.location.pathname));
   };
 
   return (
@@ -52,7 +54,7 @@ const CreateGroupForm = () => {
       <CreateGroup
         onClickMenu0={onClickMenu0}
         onChange={onChange}
-        onClickCreate={onClickCreate}
+        onSubmit={onSubmit}
       />
     </GroupTemplate>
   );

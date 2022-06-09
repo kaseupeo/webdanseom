@@ -7,8 +7,8 @@ const WorkScheduleSum = ({ year, month, dutyList }) => {
 
   for (let i = 0; i < date.getDate() + daySumArray; i++) dayArray.push(i);
   const days = dayArray.map((day) => <td key={day}>{0}</td>);
-  const sumRow = dutyList.map((code) => (
-    <tr key={code.dutyCode}>
+  const sumRow = dutyList.map((code, index) => (
+    <tr key={index}>
       <th colSpan={3}>{code.dutyCode}</th>
       {days}
     </tr>

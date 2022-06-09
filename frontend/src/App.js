@@ -10,12 +10,12 @@ import {
   Route,
   NavLink,
 } from 'react-router-dom';
+
 import './App.css';
 import MainForm from './pages/MainForm';
 import SignUpPage from './pages/auth/SignUpPage';
 import LoginPage from './pages/auth/LoginPage';
 import FindPasswordPage from './pages/auth/FindPasswordPage';
-
 import TopNavigationForm from './containers/app/nav/TopNavigationForm';
 import SideNavigationForm from './containers/app/nav/SideNavigationForm';
 import MainNavigation from './components/auth/nav/MainNavigation';
@@ -52,7 +52,7 @@ function App() {
               <Route path="/app/g/joinGroup" element={<JoinGroup />} />
 
               <Route
-                path="/app/h/ManagementWork/"
+                path="/app/h/ManagementWork"
                 element={<HeadManagementWork />}
               />
               <Route path="/app/h/selectWork" element={<HeadSelectWork />} />

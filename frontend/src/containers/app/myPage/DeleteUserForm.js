@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import member, {
   changeMember,
   deleteMemberAsync,
@@ -10,13 +10,17 @@ import DeleteUser from '../../../components/app/myPage/DeleteUser';
 
 const DeleteUserForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [errorMsg, setErrorMsg] = useState('');
 
-  const { email, password, response } = useSelector(({ member }) => ({
-    email: member.memberInfo.email,
-    password: member.deleteInfo.password,
-    response: member.response,
-  }));
+  const { email, password, response } = useSelector(
+    ({ member }) => ({
+      email: member.memberInfo.email,
+      password: member.deleteInfo.password,
+      response: member.response,
+    }),
+    shallowEqual,
+  );
   const onChange = (e) => {
     const { name, value } = e.target;
     dispatch(changeMember({ form: 'deleteInfo', key: name, value }));
@@ -28,6 +32,12 @@ const DeleteUserForm = () => {
       return;
     }
     dispatch(deleteMemberAsync({ email, password }));
+    if ((response.message = '회원탈퇴를 성공했습니다.')) {
+      alert('회원탈퇴가 완료되었습니다.');
+      dispatch(initializeForm('deleteInfo'));
+      dispatch(initializeForm('memberInfo'));
+      navigate('/auth/login');
+    }
   };
   useEffect(() => {
     dispatch(initializeForm('response'));

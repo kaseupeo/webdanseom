@@ -17,6 +17,7 @@ const TopNavigation = ({
   memberName,
   onClickLogout,
   onClickMenu,
+  onClickRefresh,
   error,
 }) => {
   const navigate = useNavigate();
@@ -38,8 +39,6 @@ const TopNavigation = ({
 
   const [isHelp, setIsHelp] = useState(false);
 
-  const onClickRefresh = () => {};
-
   const onClickHelp = () => {
     setIsHelp(true);
   };
@@ -59,7 +58,7 @@ const TopNavigation = ({
           </div>
 
           <div className="groupName">
-            <b>{groupName}</b>
+            <b>{groupName ? groupName : null}</b>
           </div>
 
           <div className="endElement">

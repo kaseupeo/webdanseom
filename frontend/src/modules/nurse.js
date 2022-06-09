@@ -102,7 +102,10 @@ const nurse = handleActions(
       }),
     [SELECT_NURSES_SUCCESS]: (state, { payload: response }) => ({
       ...state,
-      nurseList: response.data,
+      nurseList:
+        response.response === 'success'
+          ? response.data
+          : initialState['nurseList'],
       response: response,
       responseError: null,
     }),

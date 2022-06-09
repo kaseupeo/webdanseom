@@ -58,6 +58,7 @@ const EditPasswordInfoForm = () => {
     if (response.message === '성공적으로 사용자의 비밀번호를 변경했습니다.') {
       setErrorMsg('');
       alert('비밀번호가 성공적으로 변경되었습니다!');
+      navigate(-1);
       dispatch(initializeForm('passwordInfo'));
     } else {
       if (response.message === '사용자의 비밀번호를 변경할 수 없습니다.') {

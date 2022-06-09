@@ -115,7 +115,10 @@ const preceptor = handleActions(
       }),
     [SELECT_PRECEPTOR_SUCCESS]: (state, { payload: response }) => ({
       ...state,
-      preceptorList: response.data,
+      preceptorList:
+        response.response === 'success'
+          ? response.data
+          : initialState['preceptorList'],
       response: response,
       responseError: null,
     }),
