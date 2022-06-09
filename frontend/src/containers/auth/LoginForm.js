@@ -5,21 +5,35 @@
 
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeField, initializeForm, login } from '../../modules/auth';
+import {
+  changeField,
+  initializeForm,
+  login,
+  logoutSync,
+} from '../../modules/auth';
 
 import LoginElement from '../../components/auth/LoginElement';
+import AccessLoginElement from '../../components/auth/AccessLoginElement';
 import { useNavigate } from 'react-router-dom';
+import { initLoginState, selectMemberAsync } from '../../modules/member';
+import { setGroupState } from '../../modules/menu';
 const LoginForm = () => {
   const [error, setError] = useState('');
   const [checkLogin, setCheckLogin] = useState(false);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  const { loginState } = useSelector(({ member }) => ({
+    loginState: member.loginState,
+  }));
   const { form, response, responseError } = useSelector(({ auth }) => ({
     form: auth.login,
     response: auth.response,
     responseError: auth.responseError,
+  }));
+  const { accessName, accessEmail } = useSelector(({ member }) => ({
+    accessName: member.memberInfo.name,
+    accessEmail: member.memberInfo.email,
   }));
 
   // 인풋 변경 이벤트 핸들러
@@ -54,11 +68,30 @@ const LoginForm = () => {
       return;
     }
   };
-
+  const onClickLogout = () => {
+    dispatch(logoutSync());
+    window.location.replace(window.location.pathname);
+    dispatch(
+      setGroupState({
+        groupName: null,
+        joinGroup: null,
+        headNurseCheck: null,
+      }),
+    );
+    dispatch(initLoginState());
+  };
+  const onClickAccess = () => {
+    navigate('/app');
+  };
   useEffect(() => {
     dispatch(initializeForm('login'));
   }, [dispatch]);
-
+  useEffect(() => {
+    dispatch(selectMemberAsync());
+  }, []);
+  useEffect(() => {
+    !loginState && dispatch(initLoginState());
+  }, [loginState]);
   useEffect(() => {
     if (checkLogin) {
       if (response.response === null) {
@@ -82,12 +115,23 @@ const LoginForm = () => {
   }, [response]);
 
   return (
-    <LoginElement
-      form={form}
-      onChange={onChange}
-      onSubmit={onSubmit}
-      error={error}
-    />
+    <div>
+      {!(loginState === null || loginState === false) ? (
+        <AccessLoginElement
+          name={accessName}
+          email={accessEmail}
+          onClickAccess={onClickAccess}
+          onClickLogout={onClickLogout}
+        />
+      ) : (
+        <LoginElement
+          form={form}
+          onChange={onChange}
+          onSubmit={onSubmit}
+          error={error}
+        />
+      )}
+    </div>
   );
 };
 

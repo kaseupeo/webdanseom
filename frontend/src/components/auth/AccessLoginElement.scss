@@ -1,0 +1,60 @@
+$mobile-contents-width: 640px;
+
+.AccessLoginElement{
+            
+        .icon{
+          
+
+            margin-right: 1rem;
+            width: 1.8rem;
+            height: 1.8rem;
+            
+        }
+          .accessBtn{
+              font-size: 0.9rem;
+            font-weight: bold;
+              height: 3.5rem;
+              border: thin black solid;
+              border-color: black;
+              width:21.5rem;
+            text-align: center;
+            vertical-align: middle;
+            border-radius: 0.3rem;
+            margin-top: 4rem;
+            margin-bottom: 3rem;
+            justify-content: center;
+            display: flex;
+            align-items:center;
+            justify-content:center;
+            &:hover{
+                background-color: azure;
+            }
+          }
+         
+          .logoutBtn{
+            border-radius: 0.2rem;
+             display: flex;
+             align-items:center;
+             justify-content:center;
+             margin-top: 1rem;
+             margin-bottom: 1rem;
+        
+             background: #50B8B4;
+             color: white;
+             border: 0;
+             height: 2.2rem;
+             width:21.5rem;
+             font-size: 1.2rem;
+             text-decoration-line: none;
+             &:hover{
+               background: #3c8a87;
+             }
+             }
+            
+          
+           
+              
+    }
+
+
+

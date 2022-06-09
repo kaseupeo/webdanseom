@@ -6,11 +6,13 @@ $mobile-contents-width: 640px;
   -khtml-user-select: none;
   -webkit-user-select: none;
   user-select: none;
-
+ 
 
  
 
 .MainNavigation{
+  width: 100vw;
+ 
   z-index:10;
    box-shadow: 0px 4px 10px 2px  rgb(157, 157, 157)  ;
     position:flex;

@@ -52,7 +52,13 @@ const TopNavigationForm = () => {
   const onClickLogout = () => {
     dispatch(memberInit('memberInfo'));
     dispatch(logoutSync()).then(dispatch(initLoginState()));
-
+    dispatch(
+      setGroupState({
+        groupName: null,
+        joinGroup: null,
+        headNurseCheck: null,
+      }),
+    );
     navigate('/auth/login');
   };
 
