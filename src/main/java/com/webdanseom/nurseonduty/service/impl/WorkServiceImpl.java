@@ -53,7 +53,7 @@ public class WorkServiceImpl implements WorkService {
      * 근무표 조회 - 수간호사용
      * @param nurseGroupSeq
      * @param date
-     * @return
+     * @return workList
      * @throws Exception
      */
     @Override
@@ -68,7 +68,7 @@ public class WorkServiceImpl implements WorkService {
      * 근무표 조회 - 일반간호사용
      * @param nurseSeq
      * @param date
-     * @return
+     * @return workList
      * @throws Exception
      */
     @Override
@@ -87,7 +87,7 @@ public class WorkServiceImpl implements WorkService {
     @Override
     public void deleteWork(int nurseGroupSeq) throws Exception {
         NurseGroup nurseGroup = nurseGroupRepository.findBySeq(nurseGroupSeq);
-        if (nurseGroup==null) throw new NotFoundException("그룹정보가 없습니다.");
+        if (nurseGroup==null) throw new NotFoundException("deleteWork(), 그룹정보가 없습니다.");
         List<Work> workList = workRepository.findByNurseGroupSeq(nurseGroupSeq);
         for (int i = 0; i < workList.size(); i++)
             workRepository.delete(workList.get(i));
