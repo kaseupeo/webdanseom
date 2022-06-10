@@ -44,24 +44,13 @@ const SetDutyCodeElement = ({
     dutyCodeList.map((dutyCode, index) => (
       <tr key={index} className="metaInfo">
         <td className="check">
-          {index === 0 ? (
-            <input
-              type="checkBox"
-              id={index}
-              className="checkBox"
-              onClick={onChecked}
-              checked={false}
-              disabled
-            />
-          ) : (
-            <input
-              type="checkBox"
-              id={index}
-              className="checkBox"
-              onClick={onChecked}
-              defaultChecked={false}
-            />
-          )}
+          <input
+            type="checkBox"
+            id={index}
+            className="checkBox"
+            onClick={onChecked}
+            defaultChecked={false}
+          />
         </td>
         <td className="id">{index + 1}</td>
         <td className="dutyCode">
@@ -215,7 +204,7 @@ const SetDutyCodeElement = ({
                 <th className="startTime">시간</th>
                 <th className="workingHours">근무시간</th>
                 <th className="workType">근무유형</th>
-                <th className="useable">사용 여부</th>
+                <th className="usable">사용 여부</th>
                 <th className="creator">구분</th>
               </tr>
             </thead>

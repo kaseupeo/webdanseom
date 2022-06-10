@@ -11,7 +11,7 @@ const StyleButton = styled.button`
   margin: 3px;
   padding: 5px 10px 5px 10px;
 
-  @media (max-width: 800px) {
+  @media (max-width: 1000px) {
     font-size: 0.5rem;
   }
 
@@ -55,7 +55,7 @@ const StyleSetButton = styled.button`
   &:hover {
     background-color: #556775;
   }
-  @media (max-width: 800px) {
+  @media (max-width: 1000px) {
     font-size: 0.5rem;
   }
 `;

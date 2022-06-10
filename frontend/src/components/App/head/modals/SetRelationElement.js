@@ -11,7 +11,8 @@ const SetRelationElement = ({
   onClickDelete,
 }) => {
   const [relations, setRelation] = useState([{ id: 0, name: '간호사1' }]);
-  const rNurseList = nurseList ? (
+  const [selectSNurse, setSelectSNurse] = useState(0);
+  const sNurseList = nurseList ? (
     nurseList.map((nurse, index) => (
       <option key={index} value={nurse.name}>
         {nurse.name}
@@ -20,13 +21,28 @@ const SetRelationElement = ({
   ) : (
     <option>간호사 목록이 없습니다</option>
   );
+  const jNurseList = nurseList ? (
+    nurseList.map((nurse, index) => (
+      <option key={index} value={nurse.name}>
+        {nurse.name}
+      </option>
+    ))
+  ) : (
+    <option>간호사 목록이 없습니다</option>
+  );
+
   const relationInfo = relations.map((nurse, index) => (
     <tr key={index} className="metaInfo">
       <td>{index}</td>
       <td>
         <input type="checkBox" id={index} />
       </td>
-      <td>{nurse.name}</td>
+      <td>
+        <select>
+          <option>없음</option>
+          {jNurseList}
+        </select>
+      </td>
     </tr>
   ));
   return (
@@ -50,7 +66,10 @@ const SetRelationElement = ({
       </div>
       <div className="SetRelationElement">
         <b className="title">관계 목록</b>
-        <select>{rNurseList}</select>
+        <select>
+          <option value="all">전체</option>
+          {sNurseList}
+        </select>
         <table>
           <thead>
             <tr>

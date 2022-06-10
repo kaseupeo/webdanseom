@@ -14,12 +14,7 @@ import dutyCode, {
 
 const WorkSheetForm = ({ modalOpen, closeModal }) => {
   const [checkedDutyList, setCheckedDutyList] = useState([]);
-  const [flag, setFlag] = useState(false);
 
-  const flagFuction = () => {
-    if (flag) setFlag(false);
-    else setFlag(true);
-  };
   const groupSeq = useSelector(({ group }) => group.nurseGroup.seq);
   const response = useSelector(({ dutyCode }) => dutyCode.response);
   const dutyList = useSelector(({ dutyCode }) => dutyCode.dutyList);
@@ -29,7 +24,7 @@ const WorkSheetForm = ({ modalOpen, closeModal }) => {
   const initCheckBox = () => {
     const checkBox = document.getElementsByClassName('checkBox');
     const checkBoxAll = document.getElementsByClassName('checkBoxAll');
-    for (var i = 0; i < checkBox.length; i++) {
+    for (let i = 0; i < checkBox.length; i++) {
       checkBox[i].checked = false;
     }
     checkBoxAll[0].checked = false;
@@ -43,15 +38,17 @@ const WorkSheetForm = ({ modalOpen, closeModal }) => {
   const onClickInit = () => {
     setCheckedDutyList([]);
     dispatch(initDutyCode());
-    dispatch(selectDutyCodeAsync({ groupSeq }));
-    if (response.message === '듀티 초기화 성공') flagFuction();
+    dispatch(selectDutyCodeAsync({ groupSeq }))
+      .then(initDutyCodeList())
+      .then(initCheckBox())
+      .then(dispatch(selectDutyCode({ groupSeq })));
   };
   //삽입
   const onClickInsert = () => {
     dispatch(insertDutyCode());
-    dispatch(selectDutyCodeAsync({ groupSeq }));
-    setCheckedDutyList([]);
-    flagFuction();
+    dispatch(selectDutyCodeAsync({ groupSeq }))
+      .then(initDutyCodeList(), initCheckBox())
+      .then(dispatch(selectDutyCode({ groupSeq })));
   };
   //삭제
   const onClickDelete = () => {
@@ -59,9 +56,10 @@ const WorkSheetForm = ({ modalOpen, closeModal }) => {
       dispatch(deleteDutyCodeAsync({ checkedDutyList }));
     initDutyCodeList();
     initCheckBox();
-    dispatch(selectDutyCodeAsync({ groupSeq }));
-
-    if (response.message === '듀티 전체 조회 성공') flagFuction();
+    dispatch(selectDutyCodeAsync({ groupSeq })).then(
+      response.message === '듀티 전체 조회 성공' &&
+        dispatch(selectDutyCode({ groupSeq })),
+    );
   };
   //수정
   const onClickUpdate = () => {
@@ -88,17 +86,15 @@ const WorkSheetForm = ({ modalOpen, closeModal }) => {
 
     if (checked) {
       const checkBox = document.getElementsByClassName('checkBox');
-      for (var i = 0; i < checkBox.length; i++) {
+      for (let i = 0; i < checkBox.length; i++) {
         checkBox[i].checked = true;
       }
 
-      setCheckedDutyList(
-        dutyList.filter((dutyCode) => dutyCode.dutySeq !== dutyList[0].dutySeq),
-      );
+      setCheckedDutyList(dutyList.filter((dutyCode) => dutyCode.dutySeq));
     } else {
       setCheckedDutyList([]);
       const checkBox = document.getElementsByClassName('checkBox');
-      for (var i = 1; i < checkBox.length; i++) {
+      for (let i = 0; i < checkBox.length; i++) {
         checkBox[i].checked = false;
       }
     }
@@ -106,7 +102,7 @@ const WorkSheetForm = ({ modalOpen, closeModal }) => {
 
   useEffect(() => {
     dispatch(selectDutyCode({ groupSeq }));
-  }, [dispatch, flag]);
+  }, []);
 
   const onChange = (e) => {
     const { value, name, id } = e.target;

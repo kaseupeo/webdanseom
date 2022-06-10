@@ -30,7 +30,7 @@ const WorkSheetForm = () => {
   const nurseList = useSelector(({ nurse }) => nurse.nurseList);
   const [dutyList, setDutyList] = useState([]);
   const tempDutyList = useSelector(({ dutyCode }) => dutyCode.dutyList);
-
+  const [dutyTypeList, setDutyTypeList] = useState([]);
   useEffect(() => {
     const temp = [{}];
 
@@ -38,6 +38,10 @@ const WorkSheetForm = () => {
       if (tempDutyList[i].isUsable) temp.push(tempDutyList[i]);
     }
     setDutyList(temp);
+
+    if (!(temp.find((e) => e.workType === 'Mid') === undefined))
+      setDutyTypeList(['Day', 'Mid', 'Evening', 'Night', 'Off']);
+    else setDutyTypeList(['Day', 'Evening', 'Night', 'Off']);
   }, [tempDutyList]);
 
   const openNurseModal = () => {
@@ -97,13 +101,20 @@ const WorkSheetForm = () => {
       onClickMonthPlus={onClickMonthPlus}
       onClickMonthMinus={onClickMonthMinus}
       nurseList={nurseList}
+      dutyTypeList={dutyTypeList}
     >
       <WorkManagementBtnForm />
-      <WorkSchedule year={date.year} month={date.month} dutyList={dutyList} />
+      <WorkSchedule
+        year={date.year}
+        month={date.month}
+        dutyList={dutyList}
+        dutyTypeList={dutyTypeList}
+      />
       <WorkScheduleSum
         year={date.year}
         month={date.month}
         dutyList={dutyList}
+        dutyTypeList={dutyTypeList}
       />
     </WorkSheet>
   );

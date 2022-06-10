@@ -7,6 +7,7 @@ import group, { groupSaga } from './group';
 import nurse, { nurseSaga } from './nurse';
 import dutyCode, { dutyCodeSaga } from './dutyCode';
 import preceptor, { preceptorSaga } from './preceptor';
+import work, { workSaga } from './work';
 import loading from './loading';
 
 import member, { memberSaga } from './member';
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   dutyCode,
   management,
   preceptor,
+  work,
 });
 
 export function* rootSaga() {
@@ -31,6 +33,7 @@ export function* rootSaga() {
     dutyCodeSaga(),
     managementSaga(),
     preceptorSaga(),
+    workSaga(),
   ]);
 }
 

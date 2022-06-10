@@ -3,7 +3,7 @@ $min-contents-width: 1400px;
 .WorkSheet {
   position: relative;
   display: flex;
-
+  width:70vw;
   flex-direction: column;
     flex-wrap: nowrap; 
     padding:0;
@@ -33,7 +33,7 @@ $min-contents-width: 1400px;
     
       font-size: 1.2rem;
       
-      @media (max-width: $mobile-contents-width) {
+      @media (max-width: 1000px) {
 
         font-size: 0.7rem;
         margin-right:0%;
@@ -49,16 +49,16 @@ $min-contents-width: 1400px;
     align-items: center;
  
     margin: 10px;
-    width: 2rem;
-    height: 2rem;
+    width: 1.5rem;
+    height: 1.5rem;
     &:hover {
       background-color: #d4e4f0;
     }
    
-    @media (max-width: $mobile-contents-width) {
+    @media (max-width: 1000px) {
       
-      width: 1rem;
-      height: 1rem;
+      width: 2rem;
+      height: 2rem;
       margin: 0.1rem;
     
     }
@@ -73,7 +73,7 @@ $min-contents-width: 1400px;
  
   white-space: nowrap;
  
-  @media (min-width: 1200px) {
+  @media (min-width: 1000px) {
       
     position: relative;
     margin-right: 0rem;
@@ -85,12 +85,12 @@ $min-contents-width: 1400px;
   }
  }
  .scrollTable{ 
-  width:80vw;
-
+ 
+ 
   overflow:auto;
  
   .tableColumn {
-
+    min-width: 100%;
   
     flex: 0 0 auto;
     align-items: center;
