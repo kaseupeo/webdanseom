@@ -90,7 +90,6 @@ public class DutyServiceImpl implements DutyService {
     public List<Duty> selectDuty(int nurseGroupSeq) throws NotFoundException {
         List<Duty> duty = dutyRepository.findByNurseGroupSeq(nurseGroupSeq);
         if(duty == null) throw new NotFoundException("selectDuty(), 듀티가 조회되지 않습니다.");
-
         return duty;
     }
 
@@ -140,7 +139,6 @@ public class DutyServiceImpl implements DutyService {
                     deleteDuty(dutyList.get(i));
             }
         }
-
         NurseGroup nurseGroup = nurseGroupRepository.findBySeq(nurseGroupSeq);
         for(int i = 0; i < 30; i++)
             initializeDuty(nurseGroup, i);

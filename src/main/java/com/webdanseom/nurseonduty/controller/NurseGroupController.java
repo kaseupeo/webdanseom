@@ -14,10 +14,13 @@ import com.webdanseom.nurseonduty.model.request.RequestEmail;
 import com.webdanseom.nurseonduty.model.request.RequestNurseGroup;
 import com.webdanseom.nurseonduty.repo.MemberRepository;
 import com.webdanseom.nurseonduty.repo.NurseGroupRepository;
+import com.webdanseom.nurseonduty.repo.WorkExtraRepository;
+import com.webdanseom.nurseonduty.repo.WorkRepository;
 import com.webdanseom.nurseonduty.service.*;
 import com.webdanseom.nurseonduty.model.response.ResponseSelectGroup;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
@@ -29,29 +32,42 @@ import java.util.List;
 @RestController
 @RequestMapping("/nurseGroup")
 public class NurseGroupController {
-    @Autowired
-    private GroupService groupService;
-
+    /**
+     * 로그인 관련 Util
+     * */
     @Autowired
     private CookieUtil cookieUtil;
-
     @Autowired
     private JwtUtil jwtUtil;
 
+    /**
+     * Service
+     * */
+    @Autowired
+    private GroupService groupService;
     @Autowired
     private AuthService authService;
-
-    @Autowired
-    private NurseGroupRepository nurseGroupRepository;
-
     @Autowired
     private NurseService nurseService;
-
     @Autowired
     private DutyService dutyService;
+    @Autowired
+    private WorkService workService;
+    @Autowired
+    private WorkExtraService workExtraService;
 
+
+    /**
+     * Repository
+     * */
+    @Autowired
+    private NurseGroupRepository nurseGroupRepository;
     @Autowired
     private MemberRepository memberRepository;
+    @Autowired
+    private WorkRepository workRepository;
+    @Autowired
+    private WorkExtraRepository workExtraRepository;
 
 
     //그룹생성
@@ -69,8 +85,8 @@ public class NurseGroupController {
             jwt = token.getValue();
             email = jwtUtil.getEmail(jwt);
             Member member = authService.findByEmail(email);
-
             nurseGroup = groupService.createGroup(nurseGroup, member);
+
             //그룹가입
             groupService.joinGroup(nurseGroup.getInviteLink(), member);
 
@@ -273,25 +289,38 @@ public class NurseGroupController {
             email = jwtUtil.getEmail(jwt);
             Member member = authService.findByEmail(email);
             NurseGroup nurseGroup = nurseGroupRepository.findBySeq(member.getGroupSeq().getSeq());
-            groupService.moveHeadnurseAuth(nurseGroup, 0);
 
+            //수간호가 권한 삭제
+            groupService.moveHeadnurseAuth(member.getGroupSeq(), 0);
+
+            //근무삭제
+            workService.deleteWork(member.getGroupSeq().getSeq());
+
+            //임시근무삭제
+            workExtraService.deleteWorkExtra(member.getGroupSeq().getSeq());
+
+            //간호사삭제
             List<Nurse> nurseList = nurseService.selectNurse(member.getGroupSeq().getSeq());
             for(int i = 0; i < nurseList.size(); i++) {
                 if(nurseService.findByNurseSeq(nurseList.get(i).getNurseSeq())!=null)
                    nurseService.deleteNurse(nurseList.get(i));
             }
 
-            List<Duty> dutyList = dutyService.selectDuty(nurseGroup.getSeq());
+            //듀티삭제
+            List<Duty> dutyList = dutyService.selectDuty(member.getGroupSeq().getSeq());
             for(int i = 0; i < dutyList.size();i++) {
                 if(dutyService.findByDutySeq(dutyList.get(i).getDutySeq())!=null)
                     dutyService.deleteDuty(dutyList.get(i));
             }
 
+            //맴버탈퇴 처리
             List<Member> memberList = memberRepository.findByGroupSeqSeq(member.getGroupSeq().getSeq());
             for(int  i = 0; i < memberList.size(); i++) {
                 if(authService.findByEmail(memberList.get(i).getEmail())!=null)
                     groupService.dropGroup(memberList.get(i));
             }
+
+            //그룹삭제
             groupService.deleteGroup(nurseGroup);
 
             return new Response("success", "그룹삭제 성공", null);

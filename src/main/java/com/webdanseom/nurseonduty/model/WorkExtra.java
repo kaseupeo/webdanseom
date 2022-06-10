@@ -44,13 +44,13 @@ public class WorkExtra {
     //간호사 번호 --- 외래키
     @ManyToOne
     @JoinColumn(name="nurse")
-    private Nurse nurseSeq;
+    private Nurse nurse;
 
-    public WorkExtra(int workExtraSeq, String duty, Date date, Nurse nurseSeq) {
+    public WorkExtra(int workExtraSeq, String duty, Date date, Nurse nurse) {
         this.workExtraSeq = workExtraSeq;
         this.duty = duty;
         this.date = date;
-        this.nurseSeq = nurseSeq;
+        this.nurse = nurse;
     }
 
     @Override
@@ -59,7 +59,7 @@ public class WorkExtra {
                 "workNum=" + workExtraSeq +
                 ", duty='" + duty + '\'' +
                 ", date=" + date +
-                ", nurseSeq=" + nurseSeq +
+                ", nurseSeq=" + nurse +
                 '}';
     }
 }
