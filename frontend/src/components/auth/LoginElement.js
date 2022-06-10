@@ -8,7 +8,7 @@ import './LoginElement.scss';
 
 import { Link } from 'react-router-dom';
 
-const LoginElement = ({ form, onChange, onSubmit, error }) => {
+const LoginElement = ({ form, onChange, onSubmit, error, loginState }) => {
   /**
    * 로그인 버튼 누르면
    * DB 검색 =>

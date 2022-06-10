@@ -3,10 +3,10 @@ $calendar-min-width: 1250px;
 
 .Calendar {
   margin-top: 10px;
-  height: 5rem;
-  width: 5rem;
-  display: flex;
+ height: auto;
 
+  display: flex;
+  width: 80vw;
   
   flex-direction: column;
   white-space: nowrap;
@@ -19,7 +19,7 @@ $calendar-min-width: 1250px;
   }
 
   .control {
-    width: 80vw;
+    width: 70vw;
    
     display: flex;
     flex-direction: row;
@@ -49,27 +49,23 @@ $calendar-min-width: 1250px;
 
 
   table {
-   
-    border: 1px solid ;
+  
+    
+    width: auto;
+    border: 1px thin solid grey ;
     border-collapse: collapse;
     background-color: white;
  
     thead {
-      width: 90vw;
+      width: 70vw;
       display: flex;
       flex-direction: column;
-      @media (min-width:$calendar-min-width) {
-    
-        width: 70rem;
-      }
+     
     }
     tbody {
-      width: 90vw;
+      width: 70vw;
       display: flex;
-      @media (min-width:$calendar-min-width) {
-    
-        width: 70rem;
-      }
+      
       flex-direction: column;
     }
 
@@ -81,12 +77,12 @@ $calendar-min-width: 1250px;
        
         border: 1px solid #c3c3c3; 
         height: 10vw;
-        width: 15vw;
+        width: 10vw;
         font-size: 2vw;
         @media (min-width:$calendar-min-width) {
           font-size: 1.2rem;
           height: 7rem;
-          width: 10rem;
+         
         }
       }
       th {
@@ -94,11 +90,11 @@ $calendar-min-width: 1250px;
         justify-content: center;
         align-items: center;
         border: 1px solid #c3c3c3;
-        width: 15vw;
+        width: 10vw;
         font-size: 1.3vw;
         @media (min-width:$calendar-min-width) {
-          font-size: 1rem;
-          width: 10rem;
+          font-size: 1vw;
+     
         }
         height: 1.3rem;
       }

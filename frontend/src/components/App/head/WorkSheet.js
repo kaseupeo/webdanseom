@@ -8,6 +8,7 @@ const WorkSheet = ({
   onClickMonthPlus,
   onClickMonthMinus,
   nurseList,
+  dutyTypeList,
 }) => {
   let date = new Date(year, month, 0);
 
@@ -26,6 +27,10 @@ const WorkSheet = ({
       <td>{nurse.name}</td>
       {children[1]}
     </tr>
+  ));
+
+  const dutyTypeListRendering = dutyTypeList.map((dutyType, index) => (
+    <th key={index}>{dutyType}</th>
   ));
 
   return (
@@ -52,7 +57,7 @@ const WorkSheet = ({
               <tr>
                 <th colSpan={'3'}>간호사 정보</th>
                 <th colSpan={date.getDate()}>근무일</th>
-                <th colSpan={'9'}>합계</th>
+                <th colSpan={dutyTypeListRendering.length}>합계</th>
               </tr>
 
               <tr>
@@ -62,15 +67,7 @@ const WorkSheet = ({
 
                 {days}
 
-                <th>D</th>
-                <th>E</th>
-                <th>N</th>
-                <th>OFF</th>
-                <th>연차</th>
-                <th>반차</th>
-                <th>공가</th>
-                <th>당일OFF</th>
-                <th>누적OFF</th>
+                {dutyTypeListRendering}
               </tr>
             </thead>
             <tbody>{scheduleRendering}</tbody>

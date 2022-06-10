@@ -10,6 +10,7 @@ import { RiArrowDropDownFill } from 'react-icons/ri';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import MyPageModal from './modals/MyPageModal';
+import HelpModal from './modals/HelpModal';
 import './TopNavigation.scss';
 
 const TopNavigation = ({
@@ -21,27 +22,10 @@ const TopNavigation = ({
   error,
 }) => {
   const navigate = useNavigate();
-  const outMyPage = useRef();
+
   const [isMyPage, setIsMyPage] = useState(false);
 
-  useEffect(() => {
-    const handleOutsideClick = (e) => {
-      if (outMyPage.current || !outMyPage.current.contains(e.target)) {
-        setIsMyPage(false);
-      }
-    };
-
-    document.addEventListener('click', handleOutsideClick, true);
-    return () => {
-      document.removeEventListener('click', handleOutsideClick, true);
-    };
-  }, [outMyPage]);
-
   const [isHelp, setIsHelp] = useState(false);
-
-  const onClickHelp = () => {
-    setIsHelp(true);
-  };
 
   const onClickEditUserInfo = () => {
     navigate('/app/m/editUserInfo');
@@ -50,7 +34,13 @@ const TopNavigation = ({
     navigate('/app/m/editGroupInfo');
   };
   return (
-    <div className="whole">
+    <div
+      className="whole"
+      onClick={() => {
+        setIsMyPage(false);
+        setIsHelp(false);
+      }}
+    >
       <header className="TopNavigation">
         <div className="topNav">
           <div className="menu" onClick={onClickMenu}>
@@ -69,38 +59,46 @@ const TopNavigation = ({
             <div className="help">
               <BiHelpCircle
                 className="helpIcon"
-                onClick={() => {
-                  onClickHelp();
+                onClick={(e) => {
+                  setIsHelp(!isHelp);
+                  setIsMyPage(false);
+                  e.stopPropagation();
                 }}
               />
               <RiArrowDropDownFill className="bottomArrowIcon" />
-              {isHelp && (
-                <div className="helpMenu">
-                  <ul>
-                    <li>도움말 가이드</li>
-                    <li>피드백 보내기</li>
-                  </ul>
-                </div>
-              )}
             </div>
+
+            {isHelp && (
+              <HelpModal
+                onClick={(e) => {
+                  setIsHelp(false);
+                  e.stopPropagation();
+                }}
+              />
+            )}
+
             <div
               className="myPage"
-              onClick={() => {
+              onClick={(e) => {
                 setIsMyPage(!isMyPage);
+                setIsHelp(false);
+                e.stopPropagation();
               }}
             >
               <GrUserSettings className="settingIcon" />
               <RiArrowDropDownFill className="bottomArrowIcon" />
-              {isMyPage && (
-                <MyPageModal
-                  ref={outMyPage}
-                  memberName={memberName}
-                  onClickEditUserInfo={onClickEditUserInfo}
-                  onClickEditGroupInfo={onClickEditGroupInfo}
-                  onClickLogout={onClickLogout}
-                ></MyPageModal>
-              )}
             </div>
+            {isMyPage && (
+              <MyPageModal
+                memberName={memberName}
+                onClickEditUserInfo={onClickEditUserInfo}
+                onClickEditGroupInfo={onClickEditGroupInfo}
+                onClickLogout={onClickLogout}
+                onClick={(e) => {
+                  setIsMyPage(true);
+                }}
+              />
+            )}
           </div>
         </div>
       </header>
