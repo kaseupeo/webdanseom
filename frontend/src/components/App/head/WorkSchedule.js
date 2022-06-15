@@ -1,11 +1,22 @@
 import './WorkSchedule.scss';
 import React, { useState, useEffect } from 'react';
 
-const WorkSchedule = ({ year, month, dutyList, dutyTypeList }) => {
+const WorkSchedule = ({
+  ocChangeWork,
+  nurse,
+  year,
+  month,
+  dutyList,
+  dutyTypeList,
+}) => {
   let date = new Date(year, month, 0);
 
   const dutyCodeList = dutyList.map((dutyCode, index) => (
-    <option key={index} style={{ backgroundColor: dutyCode.hexColor }}>
+    <option
+      key={index}
+      style={{ backgroundColor: dutyCode.hexColor }}
+      value={dutyCode.dutyCode}
+    >
       {dutyCode.dutyCode}
     </option>
   ));
@@ -16,7 +27,14 @@ const WorkSchedule = ({ year, month, dutyList, dutyTypeList }) => {
 
   const workSheets = workArray.map((workSheet, index) => (
     <td key={index}>
-      <select style={{ backgroundColor: {} }}>{dutyCodeList}</select>
+      <select
+        name={'' + year + month + (index + 1)}
+        style={{ backgroundColor: {} }}
+        id={nurse}
+        onChange={ocChangeWork}
+      >
+        {dutyCodeList}
+      </select>
     </td>
   ));
 

@@ -1,5 +1,6 @@
 import './WorkSheet.scss';
-import { useState } from 'react';
+import { useState, cloneElement } from 'react';
+import WorkSchedule from './WorkSchedule';
 
 const WorkSheet = ({
   children,
@@ -11,6 +12,7 @@ const WorkSheet = ({
   dutyTypeList,
 }) => {
   let date = new Date(year, month, 0);
+  //근무일정
 
   let dayArray = [];
   for (let i = 0; i < date.getDate(); i++) dayArray.push(i);
@@ -20,15 +22,18 @@ const WorkSheet = ({
     </th>
   ));
 
+  //간호사
   const scheduleRendering = nurseList.map((nurse, index) => (
     <tr key={index} className="metaInfo">
       <td>{index + 1}</td>
       <td> {nurse.position}</td>
       <td>{nurse.name}</td>
-      {children[1]}
+      {cloneElement(children[1], {
+        nurse: nurse,
+      })}
     </tr>
   ));
-
+  //합계
   const dutyTypeListRendering = dutyTypeList.map((dutyType, index) => (
     <th key={index}>{dutyType}</th>
   ));
@@ -42,9 +47,9 @@ const WorkSheet = ({
               &lt;
             </button>
 
-            <b className="monthStr">
-              {year + '.' + month.toString().padStart(2, '0')}
-            </b>
+            <div className="monthStr">
+              <b>{year + '.' + month.toString().padStart(2, '0')}</b>
+            </div>
             <button className="monthBtn" onClick={onClickMonthPlus}>
               &gt;
             </button>
@@ -71,6 +76,7 @@ const WorkSheet = ({
               </tr>
             </thead>
             <tbody>{scheduleRendering}</tbody>
+
             {children[2]}
           </table>
         </div>

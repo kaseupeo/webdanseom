@@ -8,14 +8,8 @@ import { selectPreceptorsAsync } from '../../../../modules/preceptor';
 const WorkSheetForm = ({ modalOpen, closeModal }) => {
   const [error, setError] = useState('');
   const groupSeq = useSelector(({ group }) => group.nurseGroup.seq);
-  const dispatch = useDispatch();
   const nurseList = useSelector(({ nurse }) => nurse.nurseList);
   const preceptorList = useSelector(({ preceptor }) => preceptor.preceptorList);
-
-  useEffect(() => {
-    dispatch(selectNursesAsync({ groupSeq }));
-    dispatch(selectPreceptorsAsync());
-  }, []);
 
   const onClickInsert = () => {};
   const onClickDelete = () => {};

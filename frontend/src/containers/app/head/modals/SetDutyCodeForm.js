@@ -100,10 +100,6 @@ const WorkSheetForm = ({ modalOpen, closeModal }) => {
     }
   };
 
-  useEffect(() => {
-    dispatch(selectDutyCode({ groupSeq }));
-  }, []);
-
   const onChange = (e) => {
     const { value, name, id } = e.target;
     if (name === 'isUsable') {

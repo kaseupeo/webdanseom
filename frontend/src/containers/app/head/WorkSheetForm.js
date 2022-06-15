@@ -15,6 +15,13 @@ import {
   setPlusY,
   setMinusY,
 } from '../../../modules/management';
+import { selectPreceptorsAsync } from '../../../modules/preceptor';
+import work, {
+  selectWorksHeadAsync,
+  changeWork,
+  selectWorksHead,
+  addWorkInfo,
+} from '../../../modules/work';
 import WorkSheet from '../../../components/app/head/WorkSheet';
 import { useNavigate } from 'react-router-dom';
 import dutyCode, { selectDutyCode } from '../../../modules/dutyCode';
@@ -70,29 +77,77 @@ const WorkSheetForm = () => {
     response: management.response,
     responseError: management.responseError,
   }));
-
+  const nowDate = new Date(date.year, date.month, 0);
   const onClickMonthPlus = () => {
     const { year, month } = date;
+
     if (month < 12) {
       dispatch(setPlusM());
     } else dispatch(setPlusY());
+    initWorkInfo();
   };
   const onClickMonthMinus = () => {
     const { year, month } = date;
     if (month > 1) {
       dispatch(setMinusM());
     } else dispatch(setMinusY());
+    initWorkInfo();
   };
   useEffect(() => {
     dispatch(initializeForm('response'));
   }, [dispatch]);
+  const [workArray, setWorkArray] = useState([]);
 
+  const initWorkArray = () => {
+    const arr = [];
+    const arr2 = [];
+
+    for (let i = 0; i < nurseList.length; i++) {
+      for (let j = 0; j < nowDate.getDate(); j++) {
+        // arr2[j] = null;
+        setWorkArray((e) => [
+          ...e,
+          {
+            nurse: nurseList[i].name,
+            date:
+              ('0000' + date.year).slice(-4) +
+              '-' +
+              ('00' + date.month).slice(-2) +
+              '-' +
+              ('00' + (j + 1)).slice(-2),
+            duty: null,
+          },
+        ]);
+      }
+      // arr[nurseList[i].name] = arr2;
+    }
+  };
+  const initWorkInfo = () => {
+    const { year, month } = date;
+    dispatch(selectWorksHeadAsync('' + year + month))
+      .then(setWorkArray([]))
+      .then(initWorkArray())
+      .then(dispatch(addWorkInfo(workArray)))
+      .then(dispatch(selectWorksHead('' + year + month)));
+  };
   useEffect(() => {
+    initWorkInfo();
+  }, [date]);
+  useEffect(() => {
+    const { year, month } = date;
     if (groupSeq === null) return;
     dispatch(selectDutyCode({ groupSeq }));
     dispatch(selectNursesAsync({ groupSeq }));
+    dispatch(selectPreceptorsAsync());
+    dispatch(selectWorksHeadAsync('' + year + month));
     setDutyList([]);
+    initWorkInfo();
   }, [dispatch, groupSeq]);
+
+  const ocChangeWork = (e) => {
+    // const { id, name, value } = e.target;
+    // dispatch(changeWork({ index: id, key: name, value }));
+  };
 
   return (
     <WorkSheet
@@ -109,6 +164,7 @@ const WorkSheetForm = () => {
         month={date.month}
         dutyList={dutyList}
         dutyTypeList={dutyTypeList}
+        ocChangeWork={ocChangeWork}
       />
       <WorkScheduleSum
         year={date.year}

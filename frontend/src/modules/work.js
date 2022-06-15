@@ -9,6 +9,7 @@ import createRequestSaga, {
 import createRequestThunk from '../libs/createRequestThunk';
 //필드 값 초기화
 const INITIALIZE_FORM = 'work/INITIALIZE_FORM';
+const ADD_WORK_INFO = 'work/ADD_WORK_INFO';
 const CHANGE_WORK = 'work/CHANGE_WORK';
 
 const [SELECT_WORK_HEAD, SELECT_WORK_HEAD_SUCCESS, SELECT_WORK_HEAD_FAILURE] =
@@ -22,6 +23,7 @@ const [INSERT_WORK, INSERT_WORK_SUCCESS, INSERT_WORK_FAILURE] =
   createRequestActionTypes('work/INSERT_WORK');
 
 export const initializeForm = createAction(INITIALIZE_FORM, (form) => form);
+export const addWorkInfo = createAction(ADD_WORK_INFO, (workList) => workList);
 export const changeNurse = createAction(
   CHANGE_WORK,
   ({ index, key, value }) => ({
@@ -72,7 +74,7 @@ export function* workSaga() {
 }
 
 const initialState = {
-  work: null,
+  workList: null,
   response: {
     response: null,
     message: '',
@@ -86,6 +88,10 @@ const work = handleActions(
     [INITIALIZE_FORM]: (state, { payload: form }) => ({
       ...state,
       [form]: initialState[form],
+    }),
+    [ADD_WORK_INFO]: (state, { payload: workList }) => ({
+      ...state,
+      workList: workList,
     }),
     [CHANGE_WORK]: (state, { payload: { index, key, value } }) =>
       produce(state, (draft) => {

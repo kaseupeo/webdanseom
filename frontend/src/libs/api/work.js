@@ -1,8 +1,8 @@
 import client from './client';
 
-export const selectWorkHead = ({ strDate }) =>
+export const selectWorkHead = (strDate) =>
   client
-    .get('/api/work/select/' + { strDate }, {})
+    .get('/api/work/selectGroup/' + strDate)
     .then((response) => {
       console.log(response.data);
       return response;
@@ -10,9 +10,9 @@ export const selectWorkHead = ({ strDate }) =>
     .catch((error) => {
       console.log(error);
     });
-export const selectWorkNormal = ({ strDate }) =>
+export const selectWorkNormal = (strDate) =>
   client
-    .get('/api/work/select' + { strDate })
+    .get('/api/work/selectNurse/' + strDate)
     .then((response) => {
       console.log(response.data);
       return response;

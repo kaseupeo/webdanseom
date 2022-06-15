@@ -3,20 +3,18 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import nurse, {
-  selectNursesAsync,
+  selectNurses,
+  selectNursesSaga,
   insertNursesAsync,
   deleteNursesAsync,
   editNursesAsync,
   changeNurse,
+  selectNursesAsync,
 } from '../../../../modules/nurse';
 
 const SetNurseForm = ({ modalOpen, closeModal }) => {
-  const [flag, setFlag] = useState(false);
   const [checkedNurseList, setCheckedNurseList] = useState([]);
-  const flagFuction = () => {
-    if (flag) setFlag(false);
-    else setFlag(true);
-  };
+
   const response = useSelector(({ nurse }) => nurse.response);
   const groupSeq = useSelector(({ group }) => group.nurseGroup.seq);
   const nurseList = useSelector(({ nurse }) => nurse.nurseList);
@@ -45,27 +43,27 @@ const SetNurseForm = ({ modalOpen, closeModal }) => {
         annualLeave: 0,
       }),
     );
-    dispatch(selectNursesAsync({ groupSeq }));
-    setCheckedNurseList([]);
-    flagFuction();
-
-    setExNurseSeq(exNurseSeq + 1);
+    dispatch(selectNursesAsync({ groupSeq }))
+      .then(dispatch(selectNurses({ groupSeq })))
+      .then(setCheckedNurseList([]))
+      .then(setExNurseSeq(exNurseSeq + 1));
   };
   //삭제
   const onClickDelete = () => {
     if (checkedNurseList !== [''])
       dispatch(deleteNursesAsync({ checkedNurseList }));
-    initNurseList();
-    initCheckBox();
-    dispatch(selectNursesAsync({ groupSeq }));
-    if (response.message === '간호사 목록 조회 성공') flagFuction();
+    dispatch(selectNursesAsync({ groupSeq }))
+      .then(initNurseList())
+      .then(initCheckBox())
+      .then(dispatch(selectNurses({ groupSeq })));
   };
   //수정
   const onClickUpdate = () => {
     dispatch(editNursesAsync({ nurseList }));
-    dispatch(selectNursesAsync({ groupSeq }));
-    initNurseList();
-    initCheckBox();
+    dispatch(selectNursesAsync({ groupSeq }))
+      .then(initNurseList())
+      .then(initCheckBox())
+      .then(dispatch(selectNurses({ groupSeq })));
   };
 
   const onChecked = (e) => {
@@ -103,9 +101,7 @@ const SetNurseForm = ({ modalOpen, closeModal }) => {
       }
     }
   };
-  useEffect(() => {
-    dispatch(selectNursesAsync({ groupSeq }));
-  }, [dispatch, flag]);
+
   const onChange = (e) => {
     const { value, name, id } = e.target;
 

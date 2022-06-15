@@ -3,7 +3,6 @@ $min-contents-width: 1050px;
 .whole {
   position: absolute;
   width:100vw;
- 
   height:100vh;
 
   min-height: auto;
@@ -31,7 +30,7 @@ $min-contents-width: 1050px;
       flex-direction: row;
       padding-top: 20px;
       padding-left: 13px;
-
+z-index: 20;
       text-decoration: none;
 
       .menu {
@@ -120,7 +119,10 @@ $min-contents-width: 1050px;
   }
   
   .content{
+    overflow: scroll;
     max-height: calc(100%);
     min-width: auto;
-    height: calc(100% - 4rem);}
+    height: calc(100% - 4rem);
+  
+  }
 }
