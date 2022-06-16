@@ -108,7 +108,7 @@ const WorkSheetForm = () => {
         setWorkArray((e) => [
           ...e,
           {
-            nurse: nurseList[i].name,
+            nurseSeq: nurseList[i].nurseSeq,
             date:
               ('0000' + date.year).slice(-4) +
               '-' +
@@ -124,25 +124,24 @@ const WorkSheetForm = () => {
   };
   const initWorkInfo = () => {
     const { year, month } = date;
+
     dispatch(selectWorksHeadAsync('' + year + month))
       .then(setWorkArray([]))
       .then(initWorkArray())
       .then(dispatch(addWorkInfo(workArray)))
       .then(dispatch(selectWorksHead('' + year + month)));
   };
-  useEffect(() => {
-    initWorkInfo();
-  }, [date]);
+
   useEffect(() => {
     const { year, month } = date;
+    initWorkInfo();
     if (groupSeq === null) return;
     dispatch(selectDutyCode({ groupSeq }));
     dispatch(selectNursesAsync({ groupSeq }));
     dispatch(selectPreceptorsAsync());
     dispatch(selectWorksHeadAsync('' + year + month));
     setDutyList([]);
-    initWorkInfo();
-  }, [dispatch, groupSeq]);
+  }, [dispatch, groupSeq, date]);
 
   const ocChangeWork = (e) => {
     // const { id, name, value } = e.target;

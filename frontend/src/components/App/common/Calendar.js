@@ -8,7 +8,7 @@ import './Calendar.scss';
 import React, { useState } from 'react';
 import moment, { Moment as MomentTypes } from 'moment';
 
-const Calendar = ({ nurseList }) => {
+const Calendar = ({ nurseList, dutyList }) => {
   const nurseOption = nurseList.map((nurse) => (
     <option value={nurse.nurseSeq}>{nurse.name}</option>
   ));
@@ -19,7 +19,22 @@ const Calendar = ({ nurseList }) => {
     today.clone().endOf('month').week() === 1
       ? 53
       : today.clone().endOf('month').week();
-
+  const dutyForm = (
+    <span
+      style={{
+        background: 'red',
+        marginTop: '0.5rem',
+        marginLeft: '0.2rem',
+        marginRight: '0.2rem',
+        height: '3rem',
+        fontSize: '2rem',
+        textAlign: 'center',
+        color: true ? 'white' : 'black',
+      }}
+    >
+      D
+    </span>
+  );
   const calendarArr = () => {
     let result = [];
     let week = firstWeek;
@@ -39,12 +54,17 @@ const Calendar = ({ nurseList }) => {
 
               if (moment().format('YYYYMMDD') === days.format('YYYYMMDD')) {
                 return (
-                  <td
-                    className="td"
-                    key={index}
-                    style={{ backgroundColor: 'red' }}
-                  >
-                    <span>{days.format('D')}</span>
+                  <td className="td" key={index}>
+                    <span
+                      style={{
+                        borderRadius: '1rem',
+                        width: '1.5rem',
+                        backgroundColor: '#ffff55',
+                      }}
+                    >
+                      {days.format('D')}
+                    </span>
+                    {dutyForm}
                   </td>
                 );
               } else if (days.format('MM') !== today.format('MM')) {
@@ -52,7 +72,7 @@ const Calendar = ({ nurseList }) => {
                   <td
                     className="td"
                     key={index}
-                    style={{ backgroundColor: 'gray' }}
+                    style={{ backgroundColor: '#dddddd', color: '#888888' }}
                   >
                     <span>{days.format('D')}</span>
                   </td>
@@ -61,6 +81,7 @@ const Calendar = ({ nurseList }) => {
                 return (
                   <td className="td" key={index}>
                     <span>{days.format('D')}</span>
+                    {dutyForm}
                   </td>
                 );
               }
