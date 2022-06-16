@@ -2,7 +2,6 @@ package com.webdanseom.nurseonduty.controller;
 
 import com.webdanseom.nurseonduty.jwt.JwtUtil;
 import com.webdanseom.nurseonduty.model.*;
-import com.webdanseom.nurseonduty.model.request.RequestWorkExtraList;
 import com.webdanseom.nurseonduty.model.request.RequestWorkList;
 import com.webdanseom.nurseonduty.service.AuthService;
 import com.webdanseom.nurseonduty.service.CookieUtil;
@@ -56,8 +55,7 @@ public class WorkExtraController {
 
             for (int i = 0; i < requestWorkList.getRequestWorkList().size(); i++) {
                 WorkExtra workExtra = new WorkExtra();
-                Nurse nurse = nurseService.findByNameAndGroup(requestWorkList.getRequestWorkList().get(i).getName(),
-                        member.getGroupSeq().getSeq());
+                Nurse nurse = nurseService.findByNurseSeq(requestWorkList.getRequestWorkList().get(i).getNurseSeq());
                 workExtra.setNurse(nurse);
                 workExtra.setNurseGroup(member.getGroupSeq());
                 workExtra.setDuty(requestWorkList.getRequestWorkList().get(i).getDuty());
