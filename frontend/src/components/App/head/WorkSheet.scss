@@ -3,7 +3,7 @@ $min-contents-width: 1400px;
 .WorkSheet {
   position: relative;
   display: flex;
-  width:70vw;
+  width:80vw;
   flex-direction: column;
     flex-wrap: nowrap; 
     padding:0;
@@ -71,18 +71,13 @@ $min-contents-width: 1400px;
    
     float: right;
     margin-left: auto;
- 
-  white-space: nowrap;
+    white-space: nowrap;
  
   @media (min-width: 1000px) {
       
     position: relative;
     margin-right: 0rem;
-
-  
-  }
-
-    
+  } 
   }
  }
  .scrollTable{ 

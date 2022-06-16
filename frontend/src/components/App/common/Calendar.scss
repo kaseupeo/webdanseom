@@ -11,7 +11,13 @@ $calendar-min-width: 1250px;
   flex-direction: column;
   white-space: nowrap;
   
-
+  .selectNurse{
+    height: 2rem;
+    width: 8rem;
+    font-size: 1rem;
+   
+    justify-items: left;
+  }
   html,
   body {
     height: auto;
@@ -19,7 +25,7 @@ $calendar-min-width: 1250px;
   }
 
   .control {
-    width: 70vw;
+    width: 80vw;
    
     display: flex;
     flex-direction: row;
@@ -57,13 +63,13 @@ $calendar-min-width: 1250px;
     background-color: white;
  
     thead {
-      width: 70vw;
+      width: 80vw;
       display: flex;
       flex-direction: column;
      
     }
     tbody {
-      width: 70vw;
+      width: 80vw;
       display: flex;
       
       flex-direction: column;
@@ -77,7 +83,7 @@ $calendar-min-width: 1250px;
        
         border: 1px solid #c3c3c3; 
         height: 10vw;
-        width: 10vw;
+        width: 15vw;
         font-size: 2vw;
         @media (min-width:$calendar-min-width) {
           font-size: 1.2rem;
@@ -90,7 +96,7 @@ $calendar-min-width: 1250px;
         justify-content: center;
         align-items: center;
         border: 1px solid #c3c3c3;
-        width: 10vw;
+        width: 15vw;
         font-size: 1.3vw;
         @media (min-width:$calendar-min-width) {
           font-size: 1vw;
