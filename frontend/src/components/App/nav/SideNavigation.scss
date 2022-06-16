@@ -3,10 +3,9 @@ $mobile-contents-width: 640px;
 
 .SideNavigation {
   
-  display: inline;
   height: calc(100vh - 5rem); 
   width: auto;
-  height: auto;
+
   padding:0;
   margin: 0;
   .nav{
@@ -110,36 +109,21 @@ $mobile-contents-width: 640px;
     width: 0 !important;
 }
   .contents {
-  
+    padding-left: 15rem;
     overflow: scroll;
-
     -ms-overflow-style: none;
-  
- 
-    .title{
-      justify-content: left;
-    }
     flex: auto auto 0;
     width: auto;
     display: flex;
-
     padding-top: 2rem;
-    
-    margin-right: 0;
+    padding-right: 0;
  
- 
-      justify-content: center;
-      @media (max-width: $mobile-contents-width) {
-     
-
-      }
- 
-  
 
   }
   .contents_hide_nav{
+    padding-left: 5rem;
     display: flex;
- 
+    padding-right: 0;
     width: auto;
     flex: auto auto 0;
     display: flex;
@@ -149,7 +133,7 @@ $mobile-contents-width: 640px;
     margin-right:0;
    
 
-  justify-content: center;
+
  
 
     

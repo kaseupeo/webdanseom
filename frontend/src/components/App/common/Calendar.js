@@ -8,7 +8,10 @@ import './Calendar.scss';
 import React, { useState } from 'react';
 import moment, { Moment as MomentTypes } from 'moment';
 
-const Calendar = () => {
+const Calendar = ({ nurseList }) => {
+  const nurseOption = nurseList.map((nurse) => (
+    <option value={nurse.nurseSeq}>{nurse.name}</option>
+  ));
   const [getMoment, setMoment] = useState(moment());
   const today = getMoment;
   const firstWeek = today.clone().startOf('month').week();
@@ -85,6 +88,7 @@ const Calendar = () => {
   };
   return (
     <div className="Calendar">
+      <select className="selectNurse">{nurseOption}</select>
       <div className="control">
         <button
           onClick={() => {
