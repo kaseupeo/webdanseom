@@ -68,7 +68,7 @@ public class WorkController {
 
             for (int i = 0; i < requestWorkList.getRequestWorkList().size(); i++) {
                 Work work = new Work();
-                Nurse nurse = nurseService.findByNameAndGroup(requestWorkList.getRequestWorkList().get(i).getName(), member.getGroupSeq().getSeq());
+                Nurse nurse = nurseService.findByNurseSeq(requestWorkList.getRequestWorkList().get(i).getNurseSeq());
                 work.setNurse(nurse);
                 work.setNurseGroup(member.getGroupSeq());
                 work.setDuty(requestWorkList.getRequestWorkList().get(i).getDuty());

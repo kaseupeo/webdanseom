@@ -26,9 +26,6 @@ public interface NurseService {
     //간호사 목록 조회
     List<Nurse> selectNurse(int nurseGroupSeq) throws NotFoundException;
 
-    //간호사 이름과 그룹으로 조회
-    Nurse findByNameAndGroup(String name, int nurseGroupSeq) throws NotFoundException;
-
     //간호사 정보 수정
     void editNurse(Nurse nurse) throws NotFoundException;
 

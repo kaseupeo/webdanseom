@@ -12,5 +12,5 @@ import java.util.Date;
 public class RequestWork {
     private String duty;
     private Date date;
-    private String name;
+    private int nurseSeq;
 }
