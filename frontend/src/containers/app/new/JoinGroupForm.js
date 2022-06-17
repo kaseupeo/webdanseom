@@ -47,6 +47,7 @@ const JoinGroupForm = () => {
   const onClickJoin = (e) => {
     e.preventDefault();
     dispatch(joinGroupAsync(inviteLink));
+    navigate('/app');
   };
   //마이페이지 추가후 수정할것
   useEffect(() => {

@@ -5,12 +5,7 @@
 
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  changeField,
-  initializeForm,
-  login,
-  logoutSync,
-} from '../../modules/auth';
+import { changeField, initializeForm, login, logout } from '../../modules/auth';
 
 import LoginElement from '../../components/auth/LoginElement';
 import AccessLoginElement from '../../components/auth/AccessLoginElement';
@@ -69,7 +64,7 @@ const LoginForm = () => {
     }
   };
   const onClickLogout = () => {
-    dispatch(logoutSync());
+    dispatch(logout());
     window.location.replace(window.location.pathname);
     dispatch(
       setGroupState({
@@ -87,7 +82,9 @@ const LoginForm = () => {
     dispatch(initializeForm('login'));
   }, [dispatch]);
   useEffect(() => {
-    dispatch(selectMemberAsync());
+    setTimeout(function () {
+      dispatch(selectMemberAsync());
+    }, 3000);
   }, []);
   useEffect(() => {
     !loginState && dispatch(initLoginState());

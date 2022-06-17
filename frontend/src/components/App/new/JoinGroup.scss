@@ -51,6 +51,7 @@ $min-contents-width: 1500px;
         width: auto;
         margin:0;
         display: flex;
+        overflow: hidden;
         flex-direction: column;
         justify-content: center;
         @media (max-width:$mobile-contents-width) {
