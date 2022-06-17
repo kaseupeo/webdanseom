@@ -24,9 +24,13 @@ import work, {
 } from '../../../modules/work';
 import WorkSheet from '../../../components/app/head/WorkSheet';
 import { useNavigate } from 'react-router-dom';
-import dutyCode, { selectDutyCode } from '../../../modules/dutyCode';
+import dutyCode, {
+  selectDutyCode,
+  selectDutyCodeAsync,
+} from '../../../modules/dutyCode';
 const WorkSheetForm = () => {
   const dispatch = useDispatch();
+
   const [error, setError] = useState('');
   const [YAndM, setYAndM] = useState('');
   const [nurseModalOpen, setNurseModalOpen] = useState(false);
@@ -35,9 +39,10 @@ const WorkSheetForm = () => {
 
   const groupSeq = useSelector(({ group }) => group.nurseGroup.seq);
   const nurseList = useSelector(({ nurse }) => nurse.nurseList);
-  const [dutyList, setDutyList] = useState([]);
   const tempDutyList = useSelector(({ dutyCode }) => dutyCode.dutyList);
+  const [dutyList, setDutyList] = useState([]);
   const [dutyTypeList, setDutyTypeList] = useState([]);
+  const workList = useSelector(({ work }) => work.workList);
   useEffect(() => {
     const temp = [{}];
 
@@ -104,7 +109,6 @@ const WorkSheetForm = () => {
 
     for (let i = 0; i < nurseList.length; i++) {
       for (let j = 0; j < nowDate.getDate(); j++) {
-        // arr2[j] = null;
         setWorkArray((e) => [
           ...e,
           {
@@ -119,7 +123,6 @@ const WorkSheetForm = () => {
           },
         ]);
       }
-      // arr[nurseList[i].name] = arr2;
     }
   };
   const initWorkInfo = () => {
@@ -133,20 +136,17 @@ const WorkSheetForm = () => {
   };
 
   useEffect(() => {
-    const { year, month } = date;
-    initWorkInfo();
     if (groupSeq === null) return;
-    dispatch(selectDutyCode({ groupSeq }));
-    dispatch(selectNursesAsync({ groupSeq }));
+    dispatch(selectDutyCodeAsync({ groupSeq }));
     dispatch(selectPreceptorsAsync());
-    dispatch(selectWorksHeadAsync('' + year + month));
+    dispatch(selectNursesAsync({ groupSeq }));
+
     setDutyList([]);
   }, [dispatch, groupSeq, date]);
-
-  const ocChangeWork = (e) => {
-    // const { id, name, value } = e.target;
-    // dispatch(changeWork({ index: id, key: name, value }));
-  };
+  useEffect(() => {
+    initWorkInfo();
+  }, [nurseList]);
+  const onChangeWork = (e) => {};
 
   return (
     <WorkSheet
@@ -163,7 +163,7 @@ const WorkSheetForm = () => {
         month={date.month}
         dutyList={dutyList}
         dutyTypeList={dutyTypeList}
-        ocChangeWork={ocChangeWork}
+        onChangeWork={onChangeWork}
       />
       <WorkScheduleSum
         year={date.year}

@@ -53,12 +53,7 @@ const SideNavigation = ({
                       <BsCalendar4 />
                       <b>근무표 조회</b>
                     </li>
-                    <ul className="masterSelectEl">
-                      <li className="subMenu" onClick={onClickMenu1}>
-                        달력형
-                      </li>
-                      <li className="subMenu">목록형</li>
-                    </ul>
+                    <ul className="masterSelectEl"></ul>
                   </div>
                 )}
 
@@ -130,17 +125,14 @@ const SideNavigation = ({
             </li>
           ) : (
             <div className="masterSelect">
-              <li onClick={onClickEditMyInfo}>
+              <li style={{ zIndex: '10' }} onClick={onClickEditMyInfo}>
                 <FiSettings />
                 <b>마이 페이지</b>
               </li>
+
               <ul className="masterSelectEl">
-                <li className="subMenu" onClick={onClickEditMyInfo}>
-                  내 정보관리
-                </li>
-                <li className="subMenu" onClick={onClickEditGroup}>
-                  그룹 관리
-                </li>
+                <li onClick={onClickEditMyInfo}>내 정보관리</li>
+                <li onClick={onClickEditGroup}>그룹 관리</li>
               </ul>
             </div>
           )}

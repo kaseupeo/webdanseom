@@ -39,7 +39,7 @@ const SetNurseForm = ({ modalOpen, closeModal }) => {
       insertNursesAsync({
         name: '간호사 ' + exNurseSeq,
         charge: '주중 전담',
-        position: '일반',
+        position: '일반간호사',
         annualLeave: 0,
       }),
     );

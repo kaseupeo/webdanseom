@@ -37,7 +37,7 @@ const SetDutyCodeElement = ({
     ).slice(-2);
 
     let minute = ('00' + (parseInt(startTimeArray[1]) % 60)).slice(-2);
-    return '~' + hour + ':' + minute;
+    return hour + ':' + minute;
   };
 
   const dutyCodeInfo = dutyCodeList ? (
@@ -83,7 +83,7 @@ const SetDutyCodeElement = ({
         </td>
 
         <td className="startTime">
-          {dutyCode.workType === 'Off' || dutyCode.workType === 'Off like' ? (
+          {dutyCode.startTime === null ? (
             <></>
           ) : (
             <input
@@ -95,9 +95,21 @@ const SetDutyCodeElement = ({
               onChange={onChange}
             />
           )}
-          {dutyCode.workType === 'Off' || dutyCode.workType === 'Off like'
-            ? ''
-            : endTime(dutyCode.startTime, dutyCode.workingHours)}
+          {dutyCode.workType === 'Off' || dutyCode.workType === 'Off like' ? (
+            ''
+          ) : (
+            <span>
+              <b>~</b>
+              <input
+                type="time"
+                name="endTime"
+                className="without_ampm"
+                id={index}
+                value={endTime(dutyCode.startTime, dutyCode.workingHours)}
+                disabled
+              />
+            </span>
+          )}
         </td>
         <td className="workingHours">
           {dutyCode.workType === 'Off' || dutyCode.workType === 'Off like' ? (
@@ -108,7 +120,7 @@ const SetDutyCodeElement = ({
               name="workingHours"
               min="0"
               max="24"
-              step="0.5"
+              step="1"
               id={index}
               value={dutyCode.workingHours}
               onChange={onChange}

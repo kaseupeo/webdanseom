@@ -5,7 +5,13 @@
 
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeField, initializeForm, login, logout } from '../../modules/auth';
+import {
+  changeField,
+  initializeForm,
+  login,
+  logout,
+  logoutSync,
+} from '../../modules/auth';
 
 import LoginElement from '../../components/auth/LoginElement';
 import AccessLoginElement from '../../components/auth/AccessLoginElement';
@@ -64,16 +70,22 @@ const LoginForm = () => {
     }
   };
   const onClickLogout = () => {
-    dispatch(logout());
-    window.location.replace(window.location.pathname);
-    dispatch(
-      setGroupState({
-        groupName: null,
-        joinGroup: null,
-        headNurseCheck: null,
-      }),
-    );
-    dispatch(initLoginState());
+    dispatch(logoutSync())
+      .then(
+        dispatch(
+          setGroupState({
+            groupName: null,
+            joinGroup: null,
+            headNurseCheck: null,
+          }),
+        ),
+      )
+      .then(dispatch(initLoginState()))
+      .then(
+        setTimeout(function () {
+          window.location.replace(window.location.pathname);
+        }, 1000),
+      );
   };
   const onClickAccess = () => {
     navigate('/app');
@@ -84,7 +96,7 @@ const LoginForm = () => {
   useEffect(() => {
     setTimeout(function () {
       dispatch(selectMemberAsync());
-    }, 3000);
+    }, 1500);
   }, []);
   useEffect(() => {
     !loginState && dispatch(initLoginState());

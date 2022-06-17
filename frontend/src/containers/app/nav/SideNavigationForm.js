@@ -8,24 +8,25 @@ const LeftNavigationForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  const { joinGroup, headNurseCheck } = useSelector(({ menu }) => ({
+  const { groupState, joinGroup, headNurseCheck } = useSelector(({ menu }) => ({
+    groupState: menu.groupState,
     joinGroup: menu.groupState.joinGroup,
     headNurseCheck: menu.groupState.headNurseCheck,
   }));
 
   useEffect(() => {
     if (location.pathname === '/app') {
-      if (joinGroup === null) {
-        return;
-      } else if (!joinGroup) {
-        navigate('/app/g/selectGroup', { replace: true });
-      } else if (headNurseCheck) {
-        navigate('/app/h/managementWork', { replace: true });
-      } else {
-        navigate('/app/n/selectWork', { replace: true });
-      }
+      setTimeout(function () {
+        if (!joinGroup) {
+          navigate('/app/g/selectGroup', { replace: true });
+        } else if (headNurseCheck) {
+          navigate('/app/h/managementWork', { replace: true });
+        } else {
+          navigate('/app/n/selectWork', { replace: true });
+        }
+      }, 800);
     }
-  }, [headNurseCheck, joinGroup, dispatch, navigate]);
+  }, [groupState]);
   const onClickMenu0 = () => {
     if (!joinGroup) {
       navigate('/app/g/selectGroup'); //그룹생성/참가

@@ -51,15 +51,18 @@ const TopNavigationForm = () => {
   };
   const onClickLogout = () => {
     dispatch(memberInit('memberInfo'));
-    dispatch(logoutSync()).then(dispatch(initLoginState()));
-    dispatch(
-      setGroupState({
-        groupName: null,
-        joinGroup: null,
-        headNurseCheck: null,
-      }),
-    );
-    navigate('/auth/login');
+    dispatch(logoutSync())
+      .then(dispatch(initLoginState()))
+      .then(
+        dispatch(
+          setGroupState({
+            groupName: null,
+            joinGroup: null,
+            headNurseCheck: null,
+          }),
+        ),
+      )
+      .then(navigate('/auth/login'));
   };
 
   useEffect(() => {
@@ -86,11 +89,11 @@ const TopNavigationForm = () => {
         setGroupState({
           groupName: nurseGroup.nurseGroup.groupName
             ? nurseGroup.nurseGroup.groupName
-            : null,
-          joinGroup: nurseGroup.joinGroup ? nurseGroup.joinGroup : null,
+            : false,
+          joinGroup: nurseGroup.joinGroup ? nurseGroup.joinGroup : false,
           headNurseCheck: nurseGroup.headNurseCheck
             ? nurseGroup.headNurseCheck
-            : null,
+            : false,
         }),
       );
     } else {

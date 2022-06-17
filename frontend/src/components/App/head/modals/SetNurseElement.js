@@ -48,18 +48,29 @@ const SetNurseElement = ({
           />
         </td>
         <td className="position">
-          <select
-            name="position"
-            onChange={onChange}
-            defaultValue={nurse.position}
-            id={index}
-          >
-            <option value="수간호사">수간호사</option>
-            <option value="책임간호사">책임간호사</option>
-            <option value="주임간호사">주임간호사</option>
-            <option value="일반간호사">일반간호사</option>
-            <option value="신입간호사">신입간호사</option>
-          </select>
+          {index === 0 ? (
+            <select
+              name="position"
+              onChange={onChange}
+              defaultValue={nurse.position}
+              id={index}
+              disabled
+            >
+              <option value="수간호사">수간호사</option>
+            </select>
+          ) : (
+            <select
+              name="position"
+              onChange={onChange}
+              defaultValue={nurse.position}
+              id={index}
+            >
+              <option value="책임간호사">책임간호사</option>
+              <option value="주임간호사">주임간호사</option>
+              <option value="일반간호사">일반간호사</option>
+              <option value="신입간호사">신입간호사</option>
+            </select>
+          )}
         </td>
         <td>
           <select

@@ -4,7 +4,6 @@
  * 작성자: 정진욱
  */
 import Title from '../../../components/app/common/Title';
-import Calendar from '../../../components/app/common/Calendar';
 
 const StatisticsWork = () => {
   return (

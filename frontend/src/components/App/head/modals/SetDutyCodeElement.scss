@@ -5,7 +5,19 @@ $min-contents-width: 1050px;
     padding: 1rem;
     flex-direction: column;
     max-height: 20rem ;
-   
+    input[type="time"]::-webkit-clear-button,
+    input[type="time"]::-webkit-inner-spin-button { 
+      display: none;
+  }
+  input[type="time"]::-webkit-calendar-picker-indicator { 
+    background: transparent;
+    z-index: 1;
+} 
+
+
+
+  
+  
     .title{
         position: relative;
         font-size: 1rem;
@@ -71,9 +83,7 @@ $min-contents-width: 1050px;
               .hexColor{width: 1%; 
               input{width: 1.5rem; padding: 0;}}
               .startTime{width: 15%;
-                .without_ampm::-webkit-datetime-edit-ampm-field {
-                  display: none;
-                }
+                
                 input[type=time]::-webkit-clear-button {
                   -webkit-appearance: none;
                   -moz-appearance: none;

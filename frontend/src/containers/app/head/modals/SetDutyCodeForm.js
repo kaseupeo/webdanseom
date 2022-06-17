@@ -102,6 +102,8 @@ const WorkSheetForm = ({ modalOpen, closeModal }) => {
 
   const onChange = (e) => {
     const { value, name, id } = e.target;
+
+    //사용 가능
     if (name === 'isUsable') {
       if (value === 'true')
         dispatch(
@@ -119,6 +121,46 @@ const WorkSheetForm = ({ modalOpen, closeModal }) => {
             value: true,
           }),
         );
+    } else if (name === 'workType') {
+      if (value === 'Off like' || value === 'Off') {
+        dispatch(
+          changeDutyCode({
+            index: id,
+            key: name,
+            value,
+          }),
+        );
+        dispatch(
+          changeDutyCode({
+            index: id,
+            key: 'workingHours',
+            value: '0',
+          }),
+        );
+        dispatch(
+          changeDutyCode({
+            index: id,
+            key: 'startTime',
+            value: null,
+          }),
+        );
+      } else {
+        dispatch(
+          changeDutyCode({
+            index: id,
+            key: name,
+            value,
+          }),
+        );
+        dispatch(
+          changeDutyCode({
+            index: id,
+            key: 'startTime',
+            value: '12:00:00',
+          }),
+        );
+      }
+    } else if (name === 'endTime') {
     } else
       dispatch(
         changeDutyCode({

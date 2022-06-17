@@ -2,7 +2,7 @@ import './WorkSchedule.scss';
 import React, { useState, useEffect } from 'react';
 
 const WorkSchedule = ({
-  ocChangeWork,
+  onChangeWork,
   nurse,
   year,
   month,
@@ -31,7 +31,7 @@ const WorkSchedule = ({
         name={'' + year + month + (index + 1)}
         style={{ backgroundColor: {} }}
         id={nurse}
-        onChange={ocChangeWork}
+        onChange={onChangeWork}
       >
         {dutyCodeList}
       </select>

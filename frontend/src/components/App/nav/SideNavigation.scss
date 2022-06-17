@@ -9,6 +9,7 @@ $mobile-contents-width: 640px;
   padding:0;
   margin: 0;
   .nav{
+    z-index:50;
     position: fixed;
     height: 100vh;
     flex: auto auto auto;
@@ -25,27 +26,21 @@ $mobile-contents-width: 640px;
   
 
     }
-    .ul_hide_nav{
-  }
+
     ul {
 
-  
-
-    
       padding-left:0 ;
       padding-top: 10px;
       margin: 0%;
       text-decoration: none;
      
       .masterSelect{
+       
         .masterSelectEl{
-      
-          visibility : hidden;
-          opacity : 0;
-          transition : .2s ease-in-out;
-          transform : translateY (-20px);
+         
+          transform:  scaley(0);
+          visibility: hidden;
           padding: 0;
-          display:none;
           background-color: #40586a;
           li{
             padding-top:0.7rem;
@@ -53,18 +48,22 @@ $mobile-contents-width: 640px;
             padding-left: 4rem;
 
           }
-          .subMenu{
-            font-size: 1rem;
-          }
+      
         }
+      
        &:hover{
+   
         .masterSelectEl{
+         
           display: block;
-          visibility : visible;
-          opacity : 1;
-        transform : translateY (0);
-        transform : rotateX (0) rotateY (-90deg);
-        
+          visibility: visible;
+          transition: transform 0.2s ease, background-color .5s ease;
+          transform-origin: top;
+          transform:scaley(1);
+          
+       
+      
+    
         }
        }
       }
@@ -83,6 +82,7 @@ $mobile-contents-width: 640px;
         &:hover {
           background-color: #547b97;
           color: white;
+          
         }
         b {
           margin-left: 1rem;

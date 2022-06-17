@@ -5,7 +5,7 @@
  */
 import Title from '../../../components/app/common/Title';
 
-import Calendar from '../../../components/app/common/Calendar';
+import WorkNormalSelectForm from '../../../containers/app/normal/WorkNormalSelectForm';
 
 const NormalSelectWork = () => {
   return (
@@ -13,7 +13,7 @@ const NormalSelectWork = () => {
       <span>
         <Title title="근무표 조회" />
       </span>
-      <Calendar />
+      <WorkNormalSelectForm />
     </div>
   );
 };
