@@ -13,6 +13,7 @@ import com.webdanseom.nurseonduty.model.Nurse;
 import com.webdanseom.nurseonduty.model.Response;
 import com.webdanseom.nurseonduty.model.Work;
 import com.webdanseom.nurseonduty.model.request.RequestWorkList;
+import com.webdanseom.nurseonduty.model.response.ResponseWork;
 import com.webdanseom.nurseonduty.service.AuthService;
 import com.webdanseom.nurseonduty.service.CookieUtil;
 import com.webdanseom.nurseonduty.service.NurseService;
@@ -26,6 +27,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -98,7 +100,17 @@ public class WorkController {
             Member member = authService.findByEmail(email);
 
             List<Work> workList = workService.selectGroupWork(member.getGroupSeq().getSeq(), date);
-            return new Response("success", "근무 조회 성공", workList);
+            List<ResponseWork> responseWorkList = new ArrayList<>();
+
+            for (Work work : workList) {
+                responseWorkList.add(new ResponseWork(
+                        work.getNurse().getNurseSeq(),
+                        work.getDate(),
+                        work.getDuty()
+                ));
+            }
+
+            return new Response("success", "근무 조회 성공", responseWorkList);
         } catch (Exception e) {
             return new Response("error", "근무 조회 실패", e.getMessage());
         }
