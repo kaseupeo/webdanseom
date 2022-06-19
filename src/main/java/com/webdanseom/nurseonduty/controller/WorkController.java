@@ -133,7 +133,17 @@ public class WorkController {
             Member member = authService.findByEmail(email);
 
             List<Work> workList = workService.selectNurseWork(member.getNurseSeq(), date);
-            return new Response("success", "근무 조회 성공", workList);
+            List<ResponseWork> responseWorkList = new ArrayList<>();
+
+            for (Work work : workList) {
+                responseWorkList.add(new ResponseWork(
+                        work.getNurse().getNurseSeq(),
+                        work.getDate(),
+                        work.getDuty()
+                ));
+            }
+
+            return new Response("success", "근무 조회 성공", responseWorkList);
         } catch (Exception e) {
             return new Response("error", "근무 조회 실패", e.getMessage());
         }
