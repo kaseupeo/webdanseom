@@ -30,7 +30,7 @@ const WorkSchedule = ({
       <select
         name={'' + year + month + (index + 1)}
         style={{ backgroundColor: {} }}
-        id={nurse}
+        id={index}
         onChange={onChangeWork}
       >
         {dutyCodeList}

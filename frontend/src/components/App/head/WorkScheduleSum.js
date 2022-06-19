@@ -1,13 +1,44 @@
 import { useState } from 'react';
 import './WorkScheduleSum.scss';
-const WorkScheduleSum = ({ year, month, dutyList, dutyTypeList }) => {
+const WorkScheduleSum = ({ year, month, dutyList, dutyTypeList, workList }) => {
   let date = new Date(year, month, 0);
+  const [sumArr, setSumArr] = useState([]);
   let dayArray = [];
-  let daySumArray = 5;
+  const getDutyTypeFromCode = (dutyCode) => {
+    if (!dutyCode) return;
+    for (let i = 0; i < dutyList.length; i++) {
+      if (dutyList[i].dutyCode === dutyCode) return dutyCode[i].workType;
+    }
+  };
 
-  for (let i = 0; i < date.getDate() + dutyTypeList.length; i++)
+  for (let i = 0; i < date.getDate() + dutyTypeList.length; i++) {
+    // const dutyType = getDutyTypeFromCode(workList[i].duty);
+    // console.log(dutyType);
+    // switch (dutyType) {
+    //   case 'Day':
+    //     break;
+    //   case 'Day like':
+    //     break;
+    //   case 'Evening':
+    //     break;
+    //   case 'Evening like':
+    //     break;
+    //   case 'Night':
+    //     break;
+    //   case 'Night like':
+    //     break;
+    //   case 'Mid':
+    //     break;
+    //   case 'Off':
+    //     break;
+    //   case 'Off like':
+    //     break;
+    //   default:
+    //     break;
+    // }
     dayArray.push(i);
-  const days = dayArray.map((day) => <td key={day}>{0}</td>);
+  }
+  const days = dayArray.map((day) => <td key={day}>{day}</td>);
   const sumRow = dutyTypeList.map((dutyType, index) => (
     <tr key={index}>
       <th colSpan={3}>{dutyType}</th>

@@ -21,6 +21,8 @@ import work, {
   changeWork,
   selectWorksHead,
   addWorkInfo,
+  insertWorks,
+  insertWorksExtra,
 } from '../../../modules/work';
 import WorkSheet from '../../../components/app/head/WorkSheet';
 import { useNavigate } from 'react-router-dom';
@@ -28,6 +30,7 @@ import dutyCode, {
   selectDutyCode,
   selectDutyCodeAsync,
 } from '../../../modules/dutyCode';
+
 const WorkSheetForm = () => {
   const dispatch = useDispatch();
 
@@ -42,7 +45,7 @@ const WorkSheetForm = () => {
   const tempDutyList = useSelector(({ dutyCode }) => dutyCode.dutyList);
   const [dutyList, setDutyList] = useState([]);
   const [dutyTypeList, setDutyTypeList] = useState([]);
-  const workList = useSelector(({ work }) => work.workList);
+  const requestWorkList = useSelector(({ work }) => work.requestWorkList);
   useEffect(() => {
     const temp = [{}];
 
@@ -55,27 +58,6 @@ const WorkSheetForm = () => {
       setDutyTypeList(['Day', 'Mid', 'Evening', 'Night', 'Off']);
     else setDutyTypeList(['Day', 'Evening', 'Night', 'Off']);
   }, [tempDutyList]);
-
-  const openNurseModal = () => {
-    setNurseModalOpen(true);
-  };
-  const closeNurseModal = () => {
-    setNurseModalOpen(false);
-  };
-
-  const openRelationModal = () => {
-    setRelationModalOpen(true);
-  };
-  const closeRelationModal = () => {
-    setRelationModalOpen(false);
-  };
-
-  const openDutyCodeModal = () => {
-    setDutyCodeModalOpen(true);
-  };
-  const closeDutyCodeModal = () => {
-    setDutyCodeModalOpen(false);
-  };
 
   const { date, response, responseError } = useSelector(({ management }) => ({
     date: management.date,
@@ -104,10 +86,11 @@ const WorkSheetForm = () => {
   const [workArray, setWorkArray] = useState([]);
 
   const initWorkArray = () => {
-    const arr = [];
-    const arr2 = [];
-
-    for (let i = 0; i < nurseList.length; i++) {
+    if (nurseList.length === 0) return;
+    setWorkArray([]);
+    const arrSize = nurseList.length;
+    console.log(arrSize);
+    for (let i = 0; i < arrSize; i++) {
       for (let j = 0; j < nowDate.getDate(); j++) {
         setWorkArray((e) => [
           ...e,
@@ -129,12 +112,12 @@ const WorkSheetForm = () => {
     const { year, month } = date;
 
     dispatch(selectWorksHeadAsync('' + year + month))
-      .then(setWorkArray([]))
       .then(initWorkArray())
-      .then(dispatch(addWorkInfo(workArray)))
       .then(dispatch(selectWorksHead('' + year + month)));
   };
-
+  useEffect(() => {
+    dispatch(addWorkInfo(workArray));
+  }, [workArray]);
   useEffect(() => {
     if (groupSeq === null) return;
     dispatch(selectDutyCodeAsync({ groupSeq }));
@@ -143,11 +126,27 @@ const WorkSheetForm = () => {
 
     setDutyList([]);
   }, [dispatch, groupSeq, date]);
+
   useEffect(() => {
     initWorkInfo();
   }, [nurseList]);
-  const onChangeWork = (e) => {};
 
+  const onChangeWork = (e) => {
+    const { id, value } = e.target;
+    dispatch(
+      changeWork({
+        index: id,
+        key: 'duty',
+        value,
+      }),
+    );
+  };
+  const onClickWorkExtraBtn = () => {
+    dispatch(insertWorksExtra({ requestWorkList }));
+  };
+  const onClickWorkBtn = () => {
+    dispatch(insertWorks({ requestWorkList }));
+  };
   return (
     <WorkSheet
       year={date.year}
@@ -157,7 +156,10 @@ const WorkSheetForm = () => {
       nurseList={nurseList}
       dutyTypeList={dutyTypeList}
     >
-      <WorkManagementBtnForm />
+      <WorkManagementBtnForm
+        onClickWorkExtraBtn={onClickWorkExtraBtn}
+        onClickWorkBtn={onClickWorkBtn}
+      />
       <WorkSchedule
         year={date.year}
         month={date.month}
@@ -169,6 +171,7 @@ const WorkSheetForm = () => {
         year={date.year}
         month={date.month}
         dutyList={dutyList}
+        workList={requestWorkList}
         dutyTypeList={dutyTypeList}
       />
     </WorkSheet>

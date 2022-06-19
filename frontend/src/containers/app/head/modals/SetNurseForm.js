@@ -15,7 +15,6 @@ import nurse, {
 const SetNurseForm = ({ modalOpen, closeModal }) => {
   const [checkedNurseList, setCheckedNurseList] = useState([]);
 
-  const response = useSelector(({ nurse }) => nurse.response);
   const groupSeq = useSelector(({ group }) => group.nurseGroup.seq);
   const nurseList = useSelector(({ nurse }) => nurse.nurseList);
   const dispatch = useDispatch();

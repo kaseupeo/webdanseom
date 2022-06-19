@@ -80,7 +80,7 @@ export function* nurseSaga() {
 }
 
 const initialState = {
-  nurseList: [''],
+  nurseList: [],
   response: {
     response: null,
     message: '',
