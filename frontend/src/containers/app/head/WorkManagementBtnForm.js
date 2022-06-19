@@ -7,7 +7,7 @@ import SetDutyCodeFrom from './modals/SetDutyCodeForm';
 import SetRelationFrom from './modals/SetRelationForm';
 import { selectNurses } from '../../../modules/nurse';
 import { selectDutyCode } from '../../../modules/dutyCode';
-const WorkManagementBtnForm = () => {
+const WorkManagementBtnForm = ({ onClickWorkExtraBtn, onClickWorkBtn }) => {
   const dispatch = useDispatch();
   const groupSeq = useSelector(({ group }) => group.nurseGroup.seq);
   const [nurseModalOpen, setNurseModalOpen] = useState(false);
@@ -44,6 +44,8 @@ const WorkManagementBtnForm = () => {
         openNurseModal={openNurseModal}
         openRelationModal={openRelationModal}
         openDutyCodeModal={openDutyCodeModal}
+        onClickWorkExtraBtn={onClickWorkExtraBtn}
+        onClickWorkBtn={onClickWorkBtn}
       ></WorkManagementBtn>
       <SetNurseForm modalOpen={nurseModalOpen} closeModal={closeNurseModal} />
       <SetRelationFrom

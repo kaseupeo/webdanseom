@@ -9,6 +9,8 @@ const WorkManagementBtn = ({
   openNurseModal,
   openRelationModal,
   openDutyCodeModal,
+  onClickWorkExtraBtn,
+  onClickWorkBtn,
 }) => {
   return (
     <div className="WorkManagementBtn">
@@ -20,10 +22,10 @@ const WorkManagementBtn = ({
           <Button>
             <b>근무표 출력</b>
           </Button>
-          <Button>
+          <Button onClick={onClickWorkExtraBtn}>
             <b>임시 저장</b>
           </Button>
-          <SetButton>
+          <SetButton onClick={onClickWorkBtn}>
             <b>근무표 저장</b>
           </SetButton>
         </div>
