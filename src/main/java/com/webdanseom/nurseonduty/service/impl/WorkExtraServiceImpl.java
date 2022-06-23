@@ -78,4 +78,14 @@ public class WorkExtraServiceImpl implements WorkExtraService {
         for(int i = 0; i < workExtraList.size(); i++)
             workExtraRepository.delete(workExtraList.get(i));
     }
+
+    /**
+     * 근무표 자동생성 기능
+     * @param nurseGroupSeq,
+     * @throws Exception
+     * */
+    @Override
+    public void automaticAddWorkExtra(int nurseGroupSeq) throws NotFoundException {
+
+    }
 }

@@ -68,28 +68,24 @@ public class WorkExtraController {
         }
     }
 
-//    //임시근무목록 조회
-//    @GetMapping("/selectWorkExtra/{strDate}")
-//    public Response selectWorkExtra(@PathVariable String strDate,
-//                                    HttpServletRequest httpServletRequest) {
-//        Cookie token = null;
-//        String jwt = null;
-//        String email = null;
-//
-//        try {
-//            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMM");
-//            Date date = simpleDateFormat.parse(strDate);
-//            token = cookieUtil.getCookie(httpServletRequest, JwtUtil.ACCESS_TOKEN_NAME);
-//            jwt = token.getValue();
-//            email = jwtUtil.getEmail(jwt);
-//            Member member = authService.findByEmail(email);
-//
-//            List<WorkExtra> workExtra = workExtraService.selectWorkExtraList(member.getGroupSeq().getSeq(), date);
-//            return new Response("success", "임시근무 조회 성공", workExtra);
-//        } catch (Exception e) {
-//            return new Response("error", "임시근무 조회 실패", e.getMessage());
-//        }
-//    }
+    //근무표 자동생성
+    @PostMapping("/automaticAddWorkExtra")
+    public Response automaticAddWorkExtra(@RequestBody RequestWorkList requestWorkList,
+                                          HttpServletRequest httpServletRequest) {
+        Cookie token = null;
+        String jwt = null;
+        String email = null;
+        try {
+            token = cookieUtil.getCookie(httpServletRequest, JwtUtil.ACCESS_TOKEN_NAME);
+            jwt = token.getValue();
+            email = jwtUtil.getEmail(jwt);
+            Member member = authService.findByEmail(email);
+
+            return new Response("success", "임시근무 등록 성공", null);
+        } catch (Exception e) {
+            return new Response("error", "임시근무 등록 실패", e.getMessage());
+        }
+    }
     
 
 }
