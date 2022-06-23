@@ -37,7 +37,7 @@ public class WorkExtraController {
     @Autowired
     private NurseService nurseService;
 
-    //근무 등록 및 수정
+    //임시근무 등록 및 수정
     @PostMapping("/addWorkExtra")
     public Response addWorkExtra(@RequestBody RequestWorkList requestWorkList,
                                  HttpServletRequest httpServletRequest) {
@@ -68,27 +68,28 @@ public class WorkExtraController {
         }
     }
 
-    //임시근무목록 조회
-    @GetMapping("/selectWorkExtra/{strDate}")
-    public Response selectWorkExtra(@PathVariable String strDate,
-                                    HttpServletRequest httpServletRequest) {
-        Cookie token = null;
-        String jwt = null;
-        String email = null;
-
-        try {
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMM");
-            Date date = simpleDateFormat.parse(strDate);
-            token = cookieUtil.getCookie(httpServletRequest, JwtUtil.ACCESS_TOKEN_NAME);
-            jwt = token.getValue();
-            email = jwtUtil.getEmail(jwt);
-            Member member = authService.findByEmail(email);
-
-            List<WorkExtra> workExtra = workExtraService.selectWorkExtraList(member.getGroupSeq().getSeq(), date);
-            return new Response("success", "임시근무 조회 성공", workExtra);
-        } catch (Exception e) {
-            return new Response("error", "임시근무 조회 실패", e.getMessage());
-        }
-    }
+//    //임시근무목록 조회
+//    @GetMapping("/selectWorkExtra/{strDate}")
+//    public Response selectWorkExtra(@PathVariable String strDate,
+//                                    HttpServletRequest httpServletRequest) {
+//        Cookie token = null;
+//        String jwt = null;
+//        String email = null;
+//
+//        try {
+//            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMM");
+//            Date date = simpleDateFormat.parse(strDate);
+//            token = cookieUtil.getCookie(httpServletRequest, JwtUtil.ACCESS_TOKEN_NAME);
+//            jwt = token.getValue();
+//            email = jwtUtil.getEmail(jwt);
+//            Member member = authService.findByEmail(email);
+//
+//            List<WorkExtra> workExtra = workExtraService.selectWorkExtraList(member.getGroupSeq().getSeq(), date);
+//            return new Response("success", "임시근무 조회 성공", workExtra);
+//        } catch (Exception e) {
+//            return new Response("error", "임시근무 조회 실패", e.getMessage());
+//        }
+//    }
+    
 
 }

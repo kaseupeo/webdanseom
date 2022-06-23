@@ -18,4 +18,7 @@ public interface WorkExtraService {
 
     //임시근무삭제 - 그룹삭제시
     void deleteWorkExtra(int nurseGroupSeq) throws Exception;
+
+    //임시근무 삭제 - 근무 저장시 삭제
+    void deleteWorkExtra(int nurseGroupSeq, Date date) throws NotFoundException;
 }

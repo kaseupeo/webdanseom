@@ -64,4 +64,18 @@ public class WorkExtraServiceImpl implements WorkExtraService {
         for(int i = 0; i < workExtraList.size(); i++)
             workExtraRepository.delete(workExtraList.get(i));
     }
+
+    /**
+     * 임시근무 해당 요일만 삭제
+     * @param nurseGroupSeq,
+     * @throws Exception
+     * */
+    @Override
+    public void deleteWorkExtra(int nurseGroupSeq, Date date) throws NotFoundException {
+        NurseGroup nurseGroup = nurseGroupRepository.findBySeq(nurseGroupSeq);
+        if(nurseGroup == null) throw new NotFoundException("delecteWorkExtra(seq,date), 그룹정보가 없습니다.");
+        List<WorkExtra> workExtraList = workExtraRepository.findGroupWorkExtra(nurseGroupSeq, date);
+        for(int i = 0; i < workExtraList.size(); i++)
+            workExtraRepository.delete(workExtraList.get(i));
+    }
 }

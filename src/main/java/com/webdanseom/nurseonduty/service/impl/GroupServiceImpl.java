@@ -88,6 +88,7 @@ public class GroupServiceImpl implements GroupService{
         memberRepository.save(member);
     }
 
+
      /**
       * 그룹조회
       * @param nurseGroup
